@@ -1,5 +1,5 @@
 
-MODE=$1        # build, emptb, test, cotb, all
+MODE=$1        # build, spec, test, emptb, cotb, all
 TARGET=$2      # ModuleName 
 
 CHISEL_DIR=$(pwd)
