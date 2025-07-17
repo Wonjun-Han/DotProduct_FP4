@@ -1,0 +1,14 @@
+{
+  "python.defaultInterpreterPath": "/Users/wonjun/cocotb_env/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/test_cocotb"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportCallIssue": "none",
+    "reportArgumentType": "none"
+  },
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.useLibraryCodeForTypes": true
+}

@@ -1,0 +1,35 @@
+#! /usr/local/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/v2009.vpi";
+S_0x7f9308f06760 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x7f9308f068f0 .scope module, "Adder" "Adder" 3 2;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clock";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 16 "io_a";
+    .port_info 3 /INPUT 16 "io_b";
+    .port_info 4 /OUTPUT 16 "io_sum";
+o0x7f9309a32008 .functor BUFZ 1, C4<z>; HiZ drive
+v0x7f9308f06ae0_0 .net "clock", 0 0, o0x7f9309a32008;  0 drivers
+o0x7f9309a32038 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x7f9308f16b60_0 .net "io_a", 15 0, o0x7f9309a32038;  0 drivers
+o0x7f9309a32068 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x7f9308f16c00_0 .net "io_b", 15 0, o0x7f9309a32068;  0 drivers
+v0x7f9308f16cb0_0 .net "io_sum", 15 0, L_0x7f9308f16ec0;  1 drivers
+o0x7f9309a320c8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x7f9308f16d60_0 .net "reset", 0 0, o0x7f9309a320c8;  0 drivers
+L_0x7f9308f16ec0 .arith/sum 16, o0x7f9309a32038, o0x7f9309a32068;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/Users/wonjun/chisel-template/test_cocotb/../generated/verilog/Adder.sv";

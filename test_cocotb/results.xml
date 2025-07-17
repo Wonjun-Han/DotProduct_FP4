@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1752736267" />
+    <testcase name="test_adder" classname="tb_Adder" file="/Users/wonjun/chisel-template/test_cocotb/tb_Adder.py" lineno="4" time="0.0005340576171875" sim_time_ns="1.001" ratio_time="1874.3295999999998" />
+  </testsuite>
+</testsuites>
