@@ -27,6 +27,7 @@ run_build() {
     echo "❌ Verilog 파일이 없습니다: $VERILOG_FILE"
     exit 1
   fi
+
 }
 
 run_emptb() {
