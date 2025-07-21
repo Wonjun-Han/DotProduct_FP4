@@ -28,9 +28,7 @@ class Multiplier extends Module {
   val b_sign     = b_extractor.io.out_vec.map(_.sign)
   val b_exponent = b_extractor.io.out_vec.map(_.exponent)
   val b_mantissa = b_extractor.io.out_vec.map(_.mantissa)
-  val a_sub  = a_exponent.zip(a_mantissa).map { case (e, m) => (e === 0.U) && (m =/= 0.U) }
   val a_zero = a_exponent.zip(a_mantissa).map { case (e, m) => (e === 0.U) && (m === 0.U) }
-  val b_sub  = b_exponent.zip(b_mantissa).map { case (e, m) => (e === 0.U) && (m =/= 0.U) }
   val b_zero = b_exponent.zip(b_mantissa).map { case (e, m) => (e === 0.U) && (m === 0.U) }
   val a_norm = a_exponent.zip(a_mantissa).map { case (e, m) => (e =/= 0.U) }
   val b_norm = b_exponent.zip(b_mantissa).map { case (e, m) => (e =/= 0.U) }
