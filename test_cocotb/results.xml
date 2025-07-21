@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1752836912" />
-    <testcase name="test_fieldextractor" classname="tb_FieldExtractor" file="/Users/wonjun/chisel-template/test_cocotb/tb_FieldExtractor.py" lineno="4" time="0.09994006156921387" sim_time_ns="1.001" ratio_time="10.016003435286596" />
+    <property name="random_seed" value="1753100365" />
+    <testcase name="test_multiplier_random" classname="tb_Multiplier" file="/Users/wonjun/chisel-template/test_cocotb/tb_Multiplier.py" lineno="24" time="0.1963672637939453" sim_time_ns="20.001" ratio_time="101.85506287334998" />
   </testsuite>
 </testsuites>

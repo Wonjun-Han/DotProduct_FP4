@@ -3,10 +3,10 @@ from cocotb.triggers import Timer
 
 @cocotb.test()
 async def test_fieldextractor(dut):
-    dut.io_in_vec_0.value = 0  # TODO: Set proper test value
-    dut.io_in_vec_1.value = 0  # TODO: Set proper test value
-    dut.io_in_vec_2.value = 0  # TODO: Set proper test value
-    dut.io_in_vec_3.value = 0  # TODO: Set proper test value
+    dut.io_in_vec_0.value = 0b0111  # TODO: Set proper test value
+    dut.io_in_vec_1.value = 0b1001  # TODO: Set proper test value
+    dut.io_in_vec_2.value = 0b1101  # TODO: Set proper test value
+    dut.io_in_vec_3.value = 0b1010  # TODO: Set proper test value
     dut.io_in_vec_4.value = 0  # TODO: Set proper test value
     dut.io_in_vec_5.value = 0  # TODO: Set proper test value
     dut.io_in_vec_6.value = 0  # TODO: Set proper test value
@@ -261,18 +261,18 @@ async def test_fieldextractor(dut):
     dut.io_in_vec_255.value = 0  # TODO: Set proper test value
     await Timer(1.0, units="ns")
 
-    assert dut.io_out_vec_0_sign.value == 0, f"FieldExtractor failed: {dut.io_out_vec_0_sign.value}"
-    assert dut.io_out_vec_0_exponent.value == 0, f"FieldExtractor failed: {dut.io_out_vec_0_exponent.value}"
-    assert dut.io_out_vec_0_mantissa.value == 0, f"FieldExtractor failed: {dut.io_out_vec_0_mantissa.value}"
-    assert dut.io_out_vec_1_sign.value == 0, f"FieldExtractor failed: {dut.io_out_vec_1_sign.value}"
-    assert dut.io_out_vec_1_exponent.value == 0, f"FieldExtractor failed: {dut.io_out_vec_1_exponent.value}"
-    assert dut.io_out_vec_1_mantissa.value == 0, f"FieldExtractor failed: {dut.io_out_vec_1_mantissa.value}"
-    assert dut.io_out_vec_2_sign.value == 0, f"FieldExtractor failed: {dut.io_out_vec_2_sign.value}"
-    assert dut.io_out_vec_2_exponent.value == 0, f"FieldExtractor failed: {dut.io_out_vec_2_exponent.value}"
-    assert dut.io_out_vec_2_mantissa.value == 0, f"FieldExtractor failed: {dut.io_out_vec_2_mantissa.value}"
-    assert dut.io_out_vec_3_sign.value == 0, f"FieldExtractor failed: {dut.io_out_vec_3_sign.value}"
-    assert dut.io_out_vec_3_exponent.value == 0, f"FieldExtractor failed: {dut.io_out_vec_3_exponent.value}"
-    assert dut.io_out_vec_3_mantissa.value == 0, f"FieldExtractor failed: {dut.io_out_vec_3_mantissa.value}"
+    assert dut.io_out_vec_0_sign.value == "0", f"FieldExtractor failed: {dut.io_out_vec_0_sign.value}"
+    assert dut.io_out_vec_0_exponent.value == "11", f"FieldExtractor failed: {dut.io_out_vec_0_exponent.value}"
+    assert dut.io_out_vec_0_mantissa.value == "11", f"FieldExtractor failed: {dut.io_out_vec_0_mantissa.value}"
+    assert dut.io_out_vec_1_sign.value == "1", f"FieldExtractor failed: {dut.io_out_vec_1_sign.value}"
+    assert dut.io_out_vec_1_exponent.value == "00", f"FieldExtractor failed: {dut.io_out_vec_1_exponent.value}"
+    assert dut.io_out_vec_1_mantissa.value == "01", f"FieldExtractor failed: {dut.io_out_vec_1_mantissa.value}"
+    assert dut.io_out_vec_2_sign.value == "1", f"FieldExtractor failed: {dut.io_out_vec_2_sign.value}"
+    assert dut.io_out_vec_2_exponent.value == "10", f"FieldExtractor failed: {dut.io_out_vec_2_exponent.value}"
+    assert dut.io_out_vec_2_mantissa.value == "11", f"FieldExtractor failed: {dut.io_out_vec_2_mantissa.value}"
+    assert dut.io_out_vec_3_sign.value == "1", f"FieldExtractor failed: {dut.io_out_vec_3_sign.value}"
+    assert dut.io_out_vec_3_exponent.value == "01", f"FieldExtractor failed: {dut.io_out_vec_3_exponent.value}"
+    assert dut.io_out_vec_3_mantissa.value == "10", f"FieldExtractor failed: {dut.io_out_vec_3_mantissa.value}"
     assert dut.io_out_vec_4_sign.value == 0, f"FieldExtractor failed: {dut.io_out_vec_4_sign.value}"
     assert dut.io_out_vec_4_exponent.value == 0, f"FieldExtractor failed: {dut.io_out_vec_4_exponent.value}"
     assert dut.io_out_vec_4_mantissa.value == 0, f"FieldExtractor failed: {dut.io_out_vec_4_mantissa.value}"
