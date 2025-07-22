@@ -24,4 +24,29 @@ class AddConvert extends Module {
     val mantissa = io.mantissa
     val sign = io.sign
     val depth = io.depth
+
+    val isZero = io.mantissa === 0.U
+    val lzc = PriorityEncoder(Reverse(io.mantissa))
+    val shiftedMant = io.mantissa << lzc
+    val adjustedExp = io.exponent - lzc
+
+    val isSubnormal = adjustedExp <= 0.U
+    val mantRounded = Wire(UInt(23.W))
+    val finalExp = Wire(UInt(8.W))
+
+    when (isZero) {
+        finalExp := 0.U
+        mantRounded := 0.U
+    } .elsewhen (isSubnormal) {
+        finalExp := 0.U
+        val subShift = (1.U - adjustedExp).asUInt
+        mantRounded := (shiftedMant >> subShift)(24, 2)
+    } .otherwise {
+        finalExp := adjustedExp
+        mantRounded := shiftedMant(23, 1) 
+    }
+
+    io.out.sign     := io.sign
+    io.out.exponent := finalExp
+    io.out.mantissa := mantRounded
 }
