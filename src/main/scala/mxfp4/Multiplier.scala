@@ -11,7 +11,6 @@ class MXFP4_MULT_Block_IO extends Bundle {
   val sign    = Output(Vec(256, UInt(1.W))) 
   val exponent = Output(Vec(256, UInt(3.W))) 
   val mantissa = Output(Vec(256, UInt(4.W)))
-  val bias = Output (Vec(256, UInt(1.W))) // Bias for exponent correction
 }
 
 class Multiplier extends Module {
@@ -36,19 +35,16 @@ class Multiplier extends Module {
   val sign_mul = Wire(Vec(256, UInt(1.W))) 
   val exponent_mul = Wire(Vec(256, UInt(3.W))) 
   val mantissa_mul = Wire(Vec(256, UInt(4.W))) 
-  val bias_mul = Wire(Vec(256, UInt(2.W)))
   sign_mul := (a_sign.zip(b_sign)).map { case (a, b) => a ^ b }
-  exponent_mul := (a_exponent.zip(b_exponent)).map { case (a, b) => a +& b }
+  exponent_mul := (a_zero zip b_zero zip a_exponent zip b_exponent).map {
+    case (((az, bz), ae), be) =>
+      Mux(az || bz, 0.U, ae +& be)
+  }
   mantissa_mul := (a_zero zip b_zero zip a_mantissa zip b_mantissa).map {
     case (((az, bz), am), bm) =>
       Mux(az || bz, 0.U, am * bm)
   } 
-  bias_mul := (a_norm zip b_norm).map {
-  case (an, bn) =>
-    (an && bn)
-  }
   io.sign := sign_mul
   io.exponent := exponent_mul
   io.mantissa := mantissa_mul
-  io.bias := bias_mul
 }
