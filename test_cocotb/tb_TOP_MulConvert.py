@@ -57,10 +57,9 @@ async def test_mulconvert_block(dut):
         dut_exp  = int(getattr(dut, f"io_out_{i}_exponent").value)
         dut_man  = int(getattr(dut, f"io_out_{i}_mantissa").value)
 
-        # 비교 로직: 약간의 오차 허용
         sign_match     = dut_sign == expected_sign
-        exponent_match = abs(expected_exp - dut_exp) <= 1
-        mantissa_match = abs(expected_man - dut_man) <= 2
+        exponent_match = abs(expected_exp - dut_exp) <= 0
+        mantissa_match = abs(expected_man - dut_man) <= 0
 
         if not (sign_match and exponent_match and mantissa_match):
             raise AssertionError(
@@ -69,4 +68,4 @@ async def test_mulconvert_block(dut):
                 f"Expected: sign={expected_sign}, exp={expected_exp}, man={expected_man}\n"
                 f"Got     : sign={dut_sign}, exp={dut_exp}, man={dut_man}"
             )
-    dut._log.info("✅ All 256 MXFP4 vector multiplications passed!")
+    dut._log.info("All 256 MXFP4 vector multiplications passed!")
