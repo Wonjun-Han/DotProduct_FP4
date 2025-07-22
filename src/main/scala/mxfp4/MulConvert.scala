@@ -20,18 +20,18 @@ class MXFP4_MulConvert_Block_IO () extends Bundle {
 class MulConvert extends Module {
   val io = IO(new MXFP4_MulConvert_Block_IO)
   val exponent = io.exponent
-  val mantissa_four = io.mantissa
+  val mantissa = io.mantissa
   val PE = Wire(Vec(256, UInt(2.W))) 
   val exponent_Conv = Wire(Vec(256, UInt(8.W)))
   val mantissa_Conv = Wire(Vec(256, UInt(23.W)))
   val zero = Wire(Vec(256, (Bool())))
 
-  PE := mantissa_four.map(m => PriorityEncoder(Reverse(m)))
-  zero := mantissa_four.zip(exponent).map { case (m, e) => (m === 0.U) && (e === 0.U) } 
+  PE := mantissa.map(m => PriorityEncoder(Reverse(m)))
+  zero := mantissa.zip(exponent).map { case (m, e) => (m === 0.U) && (e === 0.U) } 
 
   for (i <- 0 until 256) {
     io.out(i).sign := io.sign(i)
-    val mant_shifted = (mantissa_four(i) << (20.U + PE(i)))(22, 0)
+    val mant_shifted = (mantissa(i) << (20.U + PE(i)))(22, 0)
     when ((PE(i) === 0.U) && ~zero(i)) {
       exponent_Conv(i) := exponent(i) +& 126.U
       mantissa_Conv(i) := mant_shifted.asUInt(22,0)
