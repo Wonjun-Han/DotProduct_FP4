@@ -1,6 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1753180241" />
-    <testcase name="test_mulconvert_block" classname="tb_TOP_MulConvert" file="/Users/wonjun/chisel-template/test_cocotb/tb_TOP_MulConvert.py" lineno="36" time="0.1515028476715088" sim_time_ns="10.001" ratio_time="66.01196052554965" />
+    <property name="random_seed" value="1753343651" />
+    <testcase name="test_mulconvert_block" classname="tb_TOP_MulConvert" file="/Users/wonjun/chisel-template/test_cocotb/tb_TOP_MulConvert.py" lineno="35" time="0.03828310966491699" sim_time_ns="10.001" ratio_time="261.2379215674063">
+      <failure message="Test failed with RANDOM_SEED=1753343651" />
+    </testcase>
   </testsuite>
 </testsuites>
