@@ -6,7 +6,7 @@ A high-performance, pipelined hardware implementation of MXFP4-based Multiply-Ac
 
 ## 📌 Overview
 
-This project implements a **custom floating-point MAC unit** using the MXFP4 format from the OCP Microscaling (MX) specification. The system consists of the following key pipeline modules:
+This project implements a **custom floating-point MAC unit** using the MXFP4 format from the OCP Microscaling (MX) specification. The system consists of the following key pipeline modules
 
 - `FieldExtractor`: Parses 4-bit MXFP4 input into sign, exponent, mantissa
 - `Multiplier`: Performs 256-element parallel MXFP4 × MXFP4 multiplication
@@ -30,9 +30,9 @@ All modules are optimized to run at **1GHz clock frequency**, with careful pipel
 | Module         | Pipeline Stages | Description                                    |
 |----------------|------------------|------------------------------------------------|
 | FieldExtractor | 0                | No pipelining required                         |
-| Multiplier     | 2                | Mantissa mult & zero check split               |
-| MulConvert     | 3                | PE calc → Shift → Exp adjust                   |
-| Adder          | 5–6              | Align → Add/Sub → Normalize → Round            |
+| Multiplier     | TBD              | Mantissa mult & zero check split               |
+| MulConvert     | TBD              | PE calc → Shift → Exp adjust                   |
+| Adder          | TBD              | Align → Add/Sub → Normalize → Round            |
 
 ---
 
@@ -47,6 +47,9 @@ run build <ModuleName>
 Each module is testable using Python-based cocotb. 
 
 Example:
+```bash
+run cotb <ModuleName>
+```
 
 ```bash
 src/
