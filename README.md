@@ -67,7 +67,6 @@ cocotb/
  └── tb_Multiplier.py
 ```
 🧠 Author
-Designed by Wonjun Han
-Chip Architect Candidate - Furiosa AI
+Designed by Wonjun Han[AI Chip Arhictect] - Furiosa AI
 
 
