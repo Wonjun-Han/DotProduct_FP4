@@ -2,12 +2,7 @@ package mxfp4.piped
 
 import chisel3._
 import chisel3.util._
-
-class FP32 extends Bundle {
-  val sign     = UInt(1.W)
-  val exponent = UInt(8.W)
-  val mantissa = UInt(23.W)
-}
+import _root_.circt.stage.ChiselStage
 
 class p_Adder_Dep_1 extends Module {
   val io = IO(new Bundle {
