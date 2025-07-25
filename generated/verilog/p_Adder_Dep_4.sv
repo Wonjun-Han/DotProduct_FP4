@@ -5,9 +5,9 @@ module p_Adder_Dep_4(
   input  [12:0] io_in_0,
                 io_in_1,
   input  [2:0]  io_depth,
-  output [13:0] io_out_0
+  output [13:0] io_out
 );
 
-  assign io_out_0 = {io_in_0[12], io_in_0} + {io_in_1[12], io_in_1};
+  assign io_out = {io_in_0[12], io_in_0} + {io_in_1[12], io_in_1};
 endmodule
 
