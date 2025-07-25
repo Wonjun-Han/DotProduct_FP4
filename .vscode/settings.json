@@ -10,5 +10,8 @@
     "reportArgumentType": "none"
   },
   "python.analysis.autoSearchPaths": true,
-  "python.analysis.useLibraryCodeForTypes": true
+  "python.analysis.useLibraryCodeForTypes": true,
+  "files.watcherExclude": {
+    "**/target": true
+  }
 }
