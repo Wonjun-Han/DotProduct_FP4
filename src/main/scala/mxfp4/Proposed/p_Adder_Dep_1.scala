@@ -4,18 +4,25 @@ import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class MXFP4_ADD_DEPTH1_BLOCK_IO extends Bundle {
-  val in = Input(Vec(16, SInt(10.W)))  // 4-bit mantissa + padding
-  val depth = Input(UInt(3.W))            // Optional
-  val out = Output(Vec(8, SInt(11.W)))       // SInt로 직접 표현
+  val sign     = Input(Vec(32, UInt(1.W)))
+  val mantissa = Input(Vec(32, UInt(8.W)))   // 4-bit mantissa + padding
+  val depth    = Input(UInt(3.W))            // Optional
+  val out = Output(Vec(16, SInt(10.W)))       // SInt로 직접 표현
 }
 
 class p_Adder_Dep_1 extends Module {
   val io = IO(new MXFP4_ADD_DEPTH1_BLOCK_IO)
 
-  for (i <- 0 until 8) {
-    val a = io.in(2 * i)
-    val b = io.in(2 * i + 1)
+  for (i <- 0 until 16) {
+    val a_sign = io.sign(2 * i)
+    val b_sign = io.sign(2 * i + 1)
+    val a_mag = io.mantissa(2 * i)
+    val b_mag = io.mantissa(2 * i + 1)
 
-    io.out(i) := a +& b
+    val a_sint = Mux(a_sign === 1.U, (~a_mag).asSInt + 1.S, a_mag.asSInt)
+    val b_sint = Mux(b_sign === 1.U, (~b_mag).asSInt + 1.S, b_mag.asSInt)
+
+    io.out(i) := a_sint +& b_sint
   }
 }
+
