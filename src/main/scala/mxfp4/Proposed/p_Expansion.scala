@@ -17,7 +17,9 @@ class p_Expansion extends Module {
   val io = IO(new MXFP4_GROUP_BLOCK_IO)
   io.out_sign := io.sign
 
-  val max_exp = io.exponent.reduce((a, b) => Mux(a > b, a, b))
+  val max_exp = Wire(UInt(3.W))
+  max_exp := io.exponent.reduce((a, b) => Mux(a > b, a, b))
+  //val max_exp_clamped = Mux(max_exp > 4.U, 4.U, max_exp) // Clamp to max 4
   io.out_exponent_gmax(0) := max_exp
 
   for (i <- 0 until 32) {

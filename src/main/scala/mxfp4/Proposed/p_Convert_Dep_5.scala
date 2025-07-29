@@ -1,68 +1,94 @@
 package mxfp4.proposed
+
 import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class MXFP4_CONVERT_DEPTH5_BLOCK_IO extends Bundle {
-  val depth = Input(UInt(3.W))
-  val in = Input(Vec(8, SInt(14.W)))
-  val exponent = Input(Vec(8, UInt(9.W)))
-  val out = Output(Vec(8, new FP32))
+  val depth    = Input(UInt(3.W))
+  val in       = Input(Vec(8, SInt(14.W)))     // Q8.6 고정소수점 누적합
+  val exponent = Input(Vec(8, SInt(10.W)))     // ScaleEmax 결과
+  val out      = Output(Vec(8, new FP32))      // FP32 결과
+
+  // for debugging
+  val debug_real_exp   = Output(Vec(8, SInt(10.W)))
+  val debug_biased_exp = Output(Vec(8, SInt(10.W)))
+  val debug_shift_amt  = Output(Vec(8, SInt(5.W)))
+  val debug_PE         = Output(Vec(8, UInt(4.W)))
+  val debug_abs_in     = Output(Vec(8, UInt(13.W)))
 }
 
 class p_Convert_Dep_5 extends Module {
   val io = IO(new MXFP4_CONVERT_DEPTH5_BLOCK_IO)
 
   val enable = io.depth === 5.U
-  val sign = Wire(Vec(8, UInt(1.W)))
-  val exponent = Wire(Vec(8, UInt(9.W)))
-  val mantissa = Wire(Vec(8, UInt(13.W)))
-  val PE = Wire(Vec(8, UInt(4.W)))
-  val zero = Wire(Vec(8, (Bool())))
-  val sub = Wire(Vec(8, Bool())) 
-
-  val exponent_Conv = Wire(Vec(8, UInt(8.W)))
-  val mantissa_Conv = Wire(Vec(8, UInt(23.W)))
 
   for (i <- 0 until 8) {
-      sign(i) := Mux(io.in(i) < 0.S, 1.U, 0.U)
-      exponent(i) := io.exponent(i)
-      val abs_in = Mux(io.in(i) < 0.S, -io.in(i), io.in(i))
-      mantissa(i) := abs_in.asUInt
-      
+    // ---------------------
+    // Step 1: Sign 및 절댓값
+    // ---------------------
+    val input        = io.in(i)
+    val sign_bit     = Mux(input < 0.S, 1.U, 0.U)
+    val abs_val_full = Mux(input < 0.S, -input, input).asUInt // UInt(14.W)
 
-      PE(i) := PriorityEncoder(Reverse(mantissa(i)))
-      sub(i) := (mantissa(i) =/= 0.U)&&(exponent(i) === 0.U)
-      zero(i) := (mantissa(i) === 0.U) && (exponent(i) === 0.U)
+    // ✅ 절댓값의 MSB는 항상 0 (Q8.6 최대값 8191)
+    val abs_val = abs_val_full(12, 0) // MSB 제거 → UInt(13.W)
 
-      when (exponent(i) > (PE(i) + 248.U) ) { //254 - 6
-        exponent_Conv(i) := 255.U
-        mantissa_Conv(i) := 0.U(23.W)
-      }.elsewhen ((exponent(i) + 6.U) < PE(i)){
-        exponent_Conv(i) := 0.U(8.W)
-        mantissa_Conv(i) := Cat((mantissa(i) << (exponent(i) - 1.U))(5, 0), 0.U(17.W))
-      }.otherwise {
-        exponent_Conv(i) := exponent(i) - 6.U + PE(i)
-        val shifted = Wire(UInt(23.W))
-        when(PE(i) < 6.U) {
-            shifted := (mantissa(i) >> (6.U - PE(i))) << (23.U - 13.U)  // 상위 13bit로 이동
-        }.otherwise {
-            val extended = (mantissa(i) << (PE(i) - 6.U)) // 13bit 유지
-            shifted := extended << (23.U - 13.U)
-        }
-        mantissa_Conv(i) := shifted
-      }
+    // ---------------------
+    // Step 2: PriorityEncoder + shift
+    // ---------------------
+    val PE = PriorityEncoder(Reverse(abs_val))    // 최상위 1bit 위치 (0~12)
+    val shift_amt = (6.S - PE.asSInt).asSInt      // 고정소수점 기준 정규화 shift (소수점 기준)
 
-      when (enable) {
-        io.out(i).sign := sign(i)
-        io.out(i).exponent := exponent_Conv(i)
-        io.out(i).mantissa := mantissa_Conv(i)
-      }.otherwise {
-        io.out(i).sign := 0.U
-        io.out(i).exponent := 0.U
-        io.out(i).mantissa := 0.U
-      }
+    // mantissa 확장: 13bit → 30bit
+    val extended_mantissa = Cat(abs_val, 0.U(17.W)) // GRS 확보용
+
+    // ---------------------
+    // Step 3: Exponent 계산
+    // ---------------------
+    val real_exp   = io.exponent(i) + shift_amt    // scale_sum + emax + 정규화 shift
+    val biased_exp = real_exp + 127.S              // IEEE 754 bias 추가
+
+    val exponent_conv = Wire(UInt(8.W))
+    val mantissa_conv = Wire(UInt(23.W))
+
+    when (real_exp >= 128.S) {
+      // Overflow → Inf
+      exponent_conv := 255.U
+      mantissa_conv := 0.U
+    }.elsewhen (biased_exp <= 0.S) {
+      // Underflow → Subnormal
+      exponent_conv := 0.U
+      val sub_shift = (1.S - biased_exp).asUInt
+      mantissa_conv := (extended_mantissa >> sub_shift)(22, 0)
+    }.otherwise {
+      // Normal
+      exponent_conv := biased_exp.asUInt
+      mantissa_conv := Mux(shift_amt >= 0.S,
+        (extended_mantissa >> shift_amt.asUInt)(22, 0),
+        (extended_mantissa << (-shift_amt).asUInt)(22, 0)
+      )
     }
 
- 
+    // ---------------------
+    // Step 4: 출력
+    // ---------------------
+    when (enable) {
+      io.out(i).sign     := sign_bit
+      io.out(i).exponent := exponent_conv
+      io.out(i).mantissa := mantissa_conv
+    }.otherwise {
+      io.out(i).sign     := 0.U
+      io.out(i).exponent := 0.U
+      io.out(i).mantissa := 0.U
+    }
+
+    // Debugging outputs
+    io.debug_real_exp(i)   := real_exp
+    io.debug_biased_exp(i) := biased_exp
+    io.debug_shift_amt(i)  := shift_amt
+    io.debug_PE(i)         := PE
+    io.debug_abs_in(i)     := abs_val
+
+  }
 }

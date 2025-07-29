@@ -9,7 +9,7 @@ module p_Convert_Dep_5(
                 io_in_5,
                 io_in_6,
                 io_in_7,
-  input  [8:0]  io_exponent_0,
+  input  [9:0]  io_exponent_0,
                 io_exponent_1,
                 io_exponent_2,
                 io_exponent_3,
@@ -40,379 +40,495 @@ module p_Convert_Dep_5(
   output [22:0] io_out_6_mantissa,
   output        io_out_7_sign,
   output [7:0]  io_out_7_exponent,
-  output [22:0] io_out_7_mantissa
+  output [22:0] io_out_7_mantissa,
+  output [9:0]  io_debug_real_exp_0,
+                io_debug_real_exp_1,
+                io_debug_real_exp_2,
+                io_debug_real_exp_3,
+                io_debug_real_exp_4,
+                io_debug_real_exp_5,
+                io_debug_real_exp_6,
+                io_debug_real_exp_7,
+                io_debug_biased_exp_0,
+                io_debug_biased_exp_1,
+                io_debug_biased_exp_2,
+                io_debug_biased_exp_3,
+                io_debug_biased_exp_4,
+                io_debug_biased_exp_5,
+                io_debug_biased_exp_6,
+                io_debug_biased_exp_7,
+  output [4:0]  io_debug_shift_amt_0,
+                io_debug_shift_amt_1,
+                io_debug_shift_amt_2,
+                io_debug_shift_amt_3,
+                io_debug_shift_amt_4,
+                io_debug_shift_amt_5,
+                io_debug_shift_amt_6,
+                io_debug_shift_amt_7,
+  output [3:0]  io_debug_PE_0,
+                io_debug_PE_1,
+                io_debug_PE_2,
+                io_debug_PE_3,
+                io_debug_PE_4,
+                io_debug_PE_5,
+                io_debug_PE_6,
+                io_debug_PE_7,
+  output [12:0] io_debug_abs_in_0,
+                io_debug_abs_in_1,
+                io_debug_abs_in_2,
+                io_debug_abs_in_3,
+                io_debug_abs_in_4,
+                io_debug_abs_in_5,
+                io_debug_abs_in_6,
+                io_debug_abs_in_7
 );
 
-  wire         enable = io_depth == 3'h5;
-  wire         sign_0 = $signed(io_in_0) < 14'sh0;
-  wire [12:0]  abs_in = sign_0 ? 13'h0 - io_in_0[12:0] : io_in_0[12:0];
-  wire [7:0]   _PE_0_T_9 = {4'h0, abs_in[7:4]} | {abs_in[3:0], 4'h0};
-  wire [7:0]   _PE_0_T_19 =
-    {2'h0, _PE_0_T_9[7:2] & 6'h33} | {_PE_0_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_0_T_29 =
-    _PE_0_T_19[7:1] & 7'h55 | {1'h0, _PE_0_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_0 =
-    abs_in[12]
+  wire        enable = io_depth == 3'h5;
+  wire        sign_bit = $signed(io_in_0) < 14'sh0;
+  wire [12:0] _abs_val_full_T_4 = sign_bit ? 13'h0 - io_in_0[12:0] : io_in_0[12:0];
+  wire [7:0]  _PE_T_9 = {4'h0, _abs_val_full_T_4[7:4]} | {_abs_val_full_T_4[3:0], 4'h0};
+  wire [7:0]  _PE_T_19 = {2'h0, _PE_T_9[7:2] & 6'h33} | {_PE_T_9[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_29 = _PE_T_19[7:1] & 7'h55 | {1'h0, _PE_T_19[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE =
+    _abs_val_full_T_4[12]
       ? 4'h0
-      : abs_in[11]
+      : _abs_val_full_T_4[11]
           ? 4'h1
-          : abs_in[10]
+          : _abs_val_full_T_4[10]
               ? 4'h2
-              : abs_in[9]
+              : _abs_val_full_T_4[9]
                   ? 4'h3
-                  : abs_in[8]
+                  : _abs_val_full_T_4[8]
                       ? 4'h4
-                      : _PE_0_T_29[0]
+                      : _PE_T_29[0]
                           ? 4'h5
-                          : _PE_0_T_29[1]
+                          : _PE_T_29[1]
                               ? 4'h6
-                              : _PE_0_T_29[2]
+                              : _PE_T_29[2]
                                   ? 4'h7
-                                  : _PE_0_T_29[3]
+                                  : _PE_T_29[3]
                                       ? 4'h8
-                                      : _PE_0_T_29[4]
+                                      : _PE_T_29[4]
                                           ? 4'h9
-                                          : _PE_0_T_29[5]
+                                          : _PE_T_29[5]
                                               ? 4'hA
-                                              : _PE_0_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN = {4'h0, PE_0};
-  wire         _GEN_0 = io_exponent_0 > {1'h0, _GEN - 8'h8};
-  wire         _GEN_1 = io_exponent_0 + 9'h6 < {5'h0, PE_0};
-  wire [523:0] _mantissa_Conv_0_T_2 = {511'h0, abs_in} << io_exponent_0 - 9'h1;
-  wire [27:0]  extended = {15'h0, abs_in} << PE_0 - 4'h6;
-  wire         sign_1 = $signed(io_in_1) < 14'sh0;
-  wire [12:0]  abs_in_1 = sign_1 ? 13'h0 - io_in_1[12:0] : io_in_1[12:0];
-  wire [7:0]   _PE_1_T_9 = {4'h0, abs_in_1[7:4]} | {abs_in_1[3:0], 4'h0};
-  wire [7:0]   _PE_1_T_19 =
-    {2'h0, _PE_1_T_9[7:2] & 6'h33} | {_PE_1_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_1_T_29 =
-    _PE_1_T_19[7:1] & 7'h55 | {1'h0, _PE_1_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_1 =
-    abs_in_1[12]
+                                              : _PE_T_29[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_1 = 4'h6 - PE;
+  wire [29:0] extended_mantissa = {_abs_val_full_T_4, 17'h0};
+  wire [9:0]  _real_exp_T = io_exponent_0 + {{6{_shift_amt_T_1[3]}}, _shift_amt_T_1};
+  wire [9:0]  _biased_exp_T = _real_exp_T + 10'h7F;
+  wire        _GEN = $signed(_real_exp_T) > 10'sh7F;
+  wire        _GEN_0 = $signed(_biased_exp_T) < 10'sh1;
+  wire [29:0] _mantissa_conv_T = extended_mantissa >> 10'h1 - _biased_exp_T;
+  wire [29:0] _mantissa_conv_T_4 = extended_mantissa >> _shift_amt_T_1;
+  wire [44:0] _mantissa_conv_T_10 =
+    {15'h0, _abs_val_full_T_4, 17'h0} << 4'h0 - _shift_amt_T_1;
+  wire        sign_bit_1 = $signed(io_in_1) < 14'sh0;
+  wire [12:0] _abs_val_full_T_9 = sign_bit_1 ? 13'h0 - io_in_1[12:0] : io_in_1[12:0];
+  wire [7:0]  _PE_T_77 = {4'h0, _abs_val_full_T_9[7:4]} | {_abs_val_full_T_9[3:0], 4'h0};
+  wire [7:0]  _PE_T_87 = {2'h0, _PE_T_77[7:2] & 6'h33} | {_PE_T_77[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_97 = _PE_T_87[7:1] & 7'h55 | {1'h0, _PE_T_87[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_1 =
+    _abs_val_full_T_9[12]
       ? 4'h0
-      : abs_in_1[11]
+      : _abs_val_full_T_9[11]
           ? 4'h1
-          : abs_in_1[10]
+          : _abs_val_full_T_9[10]
               ? 4'h2
-              : abs_in_1[9]
+              : _abs_val_full_T_9[9]
                   ? 4'h3
-                  : abs_in_1[8]
+                  : _abs_val_full_T_9[8]
                       ? 4'h4
-                      : _PE_1_T_29[0]
+                      : _PE_T_97[0]
                           ? 4'h5
-                          : _PE_1_T_29[1]
+                          : _PE_T_97[1]
                               ? 4'h6
-                              : _PE_1_T_29[2]
+                              : _PE_T_97[2]
                                   ? 4'h7
-                                  : _PE_1_T_29[3]
+                                  : _PE_T_97[3]
                                       ? 4'h8
-                                      : _PE_1_T_29[4]
+                                      : _PE_T_97[4]
                                           ? 4'h9
-                                          : _PE_1_T_29[5]
+                                          : _PE_T_97[5]
                                               ? 4'hA
-                                              : _PE_1_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_2 = {4'h0, PE_1};
-  wire         _GEN_3 = io_exponent_1 > {1'h0, _GEN_2 - 8'h8};
-  wire         _GEN_4 = io_exponent_1 + 9'h6 < {5'h0, PE_1};
-  wire [523:0] _mantissa_Conv_1_T_2 = {511'h0, abs_in_1} << io_exponent_1 - 9'h1;
-  wire [27:0]  extended_1 = {15'h0, abs_in_1} << PE_1 - 4'h6;
-  wire         sign_2 = $signed(io_in_2) < 14'sh0;
-  wire [12:0]  abs_in_2 = sign_2 ? 13'h0 - io_in_2[12:0] : io_in_2[12:0];
-  wire [7:0]   _PE_2_T_9 = {4'h0, abs_in_2[7:4]} | {abs_in_2[3:0], 4'h0};
-  wire [7:0]   _PE_2_T_19 =
-    {2'h0, _PE_2_T_9[7:2] & 6'h33} | {_PE_2_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_2_T_29 =
-    _PE_2_T_19[7:1] & 7'h55 | {1'h0, _PE_2_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_2 =
-    abs_in_2[12]
+                                              : _PE_T_97[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_4 = 4'h6 - PE_1;
+  wire [29:0] extended_mantissa_1 = {_abs_val_full_T_9, 17'h0};
+  wire [9:0]  _real_exp_T_2 = io_exponent_1 + {{6{_shift_amt_T_4[3]}}, _shift_amt_T_4};
+  wire [9:0]  _biased_exp_T_2 = _real_exp_T_2 + 10'h7F;
+  wire        _GEN_1 = $signed(_real_exp_T_2) > 10'sh7F;
+  wire        _GEN_2 = $signed(_biased_exp_T_2) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_13 = extended_mantissa_1 >> 10'h1 - _biased_exp_T_2;
+  wire [29:0] _mantissa_conv_T_17 = extended_mantissa_1 >> _shift_amt_T_4;
+  wire [44:0] _mantissa_conv_T_23 =
+    {15'h0, _abs_val_full_T_9, 17'h0} << 4'h0 - _shift_amt_T_4;
+  wire        sign_bit_2 = $signed(io_in_2) < 14'sh0;
+  wire [12:0] _abs_val_full_T_14 = sign_bit_2 ? 13'h0 - io_in_2[12:0] : io_in_2[12:0];
+  wire [7:0]  _PE_T_145 =
+    {4'h0, _abs_val_full_T_14[7:4]} | {_abs_val_full_T_14[3:0], 4'h0};
+  wire [7:0]  _PE_T_155 = {2'h0, _PE_T_145[7:2] & 6'h33} | {_PE_T_145[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_165 = _PE_T_155[7:1] & 7'h55 | {1'h0, _PE_T_155[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_2 =
+    _abs_val_full_T_14[12]
       ? 4'h0
-      : abs_in_2[11]
+      : _abs_val_full_T_14[11]
           ? 4'h1
-          : abs_in_2[10]
+          : _abs_val_full_T_14[10]
               ? 4'h2
-              : abs_in_2[9]
+              : _abs_val_full_T_14[9]
                   ? 4'h3
-                  : abs_in_2[8]
+                  : _abs_val_full_T_14[8]
                       ? 4'h4
-                      : _PE_2_T_29[0]
+                      : _PE_T_165[0]
                           ? 4'h5
-                          : _PE_2_T_29[1]
+                          : _PE_T_165[1]
                               ? 4'h6
-                              : _PE_2_T_29[2]
+                              : _PE_T_165[2]
                                   ? 4'h7
-                                  : _PE_2_T_29[3]
+                                  : _PE_T_165[3]
                                       ? 4'h8
-                                      : _PE_2_T_29[4]
+                                      : _PE_T_165[4]
                                           ? 4'h9
-                                          : _PE_2_T_29[5]
+                                          : _PE_T_165[5]
                                               ? 4'hA
-                                              : _PE_2_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_5 = {4'h0, PE_2};
-  wire         _GEN_6 = io_exponent_2 > {1'h0, _GEN_5 - 8'h8};
-  wire         _GEN_7 = io_exponent_2 + 9'h6 < {5'h0, PE_2};
-  wire [523:0] _mantissa_Conv_2_T_2 = {511'h0, abs_in_2} << io_exponent_2 - 9'h1;
-  wire [27:0]  extended_2 = {15'h0, abs_in_2} << PE_2 - 4'h6;
-  wire         sign_3 = $signed(io_in_3) < 14'sh0;
-  wire [12:0]  abs_in_3 = sign_3 ? 13'h0 - io_in_3[12:0] : io_in_3[12:0];
-  wire [7:0]   _PE_3_T_9 = {4'h0, abs_in_3[7:4]} | {abs_in_3[3:0], 4'h0};
-  wire [7:0]   _PE_3_T_19 =
-    {2'h0, _PE_3_T_9[7:2] & 6'h33} | {_PE_3_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_3_T_29 =
-    _PE_3_T_19[7:1] & 7'h55 | {1'h0, _PE_3_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_3 =
-    abs_in_3[12]
+                                              : _PE_T_165[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_7 = 4'h6 - PE_2;
+  wire [29:0] extended_mantissa_2 = {_abs_val_full_T_14, 17'h0};
+  wire [9:0]  _real_exp_T_4 = io_exponent_2 + {{6{_shift_amt_T_7[3]}}, _shift_amt_T_7};
+  wire [9:0]  _biased_exp_T_4 = _real_exp_T_4 + 10'h7F;
+  wire        _GEN_3 = $signed(_real_exp_T_4) > 10'sh7F;
+  wire        _GEN_4 = $signed(_biased_exp_T_4) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_26 = extended_mantissa_2 >> 10'h1 - _biased_exp_T_4;
+  wire [29:0] _mantissa_conv_T_30 = extended_mantissa_2 >> _shift_amt_T_7;
+  wire [44:0] _mantissa_conv_T_36 =
+    {15'h0, _abs_val_full_T_14, 17'h0} << 4'h0 - _shift_amt_T_7;
+  wire        sign_bit_3 = $signed(io_in_3) < 14'sh0;
+  wire [12:0] _abs_val_full_T_19 = sign_bit_3 ? 13'h0 - io_in_3[12:0] : io_in_3[12:0];
+  wire [7:0]  _PE_T_213 =
+    {4'h0, _abs_val_full_T_19[7:4]} | {_abs_val_full_T_19[3:0], 4'h0};
+  wire [7:0]  _PE_T_223 = {2'h0, _PE_T_213[7:2] & 6'h33} | {_PE_T_213[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_233 = _PE_T_223[7:1] & 7'h55 | {1'h0, _PE_T_223[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_3 =
+    _abs_val_full_T_19[12]
       ? 4'h0
-      : abs_in_3[11]
+      : _abs_val_full_T_19[11]
           ? 4'h1
-          : abs_in_3[10]
+          : _abs_val_full_T_19[10]
               ? 4'h2
-              : abs_in_3[9]
+              : _abs_val_full_T_19[9]
                   ? 4'h3
-                  : abs_in_3[8]
+                  : _abs_val_full_T_19[8]
                       ? 4'h4
-                      : _PE_3_T_29[0]
+                      : _PE_T_233[0]
                           ? 4'h5
-                          : _PE_3_T_29[1]
+                          : _PE_T_233[1]
                               ? 4'h6
-                              : _PE_3_T_29[2]
+                              : _PE_T_233[2]
                                   ? 4'h7
-                                  : _PE_3_T_29[3]
+                                  : _PE_T_233[3]
                                       ? 4'h8
-                                      : _PE_3_T_29[4]
+                                      : _PE_T_233[4]
                                           ? 4'h9
-                                          : _PE_3_T_29[5]
+                                          : _PE_T_233[5]
                                               ? 4'hA
-                                              : _PE_3_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_8 = {4'h0, PE_3};
-  wire         _GEN_9 = io_exponent_3 > {1'h0, _GEN_8 - 8'h8};
-  wire         _GEN_10 = io_exponent_3 + 9'h6 < {5'h0, PE_3};
-  wire [523:0] _mantissa_Conv_3_T_2 = {511'h0, abs_in_3} << io_exponent_3 - 9'h1;
-  wire [27:0]  extended_3 = {15'h0, abs_in_3} << PE_3 - 4'h6;
-  wire         sign_4 = $signed(io_in_4) < 14'sh0;
-  wire [12:0]  abs_in_4 = sign_4 ? 13'h0 - io_in_4[12:0] : io_in_4[12:0];
-  wire [7:0]   _PE_4_T_9 = {4'h0, abs_in_4[7:4]} | {abs_in_4[3:0], 4'h0};
-  wire [7:0]   _PE_4_T_19 =
-    {2'h0, _PE_4_T_9[7:2] & 6'h33} | {_PE_4_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_4_T_29 =
-    _PE_4_T_19[7:1] & 7'h55 | {1'h0, _PE_4_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_4 =
-    abs_in_4[12]
+                                              : _PE_T_233[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_10 = 4'h6 - PE_3;
+  wire [29:0] extended_mantissa_3 = {_abs_val_full_T_19, 17'h0};
+  wire [9:0]  _real_exp_T_6 = io_exponent_3 + {{6{_shift_amt_T_10[3]}}, _shift_amt_T_10};
+  wire [9:0]  _biased_exp_T_6 = _real_exp_T_6 + 10'h7F;
+  wire        _GEN_5 = $signed(_real_exp_T_6) > 10'sh7F;
+  wire        _GEN_6 = $signed(_biased_exp_T_6) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_39 = extended_mantissa_3 >> 10'h1 - _biased_exp_T_6;
+  wire [29:0] _mantissa_conv_T_43 = extended_mantissa_3 >> _shift_amt_T_10;
+  wire [44:0] _mantissa_conv_T_49 =
+    {15'h0, _abs_val_full_T_19, 17'h0} << 4'h0 - _shift_amt_T_10;
+  wire        sign_bit_4 = $signed(io_in_4) < 14'sh0;
+  wire [12:0] _abs_val_full_T_24 = sign_bit_4 ? 13'h0 - io_in_4[12:0] : io_in_4[12:0];
+  wire [7:0]  _PE_T_281 =
+    {4'h0, _abs_val_full_T_24[7:4]} | {_abs_val_full_T_24[3:0], 4'h0};
+  wire [7:0]  _PE_T_291 = {2'h0, _PE_T_281[7:2] & 6'h33} | {_PE_T_281[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_301 = _PE_T_291[7:1] & 7'h55 | {1'h0, _PE_T_291[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_4 =
+    _abs_val_full_T_24[12]
       ? 4'h0
-      : abs_in_4[11]
+      : _abs_val_full_T_24[11]
           ? 4'h1
-          : abs_in_4[10]
+          : _abs_val_full_T_24[10]
               ? 4'h2
-              : abs_in_4[9]
+              : _abs_val_full_T_24[9]
                   ? 4'h3
-                  : abs_in_4[8]
+                  : _abs_val_full_T_24[8]
                       ? 4'h4
-                      : _PE_4_T_29[0]
+                      : _PE_T_301[0]
                           ? 4'h5
-                          : _PE_4_T_29[1]
+                          : _PE_T_301[1]
                               ? 4'h6
-                              : _PE_4_T_29[2]
+                              : _PE_T_301[2]
                                   ? 4'h7
-                                  : _PE_4_T_29[3]
+                                  : _PE_T_301[3]
                                       ? 4'h8
-                                      : _PE_4_T_29[4]
+                                      : _PE_T_301[4]
                                           ? 4'h9
-                                          : _PE_4_T_29[5]
+                                          : _PE_T_301[5]
                                               ? 4'hA
-                                              : _PE_4_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_11 = {4'h0, PE_4};
-  wire         _GEN_12 = io_exponent_4 > {1'h0, _GEN_11 - 8'h8};
-  wire         _GEN_13 = io_exponent_4 + 9'h6 < {5'h0, PE_4};
-  wire [523:0] _mantissa_Conv_4_T_2 = {511'h0, abs_in_4} << io_exponent_4 - 9'h1;
-  wire [27:0]  extended_4 = {15'h0, abs_in_4} << PE_4 - 4'h6;
-  wire         sign_5 = $signed(io_in_5) < 14'sh0;
-  wire [12:0]  abs_in_5 = sign_5 ? 13'h0 - io_in_5[12:0] : io_in_5[12:0];
-  wire [7:0]   _PE_5_T_9 = {4'h0, abs_in_5[7:4]} | {abs_in_5[3:0], 4'h0};
-  wire [7:0]   _PE_5_T_19 =
-    {2'h0, _PE_5_T_9[7:2] & 6'h33} | {_PE_5_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_5_T_29 =
-    _PE_5_T_19[7:1] & 7'h55 | {1'h0, _PE_5_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_5 =
-    abs_in_5[12]
+                                              : _PE_T_301[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_13 = 4'h6 - PE_4;
+  wire [29:0] extended_mantissa_4 = {_abs_val_full_T_24, 17'h0};
+  wire [9:0]  _real_exp_T_8 = io_exponent_4 + {{6{_shift_amt_T_13[3]}}, _shift_amt_T_13};
+  wire [9:0]  _biased_exp_T_8 = _real_exp_T_8 + 10'h7F;
+  wire        _GEN_7 = $signed(_real_exp_T_8) > 10'sh7F;
+  wire        _GEN_8 = $signed(_biased_exp_T_8) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_52 = extended_mantissa_4 >> 10'h1 - _biased_exp_T_8;
+  wire [29:0] _mantissa_conv_T_56 = extended_mantissa_4 >> _shift_amt_T_13;
+  wire [44:0] _mantissa_conv_T_62 =
+    {15'h0, _abs_val_full_T_24, 17'h0} << 4'h0 - _shift_amt_T_13;
+  wire        sign_bit_5 = $signed(io_in_5) < 14'sh0;
+  wire [12:0] _abs_val_full_T_29 = sign_bit_5 ? 13'h0 - io_in_5[12:0] : io_in_5[12:0];
+  wire [7:0]  _PE_T_349 =
+    {4'h0, _abs_val_full_T_29[7:4]} | {_abs_val_full_T_29[3:0], 4'h0};
+  wire [7:0]  _PE_T_359 = {2'h0, _PE_T_349[7:2] & 6'h33} | {_PE_T_349[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_369 = _PE_T_359[7:1] & 7'h55 | {1'h0, _PE_T_359[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_5 =
+    _abs_val_full_T_29[12]
       ? 4'h0
-      : abs_in_5[11]
+      : _abs_val_full_T_29[11]
           ? 4'h1
-          : abs_in_5[10]
+          : _abs_val_full_T_29[10]
               ? 4'h2
-              : abs_in_5[9]
+              : _abs_val_full_T_29[9]
                   ? 4'h3
-                  : abs_in_5[8]
+                  : _abs_val_full_T_29[8]
                       ? 4'h4
-                      : _PE_5_T_29[0]
+                      : _PE_T_369[0]
                           ? 4'h5
-                          : _PE_5_T_29[1]
+                          : _PE_T_369[1]
                               ? 4'h6
-                              : _PE_5_T_29[2]
+                              : _PE_T_369[2]
                                   ? 4'h7
-                                  : _PE_5_T_29[3]
+                                  : _PE_T_369[3]
                                       ? 4'h8
-                                      : _PE_5_T_29[4]
+                                      : _PE_T_369[4]
                                           ? 4'h9
-                                          : _PE_5_T_29[5]
+                                          : _PE_T_369[5]
                                               ? 4'hA
-                                              : _PE_5_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_14 = {4'h0, PE_5};
-  wire         _GEN_15 = io_exponent_5 > {1'h0, _GEN_14 - 8'h8};
-  wire         _GEN_16 = io_exponent_5 + 9'h6 < {5'h0, PE_5};
-  wire [523:0] _mantissa_Conv_5_T_2 = {511'h0, abs_in_5} << io_exponent_5 - 9'h1;
-  wire [27:0]  extended_5 = {15'h0, abs_in_5} << PE_5 - 4'h6;
-  wire         sign_6 = $signed(io_in_6) < 14'sh0;
-  wire [12:0]  abs_in_6 = sign_6 ? 13'h0 - io_in_6[12:0] : io_in_6[12:0];
-  wire [7:0]   _PE_6_T_9 = {4'h0, abs_in_6[7:4]} | {abs_in_6[3:0], 4'h0};
-  wire [7:0]   _PE_6_T_19 =
-    {2'h0, _PE_6_T_9[7:2] & 6'h33} | {_PE_6_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_6_T_29 =
-    _PE_6_T_19[7:1] & 7'h55 | {1'h0, _PE_6_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_6 =
-    abs_in_6[12]
+                                              : _PE_T_369[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_16 = 4'h6 - PE_5;
+  wire [29:0] extended_mantissa_5 = {_abs_val_full_T_29, 17'h0};
+  wire [9:0]  _real_exp_T_10 = io_exponent_5 + {{6{_shift_amt_T_16[3]}}, _shift_amt_T_16};
+  wire [9:0]  _biased_exp_T_10 = _real_exp_T_10 + 10'h7F;
+  wire        _GEN_9 = $signed(_real_exp_T_10) > 10'sh7F;
+  wire        _GEN_10 = $signed(_biased_exp_T_10) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_65 = extended_mantissa_5 >> 10'h1 - _biased_exp_T_10;
+  wire [29:0] _mantissa_conv_T_69 = extended_mantissa_5 >> _shift_amt_T_16;
+  wire [44:0] _mantissa_conv_T_75 =
+    {15'h0, _abs_val_full_T_29, 17'h0} << 4'h0 - _shift_amt_T_16;
+  wire        sign_bit_6 = $signed(io_in_6) < 14'sh0;
+  wire [12:0] _abs_val_full_T_34 = sign_bit_6 ? 13'h0 - io_in_6[12:0] : io_in_6[12:0];
+  wire [7:0]  _PE_T_417 =
+    {4'h0, _abs_val_full_T_34[7:4]} | {_abs_val_full_T_34[3:0], 4'h0};
+  wire [7:0]  _PE_T_427 = {2'h0, _PE_T_417[7:2] & 6'h33} | {_PE_T_417[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_437 = _PE_T_427[7:1] & 7'h55 | {1'h0, _PE_T_427[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_6 =
+    _abs_val_full_T_34[12]
       ? 4'h0
-      : abs_in_6[11]
+      : _abs_val_full_T_34[11]
           ? 4'h1
-          : abs_in_6[10]
+          : _abs_val_full_T_34[10]
               ? 4'h2
-              : abs_in_6[9]
+              : _abs_val_full_T_34[9]
                   ? 4'h3
-                  : abs_in_6[8]
+                  : _abs_val_full_T_34[8]
                       ? 4'h4
-                      : _PE_6_T_29[0]
+                      : _PE_T_437[0]
                           ? 4'h5
-                          : _PE_6_T_29[1]
+                          : _PE_T_437[1]
                               ? 4'h6
-                              : _PE_6_T_29[2]
+                              : _PE_T_437[2]
                                   ? 4'h7
-                                  : _PE_6_T_29[3]
+                                  : _PE_T_437[3]
                                       ? 4'h8
-                                      : _PE_6_T_29[4]
+                                      : _PE_T_437[4]
                                           ? 4'h9
-                                          : _PE_6_T_29[5]
+                                          : _PE_T_437[5]
                                               ? 4'hA
-                                              : _PE_6_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_17 = {4'h0, PE_6};
-  wire         _GEN_18 = io_exponent_6 > {1'h0, _GEN_17 - 8'h8};
-  wire         _GEN_19 = io_exponent_6 + 9'h6 < {5'h0, PE_6};
-  wire [523:0] _mantissa_Conv_6_T_2 = {511'h0, abs_in_6} << io_exponent_6 - 9'h1;
-  wire [27:0]  extended_6 = {15'h0, abs_in_6} << PE_6 - 4'h6;
-  wire         sign_7 = $signed(io_in_7) < 14'sh0;
-  wire [12:0]  abs_in_7 = sign_7 ? 13'h0 - io_in_7[12:0] : io_in_7[12:0];
-  wire [7:0]   _PE_7_T_9 = {4'h0, abs_in_7[7:4]} | {abs_in_7[3:0], 4'h0};
-  wire [7:0]   _PE_7_T_19 =
-    {2'h0, _PE_7_T_9[7:2] & 6'h33} | {_PE_7_T_9[5:0] & 6'h33, 2'h0};
-  wire [6:0]   _PE_7_T_29 =
-    _PE_7_T_19[7:1] & 7'h55 | {1'h0, _PE_7_T_19[4:0] & 5'h15, 1'h0};
-  wire [3:0]   PE_7 =
-    abs_in_7[12]
+                                              : _PE_T_437[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_19 = 4'h6 - PE_6;
+  wire [29:0] extended_mantissa_6 = {_abs_val_full_T_34, 17'h0};
+  wire [9:0]  _real_exp_T_12 = io_exponent_6 + {{6{_shift_amt_T_19[3]}}, _shift_amt_T_19};
+  wire [9:0]  _biased_exp_T_12 = _real_exp_T_12 + 10'h7F;
+  wire        _GEN_11 = $signed(_real_exp_T_12) > 10'sh7F;
+  wire        _GEN_12 = $signed(_biased_exp_T_12) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_78 = extended_mantissa_6 >> 10'h1 - _biased_exp_T_12;
+  wire [29:0] _mantissa_conv_T_82 = extended_mantissa_6 >> _shift_amt_T_19;
+  wire [44:0] _mantissa_conv_T_88 =
+    {15'h0, _abs_val_full_T_34, 17'h0} << 4'h0 - _shift_amt_T_19;
+  wire        sign_bit_7 = $signed(io_in_7) < 14'sh0;
+  wire [12:0] _abs_val_full_T_39 = sign_bit_7 ? 13'h0 - io_in_7[12:0] : io_in_7[12:0];
+  wire [7:0]  _PE_T_485 =
+    {4'h0, _abs_val_full_T_39[7:4]} | {_abs_val_full_T_39[3:0], 4'h0};
+  wire [7:0]  _PE_T_495 = {2'h0, _PE_T_485[7:2] & 6'h33} | {_PE_T_485[5:0] & 6'h33, 2'h0};
+  wire [6:0]  _PE_T_505 = _PE_T_495[7:1] & 7'h55 | {1'h0, _PE_T_495[4:0] & 5'h15, 1'h0};
+  wire [3:0]  PE_7 =
+    _abs_val_full_T_39[12]
       ? 4'h0
-      : abs_in_7[11]
+      : _abs_val_full_T_39[11]
           ? 4'h1
-          : abs_in_7[10]
+          : _abs_val_full_T_39[10]
               ? 4'h2
-              : abs_in_7[9]
+              : _abs_val_full_T_39[9]
                   ? 4'h3
-                  : abs_in_7[8]
+                  : _abs_val_full_T_39[8]
                       ? 4'h4
-                      : _PE_7_T_29[0]
+                      : _PE_T_505[0]
                           ? 4'h5
-                          : _PE_7_T_29[1]
+                          : _PE_T_505[1]
                               ? 4'h6
-                              : _PE_7_T_29[2]
+                              : _PE_T_505[2]
                                   ? 4'h7
-                                  : _PE_7_T_29[3]
+                                  : _PE_T_505[3]
                                       ? 4'h8
-                                      : _PE_7_T_29[4]
+                                      : _PE_T_505[4]
                                           ? 4'h9
-                                          : _PE_7_T_29[5]
+                                          : _PE_T_505[5]
                                               ? 4'hA
-                                              : _PE_7_T_29[6] ? 4'hB : 4'hC;
-  wire [7:0]   _GEN_20 = {4'h0, PE_7};
-  wire         _GEN_21 = io_exponent_7 > {1'h0, _GEN_20 - 8'h8};
-  wire         _GEN_22 = io_exponent_7 + 9'h6 < {5'h0, PE_7};
-  wire [523:0] _mantissa_Conv_7_T_2 = {511'h0, abs_in_7} << io_exponent_7 - 9'h1;
-  wire [27:0]  extended_7 = {15'h0, abs_in_7} << PE_7 - 4'h6;
-  assign io_out_0_sign = enable & sign_0;
+                                              : _PE_T_505[6] ? 4'hB : 4'hC;
+  wire [3:0]  _shift_amt_T_22 = 4'h6 - PE_7;
+  wire [29:0] extended_mantissa_7 = {_abs_val_full_T_39, 17'h0};
+  wire [9:0]  _real_exp_T_14 = io_exponent_7 + {{6{_shift_amt_T_22[3]}}, _shift_amt_T_22};
+  wire [9:0]  _biased_exp_T_14 = _real_exp_T_14 + 10'h7F;
+  wire        _GEN_13 = $signed(_real_exp_T_14) > 10'sh7F;
+  wire        _GEN_14 = $signed(_biased_exp_T_14) < 10'sh1;
+  wire [29:0] _mantissa_conv_T_91 = extended_mantissa_7 >> 10'h1 - _biased_exp_T_14;
+  wire [29:0] _mantissa_conv_T_95 = extended_mantissa_7 >> _shift_amt_T_22;
+  wire [44:0] _mantissa_conv_T_101 =
+    {15'h0, _abs_val_full_T_39, 17'h0} << 4'h0 - _shift_amt_T_22;
+  assign io_out_0_sign = enable & sign_bit;
   assign io_out_0_exponent =
-    enable ? (_GEN_0 ? 8'hFF : _GEN_1 ? 8'h0 : io_exponent_0[7:0] + _GEN - 8'h6) : 8'h0;
+    enable ? (_GEN ? 8'hFF : _GEN_0 ? 8'h0 : _biased_exp_T[7:0]) : 8'h0;
   assign io_out_0_mantissa =
-    ~enable | _GEN_0
+    ~enable | _GEN
       ? 23'h0
-      : _GEN_1
-          ? {_mantissa_Conv_0_T_2[5:0], 17'h0}
-          : {PE_0 < 4'h6 ? abs_in >> 4'h6 - PE_0 : extended[12:0], 10'h0};
-  assign io_out_1_sign = enable & sign_1;
+      : _GEN_0
+          ? _mantissa_conv_T[22:0]
+          : $signed(_shift_amt_T_1) > -4'sh1
+              ? _mantissa_conv_T_4[22:0]
+              : _mantissa_conv_T_10[22:0];
+  assign io_out_1_sign = enable & sign_bit_1;
   assign io_out_1_exponent =
-    enable ? (_GEN_3 ? 8'hFF : _GEN_4 ? 8'h0 : io_exponent_1[7:0] + _GEN_2 - 8'h6) : 8'h0;
+    enable ? (_GEN_1 ? 8'hFF : _GEN_2 ? 8'h0 : _biased_exp_T_2[7:0]) : 8'h0;
   assign io_out_1_mantissa =
+    ~enable | _GEN_1
+      ? 23'h0
+      : _GEN_2
+          ? _mantissa_conv_T_13[22:0]
+          : $signed(_shift_amt_T_4) > -4'sh1
+              ? _mantissa_conv_T_17[22:0]
+              : _mantissa_conv_T_23[22:0];
+  assign io_out_2_sign = enable & sign_bit_2;
+  assign io_out_2_exponent =
+    enable ? (_GEN_3 ? 8'hFF : _GEN_4 ? 8'h0 : _biased_exp_T_4[7:0]) : 8'h0;
+  assign io_out_2_mantissa =
     ~enable | _GEN_3
       ? 23'h0
       : _GEN_4
-          ? {_mantissa_Conv_1_T_2[5:0], 17'h0}
-          : {PE_1 < 4'h6 ? abs_in_1 >> 4'h6 - PE_1 : extended_1[12:0], 10'h0};
-  assign io_out_2_sign = enable & sign_2;
-  assign io_out_2_exponent =
-    enable ? (_GEN_6 ? 8'hFF : _GEN_7 ? 8'h0 : io_exponent_2[7:0] + _GEN_5 - 8'h6) : 8'h0;
-  assign io_out_2_mantissa =
-    ~enable | _GEN_6
-      ? 23'h0
-      : _GEN_7
-          ? {_mantissa_Conv_2_T_2[5:0], 17'h0}
-          : {PE_2 < 4'h6 ? abs_in_2 >> 4'h6 - PE_2 : extended_2[12:0], 10'h0};
-  assign io_out_3_sign = enable & sign_3;
+          ? _mantissa_conv_T_26[22:0]
+          : $signed(_shift_amt_T_7) > -4'sh1
+              ? _mantissa_conv_T_30[22:0]
+              : _mantissa_conv_T_36[22:0];
+  assign io_out_3_sign = enable & sign_bit_3;
   assign io_out_3_exponent =
-    enable
-      ? (_GEN_9 ? 8'hFF : _GEN_10 ? 8'h0 : io_exponent_3[7:0] + _GEN_8 - 8'h6)
-      : 8'h0;
+    enable ? (_GEN_5 ? 8'hFF : _GEN_6 ? 8'h0 : _biased_exp_T_6[7:0]) : 8'h0;
   assign io_out_3_mantissa =
+    ~enable | _GEN_5
+      ? 23'h0
+      : _GEN_6
+          ? _mantissa_conv_T_39[22:0]
+          : $signed(_shift_amt_T_10) > -4'sh1
+              ? _mantissa_conv_T_43[22:0]
+              : _mantissa_conv_T_49[22:0];
+  assign io_out_4_sign = enable & sign_bit_4;
+  assign io_out_4_exponent =
+    enable ? (_GEN_7 ? 8'hFF : _GEN_8 ? 8'h0 : _biased_exp_T_8[7:0]) : 8'h0;
+  assign io_out_4_mantissa =
+    ~enable | _GEN_7
+      ? 23'h0
+      : _GEN_8
+          ? _mantissa_conv_T_52[22:0]
+          : $signed(_shift_amt_T_13) > -4'sh1
+              ? _mantissa_conv_T_56[22:0]
+              : _mantissa_conv_T_62[22:0];
+  assign io_out_5_sign = enable & sign_bit_5;
+  assign io_out_5_exponent =
+    enable ? (_GEN_9 ? 8'hFF : _GEN_10 ? 8'h0 : _biased_exp_T_10[7:0]) : 8'h0;
+  assign io_out_5_mantissa =
     ~enable | _GEN_9
       ? 23'h0
       : _GEN_10
-          ? {_mantissa_Conv_3_T_2[5:0], 17'h0}
-          : {PE_3 < 4'h6 ? abs_in_3 >> 4'h6 - PE_3 : extended_3[12:0], 10'h0};
-  assign io_out_4_sign = enable & sign_4;
-  assign io_out_4_exponent =
-    enable
-      ? (_GEN_12 ? 8'hFF : _GEN_13 ? 8'h0 : io_exponent_4[7:0] + _GEN_11 - 8'h6)
-      : 8'h0;
-  assign io_out_4_mantissa =
-    ~enable | _GEN_12
-      ? 23'h0
-      : _GEN_13
-          ? {_mantissa_Conv_4_T_2[5:0], 17'h0}
-          : {PE_4 < 4'h6 ? abs_in_4 >> 4'h6 - PE_4 : extended_4[12:0], 10'h0};
-  assign io_out_5_sign = enable & sign_5;
-  assign io_out_5_exponent =
-    enable
-      ? (_GEN_15 ? 8'hFF : _GEN_16 ? 8'h0 : io_exponent_5[7:0] + _GEN_14 - 8'h6)
-      : 8'h0;
-  assign io_out_5_mantissa =
-    ~enable | _GEN_15
-      ? 23'h0
-      : _GEN_16
-          ? {_mantissa_Conv_5_T_2[5:0], 17'h0}
-          : {PE_5 < 4'h6 ? abs_in_5 >> 4'h6 - PE_5 : extended_5[12:0], 10'h0};
-  assign io_out_6_sign = enable & sign_6;
+          ? _mantissa_conv_T_65[22:0]
+          : $signed(_shift_amt_T_16) > -4'sh1
+              ? _mantissa_conv_T_69[22:0]
+              : _mantissa_conv_T_75[22:0];
+  assign io_out_6_sign = enable & sign_bit_6;
   assign io_out_6_exponent =
-    enable
-      ? (_GEN_18 ? 8'hFF : _GEN_19 ? 8'h0 : io_exponent_6[7:0] + _GEN_17 - 8'h6)
-      : 8'h0;
+    enable ? (_GEN_11 ? 8'hFF : _GEN_12 ? 8'h0 : _biased_exp_T_12[7:0]) : 8'h0;
   assign io_out_6_mantissa =
-    ~enable | _GEN_18
+    ~enable | _GEN_11
       ? 23'h0
-      : _GEN_19
-          ? {_mantissa_Conv_6_T_2[5:0], 17'h0}
-          : {PE_6 < 4'h6 ? abs_in_6 >> 4'h6 - PE_6 : extended_6[12:0], 10'h0};
-  assign io_out_7_sign = enable & sign_7;
+      : _GEN_12
+          ? _mantissa_conv_T_78[22:0]
+          : $signed(_shift_amt_T_19) > -4'sh1
+              ? _mantissa_conv_T_82[22:0]
+              : _mantissa_conv_T_88[22:0];
+  assign io_out_7_sign = enable & sign_bit_7;
   assign io_out_7_exponent =
-    enable
-      ? (_GEN_21 ? 8'hFF : _GEN_22 ? 8'h0 : io_exponent_7[7:0] + _GEN_20 - 8'h6)
-      : 8'h0;
+    enable ? (_GEN_13 ? 8'hFF : _GEN_14 ? 8'h0 : _biased_exp_T_14[7:0]) : 8'h0;
   assign io_out_7_mantissa =
-    ~enable | _GEN_21
+    ~enable | _GEN_13
       ? 23'h0
-      : _GEN_22
-          ? {_mantissa_Conv_7_T_2[5:0], 17'h0}
-          : {PE_7 < 4'h6 ? abs_in_7 >> 4'h6 - PE_7 : extended_7[12:0], 10'h0};
+      : _GEN_14
+          ? _mantissa_conv_T_91[22:0]
+          : $signed(_shift_amt_T_22) > -4'sh1
+              ? _mantissa_conv_T_95[22:0]
+              : _mantissa_conv_T_101[22:0];
+  assign io_debug_real_exp_0 = _real_exp_T;
+  assign io_debug_real_exp_1 = _real_exp_T_2;
+  assign io_debug_real_exp_2 = _real_exp_T_4;
+  assign io_debug_real_exp_3 = _real_exp_T_6;
+  assign io_debug_real_exp_4 = _real_exp_T_8;
+  assign io_debug_real_exp_5 = _real_exp_T_10;
+  assign io_debug_real_exp_6 = _real_exp_T_12;
+  assign io_debug_real_exp_7 = _real_exp_T_14;
+  assign io_debug_biased_exp_0 = _biased_exp_T;
+  assign io_debug_biased_exp_1 = _biased_exp_T_2;
+  assign io_debug_biased_exp_2 = _biased_exp_T_4;
+  assign io_debug_biased_exp_3 = _biased_exp_T_6;
+  assign io_debug_biased_exp_4 = _biased_exp_T_8;
+  assign io_debug_biased_exp_5 = _biased_exp_T_10;
+  assign io_debug_biased_exp_6 = _biased_exp_T_12;
+  assign io_debug_biased_exp_7 = _biased_exp_T_14;
+  assign io_debug_shift_amt_0 = {_shift_amt_T_1[3], _shift_amt_T_1};
+  assign io_debug_shift_amt_1 = {_shift_amt_T_4[3], _shift_amt_T_4};
+  assign io_debug_shift_amt_2 = {_shift_amt_T_7[3], _shift_amt_T_7};
+  assign io_debug_shift_amt_3 = {_shift_amt_T_10[3], _shift_amt_T_10};
+  assign io_debug_shift_amt_4 = {_shift_amt_T_13[3], _shift_amt_T_13};
+  assign io_debug_shift_amt_5 = {_shift_amt_T_16[3], _shift_amt_T_16};
+  assign io_debug_shift_amt_6 = {_shift_amt_T_19[3], _shift_amt_T_19};
+  assign io_debug_shift_amt_7 = {_shift_amt_T_22[3], _shift_amt_T_22};
+  assign io_debug_PE_0 = PE;
+  assign io_debug_PE_1 = PE_1;
+  assign io_debug_PE_2 = PE_2;
+  assign io_debug_PE_3 = PE_3;
+  assign io_debug_PE_4 = PE_4;
+  assign io_debug_PE_5 = PE_5;
+  assign io_debug_PE_6 = PE_6;
+  assign io_debug_PE_7 = PE_7;
+  assign io_debug_abs_in_0 = _abs_val_full_T_4;
+  assign io_debug_abs_in_1 = _abs_val_full_T_9;
+  assign io_debug_abs_in_2 = _abs_val_full_T_14;
+  assign io_debug_abs_in_3 = _abs_val_full_T_19;
+  assign io_debug_abs_in_4 = _abs_val_full_T_24;
+  assign io_debug_abs_in_5 = _abs_val_full_T_29;
+  assign io_debug_abs_in_6 = _abs_val_full_T_34;
+  assign io_debug_abs_in_7 = _abs_val_full_T_39;
 endmodule
 

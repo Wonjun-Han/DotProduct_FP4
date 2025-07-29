@@ -33,7 +33,7 @@ class p_Multiplier extends Module {
 
   val result = (a_sign zip a_exp zip a_man zip b_sign zip b_exp zip b_man).map {
     case (((((as, ae), am), bs), be), bm) =>
-      val zero = is_zero(ae, am) || is_zero(be, bm)
+      val zero = is_zero(ae, am) || is_zero(be, bm) 
       val a_sub = is_sub(ae, am)
       val b_sub = is_sub(be, bm)
       val all_sub = a_sub && b_sub
@@ -42,11 +42,12 @@ class p_Multiplier extends Module {
 
       val sign = as ^ bs
       val mant = Mux(zero, 0.U, am * bm)
-      val exp = MuxCase(0.U, Seq(
-        (all_sub)         -> 0.U,
-        ((a_sub ^ b_sub)&&(~all_sub))        -> ((ae +& be) - 1.U),
-        ((a_norm && b_norm))     -> ((ae +& be) - 2.U)
-      ))
+      val exp = Mux(zero, 0.U, MuxCase(0.U, Seq(
+        (all_sub)                         -> 0.U,
+        ((a_sub ^ b_sub) && (~all_sub))   -> ((ae +& be) - 1.U),
+        ((a_norm && b_norm))              -> ((ae +& be) - 2.U)
+      )))     
+
 
       (sign, exp, mant)
   }

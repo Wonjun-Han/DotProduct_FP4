@@ -1322,7 +1322,327 @@ module p_TOP_Til_Dep_5(
   output [22:0] io_out_FP32_254_mantissa,
   output        io_out_FP32_255_sign,
   output [7:0]  io_out_FP32_255_exponent,
-  output [22:0] io_out_FP32_255_mantissa
+  output [22:0] io_out_FP32_255_mantissa,
+  output [2:0]  io_debug_mul_exp_0,
+                io_debug_mul_exp_1,
+                io_debug_mul_exp_2,
+                io_debug_mul_exp_3,
+                io_debug_mul_exp_4,
+                io_debug_mul_exp_5,
+                io_debug_mul_exp_6,
+                io_debug_mul_exp_7,
+                io_debug_mul_exp_8,
+                io_debug_mul_exp_9,
+                io_debug_mul_exp_10,
+                io_debug_mul_exp_11,
+                io_debug_mul_exp_12,
+                io_debug_mul_exp_13,
+                io_debug_mul_exp_14,
+                io_debug_mul_exp_15,
+                io_debug_mul_exp_16,
+                io_debug_mul_exp_17,
+                io_debug_mul_exp_18,
+                io_debug_mul_exp_19,
+                io_debug_mul_exp_20,
+                io_debug_mul_exp_21,
+                io_debug_mul_exp_22,
+                io_debug_mul_exp_23,
+                io_debug_mul_exp_24,
+                io_debug_mul_exp_25,
+                io_debug_mul_exp_26,
+                io_debug_mul_exp_27,
+                io_debug_mul_exp_28,
+                io_debug_mul_exp_29,
+                io_debug_mul_exp_30,
+                io_debug_mul_exp_31,
+                io_debug_mul_exp_32,
+                io_debug_mul_exp_33,
+                io_debug_mul_exp_34,
+                io_debug_mul_exp_35,
+                io_debug_mul_exp_36,
+                io_debug_mul_exp_37,
+                io_debug_mul_exp_38,
+                io_debug_mul_exp_39,
+                io_debug_mul_exp_40,
+                io_debug_mul_exp_41,
+                io_debug_mul_exp_42,
+                io_debug_mul_exp_43,
+                io_debug_mul_exp_44,
+                io_debug_mul_exp_45,
+                io_debug_mul_exp_46,
+                io_debug_mul_exp_47,
+                io_debug_mul_exp_48,
+                io_debug_mul_exp_49,
+                io_debug_mul_exp_50,
+                io_debug_mul_exp_51,
+                io_debug_mul_exp_52,
+                io_debug_mul_exp_53,
+                io_debug_mul_exp_54,
+                io_debug_mul_exp_55,
+                io_debug_mul_exp_56,
+                io_debug_mul_exp_57,
+                io_debug_mul_exp_58,
+                io_debug_mul_exp_59,
+                io_debug_mul_exp_60,
+                io_debug_mul_exp_61,
+                io_debug_mul_exp_62,
+                io_debug_mul_exp_63,
+                io_debug_mul_exp_64,
+                io_debug_mul_exp_65,
+                io_debug_mul_exp_66,
+                io_debug_mul_exp_67,
+                io_debug_mul_exp_68,
+                io_debug_mul_exp_69,
+                io_debug_mul_exp_70,
+                io_debug_mul_exp_71,
+                io_debug_mul_exp_72,
+                io_debug_mul_exp_73,
+                io_debug_mul_exp_74,
+                io_debug_mul_exp_75,
+                io_debug_mul_exp_76,
+                io_debug_mul_exp_77,
+                io_debug_mul_exp_78,
+                io_debug_mul_exp_79,
+                io_debug_mul_exp_80,
+                io_debug_mul_exp_81,
+                io_debug_mul_exp_82,
+                io_debug_mul_exp_83,
+                io_debug_mul_exp_84,
+                io_debug_mul_exp_85,
+                io_debug_mul_exp_86,
+                io_debug_mul_exp_87,
+                io_debug_mul_exp_88,
+                io_debug_mul_exp_89,
+                io_debug_mul_exp_90,
+                io_debug_mul_exp_91,
+                io_debug_mul_exp_92,
+                io_debug_mul_exp_93,
+                io_debug_mul_exp_94,
+                io_debug_mul_exp_95,
+                io_debug_mul_exp_96,
+                io_debug_mul_exp_97,
+                io_debug_mul_exp_98,
+                io_debug_mul_exp_99,
+                io_debug_mul_exp_100,
+                io_debug_mul_exp_101,
+                io_debug_mul_exp_102,
+                io_debug_mul_exp_103,
+                io_debug_mul_exp_104,
+                io_debug_mul_exp_105,
+                io_debug_mul_exp_106,
+                io_debug_mul_exp_107,
+                io_debug_mul_exp_108,
+                io_debug_mul_exp_109,
+                io_debug_mul_exp_110,
+                io_debug_mul_exp_111,
+                io_debug_mul_exp_112,
+                io_debug_mul_exp_113,
+                io_debug_mul_exp_114,
+                io_debug_mul_exp_115,
+                io_debug_mul_exp_116,
+                io_debug_mul_exp_117,
+                io_debug_mul_exp_118,
+                io_debug_mul_exp_119,
+                io_debug_mul_exp_120,
+                io_debug_mul_exp_121,
+                io_debug_mul_exp_122,
+                io_debug_mul_exp_123,
+                io_debug_mul_exp_124,
+                io_debug_mul_exp_125,
+                io_debug_mul_exp_126,
+                io_debug_mul_exp_127,
+                io_debug_mul_exp_128,
+                io_debug_mul_exp_129,
+                io_debug_mul_exp_130,
+                io_debug_mul_exp_131,
+                io_debug_mul_exp_132,
+                io_debug_mul_exp_133,
+                io_debug_mul_exp_134,
+                io_debug_mul_exp_135,
+                io_debug_mul_exp_136,
+                io_debug_mul_exp_137,
+                io_debug_mul_exp_138,
+                io_debug_mul_exp_139,
+                io_debug_mul_exp_140,
+                io_debug_mul_exp_141,
+                io_debug_mul_exp_142,
+                io_debug_mul_exp_143,
+                io_debug_mul_exp_144,
+                io_debug_mul_exp_145,
+                io_debug_mul_exp_146,
+                io_debug_mul_exp_147,
+                io_debug_mul_exp_148,
+                io_debug_mul_exp_149,
+                io_debug_mul_exp_150,
+                io_debug_mul_exp_151,
+                io_debug_mul_exp_152,
+                io_debug_mul_exp_153,
+                io_debug_mul_exp_154,
+                io_debug_mul_exp_155,
+                io_debug_mul_exp_156,
+                io_debug_mul_exp_157,
+                io_debug_mul_exp_158,
+                io_debug_mul_exp_159,
+                io_debug_mul_exp_160,
+                io_debug_mul_exp_161,
+                io_debug_mul_exp_162,
+                io_debug_mul_exp_163,
+                io_debug_mul_exp_164,
+                io_debug_mul_exp_165,
+                io_debug_mul_exp_166,
+                io_debug_mul_exp_167,
+                io_debug_mul_exp_168,
+                io_debug_mul_exp_169,
+                io_debug_mul_exp_170,
+                io_debug_mul_exp_171,
+                io_debug_mul_exp_172,
+                io_debug_mul_exp_173,
+                io_debug_mul_exp_174,
+                io_debug_mul_exp_175,
+                io_debug_mul_exp_176,
+                io_debug_mul_exp_177,
+                io_debug_mul_exp_178,
+                io_debug_mul_exp_179,
+                io_debug_mul_exp_180,
+                io_debug_mul_exp_181,
+                io_debug_mul_exp_182,
+                io_debug_mul_exp_183,
+                io_debug_mul_exp_184,
+                io_debug_mul_exp_185,
+                io_debug_mul_exp_186,
+                io_debug_mul_exp_187,
+                io_debug_mul_exp_188,
+                io_debug_mul_exp_189,
+                io_debug_mul_exp_190,
+                io_debug_mul_exp_191,
+                io_debug_mul_exp_192,
+                io_debug_mul_exp_193,
+                io_debug_mul_exp_194,
+                io_debug_mul_exp_195,
+                io_debug_mul_exp_196,
+                io_debug_mul_exp_197,
+                io_debug_mul_exp_198,
+                io_debug_mul_exp_199,
+                io_debug_mul_exp_200,
+                io_debug_mul_exp_201,
+                io_debug_mul_exp_202,
+                io_debug_mul_exp_203,
+                io_debug_mul_exp_204,
+                io_debug_mul_exp_205,
+                io_debug_mul_exp_206,
+                io_debug_mul_exp_207,
+                io_debug_mul_exp_208,
+                io_debug_mul_exp_209,
+                io_debug_mul_exp_210,
+                io_debug_mul_exp_211,
+                io_debug_mul_exp_212,
+                io_debug_mul_exp_213,
+                io_debug_mul_exp_214,
+                io_debug_mul_exp_215,
+                io_debug_mul_exp_216,
+                io_debug_mul_exp_217,
+                io_debug_mul_exp_218,
+                io_debug_mul_exp_219,
+                io_debug_mul_exp_220,
+                io_debug_mul_exp_221,
+                io_debug_mul_exp_222,
+                io_debug_mul_exp_223,
+                io_debug_mul_exp_224,
+                io_debug_mul_exp_225,
+                io_debug_mul_exp_226,
+                io_debug_mul_exp_227,
+                io_debug_mul_exp_228,
+                io_debug_mul_exp_229,
+                io_debug_mul_exp_230,
+                io_debug_mul_exp_231,
+                io_debug_mul_exp_232,
+                io_debug_mul_exp_233,
+                io_debug_mul_exp_234,
+                io_debug_mul_exp_235,
+                io_debug_mul_exp_236,
+                io_debug_mul_exp_237,
+                io_debug_mul_exp_238,
+                io_debug_mul_exp_239,
+                io_debug_mul_exp_240,
+                io_debug_mul_exp_241,
+                io_debug_mul_exp_242,
+                io_debug_mul_exp_243,
+                io_debug_mul_exp_244,
+                io_debug_mul_exp_245,
+                io_debug_mul_exp_246,
+                io_debug_mul_exp_247,
+                io_debug_mul_exp_248,
+                io_debug_mul_exp_249,
+                io_debug_mul_exp_250,
+                io_debug_mul_exp_251,
+                io_debug_mul_exp_252,
+                io_debug_mul_exp_253,
+                io_debug_mul_exp_254,
+                io_debug_mul_exp_255,
+                io_debug_exp_gmax_0,
+                io_debug_exp_gmax_1,
+                io_debug_exp_gmax_2,
+                io_debug_exp_gmax_3,
+                io_debug_exp_gmax_4,
+                io_debug_exp_gmax_5,
+                io_debug_exp_gmax_6,
+                io_debug_exp_gmax_7,
+  output [9:0]  io_debug_scale_sum_0,
+                io_debug_scale_sum_1,
+                io_debug_scale_sum_2,
+                io_debug_scale_sum_3,
+                io_debug_scale_sum_4,
+                io_debug_scale_sum_5,
+                io_debug_scale_sum_6,
+                io_debug_scale_sum_7,
+                io_debug_scale_emax_0,
+                io_debug_scale_emax_1,
+                io_debug_scale_emax_2,
+                io_debug_scale_emax_3,
+                io_debug_scale_emax_4,
+                io_debug_scale_emax_5,
+                io_debug_scale_emax_6,
+                io_debug_scale_emax_7,
+                io_debug_real_exp_0,
+                io_debug_real_exp_1,
+                io_debug_real_exp_2,
+                io_debug_real_exp_3,
+                io_debug_real_exp_4,
+                io_debug_real_exp_5,
+                io_debug_real_exp_6,
+                io_debug_real_exp_7,
+                io_debug_biased_exp_0,
+                io_debug_biased_exp_1,
+                io_debug_biased_exp_2,
+                io_debug_biased_exp_3,
+                io_debug_biased_exp_4,
+                io_debug_biased_exp_5,
+                io_debug_biased_exp_6,
+                io_debug_biased_exp_7,
+  output [4:0]  io_debug_shift_amt_0,
+                io_debug_shift_amt_1,
+                io_debug_shift_amt_2,
+                io_debug_shift_amt_3,
+                io_debug_shift_amt_4,
+                io_debug_shift_amt_5,
+                io_debug_shift_amt_6,
+                io_debug_shift_amt_7,
+  output [3:0]  io_debug_PE_0,
+                io_debug_PE_1,
+                io_debug_PE_2,
+                io_debug_PE_3,
+                io_debug_PE_4,
+                io_debug_PE_5,
+                io_debug_PE_6,
+                io_debug_PE_7,
+  output [12:0] io_debug_abs_in_0,
+                io_debug_abs_in_1,
+                io_debug_abs_in_2,
+                io_debug_abs_in_3,
+                io_debug_abs_in_4,
+                io_debug_abs_in_5,
+                io_debug_abs_in_6,
+                io_debug_abs_in_7
 );
 
   wire        _convert_dep_5_io_out_0_sign;
@@ -1349,14 +1669,54 @@ module p_TOP_Til_Dep_5(
   wire        _convert_dep_5_io_out_7_sign;
   wire [7:0]  _convert_dep_5_io_out_7_exponent;
   wire [22:0] _convert_dep_5_io_out_7_mantissa;
-  wire [8:0]  _scale_emax_io_out_0;
-  wire [8:0]  _scale_emax_io_out_1;
-  wire [8:0]  _scale_emax_io_out_2;
-  wire [8:0]  _scale_emax_io_out_3;
-  wire [8:0]  _scale_emax_io_out_4;
-  wire [8:0]  _scale_emax_io_out_5;
-  wire [8:0]  _scale_emax_io_out_6;
-  wire [8:0]  _scale_emax_io_out_7;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_0;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_1;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_2;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_3;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_4;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_5;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_6;
+  wire [9:0]  _convert_dep_5_io_debug_real_exp_7;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_0;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_1;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_2;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_3;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_4;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_5;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_6;
+  wire [9:0]  _convert_dep_5_io_debug_biased_exp_7;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_0;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_1;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_2;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_3;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_4;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_5;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_6;
+  wire [4:0]  _convert_dep_5_io_debug_shift_amt_7;
+  wire [3:0]  _convert_dep_5_io_debug_PE_0;
+  wire [3:0]  _convert_dep_5_io_debug_PE_1;
+  wire [3:0]  _convert_dep_5_io_debug_PE_2;
+  wire [3:0]  _convert_dep_5_io_debug_PE_3;
+  wire [3:0]  _convert_dep_5_io_debug_PE_4;
+  wire [3:0]  _convert_dep_5_io_debug_PE_5;
+  wire [3:0]  _convert_dep_5_io_debug_PE_6;
+  wire [3:0]  _convert_dep_5_io_debug_PE_7;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_0;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_1;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_2;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_3;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_4;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_5;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_6;
+  wire [12:0] _convert_dep_5_io_debug_abs_in_7;
+  wire [9:0]  _scale_emax_io_out_0;
+  wire [9:0]  _scale_emax_io_out_1;
+  wire [9:0]  _scale_emax_io_out_2;
+  wire [9:0]  _scale_emax_io_out_3;
+  wire [9:0]  _scale_emax_io_out_4;
+  wire [9:0]  _scale_emax_io_out_5;
+  wire [9:0]  _scale_emax_io_out_6;
+  wire [9:0]  _scale_emax_io_out_7;
   wire [13:0] _dep5_7_io_out;
   wire [13:0] _dep5_6_io_out;
   wire [13:0] _dep5_5_io_out;
@@ -8952,47 +9312,87 @@ module p_TOP_Til_Dep_5(
     .io_out_7       (_scale_emax_io_out_7)
   );
   p_Convert_Dep_5 convert_dep_5 (
-    .io_depth          (io_depth),
-    .io_in_0           (_dep5_0_io_out),
-    .io_in_1           (_dep5_1_io_out),
-    .io_in_2           (_dep5_2_io_out),
-    .io_in_3           (_dep5_3_io_out),
-    .io_in_4           (_dep5_4_io_out),
-    .io_in_5           (_dep5_5_io_out),
-    .io_in_6           (_dep5_6_io_out),
-    .io_in_7           (_dep5_7_io_out),
-    .io_exponent_0     (_scale_emax_io_out_0),
-    .io_exponent_1     (_scale_emax_io_out_1),
-    .io_exponent_2     (_scale_emax_io_out_2),
-    .io_exponent_3     (_scale_emax_io_out_3),
-    .io_exponent_4     (_scale_emax_io_out_4),
-    .io_exponent_5     (_scale_emax_io_out_5),
-    .io_exponent_6     (_scale_emax_io_out_6),
-    .io_exponent_7     (_scale_emax_io_out_7),
-    .io_out_0_sign     (_convert_dep_5_io_out_0_sign),
-    .io_out_0_exponent (_convert_dep_5_io_out_0_exponent),
-    .io_out_0_mantissa (_convert_dep_5_io_out_0_mantissa),
-    .io_out_1_sign     (_convert_dep_5_io_out_1_sign),
-    .io_out_1_exponent (_convert_dep_5_io_out_1_exponent),
-    .io_out_1_mantissa (_convert_dep_5_io_out_1_mantissa),
-    .io_out_2_sign     (_convert_dep_5_io_out_2_sign),
-    .io_out_2_exponent (_convert_dep_5_io_out_2_exponent),
-    .io_out_2_mantissa (_convert_dep_5_io_out_2_mantissa),
-    .io_out_3_sign     (_convert_dep_5_io_out_3_sign),
-    .io_out_3_exponent (_convert_dep_5_io_out_3_exponent),
-    .io_out_3_mantissa (_convert_dep_5_io_out_3_mantissa),
-    .io_out_4_sign     (_convert_dep_5_io_out_4_sign),
-    .io_out_4_exponent (_convert_dep_5_io_out_4_exponent),
-    .io_out_4_mantissa (_convert_dep_5_io_out_4_mantissa),
-    .io_out_5_sign     (_convert_dep_5_io_out_5_sign),
-    .io_out_5_exponent (_convert_dep_5_io_out_5_exponent),
-    .io_out_5_mantissa (_convert_dep_5_io_out_5_mantissa),
-    .io_out_6_sign     (_convert_dep_5_io_out_6_sign),
-    .io_out_6_exponent (_convert_dep_5_io_out_6_exponent),
-    .io_out_6_mantissa (_convert_dep_5_io_out_6_mantissa),
-    .io_out_7_sign     (_convert_dep_5_io_out_7_sign),
-    .io_out_7_exponent (_convert_dep_5_io_out_7_exponent),
-    .io_out_7_mantissa (_convert_dep_5_io_out_7_mantissa)
+    .io_depth              (io_depth),
+    .io_in_0               (_dep5_0_io_out),
+    .io_in_1               (_dep5_1_io_out),
+    .io_in_2               (_dep5_2_io_out),
+    .io_in_3               (_dep5_3_io_out),
+    .io_in_4               (_dep5_4_io_out),
+    .io_in_5               (_dep5_5_io_out),
+    .io_in_6               (_dep5_6_io_out),
+    .io_in_7               (_dep5_7_io_out),
+    .io_exponent_0         (_scale_emax_io_out_0),
+    .io_exponent_1         (_scale_emax_io_out_1),
+    .io_exponent_2         (_scale_emax_io_out_2),
+    .io_exponent_3         (_scale_emax_io_out_3),
+    .io_exponent_4         (_scale_emax_io_out_4),
+    .io_exponent_5         (_scale_emax_io_out_5),
+    .io_exponent_6         (_scale_emax_io_out_6),
+    .io_exponent_7         (_scale_emax_io_out_7),
+    .io_out_0_sign         (_convert_dep_5_io_out_0_sign),
+    .io_out_0_exponent     (_convert_dep_5_io_out_0_exponent),
+    .io_out_0_mantissa     (_convert_dep_5_io_out_0_mantissa),
+    .io_out_1_sign         (_convert_dep_5_io_out_1_sign),
+    .io_out_1_exponent     (_convert_dep_5_io_out_1_exponent),
+    .io_out_1_mantissa     (_convert_dep_5_io_out_1_mantissa),
+    .io_out_2_sign         (_convert_dep_5_io_out_2_sign),
+    .io_out_2_exponent     (_convert_dep_5_io_out_2_exponent),
+    .io_out_2_mantissa     (_convert_dep_5_io_out_2_mantissa),
+    .io_out_3_sign         (_convert_dep_5_io_out_3_sign),
+    .io_out_3_exponent     (_convert_dep_5_io_out_3_exponent),
+    .io_out_3_mantissa     (_convert_dep_5_io_out_3_mantissa),
+    .io_out_4_sign         (_convert_dep_5_io_out_4_sign),
+    .io_out_4_exponent     (_convert_dep_5_io_out_4_exponent),
+    .io_out_4_mantissa     (_convert_dep_5_io_out_4_mantissa),
+    .io_out_5_sign         (_convert_dep_5_io_out_5_sign),
+    .io_out_5_exponent     (_convert_dep_5_io_out_5_exponent),
+    .io_out_5_mantissa     (_convert_dep_5_io_out_5_mantissa),
+    .io_out_6_sign         (_convert_dep_5_io_out_6_sign),
+    .io_out_6_exponent     (_convert_dep_5_io_out_6_exponent),
+    .io_out_6_mantissa     (_convert_dep_5_io_out_6_mantissa),
+    .io_out_7_sign         (_convert_dep_5_io_out_7_sign),
+    .io_out_7_exponent     (_convert_dep_5_io_out_7_exponent),
+    .io_out_7_mantissa     (_convert_dep_5_io_out_7_mantissa),
+    .io_debug_real_exp_0   (_convert_dep_5_io_debug_real_exp_0),
+    .io_debug_real_exp_1   (_convert_dep_5_io_debug_real_exp_1),
+    .io_debug_real_exp_2   (_convert_dep_5_io_debug_real_exp_2),
+    .io_debug_real_exp_3   (_convert_dep_5_io_debug_real_exp_3),
+    .io_debug_real_exp_4   (_convert_dep_5_io_debug_real_exp_4),
+    .io_debug_real_exp_5   (_convert_dep_5_io_debug_real_exp_5),
+    .io_debug_real_exp_6   (_convert_dep_5_io_debug_real_exp_6),
+    .io_debug_real_exp_7   (_convert_dep_5_io_debug_real_exp_7),
+    .io_debug_biased_exp_0 (_convert_dep_5_io_debug_biased_exp_0),
+    .io_debug_biased_exp_1 (_convert_dep_5_io_debug_biased_exp_1),
+    .io_debug_biased_exp_2 (_convert_dep_5_io_debug_biased_exp_2),
+    .io_debug_biased_exp_3 (_convert_dep_5_io_debug_biased_exp_3),
+    .io_debug_biased_exp_4 (_convert_dep_5_io_debug_biased_exp_4),
+    .io_debug_biased_exp_5 (_convert_dep_5_io_debug_biased_exp_5),
+    .io_debug_biased_exp_6 (_convert_dep_5_io_debug_biased_exp_6),
+    .io_debug_biased_exp_7 (_convert_dep_5_io_debug_biased_exp_7),
+    .io_debug_shift_amt_0  (_convert_dep_5_io_debug_shift_amt_0),
+    .io_debug_shift_amt_1  (_convert_dep_5_io_debug_shift_amt_1),
+    .io_debug_shift_amt_2  (_convert_dep_5_io_debug_shift_amt_2),
+    .io_debug_shift_amt_3  (_convert_dep_5_io_debug_shift_amt_3),
+    .io_debug_shift_amt_4  (_convert_dep_5_io_debug_shift_amt_4),
+    .io_debug_shift_amt_5  (_convert_dep_5_io_debug_shift_amt_5),
+    .io_debug_shift_amt_6  (_convert_dep_5_io_debug_shift_amt_6),
+    .io_debug_shift_amt_7  (_convert_dep_5_io_debug_shift_amt_7),
+    .io_debug_PE_0         (_convert_dep_5_io_debug_PE_0),
+    .io_debug_PE_1         (_convert_dep_5_io_debug_PE_1),
+    .io_debug_PE_2         (_convert_dep_5_io_debug_PE_2),
+    .io_debug_PE_3         (_convert_dep_5_io_debug_PE_3),
+    .io_debug_PE_4         (_convert_dep_5_io_debug_PE_4),
+    .io_debug_PE_5         (_convert_dep_5_io_debug_PE_5),
+    .io_debug_PE_6         (_convert_dep_5_io_debug_PE_6),
+    .io_debug_PE_7         (_convert_dep_5_io_debug_PE_7),
+    .io_debug_abs_in_0     (_convert_dep_5_io_debug_abs_in_0),
+    .io_debug_abs_in_1     (_convert_dep_5_io_debug_abs_in_1),
+    .io_debug_abs_in_2     (_convert_dep_5_io_debug_abs_in_2),
+    .io_debug_abs_in_3     (_convert_dep_5_io_debug_abs_in_3),
+    .io_debug_abs_in_4     (_convert_dep_5_io_debug_abs_in_4),
+    .io_debug_abs_in_5     (_convert_dep_5_io_debug_abs_in_5),
+    .io_debug_abs_in_6     (_convert_dep_5_io_debug_abs_in_6),
+    .io_debug_abs_in_7     (_convert_dep_5_io_debug_abs_in_7)
   );
   assign io_out_0_sign = ~_GEN & _convert_dep_5_io_out_0_sign;
   assign io_out_0_exponent = _GEN ? 8'h0 : _convert_dep_5_io_out_0_exponent;
@@ -9786,5 +10186,333 @@ module p_TOP_Til_Dep_5(
   assign io_out_FP32_255_sign = _GEN & _conv_io_out_255_sign;
   assign io_out_FP32_255_exponent = _GEN ? _conv_io_out_255_exponent : 8'h0;
   assign io_out_FP32_255_mantissa = _GEN ? _conv_io_out_255_mantissa : 23'h0;
+  assign io_debug_mul_exp_0 = _GEN ? 3'h0 : _mult_io_exponent_0;
+  assign io_debug_mul_exp_1 = _GEN ? 3'h0 : _mult_io_exponent_1;
+  assign io_debug_mul_exp_2 = _GEN ? 3'h0 : _mult_io_exponent_2;
+  assign io_debug_mul_exp_3 = _GEN ? 3'h0 : _mult_io_exponent_3;
+  assign io_debug_mul_exp_4 = _GEN ? 3'h0 : _mult_io_exponent_4;
+  assign io_debug_mul_exp_5 = _GEN ? 3'h0 : _mult_io_exponent_5;
+  assign io_debug_mul_exp_6 = _GEN ? 3'h0 : _mult_io_exponent_6;
+  assign io_debug_mul_exp_7 = _GEN ? 3'h0 : _mult_io_exponent_7;
+  assign io_debug_mul_exp_8 = _GEN ? 3'h0 : _mult_io_exponent_8;
+  assign io_debug_mul_exp_9 = _GEN ? 3'h0 : _mult_io_exponent_9;
+  assign io_debug_mul_exp_10 = _GEN ? 3'h0 : _mult_io_exponent_10;
+  assign io_debug_mul_exp_11 = _GEN ? 3'h0 : _mult_io_exponent_11;
+  assign io_debug_mul_exp_12 = _GEN ? 3'h0 : _mult_io_exponent_12;
+  assign io_debug_mul_exp_13 = _GEN ? 3'h0 : _mult_io_exponent_13;
+  assign io_debug_mul_exp_14 = _GEN ? 3'h0 : _mult_io_exponent_14;
+  assign io_debug_mul_exp_15 = _GEN ? 3'h0 : _mult_io_exponent_15;
+  assign io_debug_mul_exp_16 = _GEN ? 3'h0 : _mult_io_exponent_16;
+  assign io_debug_mul_exp_17 = _GEN ? 3'h0 : _mult_io_exponent_17;
+  assign io_debug_mul_exp_18 = _GEN ? 3'h0 : _mult_io_exponent_18;
+  assign io_debug_mul_exp_19 = _GEN ? 3'h0 : _mult_io_exponent_19;
+  assign io_debug_mul_exp_20 = _GEN ? 3'h0 : _mult_io_exponent_20;
+  assign io_debug_mul_exp_21 = _GEN ? 3'h0 : _mult_io_exponent_21;
+  assign io_debug_mul_exp_22 = _GEN ? 3'h0 : _mult_io_exponent_22;
+  assign io_debug_mul_exp_23 = _GEN ? 3'h0 : _mult_io_exponent_23;
+  assign io_debug_mul_exp_24 = _GEN ? 3'h0 : _mult_io_exponent_24;
+  assign io_debug_mul_exp_25 = _GEN ? 3'h0 : _mult_io_exponent_25;
+  assign io_debug_mul_exp_26 = _GEN ? 3'h0 : _mult_io_exponent_26;
+  assign io_debug_mul_exp_27 = _GEN ? 3'h0 : _mult_io_exponent_27;
+  assign io_debug_mul_exp_28 = _GEN ? 3'h0 : _mult_io_exponent_28;
+  assign io_debug_mul_exp_29 = _GEN ? 3'h0 : _mult_io_exponent_29;
+  assign io_debug_mul_exp_30 = _GEN ? 3'h0 : _mult_io_exponent_30;
+  assign io_debug_mul_exp_31 = _GEN ? 3'h0 : _mult_io_exponent_31;
+  assign io_debug_mul_exp_32 = _GEN ? 3'h0 : _mult_io_exponent_32;
+  assign io_debug_mul_exp_33 = _GEN ? 3'h0 : _mult_io_exponent_33;
+  assign io_debug_mul_exp_34 = _GEN ? 3'h0 : _mult_io_exponent_34;
+  assign io_debug_mul_exp_35 = _GEN ? 3'h0 : _mult_io_exponent_35;
+  assign io_debug_mul_exp_36 = _GEN ? 3'h0 : _mult_io_exponent_36;
+  assign io_debug_mul_exp_37 = _GEN ? 3'h0 : _mult_io_exponent_37;
+  assign io_debug_mul_exp_38 = _GEN ? 3'h0 : _mult_io_exponent_38;
+  assign io_debug_mul_exp_39 = _GEN ? 3'h0 : _mult_io_exponent_39;
+  assign io_debug_mul_exp_40 = _GEN ? 3'h0 : _mult_io_exponent_40;
+  assign io_debug_mul_exp_41 = _GEN ? 3'h0 : _mult_io_exponent_41;
+  assign io_debug_mul_exp_42 = _GEN ? 3'h0 : _mult_io_exponent_42;
+  assign io_debug_mul_exp_43 = _GEN ? 3'h0 : _mult_io_exponent_43;
+  assign io_debug_mul_exp_44 = _GEN ? 3'h0 : _mult_io_exponent_44;
+  assign io_debug_mul_exp_45 = _GEN ? 3'h0 : _mult_io_exponent_45;
+  assign io_debug_mul_exp_46 = _GEN ? 3'h0 : _mult_io_exponent_46;
+  assign io_debug_mul_exp_47 = _GEN ? 3'h0 : _mult_io_exponent_47;
+  assign io_debug_mul_exp_48 = _GEN ? 3'h0 : _mult_io_exponent_48;
+  assign io_debug_mul_exp_49 = _GEN ? 3'h0 : _mult_io_exponent_49;
+  assign io_debug_mul_exp_50 = _GEN ? 3'h0 : _mult_io_exponent_50;
+  assign io_debug_mul_exp_51 = _GEN ? 3'h0 : _mult_io_exponent_51;
+  assign io_debug_mul_exp_52 = _GEN ? 3'h0 : _mult_io_exponent_52;
+  assign io_debug_mul_exp_53 = _GEN ? 3'h0 : _mult_io_exponent_53;
+  assign io_debug_mul_exp_54 = _GEN ? 3'h0 : _mult_io_exponent_54;
+  assign io_debug_mul_exp_55 = _GEN ? 3'h0 : _mult_io_exponent_55;
+  assign io_debug_mul_exp_56 = _GEN ? 3'h0 : _mult_io_exponent_56;
+  assign io_debug_mul_exp_57 = _GEN ? 3'h0 : _mult_io_exponent_57;
+  assign io_debug_mul_exp_58 = _GEN ? 3'h0 : _mult_io_exponent_58;
+  assign io_debug_mul_exp_59 = _GEN ? 3'h0 : _mult_io_exponent_59;
+  assign io_debug_mul_exp_60 = _GEN ? 3'h0 : _mult_io_exponent_60;
+  assign io_debug_mul_exp_61 = _GEN ? 3'h0 : _mult_io_exponent_61;
+  assign io_debug_mul_exp_62 = _GEN ? 3'h0 : _mult_io_exponent_62;
+  assign io_debug_mul_exp_63 = _GEN ? 3'h0 : _mult_io_exponent_63;
+  assign io_debug_mul_exp_64 = _GEN ? 3'h0 : _mult_io_exponent_64;
+  assign io_debug_mul_exp_65 = _GEN ? 3'h0 : _mult_io_exponent_65;
+  assign io_debug_mul_exp_66 = _GEN ? 3'h0 : _mult_io_exponent_66;
+  assign io_debug_mul_exp_67 = _GEN ? 3'h0 : _mult_io_exponent_67;
+  assign io_debug_mul_exp_68 = _GEN ? 3'h0 : _mult_io_exponent_68;
+  assign io_debug_mul_exp_69 = _GEN ? 3'h0 : _mult_io_exponent_69;
+  assign io_debug_mul_exp_70 = _GEN ? 3'h0 : _mult_io_exponent_70;
+  assign io_debug_mul_exp_71 = _GEN ? 3'h0 : _mult_io_exponent_71;
+  assign io_debug_mul_exp_72 = _GEN ? 3'h0 : _mult_io_exponent_72;
+  assign io_debug_mul_exp_73 = _GEN ? 3'h0 : _mult_io_exponent_73;
+  assign io_debug_mul_exp_74 = _GEN ? 3'h0 : _mult_io_exponent_74;
+  assign io_debug_mul_exp_75 = _GEN ? 3'h0 : _mult_io_exponent_75;
+  assign io_debug_mul_exp_76 = _GEN ? 3'h0 : _mult_io_exponent_76;
+  assign io_debug_mul_exp_77 = _GEN ? 3'h0 : _mult_io_exponent_77;
+  assign io_debug_mul_exp_78 = _GEN ? 3'h0 : _mult_io_exponent_78;
+  assign io_debug_mul_exp_79 = _GEN ? 3'h0 : _mult_io_exponent_79;
+  assign io_debug_mul_exp_80 = _GEN ? 3'h0 : _mult_io_exponent_80;
+  assign io_debug_mul_exp_81 = _GEN ? 3'h0 : _mult_io_exponent_81;
+  assign io_debug_mul_exp_82 = _GEN ? 3'h0 : _mult_io_exponent_82;
+  assign io_debug_mul_exp_83 = _GEN ? 3'h0 : _mult_io_exponent_83;
+  assign io_debug_mul_exp_84 = _GEN ? 3'h0 : _mult_io_exponent_84;
+  assign io_debug_mul_exp_85 = _GEN ? 3'h0 : _mult_io_exponent_85;
+  assign io_debug_mul_exp_86 = _GEN ? 3'h0 : _mult_io_exponent_86;
+  assign io_debug_mul_exp_87 = _GEN ? 3'h0 : _mult_io_exponent_87;
+  assign io_debug_mul_exp_88 = _GEN ? 3'h0 : _mult_io_exponent_88;
+  assign io_debug_mul_exp_89 = _GEN ? 3'h0 : _mult_io_exponent_89;
+  assign io_debug_mul_exp_90 = _GEN ? 3'h0 : _mult_io_exponent_90;
+  assign io_debug_mul_exp_91 = _GEN ? 3'h0 : _mult_io_exponent_91;
+  assign io_debug_mul_exp_92 = _GEN ? 3'h0 : _mult_io_exponent_92;
+  assign io_debug_mul_exp_93 = _GEN ? 3'h0 : _mult_io_exponent_93;
+  assign io_debug_mul_exp_94 = _GEN ? 3'h0 : _mult_io_exponent_94;
+  assign io_debug_mul_exp_95 = _GEN ? 3'h0 : _mult_io_exponent_95;
+  assign io_debug_mul_exp_96 = _GEN ? 3'h0 : _mult_io_exponent_96;
+  assign io_debug_mul_exp_97 = _GEN ? 3'h0 : _mult_io_exponent_97;
+  assign io_debug_mul_exp_98 = _GEN ? 3'h0 : _mult_io_exponent_98;
+  assign io_debug_mul_exp_99 = _GEN ? 3'h0 : _mult_io_exponent_99;
+  assign io_debug_mul_exp_100 = _GEN ? 3'h0 : _mult_io_exponent_100;
+  assign io_debug_mul_exp_101 = _GEN ? 3'h0 : _mult_io_exponent_101;
+  assign io_debug_mul_exp_102 = _GEN ? 3'h0 : _mult_io_exponent_102;
+  assign io_debug_mul_exp_103 = _GEN ? 3'h0 : _mult_io_exponent_103;
+  assign io_debug_mul_exp_104 = _GEN ? 3'h0 : _mult_io_exponent_104;
+  assign io_debug_mul_exp_105 = _GEN ? 3'h0 : _mult_io_exponent_105;
+  assign io_debug_mul_exp_106 = _GEN ? 3'h0 : _mult_io_exponent_106;
+  assign io_debug_mul_exp_107 = _GEN ? 3'h0 : _mult_io_exponent_107;
+  assign io_debug_mul_exp_108 = _GEN ? 3'h0 : _mult_io_exponent_108;
+  assign io_debug_mul_exp_109 = _GEN ? 3'h0 : _mult_io_exponent_109;
+  assign io_debug_mul_exp_110 = _GEN ? 3'h0 : _mult_io_exponent_110;
+  assign io_debug_mul_exp_111 = _GEN ? 3'h0 : _mult_io_exponent_111;
+  assign io_debug_mul_exp_112 = _GEN ? 3'h0 : _mult_io_exponent_112;
+  assign io_debug_mul_exp_113 = _GEN ? 3'h0 : _mult_io_exponent_113;
+  assign io_debug_mul_exp_114 = _GEN ? 3'h0 : _mult_io_exponent_114;
+  assign io_debug_mul_exp_115 = _GEN ? 3'h0 : _mult_io_exponent_115;
+  assign io_debug_mul_exp_116 = _GEN ? 3'h0 : _mult_io_exponent_116;
+  assign io_debug_mul_exp_117 = _GEN ? 3'h0 : _mult_io_exponent_117;
+  assign io_debug_mul_exp_118 = _GEN ? 3'h0 : _mult_io_exponent_118;
+  assign io_debug_mul_exp_119 = _GEN ? 3'h0 : _mult_io_exponent_119;
+  assign io_debug_mul_exp_120 = _GEN ? 3'h0 : _mult_io_exponent_120;
+  assign io_debug_mul_exp_121 = _GEN ? 3'h0 : _mult_io_exponent_121;
+  assign io_debug_mul_exp_122 = _GEN ? 3'h0 : _mult_io_exponent_122;
+  assign io_debug_mul_exp_123 = _GEN ? 3'h0 : _mult_io_exponent_123;
+  assign io_debug_mul_exp_124 = _GEN ? 3'h0 : _mult_io_exponent_124;
+  assign io_debug_mul_exp_125 = _GEN ? 3'h0 : _mult_io_exponent_125;
+  assign io_debug_mul_exp_126 = _GEN ? 3'h0 : _mult_io_exponent_126;
+  assign io_debug_mul_exp_127 = _GEN ? 3'h0 : _mult_io_exponent_127;
+  assign io_debug_mul_exp_128 = _GEN ? 3'h0 : _mult_io_exponent_128;
+  assign io_debug_mul_exp_129 = _GEN ? 3'h0 : _mult_io_exponent_129;
+  assign io_debug_mul_exp_130 = _GEN ? 3'h0 : _mult_io_exponent_130;
+  assign io_debug_mul_exp_131 = _GEN ? 3'h0 : _mult_io_exponent_131;
+  assign io_debug_mul_exp_132 = _GEN ? 3'h0 : _mult_io_exponent_132;
+  assign io_debug_mul_exp_133 = _GEN ? 3'h0 : _mult_io_exponent_133;
+  assign io_debug_mul_exp_134 = _GEN ? 3'h0 : _mult_io_exponent_134;
+  assign io_debug_mul_exp_135 = _GEN ? 3'h0 : _mult_io_exponent_135;
+  assign io_debug_mul_exp_136 = _GEN ? 3'h0 : _mult_io_exponent_136;
+  assign io_debug_mul_exp_137 = _GEN ? 3'h0 : _mult_io_exponent_137;
+  assign io_debug_mul_exp_138 = _GEN ? 3'h0 : _mult_io_exponent_138;
+  assign io_debug_mul_exp_139 = _GEN ? 3'h0 : _mult_io_exponent_139;
+  assign io_debug_mul_exp_140 = _GEN ? 3'h0 : _mult_io_exponent_140;
+  assign io_debug_mul_exp_141 = _GEN ? 3'h0 : _mult_io_exponent_141;
+  assign io_debug_mul_exp_142 = _GEN ? 3'h0 : _mult_io_exponent_142;
+  assign io_debug_mul_exp_143 = _GEN ? 3'h0 : _mult_io_exponent_143;
+  assign io_debug_mul_exp_144 = _GEN ? 3'h0 : _mult_io_exponent_144;
+  assign io_debug_mul_exp_145 = _GEN ? 3'h0 : _mult_io_exponent_145;
+  assign io_debug_mul_exp_146 = _GEN ? 3'h0 : _mult_io_exponent_146;
+  assign io_debug_mul_exp_147 = _GEN ? 3'h0 : _mult_io_exponent_147;
+  assign io_debug_mul_exp_148 = _GEN ? 3'h0 : _mult_io_exponent_148;
+  assign io_debug_mul_exp_149 = _GEN ? 3'h0 : _mult_io_exponent_149;
+  assign io_debug_mul_exp_150 = _GEN ? 3'h0 : _mult_io_exponent_150;
+  assign io_debug_mul_exp_151 = _GEN ? 3'h0 : _mult_io_exponent_151;
+  assign io_debug_mul_exp_152 = _GEN ? 3'h0 : _mult_io_exponent_152;
+  assign io_debug_mul_exp_153 = _GEN ? 3'h0 : _mult_io_exponent_153;
+  assign io_debug_mul_exp_154 = _GEN ? 3'h0 : _mult_io_exponent_154;
+  assign io_debug_mul_exp_155 = _GEN ? 3'h0 : _mult_io_exponent_155;
+  assign io_debug_mul_exp_156 = _GEN ? 3'h0 : _mult_io_exponent_156;
+  assign io_debug_mul_exp_157 = _GEN ? 3'h0 : _mult_io_exponent_157;
+  assign io_debug_mul_exp_158 = _GEN ? 3'h0 : _mult_io_exponent_158;
+  assign io_debug_mul_exp_159 = _GEN ? 3'h0 : _mult_io_exponent_159;
+  assign io_debug_mul_exp_160 = _GEN ? 3'h0 : _mult_io_exponent_160;
+  assign io_debug_mul_exp_161 = _GEN ? 3'h0 : _mult_io_exponent_161;
+  assign io_debug_mul_exp_162 = _GEN ? 3'h0 : _mult_io_exponent_162;
+  assign io_debug_mul_exp_163 = _GEN ? 3'h0 : _mult_io_exponent_163;
+  assign io_debug_mul_exp_164 = _GEN ? 3'h0 : _mult_io_exponent_164;
+  assign io_debug_mul_exp_165 = _GEN ? 3'h0 : _mult_io_exponent_165;
+  assign io_debug_mul_exp_166 = _GEN ? 3'h0 : _mult_io_exponent_166;
+  assign io_debug_mul_exp_167 = _GEN ? 3'h0 : _mult_io_exponent_167;
+  assign io_debug_mul_exp_168 = _GEN ? 3'h0 : _mult_io_exponent_168;
+  assign io_debug_mul_exp_169 = _GEN ? 3'h0 : _mult_io_exponent_169;
+  assign io_debug_mul_exp_170 = _GEN ? 3'h0 : _mult_io_exponent_170;
+  assign io_debug_mul_exp_171 = _GEN ? 3'h0 : _mult_io_exponent_171;
+  assign io_debug_mul_exp_172 = _GEN ? 3'h0 : _mult_io_exponent_172;
+  assign io_debug_mul_exp_173 = _GEN ? 3'h0 : _mult_io_exponent_173;
+  assign io_debug_mul_exp_174 = _GEN ? 3'h0 : _mult_io_exponent_174;
+  assign io_debug_mul_exp_175 = _GEN ? 3'h0 : _mult_io_exponent_175;
+  assign io_debug_mul_exp_176 = _GEN ? 3'h0 : _mult_io_exponent_176;
+  assign io_debug_mul_exp_177 = _GEN ? 3'h0 : _mult_io_exponent_177;
+  assign io_debug_mul_exp_178 = _GEN ? 3'h0 : _mult_io_exponent_178;
+  assign io_debug_mul_exp_179 = _GEN ? 3'h0 : _mult_io_exponent_179;
+  assign io_debug_mul_exp_180 = _GEN ? 3'h0 : _mult_io_exponent_180;
+  assign io_debug_mul_exp_181 = _GEN ? 3'h0 : _mult_io_exponent_181;
+  assign io_debug_mul_exp_182 = _GEN ? 3'h0 : _mult_io_exponent_182;
+  assign io_debug_mul_exp_183 = _GEN ? 3'h0 : _mult_io_exponent_183;
+  assign io_debug_mul_exp_184 = _GEN ? 3'h0 : _mult_io_exponent_184;
+  assign io_debug_mul_exp_185 = _GEN ? 3'h0 : _mult_io_exponent_185;
+  assign io_debug_mul_exp_186 = _GEN ? 3'h0 : _mult_io_exponent_186;
+  assign io_debug_mul_exp_187 = _GEN ? 3'h0 : _mult_io_exponent_187;
+  assign io_debug_mul_exp_188 = _GEN ? 3'h0 : _mult_io_exponent_188;
+  assign io_debug_mul_exp_189 = _GEN ? 3'h0 : _mult_io_exponent_189;
+  assign io_debug_mul_exp_190 = _GEN ? 3'h0 : _mult_io_exponent_190;
+  assign io_debug_mul_exp_191 = _GEN ? 3'h0 : _mult_io_exponent_191;
+  assign io_debug_mul_exp_192 = _GEN ? 3'h0 : _mult_io_exponent_192;
+  assign io_debug_mul_exp_193 = _GEN ? 3'h0 : _mult_io_exponent_193;
+  assign io_debug_mul_exp_194 = _GEN ? 3'h0 : _mult_io_exponent_194;
+  assign io_debug_mul_exp_195 = _GEN ? 3'h0 : _mult_io_exponent_195;
+  assign io_debug_mul_exp_196 = _GEN ? 3'h0 : _mult_io_exponent_196;
+  assign io_debug_mul_exp_197 = _GEN ? 3'h0 : _mult_io_exponent_197;
+  assign io_debug_mul_exp_198 = _GEN ? 3'h0 : _mult_io_exponent_198;
+  assign io_debug_mul_exp_199 = _GEN ? 3'h0 : _mult_io_exponent_199;
+  assign io_debug_mul_exp_200 = _GEN ? 3'h0 : _mult_io_exponent_200;
+  assign io_debug_mul_exp_201 = _GEN ? 3'h0 : _mult_io_exponent_201;
+  assign io_debug_mul_exp_202 = _GEN ? 3'h0 : _mult_io_exponent_202;
+  assign io_debug_mul_exp_203 = _GEN ? 3'h0 : _mult_io_exponent_203;
+  assign io_debug_mul_exp_204 = _GEN ? 3'h0 : _mult_io_exponent_204;
+  assign io_debug_mul_exp_205 = _GEN ? 3'h0 : _mult_io_exponent_205;
+  assign io_debug_mul_exp_206 = _GEN ? 3'h0 : _mult_io_exponent_206;
+  assign io_debug_mul_exp_207 = _GEN ? 3'h0 : _mult_io_exponent_207;
+  assign io_debug_mul_exp_208 = _GEN ? 3'h0 : _mult_io_exponent_208;
+  assign io_debug_mul_exp_209 = _GEN ? 3'h0 : _mult_io_exponent_209;
+  assign io_debug_mul_exp_210 = _GEN ? 3'h0 : _mult_io_exponent_210;
+  assign io_debug_mul_exp_211 = _GEN ? 3'h0 : _mult_io_exponent_211;
+  assign io_debug_mul_exp_212 = _GEN ? 3'h0 : _mult_io_exponent_212;
+  assign io_debug_mul_exp_213 = _GEN ? 3'h0 : _mult_io_exponent_213;
+  assign io_debug_mul_exp_214 = _GEN ? 3'h0 : _mult_io_exponent_214;
+  assign io_debug_mul_exp_215 = _GEN ? 3'h0 : _mult_io_exponent_215;
+  assign io_debug_mul_exp_216 = _GEN ? 3'h0 : _mult_io_exponent_216;
+  assign io_debug_mul_exp_217 = _GEN ? 3'h0 : _mult_io_exponent_217;
+  assign io_debug_mul_exp_218 = _GEN ? 3'h0 : _mult_io_exponent_218;
+  assign io_debug_mul_exp_219 = _GEN ? 3'h0 : _mult_io_exponent_219;
+  assign io_debug_mul_exp_220 = _GEN ? 3'h0 : _mult_io_exponent_220;
+  assign io_debug_mul_exp_221 = _GEN ? 3'h0 : _mult_io_exponent_221;
+  assign io_debug_mul_exp_222 = _GEN ? 3'h0 : _mult_io_exponent_222;
+  assign io_debug_mul_exp_223 = _GEN ? 3'h0 : _mult_io_exponent_223;
+  assign io_debug_mul_exp_224 = _GEN ? 3'h0 : _mult_io_exponent_224;
+  assign io_debug_mul_exp_225 = _GEN ? 3'h0 : _mult_io_exponent_225;
+  assign io_debug_mul_exp_226 = _GEN ? 3'h0 : _mult_io_exponent_226;
+  assign io_debug_mul_exp_227 = _GEN ? 3'h0 : _mult_io_exponent_227;
+  assign io_debug_mul_exp_228 = _GEN ? 3'h0 : _mult_io_exponent_228;
+  assign io_debug_mul_exp_229 = _GEN ? 3'h0 : _mult_io_exponent_229;
+  assign io_debug_mul_exp_230 = _GEN ? 3'h0 : _mult_io_exponent_230;
+  assign io_debug_mul_exp_231 = _GEN ? 3'h0 : _mult_io_exponent_231;
+  assign io_debug_mul_exp_232 = _GEN ? 3'h0 : _mult_io_exponent_232;
+  assign io_debug_mul_exp_233 = _GEN ? 3'h0 : _mult_io_exponent_233;
+  assign io_debug_mul_exp_234 = _GEN ? 3'h0 : _mult_io_exponent_234;
+  assign io_debug_mul_exp_235 = _GEN ? 3'h0 : _mult_io_exponent_235;
+  assign io_debug_mul_exp_236 = _GEN ? 3'h0 : _mult_io_exponent_236;
+  assign io_debug_mul_exp_237 = _GEN ? 3'h0 : _mult_io_exponent_237;
+  assign io_debug_mul_exp_238 = _GEN ? 3'h0 : _mult_io_exponent_238;
+  assign io_debug_mul_exp_239 = _GEN ? 3'h0 : _mult_io_exponent_239;
+  assign io_debug_mul_exp_240 = _GEN ? 3'h0 : _mult_io_exponent_240;
+  assign io_debug_mul_exp_241 = _GEN ? 3'h0 : _mult_io_exponent_241;
+  assign io_debug_mul_exp_242 = _GEN ? 3'h0 : _mult_io_exponent_242;
+  assign io_debug_mul_exp_243 = _GEN ? 3'h0 : _mult_io_exponent_243;
+  assign io_debug_mul_exp_244 = _GEN ? 3'h0 : _mult_io_exponent_244;
+  assign io_debug_mul_exp_245 = _GEN ? 3'h0 : _mult_io_exponent_245;
+  assign io_debug_mul_exp_246 = _GEN ? 3'h0 : _mult_io_exponent_246;
+  assign io_debug_mul_exp_247 = _GEN ? 3'h0 : _mult_io_exponent_247;
+  assign io_debug_mul_exp_248 = _GEN ? 3'h0 : _mult_io_exponent_248;
+  assign io_debug_mul_exp_249 = _GEN ? 3'h0 : _mult_io_exponent_249;
+  assign io_debug_mul_exp_250 = _GEN ? 3'h0 : _mult_io_exponent_250;
+  assign io_debug_mul_exp_251 = _GEN ? 3'h0 : _mult_io_exponent_251;
+  assign io_debug_mul_exp_252 = _GEN ? 3'h0 : _mult_io_exponent_252;
+  assign io_debug_mul_exp_253 = _GEN ? 3'h0 : _mult_io_exponent_253;
+  assign io_debug_mul_exp_254 = _GEN ? 3'h0 : _mult_io_exponent_254;
+  assign io_debug_mul_exp_255 = _GEN ? 3'h0 : _mult_io_exponent_255;
+  assign io_debug_exp_gmax_0 = _GEN ? 3'h0 : _expansion_0_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_1 = _GEN ? 3'h0 : _expansion_1_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_2 = _GEN ? 3'h0 : _expansion_2_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_3 = _GEN ? 3'h0 : _expansion_3_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_4 = _GEN ? 3'h0 : _expansion_4_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_5 = _GEN ? 3'h0 : _expansion_5_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_6 = _GEN ? 3'h0 : _expansion_6_io_out_exponent_gmax_0;
+  assign io_debug_exp_gmax_7 = _GEN ? 3'h0 : _expansion_7_io_out_exponent_gmax_0;
+  assign io_debug_scale_sum_0 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_0[8], _scale_sum_io_out_0};
+  assign io_debug_scale_sum_1 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_1[8], _scale_sum_io_out_1};
+  assign io_debug_scale_sum_2 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_2[8], _scale_sum_io_out_2};
+  assign io_debug_scale_sum_3 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_3[8], _scale_sum_io_out_3};
+  assign io_debug_scale_sum_4 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_4[8], _scale_sum_io_out_4};
+  assign io_debug_scale_sum_5 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_5[8], _scale_sum_io_out_5};
+  assign io_debug_scale_sum_6 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_6[8], _scale_sum_io_out_6};
+  assign io_debug_scale_sum_7 =
+    _GEN ? 10'h0 : {_scale_sum_io_out_7[8], _scale_sum_io_out_7};
+  assign io_debug_scale_emax_0 = _GEN ? 10'h0 : _scale_emax_io_out_0;
+  assign io_debug_scale_emax_1 = _GEN ? 10'h0 : _scale_emax_io_out_1;
+  assign io_debug_scale_emax_2 = _GEN ? 10'h0 : _scale_emax_io_out_2;
+  assign io_debug_scale_emax_3 = _GEN ? 10'h0 : _scale_emax_io_out_3;
+  assign io_debug_scale_emax_4 = _GEN ? 10'h0 : _scale_emax_io_out_4;
+  assign io_debug_scale_emax_5 = _GEN ? 10'h0 : _scale_emax_io_out_5;
+  assign io_debug_scale_emax_6 = _GEN ? 10'h0 : _scale_emax_io_out_6;
+  assign io_debug_scale_emax_7 = _GEN ? 10'h0 : _scale_emax_io_out_7;
+  assign io_debug_real_exp_0 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_0;
+  assign io_debug_real_exp_1 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_1;
+  assign io_debug_real_exp_2 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_2;
+  assign io_debug_real_exp_3 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_3;
+  assign io_debug_real_exp_4 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_4;
+  assign io_debug_real_exp_5 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_5;
+  assign io_debug_real_exp_6 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_6;
+  assign io_debug_real_exp_7 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_7;
+  assign io_debug_biased_exp_0 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_0;
+  assign io_debug_biased_exp_1 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_1;
+  assign io_debug_biased_exp_2 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_2;
+  assign io_debug_biased_exp_3 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_3;
+  assign io_debug_biased_exp_4 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_4;
+  assign io_debug_biased_exp_5 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_5;
+  assign io_debug_biased_exp_6 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_6;
+  assign io_debug_biased_exp_7 = _GEN ? 10'h0 : _convert_dep_5_io_debug_biased_exp_7;
+  assign io_debug_shift_amt_0 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_0;
+  assign io_debug_shift_amt_1 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_1;
+  assign io_debug_shift_amt_2 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_2;
+  assign io_debug_shift_amt_3 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_3;
+  assign io_debug_shift_amt_4 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_4;
+  assign io_debug_shift_amt_5 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_5;
+  assign io_debug_shift_amt_6 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_6;
+  assign io_debug_shift_amt_7 = _GEN ? 5'h0 : _convert_dep_5_io_debug_shift_amt_7;
+  assign io_debug_PE_0 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_0;
+  assign io_debug_PE_1 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_1;
+  assign io_debug_PE_2 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_2;
+  assign io_debug_PE_3 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_3;
+  assign io_debug_PE_4 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_4;
+  assign io_debug_PE_5 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_5;
+  assign io_debug_PE_6 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_6;
+  assign io_debug_PE_7 = _GEN ? 4'h0 : _convert_dep_5_io_debug_PE_7;
+  assign io_debug_abs_in_0 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_0;
+  assign io_debug_abs_in_1 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_1;
+  assign io_debug_abs_in_2 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_2;
+  assign io_debug_abs_in_3 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_3;
+  assign io_debug_abs_in_4 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_4;
+  assign io_debug_abs_in_5 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_5;
+  assign io_debug_abs_in_6 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_6;
+  assign io_debug_abs_in_7 = _GEN ? 13'h0 : _convert_dep_5_io_debug_abs_in_7;
 endmodule
 

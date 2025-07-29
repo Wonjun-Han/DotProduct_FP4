@@ -11,7 +11,27 @@ class p_TOP_Til_Dep_5_IO extends Bundle {
   val b_scale = Input(Vec(8, UInt(8.W)))
   val depth  = Input(UInt(3.W))
   val out = Output(Vec(8, new FP32))     
-  val out_FP32 = Output(Vec(256, new FP32))    
+  val out_FP32 = Output(Vec(256, new FP32))
+
+  // for debugging p_Multiplier
+  val debug_mul_exp = Output(Vec(256, UInt(3.W))) // Multiplier exponent output
+
+  // for debugging p_Expansion
+  val debug_exp_gmax = Output(Vec(8, UInt(3.W))) // Group max exponent
+
+  //for debugging ScaleSum
+  val debug_scale_sum   = Output(Vec(8, SInt(10.W)))
+
+  //for debugging ScaleEmax
+  val debug_scale_emax = Output(Vec(8, SInt(10.W)))
+
+  //for debugging p_Convert_Dep_5
+  val debug_real_exp   = Output(Vec(8, SInt(10.W)))
+  val debug_biased_exp = Output(Vec(8, SInt(10.W)))
+  val debug_shift_amt  = Output(Vec(8, SInt(5.W)))
+  val debug_PE         = Output(Vec(8, UInt(4.W)))
+  val debug_abs_in     = Output(Vec(8, UInt(13.W)))
+
 }
 
 class p_TOP_Til_Dep_5 extends Module {
@@ -33,6 +53,17 @@ class p_TOP_Til_Dep_5 extends Module {
 
     io.out_FP32 := conv.io.out
     io.out := VecInit(Seq.fill(8)(0.U.asTypeOf(new FP32))) // dummy
+
+    // Initialize debug outputs
+    io.debug_real_exp   := VecInit(Seq.fill(8)(0.S(10.W)))
+    io.debug_biased_exp := VecInit(Seq.fill(8)(0.S(10.W)))
+    io.debug_shift_amt  := VecInit(Seq.fill(8)(0.S(5.W)))
+    io.debug_PE         := VecInit(Seq.fill(8)(0.U(4.W)))
+    io.debug_abs_in     := VecInit(Seq.fill(8)(0.U(13.W)))
+    io.debug_scale_sum  := VecInit(Seq.fill(8)(0.S(10.W))) 
+    io.debug_scale_emax := VecInit(Seq.fill(8)(0.S(10.W)))
+    io.debug_exp_gmax := VecInit(Seq.fill(8)(0.U(3.W))) // Group max exponent
+    io.debug_mul_exp := VecInit(Seq.fill(256)(0.U(3.W))) // Multiplier exponent output
   }.otherwise {
     // Initialization
     conv.io.sign     := VecInit(Seq.fill(256)(0.U(1.W)))
@@ -82,6 +113,27 @@ class p_TOP_Til_Dep_5 extends Module {
       convert_dep_5.io.in(i) := dep5(i).io.out
       convert_dep_5.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_5.io.out(i)
+
+      //for debugging p_Convert_Dep_5
+      io.debug_real_exp(i)   := convert_dep_5.io.debug_real_exp(i)
+      io.debug_biased_exp(i) := convert_dep_5.io.debug_biased_exp(i)
+      io.debug_shift_amt(i)  := convert_dep_5.io.debug_shift_amt(i)
+      io.debug_PE(i)         := convert_dep_5.io.debug_PE(i)
+      io.debug_abs_in(i)     := convert_dep_5.io.debug_abs_in(i)
+
+      //for debugging p_Expansion
+      io.debug_exp_gmax(i) := expansion(i).io.out_exponent_gmax(0)
+
+      //for debugging ScaleSum
+      io.debug_scale_sum(i) := scale_sum.io.out(i)
+
+      //for debugging ScaleEmax
+      io.debug_scale_emax(i) := scale_emax.io.out(i)
+
+    }
+    //for debugging p_Multiplier
+    for (i <- 0 until 256) {
+      io.debug_mul_exp(i) := mult.io.exponent(i)
     }
 
     io.out_FP32 := VecInit(Seq.fill(256)(0.U.asTypeOf(new FP32))) // dummy
