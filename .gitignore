@@ -293,7 +293,6 @@ DerivedData
 
 ## systemverilog files
 *.sv
-generated/verilog/*.sv
 
 
 ## Various settings
