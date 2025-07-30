@@ -7,7 +7,7 @@ import _root_.circt.stage.ChiselStage
 class MXFP4_ADD_SCALE_EMAX extends Bundle {
   val depth      = Input(UInt(3.W))              // 현재 누산 트리의 depth
   val scale_sum  = Input(Vec(8, SInt(9.W)))      // 이전에서 계산된 scale 합산 값
-  val nan        = Input(Vec(8, UInt(1.W)))      // NaN 여부 플래그
+  val nan        = Input(Vec(8, UInt(1.W)))      // NaN 여부 flag
   val emax       = Input(Vec(8, UInt(3.W)))      // 각 그룹의 Emax
   val out        = Output(Vec(8, SInt(10.W)))    // 최종 exponent 후보값
 
@@ -20,8 +20,8 @@ class p_Adder_ScaleEmax extends Module {
 
   io.out := VecInit(Seq.tabulate(8) { i =>
     Mux(enable,
-      Mux(io.nan(i) === 1.U, 255.S, io.scale_sum(i) + io.emax(i).zext),  // depth ≥ 1 → sum + emax or NaN
-      io.scale_sum(i)                                                    // depth < 1 → 그대로 전달
+      Mux(io.nan(i) === 1.U, 255.S, io.scale_sum(i) + io.emax(i).zext),  
+      io.scale_sum(i)                                                    
     )
 
 

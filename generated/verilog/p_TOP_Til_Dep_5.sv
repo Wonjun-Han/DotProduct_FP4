@@ -1603,7 +1603,15 @@ module p_TOP_Til_Dep_5(
                 io_debug_scale_emax_5,
                 io_debug_scale_emax_6,
                 io_debug_scale_emax_7,
-                io_debug_real_exp_0,
+  output [13:0] io_debug_accum_0,
+                io_debug_accum_1,
+                io_debug_accum_2,
+                io_debug_accum_3,
+                io_debug_accum_4,
+                io_debug_accum_5,
+                io_debug_accum_6,
+                io_debug_accum_7,
+  output [9:0]  io_debug_real_exp_0,
                 io_debug_real_exp_1,
                 io_debug_real_exp_2,
                 io_debug_real_exp_3,
@@ -5355,6 +5363,22 @@ module p_TOP_Til_Dep_5(
     .io_mantissa_255 (_mult_io_mantissa_255)
   );
   p_MulConvert conv (
+    .io_scale_sum_0      (_GEN ? _scale_sum_io_out_0 : 9'h0),
+    .io_scale_sum_1      (_GEN ? _scale_sum_io_out_1 : 9'h0),
+    .io_scale_sum_2      (_GEN ? _scale_sum_io_out_2 : 9'h0),
+    .io_scale_sum_3      (_GEN ? _scale_sum_io_out_3 : 9'h0),
+    .io_scale_sum_4      (_GEN ? _scale_sum_io_out_4 : 9'h0),
+    .io_scale_sum_5      (_GEN ? _scale_sum_io_out_5 : 9'h0),
+    .io_scale_sum_6      (_GEN ? _scale_sum_io_out_6 : 9'h0),
+    .io_scale_sum_7      (_GEN ? _scale_sum_io_out_7 : 9'h0),
+    .io_nan_0            (_GEN & _scale_sum_io_nan_0),
+    .io_nan_1            (_GEN & _scale_sum_io_nan_1),
+    .io_nan_2            (_GEN & _scale_sum_io_nan_2),
+    .io_nan_3            (_GEN & _scale_sum_io_nan_3),
+    .io_nan_4            (_GEN & _scale_sum_io_nan_4),
+    .io_nan_5            (_GEN & _scale_sum_io_nan_5),
+    .io_nan_6            (_GEN & _scale_sum_io_nan_6),
+    .io_nan_7            (_GEN & _scale_sum_io_nan_7),
     .io_sign_0           (_GEN & _mult_io_sign_0),
     .io_sign_1           (_GEN & _mult_io_sign_1),
     .io_sign_2           (_GEN & _mult_io_sign_2),
@@ -9321,6 +9345,14 @@ module p_TOP_Til_Dep_5(
     .io_in_5               (_dep5_5_io_out),
     .io_in_6               (_dep5_6_io_out),
     .io_in_7               (_dep5_7_io_out),
+    .io_nan_0              (_scale_sum_io_nan_0),
+    .io_nan_1              (_scale_sum_io_nan_1),
+    .io_nan_2              (_scale_sum_io_nan_2),
+    .io_nan_3              (_scale_sum_io_nan_3),
+    .io_nan_4              (_scale_sum_io_nan_4),
+    .io_nan_5              (_scale_sum_io_nan_5),
+    .io_nan_6              (_scale_sum_io_nan_6),
+    .io_nan_7              (_scale_sum_io_nan_7),
     .io_exponent_0         (_scale_emax_io_out_0),
     .io_exponent_1         (_scale_emax_io_out_1),
     .io_exponent_2         (_scale_emax_io_out_2),
@@ -10474,6 +10506,14 @@ module p_TOP_Til_Dep_5(
   assign io_debug_scale_emax_5 = _GEN ? 10'h0 : _scale_emax_io_out_5;
   assign io_debug_scale_emax_6 = _GEN ? 10'h0 : _scale_emax_io_out_6;
   assign io_debug_scale_emax_7 = _GEN ? 10'h0 : _scale_emax_io_out_7;
+  assign io_debug_accum_0 = _GEN ? 14'h0 : _dep5_0_io_out;
+  assign io_debug_accum_1 = _GEN ? 14'h0 : _dep5_1_io_out;
+  assign io_debug_accum_2 = _GEN ? 14'h0 : _dep5_2_io_out;
+  assign io_debug_accum_3 = _GEN ? 14'h0 : _dep5_3_io_out;
+  assign io_debug_accum_4 = _GEN ? 14'h0 : _dep5_4_io_out;
+  assign io_debug_accum_5 = _GEN ? 14'h0 : _dep5_5_io_out;
+  assign io_debug_accum_6 = _GEN ? 14'h0 : _dep5_6_io_out;
+  assign io_debug_accum_7 = _GEN ? 14'h0 : _dep5_7_io_out;
   assign io_debug_real_exp_0 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_0;
   assign io_debug_real_exp_1 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_1;
   assign io_debug_real_exp_2 = _GEN ? 10'h0 : _convert_dep_5_io_debug_real_exp_2;

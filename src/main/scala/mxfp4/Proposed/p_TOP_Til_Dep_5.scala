@@ -25,6 +25,9 @@ class p_TOP_Til_Dep_5_IO extends Bundle {
   //for debugging ScaleEmax
   val debug_scale_emax = Output(Vec(8, SInt(10.W)))
 
+  //for debugging p_Adder_Dep_5
+  val debug_accum = Output(Vec(8, SInt(14.W))) // Accumulator output
+
   //for debugging p_Convert_Dep_5
   val debug_real_exp   = Output(Vec(8, SInt(10.W)))
   val debug_biased_exp = Output(Vec(8, SInt(10.W)))
@@ -50,6 +53,8 @@ class p_TOP_Til_Dep_5 extends Module {
     conv.io.sign     := mult.io.sign
     conv.io.exponent := mult.io.exponent
     conv.io.mantissa := mult.io.mantissa
+    conv.io.scale_sum := scale_sum.io.out
+    conv.io.nan       := scale_sum.io.nan
 
     io.out_FP32 := conv.io.out
     io.out := VecInit(Seq.fill(8)(0.U.asTypeOf(new FP32))) // dummy
@@ -64,11 +69,14 @@ class p_TOP_Til_Dep_5 extends Module {
     io.debug_scale_emax := VecInit(Seq.fill(8)(0.S(10.W)))
     io.debug_exp_gmax := VecInit(Seq.fill(8)(0.U(3.W))) // Group max exponent
     io.debug_mul_exp := VecInit(Seq.fill(256)(0.U(3.W))) // Multiplier exponent output
+    io.debug_accum := VecInit(Seq.fill(8)(0.S(14.W))) // Accumulator output
   }.otherwise {
     // Initialization
     conv.io.sign     := VecInit(Seq.fill(256)(0.U(1.W)))
     conv.io.exponent := VecInit(Seq.fill(256)(0.U(3.W)))
     conv.io.mantissa := VecInit(Seq.fill(256)(0.U(4.W)))
+    conv.io.scale_sum := VecInit(Seq.fill(8)(0.S(9.W)))
+    conv.io.nan       := VecInit(Seq.fill(8)(0.U(1.W)))
     // Expansion & Adders
     val expansion = Seq.fill(8)(Module(new p_Expansion))
     val dep1 = Seq.fill(8)(Module(new p_Adder_Dep_1))
@@ -111,6 +119,7 @@ class p_TOP_Til_Dep_5 extends Module {
       dep5(i).io.depth := io.depth
       
       convert_dep_5.io.in(i) := dep5(i).io.out
+      convert_dep_5.io.nan(i) := scale_emax.io.nan(i)
       convert_dep_5.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_5.io.out(i)
 
@@ -129,6 +138,9 @@ class p_TOP_Til_Dep_5 extends Module {
 
       //for debugging ScaleEmax
       io.debug_scale_emax(i) := scale_emax.io.out(i)
+
+      //for debugging p_Adder_Dep_5
+      io.debug_accum(i) := dep5(i).io.out
 
     }
     //for debugging p_Multiplier

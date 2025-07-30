@@ -288,8 +288,13 @@ Temporary Items
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated
-build/
+!build/
 DerivedData
+
+## systemverilog files
+*.sv
+generated/verilog/*.sv
+
 
 ## Various settings
 *.pbxuser
