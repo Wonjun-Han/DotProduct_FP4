@@ -109,29 +109,50 @@ async def test_p_top_til_dep_5(dut):
     # ----------------------------
     # ✅ Depth 5: Adder Tree + ScaleSum
     # ----------------------------
-    NUM_TRIALS = 1000000  
+    NUM_TRIALS = 1000000
+
+    used_signatures = set()  # Depth 5 trial 간 중복 방지를 위한 입력 시그니처 저장소
+
     for trial in range(NUM_TRIALS):
         dut._log.info(f"🔁 Running Depth5 Trial {trial + 1}/{NUM_TRIALS}...")
 
         # ----------------------------
-        # Input Generation
+        # Input Generation (중복 방지)
         # ----------------------------
-        a_raw = [random.randint(0, 15) for _ in range(256)]
-        b_raw = [random.randint(0, 15) for _ in range(256)]
+        while True:
+            a_raw = [random.randint(0, 15) for _ in range(256)]
+            b_raw = [random.randint(0, 15) for _ in range(256)]
 
-        a_scale_raw = []
-        b_scale_raw = []
-        scale_sums = []
+            a_scale_raw = []
+            b_scale_raw = []
+            scale_sums = []
 
-        for _ in range(8):
-            combined_exp = random.randint(-127, 127)
-            a = random.randint(0, 254)
-            b = combined_exp + 254 - a
-            b = max(0, min(255, b))
-            a_scale_raw.append(a)
-            b_scale_raw.append(b)
-            scale_sums.append(a + b - 254)
+            for _ in range(8):
+                combined_exp = random.randint(-127, 127)
+                a = random.randint(0, 254)
+                b = combined_exp + 254 - a
+                b = max(0, min(255, b))
+                a_scale_raw.append(a)
+                b_scale_raw.append(b)
+                scale_sums.append(a + b - 254)
 
+            # Signature for duplication check
+            signature = (
+                tuple(a_raw),
+                tuple(b_raw),
+                tuple(a_scale_raw),
+                tuple(b_scale_raw)
+            )
+
+            if signature not in used_signatures:
+                used_signatures.add(signature)
+                break  # ✅ 유일한 입력이면 통과
+            else:
+                dut._log.info("⚠️ Duplicate input detected. Retrying...")
+
+        # ----------------------------
+        # Write Inputs to DUT
+        # ----------------------------
         for i in range(256):
             getattr(dut, f"io_a_vec_{i}").value = a_raw[i]
             getattr(dut, f"io_b_vec_{i}").value = b_raw[i]
@@ -142,6 +163,8 @@ async def test_p_top_til_dep_5(dut):
 
         dut.io_depth.value = 5
         await Timer(10, units='ns')
+
+        # 이후 검증 코드 생략 (기존 코드 유지)
 
         # ----------------------------
         # Overflow Check (가장 많이 차이 나는 Real Exponent = 4임, 그리고 여기서 extra bit을 줄이기 위해 real exp로 설정함)

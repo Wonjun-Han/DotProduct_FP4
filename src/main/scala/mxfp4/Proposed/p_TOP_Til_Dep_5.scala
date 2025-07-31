@@ -70,7 +70,12 @@ class p_TOP_Til_Dep_5 extends Module {
     io.debug_exp_gmax := VecInit(Seq.fill(8)(0.U(3.W))) // Group max exponent
     io.debug_mul_exp := VecInit(Seq.fill(256)(0.U(3.W))) // Multiplier exponent output
     io.debug_accum := VecInit(Seq.fill(8)(0.S(14.W))) // Accumulator output
-  }.otherwise {
+  }
+  
+  
+  
+  
+  .otherwise {
     // Initialization
     conv.io.sign     := VecInit(Seq.fill(256)(0.U(1.W)))
     conv.io.exponent := VecInit(Seq.fill(256)(0.U(3.W)))
@@ -118,6 +123,21 @@ class p_TOP_Til_Dep_5 extends Module {
       dep5(i).io.in := dep4(i).io.out
       dep5(i).io.depth := io.depth
       
+      // Depth 1 Convert
+      
+
+      // Depth 2 Convert
+
+
+      // Depth 3 Convert
+
+
+
+      // Depth 4 Convert
+
+
+
+      // Depth 5 Convert
       convert_dep_5.io.in(i) := dep5(i).io.out
       convert_dep_5.io.nan(i) := scale_emax.io.nan(i)
       convert_dep_5.io.exponent(i) := scale_emax.io.out(i)

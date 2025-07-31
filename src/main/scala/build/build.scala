@@ -35,6 +35,9 @@ object build {
       case "p_Adder_ScaleSum" => new mxfp4.proposed.p_Adder_ScaleSum()
       case "p_Adder_ScaleEmax" => new mxfp4.proposed.p_Adder_ScaleEmax()
       case "p_Convert_Dep_5" => new mxfp4.proposed.p_Convert_Dep_5()
+
+      // Every Depth Configurable and Possible for Accum
+      case "p_Convert" => new mxfp4.proposed.p_Convert()
  
 
       //case "p_Multiplier" => new mxfp4.piped.p_Multiplier()

@@ -21,8 +21,12 @@ class MXFP4_CONVERT_DEPTH5_BLOCK_IO extends Bundle {
 
 class p_Convert_Dep_5 extends Module {
   val io = IO(new MXFP4_CONVERT_DEPTH5_BLOCK_IO)
-
-  val enable = io.depth === 5.U
+  // Enable signal for each depth <= 5
+  val enable_depth_1 = io.depth === 1.U
+  val enable_depth_2 = io.depth === 2.U
+  val enable_depth_3 = io.depth === 3.U
+  val enable_depth_4 = io.depth === 4.U
+  val enable_depth_5 = io.depth === 5.U
 
   for (i <- 0 until 8) {
     // ---------------------
@@ -78,7 +82,7 @@ class p_Convert_Dep_5 extends Module {
     // ---------------------
     // Step 4: 출력
     // ---------------------
-    when (enable) {
+    when (enable_depth_5) {
       io.out(i).sign     := Mux(nan===1.U, 0.U, sign_bit)
       io.out(i).exponent := exponent_conv
       io.out(i).mantissa := mantissa_conv
