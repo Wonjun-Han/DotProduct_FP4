@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1753964093" />
+    <testcase name="test_p_top_til_dep_1_5" classname="tb_p_TOP_Til_Dep_1_5" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_1_5.py" lineno="32" time="0.4213418960571289" sim_time_ns="20.001" ratio_time="47.46976312388385">
+      <failure message="Test failed with RANDOM_SEED=1753964093" />
+    </testcase>
+  </testsuite>
+</testsuites>

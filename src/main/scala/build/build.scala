@@ -36,8 +36,9 @@ object build {
       case "p_Adder_ScaleEmax" => new mxfp4.proposed.p_Adder_ScaleEmax()
       case "p_Convert_Dep_5" => new mxfp4.proposed.p_Convert_Dep_5()
 
-      // Every Depth Configurable and Possible for Accum
+      // Every Depth Configurable and Possible for Accum (먼저 Dept 1~Depth 5까지 구현)
       case "p_Convert" => new mxfp4.proposed.p_Convert()
+      case "p_TOP_Til_Dep_1_5" => new mxfp4.proposed.p_TOP_Til_Dep_1_5()
  
 
       //case "p_Multiplier" => new mxfp4.piped.p_Multiplier()
