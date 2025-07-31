@@ -50,7 +50,7 @@ All modules are optimized to run at higher Frequency than **1GHz clock**, with c
 | Sign bit                  | 1                                            | 1                                         |
 | Exponent bits             | 2                                            | 2                                         |
 | Mantissa bits             | 1                                            | 1                                         |
-| Subnormal support         | ❌ No                                         | ✅ Yes                                     |
+| Subnormal support         | ✅ Yes                                       | ✅ Yes                                    |
 | Block size (scale sharing)| 16                                           | 32                                        |
 | Shared scale              | FP8 (E4M3)                                   | E8M0 (8-bit exponent, no mantissa)        |
 | Per-tensor normalization  | ✅ FP32 (E8M23)                               | ❌ No                                      |
