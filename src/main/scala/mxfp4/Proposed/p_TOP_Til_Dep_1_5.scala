@@ -105,33 +105,37 @@ class p_TOP_Til_Dep_1_5 extends Module {
         for (i <- 0 until 128) {
           val g = i / 16
           val o = i % 16
-          convert.io.in(i) := dep1(g).io.out(o).asSInt.pad(14)
+          val extended_input = Cat(Fill(4, dep1(g).io.out(o)(9)), dep1(g).io.out(o)).asSInt
+          convert.io.in(i) := extended_input
         }
       }
       is(2.U) {
         for (i <- 0 until 64) {
           val g = i / 8
           val o = i % 8
-          convert.io.in(i) := dep2(g).io.out(o).asSInt.pad(14)
+          val extended_input = Cat(Fill(3, dep2(g).io.out(o)(10)), dep2(g).io.out(o)).asSInt
+          convert.io.in(i) := extended_input
         }
       }
       is(3.U) {
         for (i <- 0 until 32) {
           val g = i / 4
           val o = i % 4
-          convert.io.in(i) := dep3(g).io.out(o).asSInt.pad(14)
+          val extended_input = Cat(Fill(2, dep3(g).io.out(o)(11)), dep3(g).io.out(o)).asSInt
+          convert.io.in(i) := extended_input
         }
       }
       is(4.U) {
         for (i <- 0 until 16) {
           val g = i / 2
           val o = i % 2
-          convert.io.in(i) := dep4(g).io.out(o).asSInt.pad(14)
+          val extended_input = Cat(Fill(1, dep4(g).io.out(o)(12)), dep4(g).io.out(o)).asSInt
+          convert.io.in(i) := extended_input
         }
       }
       is(5.U) {
         for (i <- 0 until 8) {
-          convert.io.in(i) := dep5(i).io.out.asSInt.pad(14)
+          convert.io.in(i) := dep5(i).io.out.asSInt
         }
       }
     }
