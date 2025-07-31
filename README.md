@@ -1,6 +1,6 @@
-# MXFP4 Pipelined Dot-Product Architecture
+# MXFP4/NVFP4 Pipelined Dot-Product Architecture
 
-A high-performance, pipelined hardware implementation of MXFP4-based Multiply-Accumulate (MAC) logic for AI accelerators, designed in Chisel.
+A high-performance, pipelined hardware implementation of MXFP4/NVFP4-based Multiply-Accumulate (MAC) logic for AI accelerators, designed in Chisel and test with cocotb.
 
 ---
 
@@ -10,10 +10,10 @@ This project implements a **custom floating-point MAC unit** using the MXFP4 for
 
 - `FieldExtractor`: Parses 4-bit MXFP4 input into sign, exponent, mantissa
 - `Multiplier`: Performs 256-element parallel MXFP4 × MXFP4 multiplication
-- `MulConvert`: Converts partial products into IEEE-754 FP32 format
-- `Adder`: Performs pipelined FP32 pairwise addition with rounding and normalization
+- `Convert`: Converts the Intermediate Data into IEEE-754 FP32 format (Configurable with Depth of Computation)
+- `Adder Tree[SINT Format]`: Performs pipelined FP32 pairwise addition with rounding and normalization
 
-All modules are optimized to run at **1GHz clock frequency**, with careful pipeline stage balancing.
+All modules are optimized to run at higher Frequency than **1GHz clock**, with careful pipeline stage balancing.
 
 ---
 
@@ -25,14 +25,61 @@ All modules are optimized to run at **1GHz clock frequency**, with careful pipel
 
 ---
 
+## 💡 NVFP4 Format
+
+> Introduced by NVIDIA in 2024, NVFP4 is a 4-bit floating-point format optimized for high-accuracy, low-precision inference.
+
+- **Structure**: `E2M1` (4-bit total)
+  - 1-bit sign
+  - 2-bit exponent
+  - 1-bit mantissa
+- **Shared Scale**:
+  - **Per-block**: 16-element group shares an FP8 scale (E4M3)
+  - **Per-tensor**: Global FP32 (E8M23) normalization applied
+- **No subnormal support**: Only normalized values are represented
+- **Usage**: Accelerated by NVIDIA's **Blackwell Tensor Cores**
+- **Design goal**: Achieve FP8-level accuracy with only 4-bit storage
+
+---
+
+### ✅ NVFP4 vs MXFP4 (Nvidia Developer Blog를 참고.)
+
+| Feature                   | **NVFP4**                                   | **MXFP4**                                |
+|---------------------------|----------------------------------------------|-------------------------------------------|
+| Format                    | E2M1                                         | E2M1                                      |
+| Sign bit                  | 1                                            | 1                                         |
+| Exponent bits             | 2                                            | 2                                         |
+| Mantissa bits             | 1                                            | 1                                         |
+| Subnormal support         | ❌ No                                         | ✅ Yes                                     |
+| Block size (scale sharing)| 16                                           | 32                                        |
+| Shared scale              | FP8 (E4M3)                                   | E8M0 (8-bit exponent, no mantissa)        |
+| Per-tensor normalization  | ✅ FP32 (E8M23)                               | ❌ No                                      |
+| Accuracy vs FP8           | ✅ Comparable                                | ⚠️ Slightly lower, especially for large models |
+| Use cases                 | LLMs, Vision Transformers, Low-precision inference | MatMul, Dot-Product in compute-in-memory |
+| Hardware support          | NVIDIA Blackwell Tensor Cores                | Custom / research                          |
+
+---
+
+### 🔍 Design Highlights
+
+- 🧮 **Hierarchical scaling**: Combines FP8-level local scaling with global FP32 normalization
+- 🔬 **Robust to outliers**: Smaller scale group (16 vs 32) reduces quantization errors from outliers
+- ⚡ **Energy-efficient**: Up to **50× energy savings** over FP8 with minimal accuracy loss
+- 🧠 **LLM-ready**: Proven to maintain accuracy in large language models like GPT, LLaMA, and Stable Diffusion
+
+> 📄 Reference: [NVIDIA Developer Blog — Introducing NVFP4](https://developer.nvidia.com/blog/introducing-nvfp4-for-efficient-and-accurate-low-precision-inference/)
+
+---
+
+
 ## 🧩 Module Pipeline Strategy
 
 | Module         | Pipeline Stages | Description                                    |
 |----------------|------------------|------------------------------------------------|
 | FieldExtractor | 0                | No pipelining required                         |
 | Multiplier     | TBD              | Mantissa mult & zero check split               |
-| MulConvert     | TBD              | PE calc → Shift → Exp adjust                   |
-| Adder          | TBD              | Align → Add/Sub → Normalize → Round            |
+| Convert        | TBD              | PE calc → Shift → Exp adjust                   |
+| Adder Tree     | TBD              | Align → Add/Sub → Normalize → Round            |
 
 ---
 
