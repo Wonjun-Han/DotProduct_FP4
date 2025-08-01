@@ -20,6 +20,9 @@ class p_TOP_Til_Dep_1_5_IO extends Bundle {
   val debug_shift_amt  = Output(Vec(256, SInt(5.W)))
   val debug_PE         = Output(Vec(256, UInt(4.W)))
   val debug_abs_in     = Output(Vec(256, UInt(13.W)))
+
+  val debug_dep_1 = Output(Vec(128, SInt(10.W)))
+
 }
 
 class p_TOP_Til_Dep_1_5 extends Module {
@@ -51,6 +54,9 @@ class p_TOP_Til_Dep_1_5 extends Module {
     io.debug_scale_sum  := scale_sum.io.out
     io.debug_scale_emax := VecInit(Seq.fill(8)(0.S))
     io.debug_exp_gmax   := VecInit(Seq.fill(8)(0.U))
+
+    // Depth 1 outputs
+    io.debug_dep_1 := VecInit(Seq.fill(128)(0.S))
 
     convert.io.depth := 0.U
     convert.io.in := VecInit(Seq.fill(256)(0.S)) // default off
@@ -105,8 +111,7 @@ class p_TOP_Til_Dep_1_5 extends Module {
         for (i <- 0 until 128) {
           val g = i / 16
           val o = i % 16
-          val extended_input = Cat(Fill(4, dep1(g).io.out(o)(9)), dep1(g).io.out(o)).asSInt
-          convert.io.in(i) := extended_input
+          convert.io.in(i) := dep1(g).io.out(o).asSInt
         }
       }
       is(2.U) {
@@ -152,6 +157,14 @@ class p_TOP_Til_Dep_1_5 extends Module {
       io.debug_shift_amt(i)   := convert.io.debug_shift_amt(i)
       io.debug_PE(i)          := convert.io.debug_PE(i)
       io.debug_abs_in(i)      := convert.io.debug_abs_in(i)
+
+      // Debug outputs for depth 1
+      
+      io.debug_dep_1(i / 2) := dep1(i / 32).io.out(i % 16).asSInt
+      
+
+      // Debug outputs for depth 2
+
     }
   }
 }

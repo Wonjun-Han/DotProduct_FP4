@@ -36,10 +36,16 @@ object build {
       case "p_Adder_ScaleEmax" => new mxfp4.proposed.p_Adder_ScaleEmax()
       case "p_Convert_Dep_5" => new mxfp4.proposed.p_Convert_Dep_5()
 
+      case "p_Convert_Dep_1" => new mxfp4.proposed.p_Convert_Dep_1()
+      case "p_Convert_Dep_2" => new mxfp4.proposed.p_Convert_Dep_2()
+      case "p_Convert_Dep_3" => new mxfp4.proposed.p_Convert_Dep_3()
+      case "p_Convert_Dep_4" => new mxfp4.proposed.p_Convert_Dep_4()
+
       // Every Depth Configurable and Possible for Accum (먼저 Dept 1~Depth 5까지 구현)
       case "p_Convert" => new mxfp4.proposed.p_Convert()
       case "p_TOP_Til_Dep_1_5" => new mxfp4.proposed.p_TOP_Til_Dep_1_5()
- 
+      case "p_TOP_Til_Dep_All_V1" => new mxfp4.proposed.p_TOP_Til_Dep_All_V1()
+
 
       //case "p_Multiplier" => new mxfp4.piped.p_Multiplier()
       //case "p_FieldExtractor" => new mxfp4.piped.p_FieldExtractor()

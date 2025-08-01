@@ -1,8 +1,11 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1753966843" />
-    <testcase name="test_p_top_til_dep_1_5" classname="tb_p_TOP_Til_Dep_1_5" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_1_5.py" lineno="32" time="0.10782814025878906" sim_time_ns="10.001" ratio_time="92.74944347549219">
-      <failure message="Test failed with RANDOM_SEED=1753966843" />
+    <property name="random_seed" value="1754051852" />
+    <testcase name="test_mxfp4_mac_all_depths" classname="tb_p_TOP_Til_Dep_All_V1" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_All_V1.py" lineno="31" time="0.07929801940917969" sim_time_ns="10.001" ratio_time="126.11916507516536">
+      <failure message="Test failed with RANDOM_SEED=1754051852" />
+    </testcase>
+    <testcase name="test_mxfp4_mac_all_depths_new" classname="tb_p_TOP_Til_Dep_All_V1" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_All_V1.py" lineno="110" time="1.3122789859771729" sim_time_ns="610.001" ratio_time="464.84094199357315">
+      <failure message="Test failed with RANDOM_SEED=1754051852" />
     </testcase>
   </testsuite>
 </testsuites>

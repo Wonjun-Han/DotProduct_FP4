@@ -24,13 +24,14 @@ class p_MulConvert extends Module {
   val exponent = io.exponent
   val mantissa = io.mantissa
   val PE = Wire(Vec(256, UInt(2.W))) 
-  val zero = Wire(Vec(256, (Bool())))
-  val sub = Wire(Vec(256, Bool())) 
   val scale_sum = io.scale_sum
+  val zero = Wire(Vec(256, Bool()))
 
   PE := mantissa.map(m => PriorityEncoder(Reverse(m)))
-  zero := mantissa.zip(exponent).map { case (m, e) => (m === 0.U) && (e === 0.U) } 
-  sub := mantissa.zip(exponent).map { case (m, e) => (m === 1.U) && (e === 0.U) }
+  zero := mantissa.zip(exponent).map {
+    case (m, e) => (e === 0.U) && (m === 0.U)
+  }
+
   for (i <- 0 until 256) {
     // ---------------------
     val extended_mantissa = Cat(mantissa(i), 0.U(21.W))
@@ -42,13 +43,16 @@ class p_MulConvert extends Module {
     when (io.nan(i/32) === 1.U) {
       exponent_conv := 255.U(8.W) // NaN 처리
       mantissa_conv := 4194304.U(23.W) // NaN mantissa
+    }.elsewhen(zero(i)) {
+      exponent_conv := 0.U
+      mantissa_conv := 0.U
     }.elsewhen(real_exp >= 128.S){ //overflow after considering scale_sum
       exponent_conv := 255.U(8.W)
       mantissa_conv := 0.U(23.W) // overflow mantissa
     }.elsewhen(biased_exp <= 0.S){ //underflow after considering scale_sum
       exponent_conv := 0.U(8.W)
-      val sub_shift = (1.S - biased_exp).asUInt
-      mantissa_conv := (extended_mantissa >> sub_shift)(22, 0)
+      val sub_shift = (shift_amt.abs.asUInt - (1.S - biased_exp).asUInt)
+      mantissa_conv := (extended_mantissa << sub_shift)(22, 0)
     }.otherwise {
       exponent_conv := biased_exp.asUInt
       mantissa_conv := Mux(shift_amt >= 0.S,
@@ -56,7 +60,7 @@ class p_MulConvert extends Module {
         (extended_mantissa << shift_amt.abs.asUInt)(22, 0)
       )
     }
-    io.out(i).sign := Mux(io.nan(i/32) === 1.U, 0.U, io.sign(i))
+    io.out(i).sign := Mux(io.nan(i/32) === 1.U, 0.U, Mux(zero(i), 0.U, io.sign(i)))
     io.out(i).exponent := exponent_conv
     io.out(i).mantissa := mantissa_conv
   }
