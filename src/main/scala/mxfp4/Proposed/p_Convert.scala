@@ -22,8 +22,8 @@ class MXFP4_CONVERT_BLOCK_IO(depthBitWidth: Int, accWidth: Int, vecSize: Int, ab
 class p_Convert(val d: Int) extends Module {
   val accWidth = 9 + d
   val vecSize = 256 >> d
-  val absWidth = 8 + d
-
+  val absWidth = 8 +  d
+ 
   val io = IO(new MXFP4_CONVERT_BLOCK_IO(depthBitWidth = 3, accWidth = accWidth, vecSize = vecSize, absWidth = absWidth))
 
   val enable_depth = io.depth === d.U
