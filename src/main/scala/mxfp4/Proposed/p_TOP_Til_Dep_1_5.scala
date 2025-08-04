@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
+
 class p_TOP_Til_Dep_1_5_BLOCK_IO extends Bundle {
   val a_vec  = Input(Vec(256, UInt(4.W)))
   val b_vec  = Input(Vec(256, UInt(4.W)))
@@ -26,12 +27,15 @@ class p_TOP_Til_Dep_1_5 extends Module {
   val adder4 = Seq.fill(8)(Module(new p_Adder_Dep_4))
   val adder5 = Seq.fill(8)(Module(new p_Adder_Dep_5))
 
+
+  val convert0 = Module(new p_MulConvert)
   val convert1 = Module(new p_Convert(1))
   val convert2 = Module(new p_Convert(2))
   val convert3 = Module(new p_Convert(3))
   val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
 
+  // --- Multiplier + Shared Scale Sum ---
   mult.io.a_vec := io.a_vec
   mult.io.b_vec := io.b_vec
   mult.io.depth := io.depth
@@ -41,6 +45,14 @@ class p_TOP_Til_Dep_1_5 extends Module {
 
   scaleEmax.io.depth := io.depth
 
+  // --- Depth 0 전용: MulConvert ---
+  convert0.io.sign     := mult.io.sign
+  convert0.io.exponent := mult.io.exponent
+  convert0.io.mantissa := mult.io.mantissa
+  convert0.io.scale_sum := scaleSum.io.out
+  convert0.io.nan      := scaleSum.io.nan
+
+  // --- Depth 1–5 처리: Expansion → Adders → Convert ---
   for (i <- 0 until 8) {
     val base = i * 32
     val exp = Module(new p_Expansion)
@@ -75,7 +87,6 @@ class p_TOP_Til_Dep_1_5 extends Module {
       convertIn(i) := adder(i / outPerAdder).io.out(i % outPerAdder)
     }
   }
-
   connectConvertInput(adder1, convert1.io.in, 16)
   connectConvertInput(adder2, convert2.io.in, 8)
   connectConvertInput(adder3, convert3.io.in, 4)
@@ -95,11 +106,13 @@ class p_TOP_Til_Dep_1_5 extends Module {
   val selected_out = Wire(Vec(16, new FP32))
   selected_out := 0.U.asTypeOf(Vec(16, new FP32))
   switch(io.depth) {
+    is(0.U) { selected_out := padTo16(convert0.io.out) }
     is(1.U) { selected_out := padTo16(convert1.io.out) }
     is(2.U) { selected_out := padTo16(convert2.io.out) }
     is(3.U) { selected_out := padTo16(convert3.io.out) }
     is(4.U) { selected_out := padTo16(convert4.io.out) }
     is(5.U) { selected_out := padTo16(convert5.io.out) }
   }
+
   io.out := selected_out
 }

@@ -7,6 +7,7 @@ p_Adder_Dep_2.sv
 p_Adder_Dep_3.sv
 p_Adder_Dep_4.sv
 p_Adder_Dep_5.sv
+p_MulConvert.sv
 p_Convert.sv
 p_Convert_1.sv
 p_Convert_2.sv
