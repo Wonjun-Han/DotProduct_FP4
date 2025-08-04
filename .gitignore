@@ -294,6 +294,8 @@ DerivedData
 ## systemverilog files
 *.sv
 
+## svg (visualization)
+out_svgs/
 
 ## Various settings
 *.pbxuser

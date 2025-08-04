@@ -67,8 +67,11 @@ class p_Convert_Dep_3 extends Module {
     }.elsewhen (biased_exp <= 0.S) {
       // Underflow → Subnormal
       exponent_conv := 0.U
-      val sub_shift = shift_amt.abs.asUInt - (1.S - biased_exp).asUInt
-      mantissa_conv := (extended_mantissa << sub_shift)(22, 0)
+      val sub_shift = (shift_amt.abs.asUInt - (1.S - biased_exp).asUInt).asSInt
+      mantissa_conv := Mux(sub_shift >= 0.S, 
+        (extended_mantissa << sub_shift.asUInt)(22, 0), 
+        (extended_mantissa >> sub_shift.abs.asUInt)(22, 0)
+      )
     }.otherwise {
       // Normal
       exponent_conv := biased_exp.asUInt

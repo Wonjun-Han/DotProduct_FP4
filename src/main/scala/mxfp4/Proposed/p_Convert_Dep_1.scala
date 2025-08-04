@@ -19,6 +19,8 @@ class MXFP4_CONVERT_DEPTH1_BLOCK_IO extends Bundle {
   val debug_abs_in     = Output(Vec(128, UInt(9.W)))
 }
 
+
+// SInt.sign -> 이런 거 쓰는게 좋을 수 있음.(어떤 식으로 ...)
 class p_Convert_Dep_1 extends Module {
   val io = IO(new MXFP4_CONVERT_DEPTH1_BLOCK_IO)
   val enable_depth_1 = io.depth === 1.U
@@ -29,7 +31,7 @@ class p_Convert_Dep_1 extends Module {
     // ---------------------
     val input        = io.in(i)
     val sign_bit     = Mux(input < 0.S, 1.U, 0.U)
-    val abs_val_full = Mux(input < 0.S, -input, input).asUInt // UInt(9.W)
+    val abs_val_full = Mux(input < 0.S, -input, input).asUInt // UInt(9.W) (MSB 만 비교하는 게 더 light !) + .head method 사용 가능 (.head(2)) + Coding style 변경!
 
     // ✅ 절댓값의 MSB는 항상 0 (Q4.6)
     val abs_val = abs_val_full(8, 0) // MSB 제거 → UInt(9.W)
@@ -66,8 +68,11 @@ class p_Convert_Dep_1 extends Module {
     }.elsewhen (biased_exp <= 0.S) {
       // Underflow → Subnormal
       exponent_conv := 0.U
-      val sub_shift = shift_amt.abs.asUInt - (1.S - biased_exp).asUInt
-      mantissa_conv := (extended_mantissa << sub_shift)(22, 0)
+      val sub_shift = (shift_amt.abs.asUInt - (1.S - biased_exp).asUInt).asSInt
+      mantissa_conv := Mux(sub_shift >= 0.S, 
+        (extended_mantissa << sub_shift.asUInt)(22, 0), 
+        (extended_mantissa >> sub_shift.abs.asUInt)(22, 0)
+      )
     }.otherwise {
       // Normal
       exponent_conv := biased_exp.asUInt

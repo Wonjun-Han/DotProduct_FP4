@@ -4,167 +4,102 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class p_TOP_Til_Dep_1_5_IO extends Bundle {
+class p_TOP_Til_Dep_1_5_BLOCK_IO extends Bundle {
   val a_vec  = Input(Vec(256, UInt(4.W)))
   val b_vec  = Input(Vec(256, UInt(4.W)))
   val a_scale = Input(Vec(8, UInt(8.W)))
   val b_scale = Input(Vec(8, UInt(8.W)))
   val depth  = Input(UInt(3.W))
-  val out = Output(Vec(256, new FP32))     // always full size
-
-  val debug_exp_gmax = Output(Vec(8, UInt(3.W)))
-  val debug_scale_sum = Output(Vec(8, SInt(10.W)))
-  val debug_scale_emax = Output(Vec(8, SInt(10.W)))
-  val debug_real_exp   = Output(Vec(256, SInt(10.W)))
-  val debug_biased_exp = Output(Vec(256, SInt(10.W)))
-  val debug_shift_amt  = Output(Vec(256, SInt(5.W)))
-  val debug_PE         = Output(Vec(256, UInt(4.W)))
-  val debug_abs_in     = Output(Vec(256, UInt(13.W)))
-
-  val debug_dep_1 = Output(Vec(128, SInt(10.W)))
-
+  val out = Output(Vec(16, new FP32))
 }
 
 class p_TOP_Til_Dep_1_5 extends Module {
-  val io = IO(new p_TOP_Til_Dep_1_5_IO)
-  val scale_sum = Module(new p_Adder_ScaleSum)
+  val io = IO(new p_TOP_Til_Dep_1_5_BLOCK_IO)
+
   val mult = Module(new p_Multiplier)
-  val conv = Module(new p_MulConvert)
-  val convert = Module(new p_Convert)
+  val scaleSum = Module(new p_Adder_ScaleSum)
+  val scaleEmax = Module(new p_Adder_ScaleEmax)
+
+  val adder1 = Seq.fill(8)(Module(new p_Adder_Dep_1))
+  val adder2 = Seq.fill(8)(Module(new p_Adder_Dep_2))
+  val adder3 = Seq.fill(8)(Module(new p_Adder_Dep_3))
+  val adder4 = Seq.fill(8)(Module(new p_Adder_Dep_4))
+  val adder5 = Seq.fill(8)(Module(new p_Adder_Dep_5))
+
+  val convert1 = Module(new p_Convert(1))
+  val convert2 = Module(new p_Convert(2))
+  val convert3 = Module(new p_Convert(3))
+  val convert4 = Module(new p_Convert(4))
+  val convert5 = Module(new p_Convert(5))
 
   mult.io.a_vec := io.a_vec
   mult.io.b_vec := io.b_vec
   mult.io.depth := io.depth
-  scale_sum.io.a_scale := io.a_scale
-  scale_sum.io.b_scale := io.b_scale
 
-  when(io.depth === 0.U) {
-    conv.io.sign     := mult.io.sign
-    conv.io.exponent := mult.io.exponent
-    conv.io.mantissa := mult.io.mantissa
-    conv.io.scale_sum := scale_sum.io.out
-    conv.io.nan       := scale_sum.io.nan
-    io.out := conv.io.out
+  scaleSum.io.a_scale := io.a_scale
+  scaleSum.io.b_scale := io.b_scale
 
-    io.debug_real_exp   := VecInit(Seq.fill(256)(0.S))
-    io.debug_biased_exp := VecInit(Seq.fill(256)(0.S))
-    io.debug_shift_amt  := VecInit(Seq.fill(256)(0.S))
-    io.debug_PE         := VecInit(Seq.fill(256)(0.U))
-    io.debug_abs_in     := VecInit(Seq.fill(256)(0.U))
-    io.debug_scale_sum  := scale_sum.io.out
-    io.debug_scale_emax := VecInit(Seq.fill(8)(0.S))
-    io.debug_exp_gmax   := VecInit(Seq.fill(8)(0.U))
+  scaleEmax.io.depth := io.depth
 
-    // Depth 1 outputs
-    io.debug_dep_1 := VecInit(Seq.fill(128)(0.S))
+  for (i <- 0 until 8) {
+    val base = i * 32
+    val exp = Module(new p_Expansion)
+    exp.io.depth := io.depth
+    exp.io.sign := mult.io.sign.slice(base, base + 32)
+    exp.io.exponent := mult.io.exponent.slice(base, base + 32)
+    exp.io.mantissa := mult.io.mantissa.slice(base, base + 32)
 
-    convert.io.depth := 0.U
-    convert.io.in := VecInit(Seq.fill(256)(0.S)) // default off
-    convert.io.nan := VecInit(Seq.fill(8)(0.U))
-    convert.io.exponent := VecInit(Seq.fill(8)(0.S))
-  } .otherwise {
-    val expansion = Seq.fill(8)(Module(new p_Expansion))
-    val dep1 = Seq.fill(8)(Module(new p_Adder_Dep_1))
-    val dep2 = Seq.fill(8)(Module(new p_Adder_Dep_2))
-    val dep3 = Seq.fill(8)(Module(new p_Adder_Dep_3))
-    val dep4 = Seq.fill(8)(Module(new p_Adder_Dep_4))
-    val dep5 = Seq.fill(8)(Module(new p_Adder_Dep_5))
-    val scale_emax = Module(new p_Adder_ScaleEmax)
-    scale_emax.io.depth := io.depth
-    convert.io.depth := io.depth
+    scaleEmax.io.nan(i) := scaleSum.io.nan(i)
+    scaleEmax.io.scale_sum(i) := scaleSum.io.out(i)
+    scaleEmax.io.emax(i) := exp.io.out_exponent_gmax(0)
 
-    //initialize outputs
-    conv.io.sign     := VecInit(Seq.fill(256)(0.U(1.W)))
-    conv.io.exponent := VecInit(Seq.fill(256)(0.U(3.W)))
-    conv.io.mantissa := VecInit(Seq.fill(256)(0.U(4.W)))
-    conv.io.scale_sum := VecInit(Seq.fill(8)(0.S(10.W)))
-    conv.io.nan       := VecInit(Seq.fill(8)(0.U(1.W)))
+    adder1(i).io.depth := io.depth
+    adder1(i).io.sign := exp.io.out_sign
+    adder1(i).io.mantissa := exp.io.out_mantissa
 
-    for (i <- 0 until 8) {
-      val base = i * 32
-      expansion(i).io.sign     := mult.io.sign.slice(base, base + 32)
-      expansion(i).io.exponent := mult.io.exponent.slice(base, base + 32)
-      expansion(i).io.mantissa := mult.io.mantissa.slice(base, base + 32)
-      expansion(i).io.depth    := io.depth
+    adder2(i).io.depth := io.depth
+    adder2(i).io.in := adder1(i).io.out
 
-      scale_emax.io.nan(i) := scale_sum.io.nan(i)
-      scale_emax.io.scale_sum(i) := scale_sum.io.out(i)
-      scale_emax.io.emax(i) := expansion(i).io.out_exponent_gmax(0)
+    adder3(i).io.depth := io.depth
+    adder3(i).io.in := adder2(i).io.out
 
-      dep1(i).io.sign := expansion(i).io.out_sign
-      dep1(i).io.mantissa := expansion(i).io.out_mantissa
-      dep1(i).io.depth := io.depth
-      dep2(i).io.in := dep1(i).io.out; dep2(i).io.depth := io.depth
-      dep3(i).io.in := dep2(i).io.out; dep3(i).io.depth := io.depth
-      dep4(i).io.in := dep3(i).io.out; dep4(i).io.depth := io.depth
-      dep5(i).io.in := dep4(i).io.out; dep5(i).io.depth := io.depth
+    adder4(i).io.depth := io.depth
+    adder4(i).io.in := adder3(i).io.out
 
-      io.debug_exp_gmax(i) := expansion(i).io.out_exponent_gmax(0)
-      io.debug_scale_sum(i) := scale_sum.io.out(i)
-      io.debug_scale_emax(i) := scale_emax.io.out(i)
-    }
+    adder5(i).io.depth := io.depth
+    adder5(i).io.in := adder4(i).io.out
+  }
 
-    for (i <- 0 until 256) { convert.io.in(i) := 0.S } // default off
-
-    switch(io.depth) {
-      is(1.U) {
-        for (i <- 0 until 128) {
-          val g = i / 16
-          val o = i % 16
-          convert.io.in(i) := dep1(g).io.out(o).asSInt
-        }
-      }
-      is(2.U) {
-        for (i <- 0 until 64) {
-          val g = i / 8
-          val o = i % 8
-          val extended_input = Cat(Fill(3, dep2(g).io.out(o)(10)), dep2(g).io.out(o)).asSInt
-          convert.io.in(i) := extended_input
-        }
-      }
-      is(3.U) {
-        for (i <- 0 until 32) {
-          val g = i / 4
-          val o = i % 4
-          val extended_input = Cat(Fill(2, dep3(g).io.out(o)(11)), dep3(g).io.out(o)).asSInt
-          convert.io.in(i) := extended_input
-        }
-      }
-      is(4.U) {
-        for (i <- 0 until 16) {
-          val g = i / 2
-          val o = i % 2
-          val extended_input = Cat(Fill(1, dep4(g).io.out(o)(12)), dep4(g).io.out(o)).asSInt
-          convert.io.in(i) := extended_input
-        }
-      }
-      is(5.U) {
-        for (i <- 0 until 8) {
-          convert.io.in(i) := dep5(i).io.out.asSInt
-        }
-      }
-    }
-
-    for (i <- 0 until 8) {
-      convert.io.nan(i) := scale_emax.io.nan(i)
-      convert.io.exponent(i) := scale_emax.io.out(i)
-    }
-
-    io.out := convert.io.out
-    for (i <- 0 until 256) {
-      io.debug_real_exp(i)    := convert.io.debug_real_exp(i)
-      io.debug_biased_exp(i)  := convert.io.debug_biased_exp(i)
-      io.debug_shift_amt(i)   := convert.io.debug_shift_amt(i)
-      io.debug_PE(i)          := convert.io.debug_PE(i)
-      io.debug_abs_in(i)      := convert.io.debug_abs_in(i)
-
-      // Debug outputs for depth 1
-      
-      io.debug_dep_1(i / 2) := dep1(i / 32).io.out(i % 16).asSInt
-      
-
-      // Debug outputs for depth 2
-
+  def connectConvertInput[T <: Module { val io: { val out: Vec[SInt] } }](adder: Seq[T], convertIn: Vec[SInt], outPerAdder: Int) = {
+    for (i <- 0 until convertIn.length) {
+      convertIn(i) := adder(i / outPerAdder).io.out(i % outPerAdder)
     }
   }
+
+  connectConvertInput(adder1, convert1.io.in, 16)
+  connectConvertInput(adder2, convert2.io.in, 8)
+  connectConvertInput(adder3, convert3.io.in, 4)
+  connectConvertInput(adder4, convert4.io.in, 2)
+  for (i <- 0 until 8) convert5.io.in(i) := adder5(i).io.out
+
+  for (c <- Seq(convert1, convert2, convert3, convert4, convert5)) {
+    c.io.depth := io.depth
+    c.io.nan := scaleEmax.io.nan
+    c.io.exponent := scaleEmax.io.out
+  }
+
+  def padTo16(vec: Vec[FP32]): Vec[FP32] = {
+    VecInit((0 until 16).map(i => if (i < vec.length) vec(i) else 0.U.asTypeOf(new FP32)))
+  }
+
+  val selected_out = Wire(Vec(16, new FP32))
+  selected_out := 0.U.asTypeOf(Vec(16, new FP32))
+  switch(io.depth) {
+    is(1.U) { selected_out := padTo16(convert1.io.out) }
+    is(2.U) { selected_out := padTo16(convert2.io.out) }
+    is(3.U) { selected_out := padTo16(convert3.io.out) }
+    is(4.U) { selected_out := padTo16(convert4.io.out) }
+    is(5.U) { selected_out := padTo16(convert5.io.out) }
+  }
+  io.out := selected_out
 }

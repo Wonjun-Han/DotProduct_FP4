@@ -51,8 +51,11 @@ class p_MulConvert extends Module {
       mantissa_conv := 0.U(23.W) // overflow mantissa
     }.elsewhen(biased_exp <= 0.S){ //underflow after considering scale_sum
       exponent_conv := 0.U(8.W)
-      val sub_shift = (shift_amt.abs.asUInt - (1.S - biased_exp).asUInt)
-      mantissa_conv := (extended_mantissa << sub_shift)(22, 0)
+      val sub_shift = (shift_amt.abs.asUInt - (1.S - biased_exp).asUInt).asSInt
+      mantissa_conv := Mux(sub_shift >= 0.S, 
+        (extended_mantissa << sub_shift.asUInt)(22, 0), 
+        (extended_mantissa >> sub_shift.abs.asUInt)(22, 0)
+      )
     }.otherwise {
       exponent_conv := biased_exp.asUInt
       mantissa_conv := Mux(shift_amt >= 0.S,
