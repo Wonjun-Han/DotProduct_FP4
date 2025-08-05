@@ -4,7 +4,7 @@ import random
 import struct
 import math
 
-NUM_TRIALS = 2000
+NUM_TRIALS = 200000
 
 def decode_mxfp4(val):
     s = (val >> 3) & 0x1
