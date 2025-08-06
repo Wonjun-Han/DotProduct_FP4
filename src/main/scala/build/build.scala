@@ -49,7 +49,8 @@ object build {
       case "p_TOP_Til_Dep_1_5" => new mxfp4.proposed.p_TOP_Til_Dep_1_5() //need more testing
 
       // Cross-Block Computation
-      case "p_Adder_CrossBlock" => new mxfp4.proposed.p_Adder_CrossBlock(6, 30)
+      case "p_Adder_Groupwise" => new mxfp4.proposed.p_Adder_Groupwise(6, 8, 30)
+      case "p_Expansion_Groupwise" => new mxfp4.proposed.p_Expansion_Groupwise(6, 8, 30)
 
       case other =>
 
