@@ -48,6 +48,8 @@ object build {
       case "p_Convert" => new mxfp4.proposed.p_Convert(5)
       case "p_TOP_Til_Dep_1_5" => new mxfp4.proposed.p_TOP_Til_Dep_1_5() //need more testing
 
+      // Cross-Block Computation
+      case "p_Adder_CrossBlock" => new mxfp4.proposed.p_Adder_CrossBlock(6, 30)
 
       case other =>
 
