@@ -35,6 +35,7 @@ class p_TOP_Til_Dep_1_5 extends Module {
   val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
 
+
   // --- Multiplier + Shared Scale Sum ---
   mult.io.a_vec := io.a_vec
   mult.io.b_vec := io.b_vec
@@ -80,6 +81,9 @@ class p_TOP_Til_Dep_1_5 extends Module {
 
     adder5(i).io.depth := io.depth
     adder5(i).io.in := adder4(i).io.out
+
+
+
   }
 
   def connectConvertInput[T <: Module { val io: { val out: Vec[SInt] } }](adder: Seq[T], convertIn: Vec[SInt], outPerAdder: Int) = {
