@@ -37,7 +37,18 @@ class p_TOP_Til_Dep_total extends Module {
   val convert3 = Module(new p_Convert(3))
   val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
+/*
+  val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
+  val nan_process = Module(new p_NaN_Process(5))
 
+  val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 30))
+  val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 30))
+  val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 30))
+
+  val convert_groupwise_6 = Module(new p_Convert_Groupwise(6, 30))
+  val convert_groupwise_7 = Module(new p_Convert_Groupwise(7, 30))
+  val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 30))
+*/
 
   // --- Multiplier + Shared Scale Sum ---
   mult.io.a_vec := io.a_vec
@@ -84,9 +95,6 @@ class p_TOP_Til_Dep_total extends Module {
 
     adder5(i).io.depth := io.depth
     adder5(i).io.in := adder4(i).io.out
-
-
-
   }
 
   def connectConvertInput[T <: Module { val io: { val out: Vec[SInt] } }](adder: Seq[T], convertIn: Vec[SInt], outPerAdder: Int) = {
