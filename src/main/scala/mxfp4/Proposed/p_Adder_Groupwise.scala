@@ -17,7 +17,7 @@ class p_Adder_Groupwise_IO (depthBitWidth: Int, mantissaWidth: Int, vecSize: Int
 class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
     val mantissaWidth = 7 + d + extra 
     val outWidth = mantissaWidth + 1 // 1 bit for overflow
-    val vecSize = 256 >> d
+    val vecSize = 256 >> (d-1)
 
     val io = IO(new p_Adder_Groupwise_IO(
         depthBitWidth = 4,
