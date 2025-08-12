@@ -1,10 +1,10 @@
-package mxfp4.proposed
+package nvfp4.proposed
 
 import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class MXFP4_ADD_SCALE_EMAX extends Bundle {
+class NVFP4_ADD_SCALE_EMAX extends Bundle {
   val depth      = Input(UInt(4.W))              // 현재 누산 트리의 depth
   val scale_sum  = Input(Vec(8, SInt(9.W)))      // 이전에서 계산된 scale 합산 값
   val nan        = Input(Vec(8, UInt(1.W)))      // NaN 여부 flag
@@ -13,8 +13,8 @@ class MXFP4_ADD_SCALE_EMAX extends Bundle {
 
 }
 
-class p_Adder_ScaleEmax extends Module {
-  val io = IO(new MXFP4_ADD_SCALE_EMAX)
+class nv_p_Adder_ScaleEmax extends Module {
+  val io = IO(new NVFP4_ADD_SCALE_EMAX)
 
   val enable = io.depth >= 1.U
 

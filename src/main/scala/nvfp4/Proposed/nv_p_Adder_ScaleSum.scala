@@ -1,18 +1,18 @@
-package mxfp4.proposed
+package nvfp4.proposed
 
 import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class MXFP4_ADD_SCALE_SUM extends Bundle {
+class NVFP4_ADD_SCALE_SUM extends Bundle {
   val a_scale = Input(Vec(8, UInt(8.W)))       
   val b_scale = Input(Vec(8, UInt(8.W)))       
   val out     = Output(Vec(8, SInt(9.W)))      // 실제 scale 합산 결과 (signed)
   val nan     = Output(Vec(8, UInt(1.W)))       // 각 scale 합산에 대한 NaN 여부
 }
 
-class p_Adder_ScaleSum extends Module {
-  val io = IO(new MXFP4_ADD_SCALE_SUM)
+class nv_p_Adder_ScaleSum extends Module {
+  val io = IO(new NVFP4_ADD_SCALE_SUM)
 
   for (i <- 0 until 8) {
     val a = io.a_scale(i)
