@@ -6,7 +6,7 @@ import _root_.circt.stage.ChiselStage
 class MXFP4_ADD_DEPTH1_BLOCK_IO extends Bundle {
   val sign     = Input(Vec(32, UInt(1.W)))
   val mantissa = Input(Vec(32, UInt(8.W)))   // 4-bit mantissa + 4-bit padding
-  val depth    = Input(UInt(3.W))            // Optional
+  val depth    = Input(UInt(4.W))            // Optional
   val out      = Output(Vec(16, SInt(10.W))) // Depth 1 → max bit width = 10
 }
 

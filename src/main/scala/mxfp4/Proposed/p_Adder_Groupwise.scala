@@ -26,7 +26,7 @@ class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
         outWidth = outWidth
     ))
 
-    val enable_depth = io.depth === d.U
+    val enable_depth = io.depth >= d.U // depth가 7이면, 6,7 까지만 활성화.
 
     for (i <- 0 until vecSize/2) {
         val a_sign = io.sign(2 * i)

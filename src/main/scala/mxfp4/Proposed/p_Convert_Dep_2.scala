@@ -5,7 +5,7 @@ import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class MXFP4_CONVERT_DEPTH2_BLOCK_IO extends Bundle {
-  val depth    = Input(UInt(3.W))
+  val depth    = Input(UInt(4.W))
   val in       = Input(Vec(64, SInt(11.W)))     // 고정소수점 누적합
   val nan      = Input(Vec(8, UInt(1.W)))      // NaN 여부 flag
   val exponent = Input(Vec(8, SInt(10.W)))     // ScaleEmax 결과

@@ -5,7 +5,7 @@ import _root_.circt.stage.ChiselStage
 
 class MXFP4_ADD_DEPTH4_BLOCK_IO extends Bundle {
   val in = Input(Vec(4, SInt(12.W)))  
-  val depth = Input(UInt(3.W))            
+  val depth = Input(UInt(4.W))            
   val out = Output(Vec(2, SInt(13.W)))      
 }
 

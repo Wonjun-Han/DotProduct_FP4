@@ -24,7 +24,7 @@ class p_Convert(val d: Int) extends Module {
   val vecSize = 256 >> d
   val absWidth = 8 + d
  
-  val io = IO(new MXFP4_CONVERT_BLOCK_IO(depthBitWidth = 3, accWidth = accWidth, vecSize = vecSize, absWidth = absWidth))
+  val io = IO(new MXFP4_CONVERT_BLOCK_IO(depthBitWidth = 4, accWidth = accWidth, vecSize = vecSize, absWidth = absWidth))
 
   val enable_depth = io.depth === d.U
   val groupSize = vecSize / 8

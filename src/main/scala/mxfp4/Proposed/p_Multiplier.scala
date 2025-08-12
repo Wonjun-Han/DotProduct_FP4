@@ -7,7 +7,7 @@ import _root_.circt.stage.ChiselStage
 class MXFP4_MULT_Block_IO extends Bundle {
   val a_vec  = Input(Vec(256, UInt(4.W)))
   val b_vec  = Input(Vec(256, UInt(4.W)))
-  val depth  = Input(UInt(3.W))
+  val depth  = Input(UInt(4.W))
   val sign    = Output(Vec(256, UInt(1.W))) 
   val exponent = Output(Vec(256, UInt(3.W))) 
   val mantissa = Output(Vec(256, UInt(4.W)))

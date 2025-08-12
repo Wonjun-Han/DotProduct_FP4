@@ -7,7 +7,7 @@ import _root_.circt.stage.ChiselStage
 class TOP_MulConvert_IO extends Bundle {
   val a_vec  = Input(Vec(256, UInt(4.W)))
   val b_vec  = Input(Vec(256, UInt(4.W)))
-  val depth  = Input(UInt(3.W))
+  val depth  = Input(UInt(4.W))
   val out = Output(Vec(256, new FP32)) // This will be the RegNext output
 }
 

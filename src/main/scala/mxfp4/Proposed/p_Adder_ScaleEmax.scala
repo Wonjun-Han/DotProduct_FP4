@@ -5,7 +5,7 @@ import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class MXFP4_ADD_SCALE_EMAX extends Bundle {
-  val depth      = Input(UInt(3.W))              // 현재 누산 트리의 depth
+  val depth      = Input(UInt(4.W))              // 현재 누산 트리의 depth
   val scale_sum  = Input(Vec(8, SInt(9.W)))      // 이전에서 계산된 scale 합산 값
   val nan        = Input(Vec(8, UInt(1.W)))      // NaN 여부 flag
   val emax       = Input(Vec(8, UInt(3.W)))      // 각 그룹의 Emax

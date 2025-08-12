@@ -10,8 +10,19 @@ class p_TOP_Til_Dep_total_BLOCK_IO extends Bundle {
   val b_vec  = Input(Vec(256, UInt(4.W)))
   val a_scale = Input(Vec(8, UInt(8.W)))
   val b_scale = Input(Vec(8, UInt(8.W)))
-  val depth  = Input(UInt(3.W))
+  val depth  = Input(UInt(4.W))
   val out = Output(Vec(16, new FP32))
+
+  // Debug ports
+  val adder6_out_mantissa = Output(Vec(4, UInt(44.W)))
+  val adder6_out_sign     = Output(Vec(4, UInt(1.W)))
+
+  val adder7_out_mantissa = Output(Vec(2, UInt(45.W)))
+  val adder7_out_sign     = Output(Vec(2, UInt(1.W)))
+
+  val adder8_out_mantissa = Output(Vec(1, UInt(46.W)))
+  val adder8_out_sign     = Output(Vec(1, UInt(1.W)))
+
 }
 
 class p_TOP_Til_Dep_total extends Module {
@@ -26,10 +37,6 @@ class p_TOP_Til_Dep_total extends Module {
   val adder3 = Seq.fill(8)(Module(new p_Adder_Dep_3))
   val adder4 = Seq.fill(8)(Module(new p_Adder_Dep_4))
   val adder5 = Seq.fill(8)(Module(new p_Adder_Dep_5))
-  val adder6 = Module(new p_Adder_Groupwise(6, 30))
-  val adder7 = Module(new p_Adder_Groupwise(7, 30))
-  val adder8 = Module(new p_Adder_Groupwise(8, 30))
-
 
   val convert0 = Module(new p_MulConvert)
   val convert1 = Module(new p_Convert(1))
@@ -37,7 +44,7 @@ class p_TOP_Til_Dep_total extends Module {
   val convert3 = Module(new p_Convert(3))
   val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
-/*
+
   val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
   val nan_process = Module(new p_NaN_Process(5))
 
@@ -48,7 +55,7 @@ class p_TOP_Til_Dep_total extends Module {
   val convert_groupwise_6 = Module(new p_Convert_Groupwise(6, 30))
   val convert_groupwise_7 = Module(new p_Convert_Groupwise(7, 30))
   val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 30))
-*/
+
 
   // --- Multiplier + Shared Scale Sum ---
   mult.io.a_vec := io.a_vec
@@ -95,7 +102,47 @@ class p_TOP_Til_Dep_total extends Module {
 
     adder5(i).io.depth := io.depth
     adder5(i).io.in := adder4(i).io.out
+
+    nan_process.io.depth := io.depth
+    nan_process.io.group_nan(i) := scaleEmax.io.nan(i)
+
+    expansion_groupwise.io.in(i) := adder5(i).io.out
+    expansion_groupwise.io.depth := io.depth
+    expansion_groupwise.io.exponent(i) := scaleEmax.io.out(i)
   }
+
+  // --- Depth 6–8 처리: Groupwise Adder + Convert ---
+  adder_groupwise_6.io.sign := expansion_groupwise.io.out_sign
+  adder_groupwise_6.io.mantissa := expansion_groupwise.io.out_mantissa
+  adder_groupwise_6.io.depth := io.depth
+
+  adder_groupwise_7.io.sign := adder_groupwise_6.io.out_sign
+  adder_groupwise_7.io.mantissa := adder_groupwise_6.io.out_mantissa
+  adder_groupwise_7.io.depth := io.depth
+
+  adder_groupwise_8.io.sign := adder_groupwise_7.io.out_sign
+  adder_groupwise_8.io.mantissa := adder_groupwise_7.io.out_mantissa
+  adder_groupwise_8.io.depth := io.depth
+
+
+  convert_groupwise_6.io.mantissa := adder_groupwise_6.io.out_mantissa
+  convert_groupwise_6.io.sign := adder_groupwise_6.io.out_sign
+  convert_groupwise_6.io.nan := nan_process.io.result_nan
+  convert_groupwise_6.io.depth := io.depth
+  convert_groupwise_6.io.exponent := expansion_groupwise.io.out_exponent_gmax
+
+  convert_groupwise_7.io.mantissa := adder_groupwise_7.io.out_mantissa
+  convert_groupwise_7.io.sign := adder_groupwise_7.io.out_sign
+  convert_groupwise_7.io.nan := nan_process.io.result_nan
+  convert_groupwise_7.io.depth := io.depth
+  convert_groupwise_7.io.exponent := expansion_groupwise.io.out_exponent_gmax
+
+  convert_groupwise_8.io.mantissa := adder_groupwise_8.io.out_mantissa
+  convert_groupwise_8.io.sign := adder_groupwise_8.io.out_sign
+  convert_groupwise_8.io.nan := nan_process.io.result_nan
+  convert_groupwise_8.io.depth := io.depth
+  convert_groupwise_8.io.exponent := expansion_groupwise.io.out_exponent_gmax
+
 
   def connectConvertInput[T <: Module { val io: { val out: Vec[SInt] } }](adder: Seq[T], convertIn: Vec[SInt], outPerAdder: Int) = {
     for (i <- 0 until convertIn.length) {
@@ -127,7 +174,22 @@ class p_TOP_Til_Dep_total extends Module {
     is(3.U) { selected_out := padTo16(convert3.io.out) }
     is(4.U) { selected_out := padTo16(convert4.io.out) }
     is(5.U) { selected_out := padTo16(convert5.io.out) }
+    is(6.U) { selected_out := padTo16(convert_groupwise_6.io.out) }
+    is(7.U) { selected_out := padTo16(convert_groupwise_7.io.out) }
+    is(8.U) { selected_out := padTo16(convert_groupwise_8.io.out) }
   }
 
   io.out := selected_out
+
+
+  // Debug ports
+  io.adder6_out_mantissa := adder_groupwise_6.io.out_mantissa
+  io.adder6_out_sign := adder_groupwise_6.io.out_sign
+
+  io.adder7_out_mantissa := adder_groupwise_7.io.out_mantissa
+  io.adder7_out_sign := adder_groupwise_7.io.out_sign
+
+  io.adder8_out_mantissa := adder_groupwise_8.io.out_mantissa
+  io.adder8_out_sign := adder_groupwise_8.io.out_sign
+  
 }

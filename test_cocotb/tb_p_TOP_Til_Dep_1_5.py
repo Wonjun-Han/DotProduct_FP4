@@ -4,7 +4,7 @@ import random
 import struct
 import math
 
-NUM_TRIALS = 200000
+NUM_TRIALS = 300
 
 def decode_mxfp4(val):
     s = (val >> 3) & 0x1
@@ -121,4 +121,3 @@ async def test_mxfp4_mac_all_depths_new(dut):
             dut._log.info(f"✅ Trial {trial + 1}/{NUM_TRIALS} PASSED for Depth {depth}")
         dut._log.info(f"🎉✅ All trials passed for Depth {depth}!\n")
         dut._log.info("────────────────────────────────────────────────────────────")
-

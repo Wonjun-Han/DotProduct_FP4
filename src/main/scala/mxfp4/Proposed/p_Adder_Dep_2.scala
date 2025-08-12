@@ -5,7 +5,7 @@ import _root_.circt.stage.ChiselStage
 
 class MXFP4_ADD_DEPTH2_BLOCK_IO extends Bundle {
   val in = Input(Vec(16, SInt(10.W)))  // 4-bit mantissa + padding
-  val depth = Input(UInt(3.W))            // Optional
+  val depth = Input(UInt(4.W))            // Optional
   val out = Output(Vec(8, SInt(11.W)))       // SInt로 직접 표현
 }
 

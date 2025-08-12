@@ -29,8 +29,8 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
   // ------------------------------
   // (1) depth에 따른 group 구성
   // ------------------------------
-  val expansion_size = Wire(UInt(4.W))
-  val expansion_num  = Wire(UInt(4.W))
+  val expansion_size = Wire(UInt(4.W)) // 그룹 크기 (depth 6 : 2, depth 7 : 4, depth 8 : 8)
+  val expansion_num  = Wire(UInt(3.W)) // 최대 4개 그룹
   val enable         = Wire(Bool())
 
     // 먼저 기본값 선언 (fallback)
@@ -60,33 +60,69 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
   // ------------------------------
   // (2) 그룹별 max exponent 계산 (최대 4개)
   // ------------------------------
-  val grouped_max_exp = Wire(Vec(4, SInt(10.W)))
+    def minS10: SInt = (-512).S(10.W)  // 무효 후보 대체값(최솟값)
 
-  for (g <- 0 until 4) {
-    val maxval = WireDefault(0.S(10.W))
-
-    when(enable && g.U < expansion_num) {
-      val group_start = g.U * expansion_size
-
-      val candidates = Wire(Vec(vecSize, SInt(10.W)))
-      for (j <- 0 until vecSize) {
-        val idx = group_start + j.U
-        candidates(j) := Mux(j.U < expansion_size && idx < vecSize.U, io.exponent(idx), 0.S)
-      }
-
-      maxval := candidates.reduce((a, b) => Mux(a > b, a, b))
+    def reduceMaxTree(xs: Seq[SInt]): SInt = {
+    require(xs.nonEmpty)
+    if (xs.length == 1) xs.head
+    else {
+        val pairs = xs.grouped(2).map {
+        case Seq(a, b) => Mux(a > b, a, b)
+        case Seq(a)    => a
+        }.toSeq
+        reduceMaxTree(pairs)
+    }
     }
 
-    grouped_max_exp(g) := maxval
-  }
+
+    val grouped_max_exp = Wire(Vec(vecSize/2, SInt(10.W)))
+
+    // 실제 합이 0인 lane 마스킹, 그래야 이후에, Max Exp 뽑을 때, 유효한 것만 가져올 수 있음.
+    val laneZero = Wire(Vec(vecSize, Bool()))
+    for (i <- 0 until vecSize) {
+      laneZero(i) := (io.in(i) === 0.S(accWidth.W))
+    }
+
+    for (g <- 0 until vecSize/2) {
+    val active       = enable && (g.U < expansion_num)
+    val group_start  = g.U * expansion_size
+
+    // 그룹 내 후보(최대 8개)만 만들고, 무효는 minS10으로 마스킹, 그리고 만약에 accum=0이면 minS10으로 대체하자
+    val cands: Seq[SInt] = (0 until 8).map { k =>
+      val i   = group_start + k.U
+      val ok  = (k.U < expansion_size) && (i < vecSize.U)
+      val idx = i(log2Ceil(vecSize)-1, 0)
+      val expEff = Mux(laneZero(idx), minS10, io.exponent(idx))
+      Mux(ok, expEff, minS10)
+    }
+
+    // 해당 그룹 내부에서만 reduce로 최대 선택하자
+    //val grpMax: SInt = cands.reduce( (a, b) => Mux(a > b, a, b) )
+    val grpMax: SInt = reduceMaxTree(cands)
+    grouped_max_exp(g) := Mux(active, grpMax, 0.S(10.W))
+
+    }
 
   // ------------------------------
   // (3) mantissa shift 및 sign 추출
   // ------------------------------
+
+  val groupIdxBits = log2Ceil(vecSize/2) // = 2 (vecSize=8 → 4그룹)
+
   for (i <- 0 until vecSize) {
-    val group_idx = i.U / expansion_size
+    val group_idx = Wire(UInt(groupIdxBits.W))
+    group_idx := 0.U
+    when (enable) {
+        group_idx := MuxLookup(io.depth, 0.U(groupIdxBits.W))(
+        Seq(
+            6.U -> ( (i/2).U(groupIdxBits.W) ),  // expansion_size = 2
+            7.U -> ( (i/4).U(groupIdxBits.W) ),  // expansion_size = 4
+            8.U -> ( (i/8).U(groupIdxBits.W) )   // expansion_size = 8
+        )
+        )
+    }
     val max_exp = grouped_max_exp(group_idx)
-    val shift_amt = (max_exp - io.exponent(i)).asUInt
+    val shift_amt = (max_exp - io.exponent(i)).asUInt // always
 
     val in = io.in(i)
     val sign_bit = in(accWidth - 1)
@@ -98,14 +134,10 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
   }
 
   // ------------------------------
-  // (4) out_exponent_gmax 상위 포트부터 채움
+  // (4) out_exponent_gmax 앞에서부터 채움
   // ------------------------------
-  for (i <- 0 until vecSize / 2) {
-    val gidx = i + (4 - vecSize / 2) // 상위 포트부터 매핑
-    when(enable && i.U >= (vecSize / 2).U - expansion_num) {
-      io.out_exponent_gmax(i) := grouped_max_exp(gidx)
-    } .otherwise {
-      io.out_exponent_gmax(i) := 0.S
+    for (i <- 0 until vecSize / 2) {
+    io.out_exponent_gmax(i) := Mux(enable && (i.U < expansion_num), grouped_max_exp(i), 0.S)
     }
-  }
+
 }

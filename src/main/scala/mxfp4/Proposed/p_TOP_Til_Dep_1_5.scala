@@ -10,7 +10,7 @@ class p_TOP_Til_Dep_1_5_BLOCK_IO extends Bundle {
   val b_vec  = Input(Vec(256, UInt(4.W)))
   val a_scale = Input(Vec(8, UInt(8.W)))
   val b_scale = Input(Vec(8, UInt(8.W)))
-  val depth  = Input(UInt(3.W))
+  val depth  = Input(UInt(4.W))
   val out = Output(Vec(16, new FP32))
 }
 
