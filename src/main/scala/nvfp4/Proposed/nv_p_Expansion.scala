@@ -1,9 +1,9 @@
-package mxfp4.proposed
+package nvfp4.proposed
 import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class MXFP4_GROUP_BLOCK_IO extends Bundle {
+class NVFP4_GROUP_BLOCK_IO extends Bundle {
   val sign     = Input(Vec(32, UInt(1.W)))
   val exponent = Input(Vec(32, UInt(3.W)))  // 3-bit real exponent (0~4)
   val mantissa = Input(Vec(32, UInt(4.W)))  // 4-bit mantissa
@@ -13,8 +13,8 @@ class MXFP4_GROUP_BLOCK_IO extends Bundle {
   val out_mantissa = Output(Vec(32, UInt(8.W)))    // Shifted mantissa (Q(2,2) + 4 bits)
 }
 
-class p_Expansion extends Module {
-  val io = IO(new MXFP4_GROUP_BLOCK_IO)
+class nv_p_Expansion extends Module { // 이제 여기서, scale에서 나온 mantissa 끼리의 곱셈도 해줘야 함. exp만은 기존처럼 scaleEmax에서 처리
+  val io = IO(new NVFP4_GROUP_BLOCK_IO)
   io.out_sign := io.sign
 
   val max_exp = Wire(UInt(3.W))

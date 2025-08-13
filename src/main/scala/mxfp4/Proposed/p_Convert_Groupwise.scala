@@ -126,7 +126,7 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
     } .elsewhen (biasedExpAfterRound <= 0.S) {
       // Subnormal: k = 1 - E' 만큼 추가 jam 우시프트 후 23비트로 다시 RNE
       val k    = (1.S - biasedExpAfterRound).asUInt
-      val kCap = Mux(k > 31.U, 31.U, k)      // 안전 캡
+      val kCap = Mux(k > 31.U, 31.U, k)     
       val (subSig24, subSticky) = shiftRightJam(mant24Norm, kCap) // 24비트 유지
 
       // 23비트 RNE

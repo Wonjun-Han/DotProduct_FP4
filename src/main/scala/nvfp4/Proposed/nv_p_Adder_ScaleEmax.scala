@@ -24,6 +24,5 @@ class nv_p_Adder_ScaleEmax extends Module {
       io.scale_sum(i)                                                    
     )
 
-
   })
 }
