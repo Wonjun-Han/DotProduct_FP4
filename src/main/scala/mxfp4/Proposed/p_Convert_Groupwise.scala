@@ -73,7 +73,7 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
       stickyFromAlign := false.B
     }
 
-    // 5) FRACW 기준 25비트 창(keep24=1+23 + guard) 추출 (두 번째 우시프트 없이 슬라이스/패딩)
+    // 5) FRACW 기준 25비트 창(keep24=1+23 + guard) 추출 (두 번째 우시프트 없이 슬라이스/패딩) 25 기준은 sticky 제외를 고려하기 위해 그냥 정함.
     //    window25 = [keep24(24..1), guard(0)]
     val window25        = Wire(UInt(25.W))
     val stickyBelowGuard= Wire(Bool()) // guard 아래 남아있는 모든 비트 OR (R∨S 역할)
@@ -83,12 +83,12 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
       val lo = FRACW - 24
       window25 := alignedMag(hi, lo)
 
-      // guard 아래에 물리적으로 남는 비트들을 sticky로 더한다.
+      // guard 아래에 물리적으로 남는 비트들을 sticky(나머지 비트를 OR 연산한 결과)로 더한다.
       val extraSticky =
         if (FRACW >= 25) alignedMag(FRACW - 25, 0).orR else false.B
       stickyBelowGuard := stickyFromAlign || extraSticky
     } else {
-      // FRACW < 24: guard/아래 비트가 벡터를 벗어나므로 0으로 패딩
+      // FRACW < 24: guard/아래 비트가 벡터를 벗어나므로 그냥 0으로 패딩
       val upper = alignedMag(FRACW, 0)         // (FRACW+1)비트
       val pad   = 24 - FRACW                   // 0 패딩 개수
       window25 := Cat(upper, 0.U(pad.W))       // (FRACW+1)+pad = 25비트
@@ -105,10 +105,10 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
     val carry24Bit = rounded24(24)               // 캐리 발생 시 1
     val mant24Norm = Mux(carry24Bit.asBool, rounded24(24,1), rounded24(23,0)) // 캐리 시 정규화
 
-    // 캐리 반영한 바이어스 지수
+    // 캐리 반영해서 바이어스 지수 뽑기
     val biasedExpAfterRound = (biased_exp + Mux(carry24Bit.asBool, 1.S, 0.S)).asSInt
 
-    // 7) 최종 지수/가수 선택 (NaN/Zero/Overflow/Subnormal/Normal)
+    // 7) 최종 지수/가수 선택 분기! (NaN/Zero/Overflow/Subnormal/Normal)
     val exponent_conv = Wire(UInt(8.W))
     val mantissa_conv = Wire(UInt(23.W))
 
@@ -137,7 +137,7 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
       val rounded23  = keepSig23 +& roundUp2.asUInt      // 23+1 비트
       val carry23Bit = rounded23(23)
 
-      when (carry23Bit.asBool) {
+      when (carry23Bit.asBool) { // 서브 노멀에서 만들었는데, 이 때 캐리 발생해서 rounding 되면, 오류가 날 수 있음.
         // 라운딩으로 정상 승격 → 1.000.. (숨은 1 제외하면 가수 23비트는 0)
         exponent_conv := 1.U
         mantissa_conv := 0.U
