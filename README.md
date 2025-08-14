@@ -2,9 +2,24 @@
 
 A high-performance, pipelined hardware implementation of MXFP4/NVFP4-based Multiply-Accumulate (MAC) logic for AI accelerators, designed in Chisel and test with cocotb.
 
+---
+
+## MXFP4
 <img width="2558" height="1416" alt="스크린샷 2025-08-06 오후 12 57 34" src="https://github.com/user-attachments/assets/f579ae4d-7c7e-4a58-af1c-206fe221338e" />
 
+<img width="2555" height="1417" alt="스크린샷 2025-08-13 오후 8 53 50" src="https://github.com/user-attachments/assets/93e3d4ef-ee87-45aa-b344-f2a8e69e2786" />
+
 ---
+
+## NVFP4
+
+<img width="2556" height="1420" alt="스크린샷 2025-08-13 오후 8 53 34" src="https://github.com/user-attachments/assets/676ad811-8dde-43b5-9115-3768f5ceb33f" />
+
+<img width="2555" height="1420" alt="스크린샷 2025-08-13 오후 8 54 02" src="https://github.com/user-attachments/assets/aeb39301-b74b-49b6-b86d-60953f348718" />
+
+---
+
+
 
 ## 📌 Overview
 
