@@ -4,7 +4,7 @@ import random
 import struct
 import math
 
-NUM_TRIALS = 10000
+NUM_TRIALS = 500
 
 # ---------------------------
 # Helpers

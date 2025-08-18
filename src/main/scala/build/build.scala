@@ -56,6 +56,7 @@ object build {
 
 
       case "p_TOP_Til_Dep_total" => new mxfp4.proposed.p_TOP_Til_Dep_total()
+      case "p_TOP_Til_Dep_total_piped" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped()
 
       case other =>
 
