@@ -129,12 +129,12 @@ class p_TOP_Til_Dep_total_piped extends Module {
   // ---------------------------------
   // S3: depth=0 → Convert@Dep0, else → Adder1 → Reg
   // ---------------------------------
-  // Convert@Dep0 입력은 S1에서 계산된 값 → S3로 2단 지연 필요
-  val toS3_scale_sum = delayToStage(fromS = 1, toS = 3, s1_scale_sum)
-  val toS3_scale_nan = delayToStage(fromS = 1, toS = 3, s1_scale_nan)
-  val toS3_sign      = delayToStage(fromS = 1, toS = 3, s1_sign)
-  val toS3_exp       = delayToStage(fromS = 1, toS = 3, s1_exponent)
-  val toS3_man       = delayToStage(fromS = 1, toS = 3, s1_mantissa)
+  // Convert@Dep0 입력은 S1에서 계산된 값 → S3로 지연 필요
+  val toS3_scale_sum = delayToStage(fromS = 2, toS = 3, s1_scale_sum)
+  val toS3_scale_nan = delayToStage(fromS = 2, toS = 3, s1_scale_nan)
+  val toS3_sign      = delayToStage(fromS = 2, toS = 3, s1_sign)
+  val toS3_exp       = delayToStage(fromS = 2, toS = 3, s1_exponent)
+  val toS3_man       = delayToStage(fromS = 2, toS = 3, s1_mantissa)
 
   convert0.io.sign      := toS3_sign
   convert0.io.exponent  := toS3_exp

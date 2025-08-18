@@ -99,6 +99,8 @@ async def wait_pipeline_cycles(dut, cycles=PIPELINE_LATENCY):
     for _ in range(cycles):
         await RisingEdge(dut.clock)
 
+
+
 # ---------------------------
 # Test Classes for Pipeline Testing
 # ---------------------------
@@ -380,3 +382,5 @@ async def test_mxfp4_mac_pipelined_all_depths(dut):
     dut._log.info("📦 Module  : p_TOP_Til_Dep_total_piped")
     dut._log.info("📎 Ready for high-frequency operation and integration.")
     dut._log.info("────────────────────────────────────────────────────────────\n")
+
+
