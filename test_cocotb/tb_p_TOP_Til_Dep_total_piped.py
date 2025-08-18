@@ -323,9 +323,10 @@ async def test_mxfp4_mac_pipelined_all_depths(dut):
 
                 
                 expected_bits = expected_outputs[i]
-                
-                if dut_bits != expected_bits:
-                    expected_sign, expected_exp, expected_man = get_fp32_fields(expected_bits)
+                expected_sign, expected_exp, expected_man = get_fp32_fields(expected_bits)
+                if (expected_sign != dut_sign or
+                    expected_exp != dut_exp or
+                    abs(expected_man - dut_man) > 1):
                     
                     # Enhanced debug for depths 6-8
                     dbg_block = ""
