@@ -38,7 +38,7 @@ class p_TOP_Til_Dep_total_piped extends Module {
   }
 
   // ---------------------------------
-  // 모듈 인스턴스 (원본 유지)
+  // instance
   // ---------------------------------
   val mult   = Module(new p_Multiplier)
   val scaleSum   = Module(new p_Adder_ScaleSum)
