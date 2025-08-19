@@ -292,7 +292,7 @@ build/
 DerivedData
 
 ## systemverilog files
-##*.sv
+*.sv
 
 ## svg (visualization)
 out_svgs/
