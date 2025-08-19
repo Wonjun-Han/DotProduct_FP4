@@ -11,21 +11,13 @@ class p_TOP_Til_Dep_total_PIPED_CT_BLOCK_IO extends Bundle {
   val b_scale = Input(Vec(8, UInt(8.W)))
   val depth   = Input(UInt(4.W))
   val out     = Output(Vec(16, new FP32))
-
-  // Debug ports
-  val adder6_out_mantissa = Output(Vec(4, UInt(44.W)))
-  val adder6_out_sign     = Output(Vec(4, UInt(1.W)))
-  val adder7_out_mantissa = Output(Vec(2, UInt(45.W)))
-  val adder7_out_sign     = Output(Vec(2, UInt(1.W)))
-  val adder8_out_mantissa = Output(Vec(1, UInt(46.W)))
-  val adder8_out_sign     = Output(Vec(1, UInt(1.W)))
 }
 
 class p_TOP_Til_Dep_total_piped_CT extends Module {
   val io = IO(new p_TOP_Til_Dep_total_PIPED_CT_BLOCK_IO)
 
   // --------------------------
-  // 유틸: Vec 레지스터 파이프
+  // Util: Vec 레지스터 파이프
   // --------------------------
   private def regNextVec[T <: Data](v: Vec[T]): Vec[T] = VecInit(v.map(RegNext(_)))
   private def pipeVecN[T <: Data](v: Vec[T], n: Int): Vec[T] =
@@ -82,10 +74,10 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val depth_s9  = RegNext(depth_s8)
   val depth_s10 = RegNext(depth_s9)
   val depth_s11 = RegNext(depth_s10)
-  val depth_s12 = RegNext(depth_s11)
+
 
   // ---------------------------------
-  // S0: Mult + ScaleSum (Comb) → Reg
+  // S0: Mult and ScaleSum 
   // ---------------------------------
   mult.io.a_vec := io.a_vec
   mult.io.b_vec := io.b_vec
@@ -101,7 +93,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val s1_scale_nan = regNextVec(scaleSum.io.nan)
 
   // ---------------------------------
-  // S1: Expansion(in-group) + (Emax+scale_sum) → Reg
+  // S1: Expansion(in-group) then (Emax+scale_sum) 
   // ---------------------------------
   scaleEmax.io.depth := depth_s1
   for (i <- 0 until 8) {
@@ -116,11 +108,6 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
     scaleEmax.io.scale_sum(i) := s1_scale_sum(i)
     scaleEmax.io.emax(i)      := expansion.io.out_exponent_gmax(0) // 그룹 gmax
 
-    // ------------------------------
-    // S2 : Adder1 입력 넣기
-    // ------------------------------
-
-    // S2 출구 레지스터 → S3(Adder1 입력)
     adder1(i).io.depth    := depth_s2
     adder1(i).io.sign     := RegNext(expansion.io.out_sign)
     adder1(i).io.mantissa := RegNext(expansion.io.out_mantissa)
@@ -131,9 +118,8 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val s2_nan_flag = regNextVec(scaleEmax.io.nan)
 
   // ---------------------------------
-  // S2: depth=0 → Convert@Dep0, else → Adder1 → Reg
+  // S2: Convert@Dep0, else Adder1
   // ---------------------------------
-  // Convert@Dep0 입력은 S1에서 계산된 값 → S3로 지연 필요
   val toS2_scale_sum = delayToStage(fromS = 1, toS = 2, s1_scale_sum)
   val toS2_scale_nan = delayToStage(fromS = 1, toS = 2, s1_scale_nan)
   val toS2_sign      = delayToStage(fromS = 1, toS = 2, s1_sign)
@@ -146,18 +132,15 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   convert0.io.scale_sum := toS2_scale_sum
   convert0.io.nan       := toS2_scale_nan
 
-  // ------------------------------
-  // S3: Adder1 → Reg
-  // ------------------------------
   val s3_adder1_out = (0 until 8).map(i => regNextVec(adder1(i).io.out))
 
-  // ---------------------------------
-  // S3: depth=1 → Convert@Dep1, else → Adder2 → Reg
-  // ---------------------------------
   val toS3_exp_cand = delayToStage(2, 3, s2_exp_cand)
   val toS3_nan      = delayToStage(2, 3, s2_nan_flag)
 
-  // adder1_out(8*16=128)을 평탄화 연결
+  // ------------------------------
+  // S3 : Convert@Dep1, else Adder2
+  // ------------------------------
+
   for (i <- 0 until convert1.io.in.length) {
     val g = i / 16; val k = i % 16
     convert1.io.in(i) := s3_adder1_out(g)(k)
@@ -166,9 +149,6 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   convert1.io.nan      := toS3_nan
   convert1.io.exponent := toS3_exp_cand
 
-  // ------------------------------
-  // S3 : Adder2 입력 넣기
-  // ------------------------------
   for (i <- 0 until 8) {
     adder2(i).io.depth := depth_s3
     adder2(i).io.in    := s3_adder1_out(i)
@@ -177,7 +157,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val s4_adder2_out = (0 until 8).map(i => regNextVec(adder2(i).io.out))
 
   // ---------------------------------
-  // S4: depth=2 → Convert@Dep2, else → Adder3 → Reg
+  // S4: Convert@Dep2, else Adder3
   // ---------------------------------
   val toS4_exp_cand = delayToStage(2, 4, s2_exp_cand)
   val toS4_nan      = delayToStage(2, 4, s2_nan_flag)
@@ -197,7 +177,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val s5_adder3_out = (0 until 8).map(i => regNextVec(adder3(i).io.out))
 
   // ---------------------------------
-  // S5: depth=3 → Convert@Dep3, else → Adder4 → Reg
+  // S5: Convert@Dep3, else Adder4
   // ---------------------------------
   val toS5_exp_cand = delayToStage(2, 5, s2_exp_cand)
   val toS5_nan      = delayToStage(2, 5, s2_nan_flag)
@@ -217,7 +197,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
   val s6_adder4_out = (0 until 8).map(i => regNextVec(adder4(i).io.out))
 
   // ---------------------------------
-  // S6: depth=4 → Convert@Dep4, else → Adder5 → Reg
+  // S6: Convert@Dep4, else Adder5
   // ---------------------------------
   val toS6_exp_cand = delayToStage(2, 6, s2_exp_cand)
   val toS6_nan      = delayToStage(2, 6, s2_nan_flag)
@@ -240,12 +220,11 @@ val s7_adder5_out = VecInit((0 until 8).map(i => RegNext(adder5(i).io.out)))
 for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
 
   // ---------------------------------
-  // S7: depth=5 → Convert@Dep5, else → Expansion_Groupwise → Reg
+  // S7: Convert@Dep5, else Expansion_Groupwise & NaN_Process
   // ---------------------------------
   val toS7_exp_cand = delayToStage(2, 7, s2_exp_cand)
   val toS7_nan      = delayToStage(2, 7, s2_nan_flag)
 
-  for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   convert5.io.depth    := depth_s7
   convert5.io.nan      := toS7_nan
   convert5.io.exponent := toS7_exp_cand
@@ -259,13 +238,12 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   val s8_gw_mantissa = RegNext(expansion_groupwise.io.out_mantissa)
   val s8_gw_emax     = RegNext(expansion_groupwise.io.out_exponent_gmax)
   
-  // NaN 경로: S2→S8 (nan_process 입력: scaleEmax.nan)
   nan_process.io.depth := depth_s7
   for (i <- 0 until 8) nan_process.io.group_nan(i) := toS7_nan(i)
   val s8_nan_proc = RegNext(nan_process.io.result_nan)
 
   // ---------------------------------
-  // S8: Adder_Groupwise_6 → Reg
+  // S8: Adder_Groupwise_6
   // ---------------------------------
   adder_groupwise_6.io.depth    := depth_s8
   adder_groupwise_6.io.sign     := s8_gw_sign
@@ -274,9 +252,8 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   val s9_ad6_mantissa = RegNext(adder_groupwise_6.io.out_mantissa)
 
   // ---------------------------------
-  // S9: depth=6 → Convert@Dep6, else → Adder_Groupwise_7 → Reg
+  // S9: Convert@Dep6, else Adder_Groupwise_7
   // ---------------------------------
-  // 그룹와이즈 exp, nan 정렬: S8→S10
   val toS9_gw_emax = delayToStage(8, 9, s8_gw_emax)
   val toS9_nan     = delayToStage(8, 9, s8_nan_proc)
 
@@ -293,7 +270,7 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   val s10_ad7_mantissa = RegNext(adder_groupwise_7.io.out_mantissa)
 
   // ---------------------------------
-  // S10: depth=7 → Convert@Dep7, else → Adder_Groupwise_8 → Reg
+  // S10: Convert@Dep7, else Adder_Groupwise_8
   // ---------------------------------
   val toS10_gw_emax = delayToStage(8, 10, s8_gw_emax)
   val toS10_nan     = delayToStage(8, 10, s8_nan_proc)
@@ -311,7 +288,7 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   val s11_ad8_mantissa = RegNext(adder_groupwise_8.io.out_mantissa)
 
   // ---------------------------------
-  // S11: Convert@Dep8 (무조건)
+  // S11: Convert@Dep8
   // ---------------------------------
   val toS11_gw_emax = delayToStage(8, 11, s8_gw_emax)
   val toS11_nan     = delayToStage(8, 11, s8_nan_proc)
@@ -323,20 +300,20 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   convert_groupwise_8.io.nan      := toS11_nan
 
   // ---------------------------------
-  // 변환 결과를 S12까지 지연 → depth 스위치 일원화
+  // 변환 결과를 S11까지 지연 → depth 스위치 일원화
   // ---------------------------------
   def padTo16(vec: Vec[FP32]): Vec[FP32] =
     VecInit((0 until 16).map(i => if (i < vec.length) vec(i) else 0.U.asTypeOf(new FP32)))
 
-  val d0_atS11 = pipeVecN(padTo16(convert0.io.out),            9) // S3→S12
-  val d1_atS11 = pipeVecN(padTo16(convert1.io.out),            8) // S4→S12
-  val d2_atS11 = pipeVecN(padTo16(convert2.io.out),            7) // S5→S12
-  val d3_atS11 = pipeVecN(padTo16(convert3.io.out),            6) // S6→S12
-  val d4_atS11 = pipeVecN(padTo16(convert4.io.out),            5) // S7→S12
-  val d5_atS11 = pipeVecN(padTo16(convert5.io.out),            4) // S8→S12
-  val d6_atS11 = pipeVecN(padTo16(convert_groupwise_6.io.out), 2) // S10→S12
-  val d7_atS11 = pipeVecN(padTo16(convert_groupwise_7.io.out), 1) // S11→S12
-  val d8_atS11 = padTo16(convert_groupwise_8.io.out) // S12
+  val d0_atS11 = pipeVecN(padTo16(convert0.io.out),            9) // S2→S11
+  val d1_atS11 = pipeVecN(padTo16(convert1.io.out),            8) // S3→S11
+  val d2_atS11 = pipeVecN(padTo16(convert2.io.out),            7) // S4→S11
+  val d3_atS11 = pipeVecN(padTo16(convert3.io.out),            6) // S5→S11
+  val d4_atS11 = pipeVecN(padTo16(convert4.io.out),            5) // S6→S11
+  val d5_atS11 = pipeVecN(padTo16(convert5.io.out),            4) // S7→S11
+  val d6_atS11 = pipeVecN(padTo16(convert_groupwise_6.io.out), 2) // S9→S11
+  val d7_atS11 = pipeVecN(padTo16(convert_groupwise_7.io.out), 1) // S10→S11
+  val d8_atS11 = padTo16(convert_groupwise_8.io.out) // S11
 
   val selected_out = Wire(Vec(16, new FP32))
   selected_out := 0.U.asTypeOf(Vec(16, new FP32))
@@ -352,14 +329,4 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
     is(8.U) { selected_out := d8_atS11 }
   }
   io.out := selected_out
-
-  // ---------------------------------
-  // Debug ports (원래 연결 유지)
-  // ---------------------------------
-  io.adder6_out_mantissa := adder_groupwise_6.io.out_mantissa
-  io.adder6_out_sign     := adder_groupwise_6.io.out_sign
-  io.adder7_out_mantissa := adder_groupwise_7.io.out_mantissa
-  io.adder7_out_sign     := adder_groupwise_7.io.out_sign
-  io.adder8_out_mantissa := adder_groupwise_8.io.out_mantissa
-  io.adder8_out_sign     := adder_groupwise_8.io.out_sign
 }

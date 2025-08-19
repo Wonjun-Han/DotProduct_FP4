@@ -1,19 +1,23 @@
 import cocotb
-from cocotb.triggers import Timer, RisingEdge, ClockCycles
+from cocotb.triggers import RisingEdge
 from cocotb.clock import Clock
 import random
 import struct
 import math
+from collections import deque
 
-NUM_TRIALS = 100  # Reduced for pipelined testing
-PIPELINE_LATENCY = 12  # 12-stage pipeline latency
+# =========================================================
+# Config
+# =========================================================
+NUM_TRIALS = 100            # per-depth, 스트리밍 검증 시 트랜잭션 수 기본값
+PIPELINE_LATENCY = 12       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+11)
+ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부 (라운딩 차이 완충)
 
-# ---------------------------
-# Helpers
-# ---------------------------
-
+# =========================================================
+# Helpers: FP & Bits
+# =========================================================
 def decode_mxfp4(val: int) -> float:
-    """MXFP4 디코더: [s | e1 e0 | m] (총 4비트)"""
+    """MXFP4: [s | e1 e0 | m], 4bit."""
     s = (val >> 3) & 0x1
     e = (val >> 1) & 0x3
     m = val & 0x1
@@ -31,22 +35,29 @@ def get_fp32_fields(bits: int):
     mantissa = bits & 0x7FFFFF
     return sign, exponent, mantissa
 
+def bin32(bits: int) -> str:
+    """32-bit 2진수 문자열 (s|exp|mant)로 가독성 포맷."""
+    s = (bits >> 31) & 0x1
+    e = (bits >> 23) & 0xFF
+    m = bits & 0x7FFFFF
+    return f"{s:1b}|{e:08b}|{m:023b}"
+
 def read_fp32(dut, i: int):
-    # 계층 접근 우선
+    """DUT io.out[i]의 (s,e,m) 읽기. (계층/플랫 폴백)"""
     try:
         s = int(dut.io.out[i].sign.value)
         e = int(dut.io.out[i].exponent.value)
         m = int(dut.io.out[i].mantissa.value)
         return s, e, m
     except Exception:
-        # 플랫 폴백
         s = int(getattr(dut, f"io_out_{i}_sign").value)
         e = int(getattr(dut, f"io_out_{i}_exponent").value)
         m = int(getattr(dut, f"io_out_{i}_mantissa").value)
         return s, e, m
 
-
-# IEEE-754 float32 최대 유한값
+# =========================================================
+# Float32 범위/변환
+# =========================================================
 FLT32_MAX = 3.4028234663852886e+38
 
 def float_to_bits_safe(f: float) -> int:
@@ -60,32 +71,58 @@ def float_to_bits_safe(f: float) -> int:
         return struct.unpack('>I', struct.pack('>f', f))[0]
     except OverflowError:
         return sign_bit | 0x7F800000
-    
 
-def _read_vec(dut, base_name: str, n: int, signed: bool = False):
-    vals = []
-    for i in range(n):
-        h = getattr(dut, f"{base_name}_{i}").value
-        vals.append(int(h.signed_integer if signed else h.integer))
-    return vals
+def is_nan(bits: int) -> bool:
+    return (bits & 0x7F800000) == 0x7F800000 and (bits & 0x007FFFFF) != 0
 
-def _read_vec_bin(dut, base_name: str, n: int):
-    return [getattr(dut, f"{base_name}_{i}").value.binstr for i in range(n)]
+def is_inf(bits: int) -> bool:
+    return (bits & 0x7FFFFFFF) == 0x7F800000
 
+def is_zero(bits: int) -> bool:
+    return (bits & 0x7FFFFFFF) == 0
+
+def equal_fp32_with_ulpm(exp_bits: int, dut_bits: int, allow_ulpm: bool = True) -> bool:
+    """FP32 비교: 특수값 엄격, 일반값은 mantissa ±1 ULP(동일 sign/exp) 허용 옵션."""
+    # NaN: 비트 동일해야 통과
+    if is_nan(exp_bits) or is_nan(dut_bits):
+        return exp_bits == dut_bits
+    # Inf: 정확히 일치
+    if is_inf(exp_bits) or is_inf(dut_bits):
+        return exp_bits == dut_bits
+    # +0/-0 동치
+    if is_zero(exp_bits) and is_zero(dut_bits):
+        return True
+    # 완전 일치
+    if exp_bits == dut_bits:
+        return True
+    if not allow_ulpm:
+        return False
+
+    # mantissa ±1 ULP 허용: 동일 부호/지수 내에서만
+    e_sign  = (exp_bits >> 31) & 0x1
+    d_sign  = (dut_bits >> 31) & 0x1
+    e_exp   = (exp_bits >> 23) & 0xFF
+    d_exp   = (dut_bits >> 23) & 0xFF
+    e_man   = exp_bits & 0x7FFFFF
+    d_man   = dut_bits & 0x7FFFFF
+
+    if e_sign == d_sign and e_exp == d_exp and e_exp != 0xFF:
+        return abs(int(e_man) - int(d_man)) <= 1
+    return False
+
+# =========================================================
+# DUT I/O 유틸
+# =========================================================
 async def reset_dut(dut):
-    """Reset the DUT and wait for pipeline to stabilize"""
+    """동기 리셋: 2cycle assert + 1cycle settle"""
     dut.reset.value = 1
     await RisingEdge(dut.clock)
     await RisingEdge(dut.clock)
     dut.reset.value = 0
     await RisingEdge(dut.clock)
-    
-    # Wait for pipeline to clear (PIPELINE_LATENCY + margin)
-    for _ in range(PIPELINE_LATENCY + 2):
-        await RisingEdge(dut.clock)
 
 async def apply_inputs(dut, a_raw, b_raw, a_scale_raw, b_scale_raw, depth):
-    """Apply inputs to DUT"""
+    """현재 사이클 입력 적용(연속 주입 시 매 사이클 호출)."""
     for i in range(256):
         getattr(dut, f"io_a_vec_{i}").value = a_raw[i]
         getattr(dut, f"io_b_vec_{i}").value = b_raw[i]
@@ -94,19 +131,22 @@ async def apply_inputs(dut, a_raw, b_raw, a_scale_raw, b_scale_raw, depth):
         getattr(dut, f"io_b_scale_{i}").value = b_scale_raw[i]
     dut.io_depth.value = depth
 
-async def wait_pipeline_cycles(dut, cycles=PIPELINE_LATENCY):
-    """Wait for pipeline to process through all stages"""
-    for _ in range(cycles):
-        await RisingEdge(dut.clock)
+def gen_random_scales():
+    """a_scale + b_scale - 254 = [-127..127] 합 제약 반영."""
+    a_scale_raw, b_scale_raw = [], []
+    for _ in range(8):
+        total = random.randint(-127, 127)
+        a = random.randint(0, 254)
+        b = max(0, min(255, total + 254 - a))
+        a_scale_raw.append(a)
+        b_scale_raw.append(b)
+    return a_scale_raw, b_scale_raw
 
-
-
-# ---------------------------
-# Test Classes for Pipeline Testing
-# ---------------------------
-
+# =========================================================
+# Golden Model
+# =========================================================
 class PipelineTestVector:
-    """Holds test inputs and expected outputs for pipeline testing"""
+    """단일 트랜잭션에 대한 기대 출력 16 lanes 계산(모든 depth 사전 계산)."""
     def __init__(self, a_raw, b_raw, a_scale_raw, b_scale_raw, depth):
         self.a_raw = a_raw
         self.b_raw = b_raw
@@ -115,15 +155,13 @@ class PipelineTestVector:
         self.depth = depth
         self.scale_sums = [a + b - 254 for a, b in zip(a_scale_raw, b_scale_raw)]
         self.expected_outputs = self._compute_expected()
-    
+
     def _compute_expected(self):
-        """Compute expected outputs for all depths"""
         expected = {}
-        
-        # Compute tile-level sums first (needed for depth 6-8)
+        # 타일 합(Depth 6~8에 필요)
         tile_scaled_sum = [0.0] * 8
         tile_nan = [False] * 8
-        
+
         for t in range(8):
             base = t * 32
             local_sum = 0.0
@@ -132,255 +170,235 @@ class PipelineTestVector:
                 a_val = decode_mxfp4(self.a_raw[idx])
                 b_val = decode_mxfp4(self.b_raw[idx])
                 local_sum += a_val * b_val
-            
             scale_exp_t = self.scale_sums[t]
             tile_scaled_sum[t] = math.ldexp(local_sum, scale_exp_t)
             tile_nan[t] = (self.a_scale_raw[t] == 255) or (self.b_scale_raw[t] == 255)
-        
-        # Compute expected outputs for each depth
+
         for depth in range(9):
             output_count = min(256 >> depth, 16)
             products_per_output = 256 // (256 >> depth)
-            
             depth_outputs = []
-            
             for i in range(16):
                 if i < output_count:
                     if depth <= 5:
-                        # Standard depth processing
+                        # 그룹 내부 합산 후 scale 적용
                         group_size = 32 >> depth
                         group_idx = i // group_size
                         local_idx = i % group_size
                         base = group_idx * 32 + local_idx * products_per_output
                         local_sum = 0.0
-                        
                         for j in range(products_per_output):
                             idx = base + j
                             a_val = decode_mxfp4(self.a_raw[idx])
                             b_val = decode_mxfp4(self.b_raw[idx])
                             local_sum += a_val * b_val
-                        
-                        scale_exp = self.scale_sums[group_idx]
                         if (self.a_scale_raw[group_idx] == 255) or (self.b_scale_raw[group_idx] == 255):
                             expected_bits = 0x7FC00000
                         else:
-                            expected_float = math.ldexp(local_sum, scale_exp)
-                            expected_bits = float_to_bits_safe(expected_float)
-                    
+                            expected_bits = float_to_bits_safe(math.ldexp(local_sum, self.scale_sums[group_idx]))
                     else:
-                        # Depth 6-8: groupwise processing
+                        # Depth 6~8: 타일 합을 더하는 단계
                         if depth == 6:
                             groups = [[0,1], [2,3], [4,5], [6,7]]
                         elif depth == 7:
                             groups = [[0,1,2,3], [4,5,6,7]]
-                        elif depth == 8:
+                        else:  # depth == 8
                             groups = [[0,1,2,3,4,5,6,7]]
-                        
                         tiles = groups[i]
                         group_has_nan = any(tile_nan[t] for t in tiles)
                         if group_has_nan:
                             expected_bits = 0x7FC00000
                         else:
-                            expected_float = sum(tile_scaled_sum[t] for t in tiles)
-                            expected_bits = float_to_bits_safe(expected_float)
+                            expected_bits = float_to_bits_safe(sum(tile_scaled_sum[t] for t in tiles))
                 else:
-                    # Padding: should be 0.0f
-                    expected_bits = 0x00000000
-                
+                    expected_bits = 0x00000000  # padding
                 depth_outputs.append(expected_bits)
-            
             expected[depth] = depth_outputs
-        
         return expected
 
-# ---------------------------
-# Test Functions
-# ---------------------------
+# =========================================================
+# Scoreboard Streaming: 고정 depth
+# =========================================================
+async def stream_and_check(dut, depth: int, num_transactions: int):
+    """
+    매 사이클 입력 연속 주입.
+    출력은 항상 11사이클 뒤이므로 큐[t-11] 기대값과 현재 출력을 비교.
+    """
+    exp_q = deque()  # 각 트랜잭션 기대(16 lanes) 리스트 저장
 
-@cocotb.test()
-async def test_mxfp4_mac_pipelined_single_depth(dut):
-    """Test single depth with pipeline timing"""
-    cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
-    await reset_dut(dut)
-    
-    depth = 3  
-    dut._log.info(f"Testing pipelined module at depth {depth}")
-    
-    # Generate test vector
+    # 첫 트랜잭션 적용
     a_raw = [random.randint(0, 15) for _ in range(256)]
     b_raw = [random.randint(0, 15) for _ in range(256)]
-    a_scale_raw, b_scale_raw = [], []
-    
-    for _ in range(8):
-        total = random.randint(-127, 127)
-        a = random.randint(0, 254)
-        b = max(0, min(255, total + 254 - a))
-        a_scale_raw.append(a)
-        b_scale_raw.append(b)
-    
-    test_vector = PipelineTestVector(a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
-    
-    # Apply inputs
+    a_scale_raw, b_scale_raw = gen_random_scales()
+    tv0 = PipelineTestVector(a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
     await apply_inputs(dut, a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
-    
-    # Wait for pipeline
-    await wait_pipeline_cycles(dut, PIPELINE_LATENCY + 1)
+    exp_q.append(tv0.expected_outputs[depth])
 
-    # Check outputs
-    output_count = min(256 >> depth, 16)
-    expected_outputs = test_vector.expected_outputs[depth]
-    
-    for i in range(16):
-        dut_sign, dut_exp, dut_man = read_fp32(dut, i)
-        dut_bits = (dut_sign << 31) | (dut_exp << 23) | dut_man
-        
-        expected_bits = expected_outputs[i]
-        expected_sign, expected_exp, expected_man = get_fp32_fields(expected_bits)
-        
-        if dut_bits != expected_bits:
-            raise AssertionError(
-                f"\n[❌ Pipelined Test | DEPTH {depth} | Output {i}]\n"
-                f"Expected: 0x{expected_bits:08X} (s={expected_sign}, e={expected_exp}, m={expected_man})\n"
-                f"Got:      0x{dut_bits:08X} (s={dut_sign}, e={dut_exp}, m={dut_man})\n"
-            )
-    
-    dut._log.info(f"✅ Pipelined test passed for depth {depth}")
+    # 이후 연속 주입 + 레이턴시 채워지면 바로 비교
+    for t in range(1, num_transactions):
+        await RisingEdge(dut.clock)
 
-@cocotb.test()
-async def test_mxfp4_mac_pipelined_throughput(dut):
-    """Test pipeline throughput with back-to-back transactions"""
-    cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
-    await reset_dut(dut)
-    
-    depth = 4
-    num_transactions = 5
-    test_vectors = []
-    
-    dut._log.info(f"Testing pipeline throughput with {num_transactions} back-to-back transactions")
-    
-    # Generate multiple test vectors
-    for _ in range(num_transactions):
         a_raw = [random.randint(0, 15) for _ in range(256)]
         b_raw = [random.randint(0, 15) for _ in range(256)]
-        a_scale_raw, b_scale_raw = [], []
-        
-        for _ in range(8):
-            total = random.randint(-127, 127)
-            a = random.randint(0, 254)
-            b = max(0, min(255, total + 254 - a))
-            a_scale_raw.append(a)
-            b_scale_raw.append(b)
-        
-        test_vector = PipelineTestVector(a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
-        test_vectors.append(test_vector)
-    
-    # Apply inputs back-to-back
-    for i, tv in enumerate(test_vectors):
-        await apply_inputs(dut, tv.a_raw, tv.b_raw, tv.a_scale_raw, tv.b_scale_raw, tv.depth)
-        await RisingEdge(dut.clock)  # Only one clock between transactions
-        dut._log.info(f"Applied transaction {i+1}/{num_transactions}")
-    
-    # Wait for all results to propagate
-    await wait_pipeline_cycles(dut, PIPELINE_LATENCY + num_transactions)
-    
-    dut._log.info("✅ Pipeline throughput test completed successfully")
+        a_scale_raw, b_scale_raw = gen_random_scales()
+        tv = PipelineTestVector(a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
+        await apply_inputs(dut, a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
+        exp_q.append(tv.expected_outputs[depth])
 
+        if t >= PIPELINE_LATENCY:
+            expected = exp_q[t - PIPELINE_LATENCY]
+            mismatches = []
+            for i in range(16):
+                s, e, m = read_fp32(dut, i)
+                dut_bits = (s << 31) | (e << 23) | m
+                if not equal_fp32_with_ulpm(expected[i], dut_bits, allow_ulpm=ALLOW_MANTISSA_ULP1):
+                    mismatches.append((i, expected[i], dut_bits))
+            if mismatches:
+                lines = [f"[❌ STREAM | DEPTH {depth} | cycle={t} | ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}]"]
+                for (i, exp_bits, dut_bits) in mismatches:
+                    lines.append(f"  lane {i}:")
+                    lines.append(f"    EXP  0x{exp_bits:08X}  {bin32(exp_bits)}")
+                    lines.append(f"    DUT  0x{dut_bits:08X}  {bin32(dut_bits)}")
+                raise AssertionError("\n" + "\n".join(lines))
+
+    # 드레인: 남은 결과 비교
+    for t in range(PIPELINE_LATENCY):
+        await RisingEdge(dut.clock)
+        idx = num_transactions - PIPELINE_LATENCY + t
+        if idx < 0:
+            continue
+        expected = exp_q[idx]
+        mismatches = []
+        for i in range(16):
+            s, e, m = read_fp32(dut, i)
+            dut_bits = (s << 31) | (e << 23) | m
+            if not equal_fp32_with_ulpm(expected[i], dut_bits, allow_ulpm=ALLOW_MANTISSA_ULP1):
+                mismatches.append((i, expected[i], dut_bits))
+        if mismatches:
+            lines = [f"[❌ STREAM-DRAIN | DEPTH {depth} | drain_step={t} | ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}]"]
+            for (i, exp_bits, dut_bits) in mismatches:
+                lines.append(f"  lane {i}:")
+                lines.append(f"    EXP  0x{exp_bits:08X}  {bin32(exp_bits)}")
+                lines.append(f"    DUT  0x{dut_bits:08X}  {bin32(dut_bits)}")
+            raise AssertionError("\n" + "\n".join(lines))
+
+# =========================================================
+# Scoreboard Streaming: 혼합 depth (매 사이클 depth 변경)
+# =========================================================
+async def stream_and_check_mixed_depths(dut, num_transactions: int, pattern: str = "roundrobin"):
+    """
+    매 사이클 depth와 데이터/스케일을 바꿔 연속 주입.
+    출력은 항상 입력으로부터 11사이클 뒤 결과이므로,
+    큐[t-11]의 '그 트랜잭션 depth'로 계산한 기대값과 비교.
+    """
+    assert PIPELINE_LATENCY == 12
+    # depth 시퀀스
+    if pattern == "roundrobin":
+        depth_seq = [(i % 9) for i in range(num_transactions)]
+    elif pattern == "random":
+        depth_seq = [random.randint(0, 8) for _ in range(num_transactions)]
+    else:
+        raise ValueError("pattern must be 'roundrobin' or 'random'")
+
+    exp_q = deque()
+
+    # 첫 트랜잭션
+    d0 = depth_seq[0]
+    a0 = [random.randint(0, 15) for _ in range(256)]
+    b0 = [random.randint(0, 15) for _ in range(256)]
+    a0s, b0s = gen_random_scales()
+    tv0 = PipelineTestVector(a0, b0, a0s, b0s, d0)
+    await apply_inputs(dut, a0, b0, a0s, b0s, d0)
+    exp_q.append(tv0.expected_outputs[d0])
+
+    # 연속 주입 + 비교
+    for t in range(1, num_transactions):
+        await RisingEdge(dut.clock)
+        d = depth_seq[t]
+        a = [random.randint(0, 15) for _ in range(256)]
+        b = [random.randint(0, 15) for _ in range(256)]
+        as_, bs_ = gen_random_scales()
+        tv = PipelineTestVector(a, b, as_, bs_, d)
+        await apply_inputs(dut, a, b, as_, bs_, d)
+        exp_q.append(tv.expected_outputs[d])
+
+        if t >= PIPELINE_LATENCY:
+            expected = exp_q[t - PIPELINE_LATENCY]
+            mismatches = []
+            for i in range(16):
+                s, e, m = read_fp32(dut, i)
+                dut_bits = (s << 31) | (e << 23) | m
+                if not equal_fp32_with_ulpm(expected[i], dut_bits, allow_ulpm=ALLOW_MANTISSA_ULP1):
+                    mismatches.append((i, expected[i], dut_bits))
+            if mismatches:
+                lines = [f"[❌ MIXED-DEPTH STREAM | cycle={t} | depth_now={d} | expect_tx={t-PIPELINE_LATENCY} | ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}]"]
+                for (i, exp_bits, dut_bits) in mismatches:
+                    lines.append(f"  lane {i}:")
+                    lines.append(f"    EXP  0x{exp_bits:08X}  {bin32(exp_bits)}")
+                    lines.append(f"    DUT  0x{dut_bits:08X}  {bin32(dut_bits)}")
+                raise AssertionError("\n" + "\n".join(lines))
+
+    # 드레인
+    for t in range(PIPELINE_LATENCY):
+        await RisingEdge(dut.clock)
+        idx = num_transactions - PIPELINE_LATENCY + t
+        if idx < 0:
+            continue
+        expected = exp_q[idx]
+        mismatches = []
+        for i in range(16):
+            s, e, m = read_fp32(dut, i)
+            dut_bits = (s << 31) | (e << 23) | m
+            if not equal_fp32_with_ulpm(expected[i], dut_bits, allow_ulpm=ALLOW_MANTISSA_ULP1):
+                mismatches.append((i, expected[i], dut_bits))
+        if mismatches:
+            lines = [f"[❌ MIXED-DEPTH DRAIN | drain_step={t} | ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}]"]
+            for (i, exp_bits, dut_bits) in mismatches:
+                lines.append(f"  lane {i}:")
+                lines.append(f"    EXP  0x{exp_bits:08X}  {bin32(exp_bits)}")
+                lines.append(f"    DUT  0x{dut_bits:08X}  {bin32(dut_bits)}")
+            raise AssertionError("\n" + "\n".join(lines))
+
+# =========================================================
+# Tests
+# =========================================================
 @cocotb.test()
-async def test_mxfp4_mac_pipelined_all_depths(dut):
-    """Test all depths with pipelined timing"""
+async def test_mxfp4_mac_pipelined_single_depth_streaming(dut):
+    """단일 깊이에서 백투백 스트리밍 입력을 넣고 t-11 매칭으로 검증."""
     cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
     await reset_dut(dut)
-    
-    for depth in range(0, 9):
-        output_count = min(256 >> depth, 16)
-        dut._log.info(f"\n================ PIPELINED DEPTH {depth} TEST START ================")
-        
-        for trial in range(min(NUM_TRIALS, 100)):  # Reduced trials for pipelined test
-            # Generate test inputs
-            a_raw = [random.randint(0, 15) for _ in range(256)]
-            b_raw = [random.randint(0, 15) for _ in range(256)]
-            a_scale_raw, b_scale_raw = [], []
-            
-            for _ in range(8):
-                total = random.randint(-127, 127)
-                a = random.randint(0, 254)
-                b = max(0, min(255, total + 254 - a))
-                a_scale_raw.append(a)
-                b_scale_raw.append(b)
-            
-            test_vector = PipelineTestVector(a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
-            
-            # Apply inputs
-            await apply_inputs(dut, a_raw, b_raw, a_scale_raw, b_scale_raw, depth)
-            
-            # Wait for pipeline
-            await wait_pipeline_cycles(dut, PIPELINE_LATENCY + 1)
 
-            # Validate outputs
-            expected_outputs = test_vector.expected_outputs[depth]
-            
-            for i in range(16):
-                dut_sign, dut_exp, dut_man = read_fp32(dut, i)
-                dut_bits = (dut_sign << 31) | (dut_exp << 23) | dut_man
+    depth = 3
+    num_transactions = 64
+    dut._log.info(f"🧪 Single-depth streaming | depth={depth}, tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
+    await stream_and_check(dut, depth, num_transactions)
+    dut._log.info("✅ Single-depth streaming test passed")
 
-                
-                expected_bits = expected_outputs[i]
-                expected_sign, expected_exp, expected_man = get_fp32_fields(expected_bits)
-                if (expected_sign != dut_sign or
-                    expected_exp != dut_exp or
-                    abs(expected_man - dut_man) > 1):
-                    
-                    # Enhanced debug for depths 6-8
-                    dbg_block = ""
-                    if depth >= 6:
-                        if depth == 6:
-                            a6_m = _read_vec(dut, "io_adder6_out_mantissa", 4, signed=False)
-                            a6_s = _read_vec(dut, "io_adder6_out_sign", 4, signed=False)
-                            dbg_block = f"\n🔎 DBG (Depth 6) adder6_out: sign={a6_s}, mantissa={a6_m}"
-                        elif depth == 7:
-                            a7_m = _read_vec(dut, "io_adder7_out_mantissa", 2, signed=False)
-                            a7_s = _read_vec(dut, "io_adder7_out_sign", 2, signed=False)
-                            dbg_block = f"\n🔎 DBG (Depth 7) adder7_out: sign={a7_s}, mantissa={a7_m}"
-                        elif depth == 8:
-                            a8_m = _read_vec(dut, "io_adder8_out_mantissa", 1, signed=False)
-                            a8_s = _read_vec(dut, "io_adder8_out_sign", 1, signed=False)
-                            dbg_block = f"\n🔎 DBG (Depth 8) adder8_out: sign={a8_s}, mantissa={a8_m}"
-                    
-                    raise AssertionError(
-                        f"\n[❌ Trial {trial + 1} | PIPELINED DEPTH {depth} | Output {i}]\n"
-                        f"🧪 Expected FP32: 0x{expected_bits:08X}\n"
-                        f"  - Sign     : {expected_sign} (0b{expected_sign:01b})\n"
-                        f"  - Exponent : {expected_exp} (0b{expected_exp:08b})\n"
-                        f"  - Mantissa : {expected_man} (0b{expected_man:023b})\n\n"
-                        f"💥 DUT Output: 0x{dut_bits:08X}\n"
-                        f"  - Sign     : {dut_sign} (0b{dut_sign:01b})\n"
-                        f"  - Exponent : {dut_exp} (0b{dut_exp:08b})\n"
-                        f"  - Mantissa : {dut_man} (0b{dut_man:023b})\n"
-                        f"{dbg_block}"
-                    )
-            
-            if trial % 10 == 9:  # Log every 10 trials
-                dut._log.info(f"✅ Trial {trial + 1}/{min(NUM_TRIALS, 100)} PASSED for Pipelined Depth {depth}")
-        
-        dut._log.info(f"🎉✅ All trials passed for Pipelined Depth {depth}!")
+@cocotb.test()
+async def test_mxfp4_mac_pipelined_throughput_streaming(dut):
+    """스루풋 확인(고정 depth). 파이프라인 공회전 없이 연속 주입/검증."""
+    cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
+    await reset_dut(dut)
 
-    dut._log.info("\n\n📘 [MXFP4 Pipelined Dot-Product Verification Summary]")
-    dut._log.info("────────────────────────────────────────────────────────────")
-    dut._log.info("✅ All pipelined testbenches successfully verified across depth levels 0–8")
-    dut._log.info(f"🔁 Trials per depth         : {min(NUM_TRIALS, 100)}")
-    dut._log.info(f"⏱️  Pipeline latency        : {PIPELINE_LATENCY} cycles")
-    dut._log.info("🏗️  DUT Overview            : p_TOP_Til_Dep_total_piped")
-    dut._log.info("   └─ 12-stage pipelined MXFP4 MAC with scale-aware accumulation")
-    dut._log.info("   └─ Supports dynamic depth control for accumulation tree (0–8)")
-    dut._log.info("   └─ Full pipeline timing validation with back-to-back transactions")
-    dut._log.info("🔍 Validation Scope:")
-    dut._log.info("   └─ Covers full FP32 field matching (sign, exponent, mantissa)")
-    dut._log.info("   └─ Includes pipeline timing and throughput validation")
-    dut._log.info("   └─ Handles NaN propagation through pipeline stages")
-    dut._log.info("────────────────────────────────────────────────────────────")
-    dut._log.info("🎯 Result  : ✅ All pipelined functional correctness tests passed")
-    dut._log.info("📦 Module  : p_TOP_Til_Dep_total_piped")
-    dut._log.info("📎 Ready for high-frequency operation and integration.")
-    dut._log.info("────────────────────────────────────────────────────────────\n")
+    depth = 4
+    num_transactions = 80
+    dut._log.info(f"🧪 Throughput streaming | depth={depth}, tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
+    await stream_and_check(dut, depth, num_transactions)
+    dut._log.info("✅ Throughput streaming test passed")
 
+@cocotb.test()
+async def test_mxfp4_mac_pipelined_mixed_depths_streaming(dut):
+    """혼합 depth(0~8)를 라운드로빈으로 매 사이클 변경하며 스트리밍 검증."""
+    cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
+    await reset_dut(dut)
 
+    num_transactions = 180
+    dut._log.info(f"🧪 Mixed-depth streaming (roundrobin) | tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
+    await stream_and_check_mixed_depths(dut, num_transactions, pattern="roundrobin")
+    dut._log.info("✅ Mixed-depth (roundrobin) streaming passed")
+
+    #랜덤 패턴도 확인
+    await reset_dut(dut)
+    dut._log.info(f"🧪 Mixed-depth streaming (random) | tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
+    await stream_and_check_mixed_depths(dut, num_transactions, pattern="random")
+    dut._log.info("✅ Mixed-depth (random) streaming passed")

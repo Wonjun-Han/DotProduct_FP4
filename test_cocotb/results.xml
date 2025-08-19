@@ -1,8 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1755582613" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="200" time="0.2260739803314209" sim_time_ns="290.001" ratio_time="1282.7703549734608" />
-    <testcase name="test_mxfp4_mac_pipelined_throughput" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="249" time="0.06326675415039062" sim_time_ns="390.001" ratio_time="6164.390843774495" />
-    <testcase name="test_mxfp4_mac_pipelined_all_depths" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="288" time="12.023591041564941" sim_time_ns="117170.001" ratio_time="9745.008840948538" />
+    <property name="random_seed" value="1755593110" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="365" time="0.8256809711456299" sim_time_ns="770.001" ratio_time="932.56478822762" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="377" time="0.7792000770568848" sim_time_ns="940.001" ratio_time="1206.366667147257" />
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="389" time="2.74525785446167" sim_time_ns="3880.0009999999997" ratio_time="1413.3466529179084" />
   </testsuite>
 </testsuites>
