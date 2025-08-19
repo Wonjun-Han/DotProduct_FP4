@@ -10,8 +10,8 @@ from collections import deque
 # Config
 # =========================================================
 NUM_TRIALS = 100            # per-depth, 스트리밍 검증 시 트랜잭션 수 기본값
-PIPELINE_LATENCY = 12       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+11)
-ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부 (라운딩 차이 완충)
+PIPELINE_LATENCY = 12       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
+ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부
 
 # =========================================================
 # Helpers: FP & Bits
