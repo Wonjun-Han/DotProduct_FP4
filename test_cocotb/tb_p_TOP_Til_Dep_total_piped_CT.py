@@ -222,7 +222,7 @@ class PipelineTestVector:
 async def stream_and_check(dut, depth: int, num_transactions: int):
     """
     매 사이클 입력 연속 주입.
-    출력은 항상 11사이클 뒤이므로 큐[t-11] 기대값과 현재 출력을 비교.
+    출력은 항상 12사이클 뒤이므로 큐[t-12] 기대값과 현재 출력을 비교.
     """
     exp_q = deque()  # 각 트랜잭션 기대(16 lanes) 리스트 저장
 
@@ -288,8 +288,8 @@ async def stream_and_check(dut, depth: int, num_transactions: int):
 async def stream_and_check_mixed_depths(dut, num_transactions: int, pattern: str = "roundrobin"):
     """
     매 사이클 depth와 데이터/스케일을 바꿔 연속 주입.
-    출력은 항상 입력으로부터 11사이클 뒤 결과이므로,
-    큐[t-11]의 '그 트랜잭션 depth'로 계산한 기대값과 비교.
+    출력은 항상 입력으로부터 12사이클 뒤 결과이므로,
+    큐[t-12]의 '그 트랜잭션 depth'로 계산한 기대값과 12 사이클 이후에 비교하자!
     """
     assert PIPELINE_LATENCY == 12
     # depth 시퀀스
@@ -392,7 +392,7 @@ async def test_mxfp4_mac_pipelined_mixed_depths_streaming(dut):
     cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
     await reset_dut(dut)
 
-    num_transactions = 180
+    num_transactions = 1000
     dut._log.info(f"🧪 Mixed-depth streaming (roundrobin) | tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
     await stream_and_check_mixed_depths(dut, num_transactions, pattern="roundrobin")
     dut._log.info("✅ Mixed-depth (roundrobin) streaming passed")
