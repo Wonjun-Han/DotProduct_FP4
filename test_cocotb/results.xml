@@ -1,14 +1,14 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1755686485" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="6.244527101516724" sim_time_ns="3220.0" ratio_time="515.651537362677">
-      <failure message="Test failed with RANDOM_SEED=1755686485" />
+    <property name="random_seed" value="1755687437" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="16.038697004318237" sim_time_ns="9670.0" ratio_time="602.9168078551807">
+      <failure message="Test failed with RANDOM_SEED=1755687437" />
     </testcase>
     <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="422" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure message="Test failed with RANDOM_SEED=1755686485" />
+      <failure message="Test failed with RANDOM_SEED=1755687437" />
     </testcase>
     <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="435" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure message="Test failed with RANDOM_SEED=1755686485" />
+      <failure message="Test failed with RANDOM_SEED=1755687437" />
     </testcase>
   </testsuite>
 </testsuites>
