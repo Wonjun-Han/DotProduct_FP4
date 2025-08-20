@@ -58,7 +58,7 @@ object build {
       case "p_TOP_Til_Dep_total" => new mxfp4.proposed.p_TOP_Til_Dep_total()
       case "p_TOP_Til_Dep_total_piped" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped()
       case "p_TOP_Til_Dep_total_piped_CT" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT()
-
+      case "p_TOP_Til_Dep_total_piped_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn()
       case other =>
 
         System.err.println(s"❌ Unknown module: $moduleName")
