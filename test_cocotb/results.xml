@@ -1,10 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1755596748" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="365" time="0.7552950382232666" sim_time_ns="770.001" ratio_time="1019.470486409294" />
-    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="377" time="0.8230288028717041" sim_time_ns="940.001" ratio_time="1142.1240626332367" />
-    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="389" time="193.0925030708313" sim_time_ns="240890.001" ratio_time="1247.5367876485361">
-      <failure message="Test failed with RANDOM_SEED=1755596748" />
-    </testcase>
+    <property name="random_seed" value="1755672003" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="413" time="122.69379782676697" sim_time_ns="100130.001" ratio_time="816.0966794863983" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="426" time="105.87917017936707" sim_time_ns="100140.001" ratio_time="945.7951061606879" />
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT.py" lineno="439" time="198.39445900917053" sim_time_ns="200280.00100000002" ratio_time="1009.5040053046156" />
   </testsuite>
 </testsuites>
