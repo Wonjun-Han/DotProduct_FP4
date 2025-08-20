@@ -9,7 +9,7 @@ from collections import deque
 # =========================================================
 # Config
 # =========================================================
-NUM_TRIALS = 100            # per-depth, 스트리밍 검증 시 트랜잭션 수 기본값
+NUM_TRIALS = 100            # per-depth, 스트리밍 검증 시 transaciton 수
 PIPELINE_LATENCY = 12       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
 ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부
 
@@ -392,7 +392,7 @@ async def test_mxfp4_mac_pipelined_mixed_depths_streaming(dut):
     cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
     await reset_dut(dut)
 
-    num_transactions = 1000
+    num_transactions = 50000
     dut._log.info(f"🧪 Mixed-depth streaming (roundrobin) | tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
     await stream_and_check_mixed_depths(dut, num_transactions, pattern="roundrobin")
     dut._log.info("✅ Mixed-depth (roundrobin) streaming passed")
