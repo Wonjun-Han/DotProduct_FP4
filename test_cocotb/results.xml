@@ -1,14 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1755753859" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="408" time="49.9384491443634" sim_time_ns="10180.0" ratio_time="203.8509440005112">
-      <failure message="Test failed with RANDOM_SEED=1755753859" />
-    </testcase>
-    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="421" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure message="Test failed with RANDOM_SEED=1755753859" />
-    </testcase>
-    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="434" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure message="Test failed with RANDOM_SEED=1755753859" />
-    </testcase>
+    <property name="random_seed" value="1755757483" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="408" time="473.4360566139221" sim_time_ns="100040.001" ratio_time="211.30625689031683" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="421" time="475.6646831035614" sim_time_ns="100050.001" ratio_time="210.33724923028853" />
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_comb_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_comb_CT_syn.py" lineno="434" time="962.9058496952057" sim_time_ns="200100.00100000002" ratio_time="207.8084799914123" />
   </testsuite>
 </testsuites>

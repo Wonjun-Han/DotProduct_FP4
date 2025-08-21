@@ -49,10 +49,10 @@ object build {
       case "p_TOP_Til_Dep_1_5" => new mxfp4.proposed.p_TOP_Til_Dep_1_5() //need more testing
 
       // Cross-Block Computation
-      case "p_Expansion_Groupwise" => new mxfp4.proposed.p_Expansion_Groupwise(5, 30)
-      case "p_NaN_Process" => new mxfp4.proposed.p_NaN_Process(5)
-      case "p_Adder_Groupwise" => new mxfp4.proposed.p_Adder_Groupwise(6, 30)
-      case "p_Convert_Groupwise" => new mxfp4.proposed.p_Convert_Groupwise(8, 30)
+      case "p_Expansion_Groupwise" => new mxfp4.proposed.p_Expansion_Groupwise(5, 30) // location of p_Expansion and extra bit-precision (for testing)
+      case "p_NaN_Process" => new mxfp4.proposed.p_NaN_Process(5) // location of p_NaN_Process
+      case "p_Adder_Groupwise" => new mxfp4.proposed.p_Adder_Groupwise(6, 30)  // location of p_Adder_Dep_6 and extra bit-precision (for testing)
+      case "p_Convert_Groupwise" => new mxfp4.proposed.p_Convert_Groupwise(8, 30) // location of p_Convert_Dep_8 and extra bit-precision (for testing)
 
 
       case "p_TOP_Til_Dep_total" => new mxfp4.proposed.p_TOP_Til_Dep_total()
@@ -60,6 +60,12 @@ object build {
       case "p_TOP_Til_Dep_total_piped_CT" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT()
       case "p_TOP_Til_Dep_total_piped_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn()
       case "p_TOP_Til_Dep_total_comb_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_comb_CT_syn()
+
+      // LUT INT Conversion and CSA Accumulation (Design Choice)
+      case "p_LUT_2D" => new mxfp4.proposed.p_LUT_2D()
+      case "p_CSA_Unit" => new mxfp4.proposed.p_CSA_Unit(8) // input bit-width 8
+      case "p_CSA_Bundle" => new mxfp4.proposed.p_CSA_Bundle(8, 32) // 1-stage CSA: input bit-width 8 and input port number 32
+      case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(8, 32, 1) // Depth(from zero) CSA: input bit-width 8, input port number 32 and depth 1
 
       case other =>
 

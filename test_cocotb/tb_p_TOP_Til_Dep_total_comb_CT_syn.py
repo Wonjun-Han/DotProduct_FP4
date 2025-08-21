@@ -457,7 +457,7 @@ async def test_mxfp4_mac_pipelined_mixed_depths_streaming(dut):
     dut._log.info(f"🔁 Trials per depth         : {NUM_TRIALS}")
     dut._log.info(f"⏱️  End-to-end latency      : {PIPELINE_LATENCY} cycles")
     dut._log.info("🏗️  DUT Overview            : p_TOP_Til_Dep_total_COMB_CT_syn")
-    dut._log.info("   └─ 2-cycle comb (front input latch + back output FF)")
+    dut._log.info("   └─ 3-cycle comb (front input latch + back output FF)")
     dut._log.info("   └─ Supports dynamic depth control for accumulation tree (0–8)")
     dut._log.info("   └─ Full timing alignment check with back-to-back transactions")
     dut._log.info("🔍 Validation Scope:")
