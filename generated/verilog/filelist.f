@@ -1,2 +1,17 @@
 p_CSA_Unit.sv
 p_CSA_Bundle.sv
+p_CSA_Unit_10.sv
+p_CSA_Bundle_1.sv
+p_CSA_Unit_17.sv
+p_CSA_Bundle_2.sv
+p_CSA_Unit_22.sv
+p_CSA_Bundle_3.sv
+p_CSA_Unit_25.sv
+p_CSA_Bundle_4.sv
+p_CSA_Unit_27.sv
+p_CSA_Bundle_5.sv
+p_CSA_Unit_28.sv
+p_CSA_Bundle_6.sv
+p_CSA_Unit_29.sv
+p_CSA_Bundle_7.sv
+p_CSA_Total.sv

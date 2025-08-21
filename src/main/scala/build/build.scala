@@ -65,8 +65,7 @@ object build {
       case "p_LUT_2D" => new mxfp4.proposed.p_LUT_2D()
       case "p_CSA_Unit" => new mxfp4.proposed.p_CSA_Unit(8) // input bit-width 8
       case "p_CSA_Bundle" => new mxfp4.proposed.p_CSA_Bundle(8, 32) // 1-stage CSA: input bit-width 8 and input port number 32
-      case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(8, 32, 1) // Depth(from zero) CSA: input bit-width 8, input port number 32 and depth 1
-
+      case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(8, 32) // Depth(from zero) CSA: input bit-width 8, input port number 32
       case other =>
 
         System.err.println(s"❌ Unknown module: $moduleName")
