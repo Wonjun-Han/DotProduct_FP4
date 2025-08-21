@@ -13,7 +13,7 @@ class p_CSA_Total(w:Int, numInputs: Int, depth: Int) extends Module {
   val io = IO(new p_CSA_TOTAL_BLOCK_IO(w, numInputs, depth))
   
   // 2*(numInputs / 3) + numInputs % 3 after one CSA_BUNDLE, it must be 2 at the final stage. then the number of CSA_BUNDLE is needed to be calculated
-   //recursion times = num of CSA_BUNDLE. that means we need to calculate the recursion times to satisfy the last output size must be 2
+   //recursion times = num of CSA_BUNDLE. that means we need to calculate the recursion times to satisfy the last output size must be 2 휴휴...필요 없겠다!
   val numGroups = numInputs / 3
   val passThrough = numInputs % 3
   def calculateNumBundle(depth: Int, numInputs: Int): Int = {
