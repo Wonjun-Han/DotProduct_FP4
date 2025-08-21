@@ -315,7 +315,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val d8_atS11 = padTo16(convert_groupwise_8.io.out)                 // S11
 
   val selected_out = WireDefault(VecInit(Seq.fill(16)(0.U.asTypeOf(new FP32))))
-  
+
   class FF16_FP32 extends Module {
     val io = IO(new Bundle {
       val in  = Input (Vec(16, new FP32))
@@ -337,6 +337,6 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   .elsewhen(depth_s11 === 8.U) { selected_out := d8_atS11 }
 
   val outff = Module(new FF16_FP32)
-  outff.io.in := selected_out        // 상위는 순수 조합
-  io.out      := outff.io.out        // 하위 모듈에서만 reg 업데이트
+  outff.io.in := selected_out      
+  io.out      := outff.io.out       
 }
