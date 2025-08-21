@@ -11,7 +11,7 @@ from typing import Optional
 # Config
 # =========================================================
 NUM_TRIALS = 10000            # per-depth, 스트리밍 검증 시 transaciton 수
-PIPELINE_LATENCY = 13       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
+PIPELINE_LATENCY = 14       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
 ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부
 
 # =========================================================
@@ -247,7 +247,7 @@ class PipelineTestVector:
 async def stream_and_check(dut, depth: int, num_transactions: int):
     """
     매 사이클 입력 연속 주입.
-    출력은 항상 13사이클 뒤이므로 큐[t-13] 기대값과 현재 출력을 비교.
+    출력은 항상 14사이클 뒤이므로 큐[t-14] 기대값과 현재 출력을 비교.
     """
     exp_q = deque()  # 각 트랜잭션 기대(16 lanes) 리스트 저장
 
@@ -323,10 +323,10 @@ async def stream_and_check(dut, depth: int, num_transactions: int):
 async def stream_and_check_mixed_depths(dut, num_transactions: int, pattern: str = "roundrobin"):
     """
     매 사이클 depth와 데이터/스케일을 바꿔 연속 주입.
-    출력은 항상 입력으로부터 13사이클 뒤 결과이므로,
-    큐[t-13]의 '그 트랜잭션 depth'로 계산한 기대값과 13 사이클 이후에 비교.
+    출력은 항상 입력으로부터 14사이클 뒤 결과이므로,
+    큐[t-14]의 '그 트랜잭션 depth'로 계산한 기대값과 14 사이클 이후에 비교.
     """
-    assert PIPELINE_LATENCY == 13
+    
     # depth 시퀀스
     if pattern == "roundrobin":
         depth_seq = [(i % 9) for i in range(num_transactions)]
@@ -408,7 +408,7 @@ async def stream_and_check_mixed_depths(dut, num_transactions: int, pattern: str
 # =========================================================
 @cocotb.test()
 async def test_mxfp4_mac_pipelined_single_depth_streaming(dut):
-    """단일 깊이에서 백투백 스트리밍 입력을 넣고 t-12 매칭으로 검증."""
+    """단일 깊이에서 백투백 스트리밍 입력을 넣고 t-14 매칭으로 검증."""
     cocotb.start_soon(Clock(dut.clock, 10, units='ns').start())
     await reset_dut(dut)
 
@@ -458,7 +458,7 @@ async def test_mxfp4_mac_pipelined_mixed_depths_streaming(dut):
     dut._log.info(f"🔁 Trials per depth         : {NUM_TRIALS}")
     dut._log.info(f"⏱️  Pipeline latency        : {PIPELINE_LATENCY} cycles")
     dut._log.info("🏗️  DUT Overview            : p_TOP_Til_Dep_total_piped_CT_syn")
-    dut._log.info("   └─ 13-stage pipelined MXFP4 MAC with scale-aware accumulation")
+    dut._log.info("   └─ 14-stage pipelined MXFP4 MAC with scale-aware accumulation")
     dut._log.info("   └─ Supports dynamic depth control for accumulation tree (0–8)")
     dut._log.info("   └─ Full pipeline timing validation with back-to-back transactions")
     dut._log.info("🔍 Validation Scope:")

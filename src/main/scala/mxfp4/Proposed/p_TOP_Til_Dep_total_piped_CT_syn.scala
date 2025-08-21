@@ -314,19 +314,29 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val d7_atS11 = pipeVecN(padTo16(convert_groupwise_7.io.out), 1) // S10→S11
   val d8_atS11 = padTo16(convert_groupwise_8.io.out)                 // S11
 
-
-  val selected_out = Wire(Vec(16, new FP32))
-  selected_out := 0.U.asTypeOf(Vec(16, new FP32))
-  switch(depth_s11) {
-    is(0.U) { selected_out := d0_atS11 }
-    is(1.U) { selected_out := d1_atS11 }
-    is(2.U) { selected_out := d2_atS11 }
-    is(3.U) { selected_out := d3_atS11 }
-    is(4.U) { selected_out := d4_atS11 }
-    is(5.U) { selected_out := d5_atS11 }
-    is(6.U) { selected_out := d6_atS11 }
-    is(7.U) { selected_out := d7_atS11 }
-    is(8.U) { selected_out := d8_atS11 }
+  val selected_out = WireDefault(VecInit(Seq.fill(16)(0.U.asTypeOf(new FP32))))
+  
+  class FF16_FP32 extends Module {
+    val io = IO(new Bundle {
+      val in  = Input (Vec(16, new FP32))
+      val out = Output(Vec(16, new FP32))
+    })
+    val r = Reg(Vec(16, new FP32))  // 순수 FF
+    r := io.in                      // D <= in (조합 입력만 받음)
+    io.out := r
   }
-  io.out := selected_out
+
+  when(depth_s11 === 0.U) { selected_out := d0_atS11 }
+  .elsewhen(depth_s11 === 1.U) { selected_out := d1_atS11 }
+  .elsewhen(depth_s11 === 2.U) { selected_out := d2_atS11 }
+  .elsewhen(depth_s11 === 3.U) { selected_out := d3_atS11 }
+  .elsewhen(depth_s11 === 4.U) { selected_out := d4_atS11 }
+  .elsewhen(depth_s11 === 5.U) { selected_out := d5_atS11 }
+  .elsewhen(depth_s11 === 6.U) { selected_out := d6_atS11 }
+  .elsewhen(depth_s11 === 7.U) { selected_out := d7_atS11 }
+  .elsewhen(depth_s11 === 8.U) { selected_out := d8_atS11 }
+
+  val outff = Module(new FF16_FP32)
+  outff.io.in := selected_out        // 상위는 순수 조합
+  io.out      := outff.io.out        // 하위 모듈에서만 reg 업데이트
 }
