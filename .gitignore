@@ -291,6 +291,26 @@ Temporary Items
 build/
 DerivedData
 
+# Build / IDE
+.bloop/
+.metals/
+.idea/
+.vscode/
+target/
+out/
+out_svgs/
+
+# Metals semanticdb
+**/*.semanticdb
+
+# Logs / DB
+*.log
+*.db
+
+# OS
+.DS_Store
+EOF
+
 ## systemverilog files
 ##*.sv
 
