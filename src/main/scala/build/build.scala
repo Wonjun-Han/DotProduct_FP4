@@ -63,9 +63,14 @@ object build {
 
       // LUT INT Conversion and CSA Accumulation (Design Choice)
       case "p_LUT_2D" => new mxfp4.proposed.p_LUT_2D()
-      case "p_CSA_Unit" => new mxfp4.proposed.p_CSA_Unit(8) // input bit-width 8
-      case "p_CSA_Bundle" => new mxfp4.proposed.p_CSA_Bundle(8, 32) // 1-stage CSA: input bit-width 8 and input port number 32
-      case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(8, 32) // Depth(from zero) CSA: input bit-width 8, input port number 32
+      case "p_CSA_Unit" => new mxfp4.proposed.p_CSA_Unit(9) // input bit-width 9 (including sign bit)
+      case "p_CSA_Bundle" => new mxfp4.proposed.p_CSA_Bundle(9, 32, 10) // 1-stage CSA: input bit-width 9 and input port number 32, output bit-width (inW or inW+1)
+      case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(9, 32, 14) // Depth(from zero) CSA: input bit-width 9, input port number 32
+      case "p_Adder_sumcarry" => new mxfp4.proposed.p_Adder_sumcarry(14) // Adder for final Carry and sum : input bit-width 14
+
+      case "p_Expansion_CSA_Groupwise" => new mxfp4.proposed.p_Expansion_CSA_Groupwise(5, 30) // location of p_Expansion_CSA_Groupwise and extra bit-precision (for testing)
+      case "p_Convert_CSA" => new mxfp4.proposed.p_Convert_CSA(5) // location of p_Convert_CSA and extra bit-precision (for testing)
+
       case other =>
 
         System.err.println(s"❌ Unknown module: $moduleName")

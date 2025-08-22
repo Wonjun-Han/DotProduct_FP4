@@ -10,8 +10,6 @@ p_CSA_Unit_25.sv
 p_CSA_Bundle_4.sv
 p_CSA_Unit_27.sv
 p_CSA_Bundle_5.sv
-p_CSA_Unit_28.sv
 p_CSA_Bundle_6.sv
-p_CSA_Unit_29.sv
 p_CSA_Bundle_7.sv
 p_CSA_Total.sv

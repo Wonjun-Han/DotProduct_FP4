@@ -4,7 +4,7 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class MXFP4_CONVERT_GROUPWISE_BLOCK_IO(depthBitWidth: Int, mantissaWidth: Int, vecSize: Int) extends Bundle {
+class MXFP4_CONVERT_CSA_GROUPWISE_BLOCK_IO(depthBitWidth: Int, mantissaWidth: Int, vecSize: Int) extends Bundle {
   val depth    = Input(UInt(depthBitWidth.W))
   val mantissa = Input(Vec(vecSize, UInt(mantissaWidth.W))) // from p_Adder_Groupwise (magnitude only)
   val sign     = Input(Vec(vecSize, UInt(1.W)))             // from p_Adder_Groupwise
@@ -15,13 +15,13 @@ class MXFP4_CONVERT_GROUPWISE_BLOCK_IO(depthBitWidth: Int, mantissaWidth: Int, v
 
 }
 
-class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
+class p_Convert_CSA_Groupwise(val d: Int, val extra: Int) extends Module {
   // 내부 고정소수점 폭: 정수부(8+d-?가 아니라 설계상 합산 결과 폭) + 소수부(6) + extra
   val mantissaWidth = 8 + d + extra
   val vecSize       = 256 >> d                 // depth 6: 4, 7: 2, 8: 1
   val FRACW         = 6 + extra                // 이진 소수점(2^0, 정수 LSB) 비트 인덱스 (설계상 고정)
 
-  val io = IO(new MXFP4_CONVERT_GROUPWISE_BLOCK_IO(
+  val io = IO(new MXFP4_CONVERT_CSA_GROUPWISE_BLOCK_IO(
     depthBitWidth = 4, mantissaWidth = mantissaWidth, vecSize = vecSize
   ))
 

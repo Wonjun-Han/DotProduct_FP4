@@ -4,43 +4,53 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class p_CSA_BUNDLE_BLOCK_IO(w: Int, numInputs: Int) extends Bundle {
-  val in    = Input(Vec(numInputs, UInt(w.W)))
-  // sum과 (pass through는 sum에 마지막에 붙음) + carry를 이어붙인 단일 출력
-  val out   = Output(Vec(2*(numInputs/3) + (numInputs % 3), UInt((w+1).W)))
+// 한 스테이지: 입력폭 wIn → 출력폭 wOut (포화되면 wOut == wIn)
+class p_CSA_BUNDLE_BLOCK_IO(wIn: Int, numInputs: Int, wOut: Int) extends Bundle {
+  val in  = Input(Vec(numInputs, UInt(wIn.W)))
+  val out = Output(Vec(2*(numInputs/3) + (numInputs % 3), UInt(wOut.W)))
 }
+class p_CSA_Bundle(wIn: Int, numInputs: Int, wOut: Int) extends Module {
+  val io = IO(new p_CSA_BUNDLE_BLOCK_IO(wIn, numInputs, wOut))
+  val G = numInputs / 3
+  val P = numInputs % 3
 
-class p_CSA_Bundle (w: Int, numInputs: Int) extends Module {
-  val io = IO(new p_CSA_BUNDLE_BLOCK_IO(w, numInputs))
+  val units = Seq.fill(G)(Module(new p_CSA_Unit(wIn)))
 
-  val numGroups   = numInputs / 3
-  val passThrough = numInputs % 3
+  val sums    = Wire(Vec(G + P, UInt(wOut.W)))
+  val carries = Wire(Vec(G,     UInt(wOut.W)))
 
-  val CSA_UNIT = Seq.fill(numGroups)(Module(new p_CSA_Unit(w)))
+  // 3개씩 CSA
+  for (i <- 0 until G) {
+    val a = io.in(3*i+0); val b = io.in(3*i+1); val c = io.in(3*i+2)
+    units(i).io.in := VecInit(a, b, c)
 
-  val sum   = Wire(Vec(numGroups + passThrough, UInt((w+1).W)))
-  val carry = Wire(Vec(numGroups,               UInt((w+1).W)))
+    val sumBit   = units(i).io.sum                 // wIn
+    val carryBit = units(i).io.carry               // wIn
 
-  for (i <- 0 until numGroups) {
-    val groupInputs = io.in.slice(i * 3, (i + 1) * 3)
-    CSA_UNIT(i).io.in := groupInputs
-    sum(i)   := CSA_UNIT(i).io.sum           // zero-extend는 상위에서 (w+1)로 맞았으니 OK
-    carry(i) := (CSA_UNIT(i).io.carry << 1)  // carry는 1비트 시프트
+    // sum
+    val sumNext =
+      if (wOut > wIn) Cat(sumBit(wIn-1), sumBit)   // wIn+1
+      else sumBit                                   // wIn
+
+    // carry
+    val carrySh   = Cat(carryBit, 0.U(1.W))        // wIn+1
+    val carryNext = carrySh(wOut-1, 0)             // wOut
+
+    sums(i)    := sumNext
+    carries(i) := carryNext
   }
 
-  for (j <- 0 until passThrough) {
-    sum(numGroups + j) := io.in(numGroups * 3 + j) 
+  // 패스스루
+  for (j <- 0 until P) {
+    val x = io.in(3*G + j)
+    val xNext =
+      if (wOut > wIn) Cat(x(wIn-1), x) else x
+    sums(G + j) := xNext
   }
 
-  val total = 2 * numGroups + passThrough
-  val outVec = Wire(Vec(total, UInt((w+1).W)))
-  // 앞쪽: sum + pass through
-  for (i <- 0 until (numGroups + passThrough)) {
-    outVec(i) := sum(i)
-  }
-  // 뒤쪽: carry
-  for (i <- 0 until numGroups) {
-    outVec(numGroups + passThrough + i) := carry(i)
-  }
+  val total = 2*G + P
+  val outVec = Wire(Vec(total, UInt(wOut.W)))
+  for (i <- 0 until (G + P)) outVec(i) := sums(i)
+  for (i <- 0 until G)       outVec(G + P + i) := carries(i)
   io.out := outVec
 }

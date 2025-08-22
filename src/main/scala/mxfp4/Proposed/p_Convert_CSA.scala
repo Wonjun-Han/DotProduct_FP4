@@ -4,21 +4,27 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class MXFP4_CONVERT_BLOCK_IO(depthBitWidth: Int, accWidth: Int, vecSize: Int, absWidth: Int) extends Bundle {
+class MXFP4_CONVERT_CSA_BLOCK_IO(depthBitWidth: Int, accWidth: Int, vecSize: Int, absWidth: Int) extends Bundle {
   val depth    = Input(UInt(depthBitWidth.W))
   val in       = Input(Vec(vecSize, SInt(accWidth.W)))
   val nan      = Input(Vec(8, UInt(1.W)))
-  val exponent = Input(Vec(8, SInt(10.W)))
+  val exponent = Input(Vec(8, SInt(10.W))) // 각 그룹의 scale
   val out      = Output(Vec(vecSize, new FP32))
 
+  // Debug ports
+  val debug_real_exp   = Output(Vec(vecSize, SInt(10.W)))
+  val debug_biased_exp = Output(Vec(vecSize, SInt(10.W)))
+  val debug_shift_amt  = Output(Vec(vecSize, SInt(5.W)))
+  val debug_PE         = Output(Vec(vecSize, UInt(4.W)))
+  val debug_abs_in     = Output(Vec(vecSize, UInt(absWidth.W)))
 }
 
-class p_Convert(val d: Int) extends Module {
-  val accWidth = 9 + d
+class p_Convert_CSA(val d: Int) extends Module {
+  val accWidth = 13 + d
   val vecSize = 256 >> d
-  val absWidth = 8 + d
- 
-  val io = IO(new MXFP4_CONVERT_BLOCK_IO(depthBitWidth = 4, accWidth = accWidth, vecSize = vecSize, absWidth = absWidth))
+  val absWidth = 12 + d
+
+  val io = IO(new MXFP4_CONVERT_CSA_BLOCK_IO(depthBitWidth = 4, accWidth = accWidth, vecSize = vecSize, absWidth = absWidth))
 
   val enable_depth = io.depth === d.U
   val groupSize = vecSize / 8
@@ -30,8 +36,8 @@ class p_Convert(val d: Int) extends Module {
     val abs_val      = abs_val_full(absWidth - 1, 0)
 
     val PE = PriorityEncoder(Reverse(abs_val))
-    val shift_amt = (d + 1).S - PE.asSInt
-    val extended_mantissa = Cat(abs_val, 0.U(17.W))
+    val shift_amt = (d - 3).S - PE.asSInt
+    val extended_mantissa = Cat(abs_val, 0.U(21.W))
 
     val groupIdx = i / groupSize
     val real_exp   = io.exponent(groupIdx) + shift_amt
@@ -75,6 +81,11 @@ class p_Convert(val d: Int) extends Module {
       io.out(i).mantissa := 0.U
     }
 
+    io.debug_real_exp(i)   := real_exp
+    io.debug_biased_exp(i) := biased_exp
+    io.debug_shift_amt(i)  := shift_amt
+    io.debug_PE(i)         := PE
+    io.debug_abs_in(i)     := abs_val
   }
 }
 
