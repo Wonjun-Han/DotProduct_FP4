@@ -163,61 +163,37 @@ module p_Expansion(
                io_out_mantissa_31
 );
 
-  wire [2:0] _max_exp_T_1 = io_exponent_0 > io_exponent_1 ? io_exponent_0 : io_exponent_1;
-  wire [2:0] _max_exp_T_3 = _max_exp_T_1 > io_exponent_2 ? _max_exp_T_1 : io_exponent_2;
-  wire [2:0] _max_exp_T_5 = _max_exp_T_3 > io_exponent_3 ? _max_exp_T_3 : io_exponent_3;
-  wire [2:0] _max_exp_T_7 = _max_exp_T_5 > io_exponent_4 ? _max_exp_T_5 : io_exponent_4;
-  wire [2:0] _max_exp_T_9 = _max_exp_T_7 > io_exponent_5 ? _max_exp_T_7 : io_exponent_5;
-  wire [2:0] _max_exp_T_11 = _max_exp_T_9 > io_exponent_6 ? _max_exp_T_9 : io_exponent_6;
-  wire [2:0] _max_exp_T_13 =
-    _max_exp_T_11 > io_exponent_7 ? _max_exp_T_11 : io_exponent_7;
-  wire [2:0] _max_exp_T_15 =
-    _max_exp_T_13 > io_exponent_8 ? _max_exp_T_13 : io_exponent_8;
-  wire [2:0] _max_exp_T_17 =
-    _max_exp_T_15 > io_exponent_9 ? _max_exp_T_15 : io_exponent_9;
-  wire [2:0] _max_exp_T_19 =
-    _max_exp_T_17 > io_exponent_10 ? _max_exp_T_17 : io_exponent_10;
-  wire [2:0] _max_exp_T_21 =
-    _max_exp_T_19 > io_exponent_11 ? _max_exp_T_19 : io_exponent_11;
-  wire [2:0] _max_exp_T_23 =
-    _max_exp_T_21 > io_exponent_12 ? _max_exp_T_21 : io_exponent_12;
-  wire [2:0] _max_exp_T_25 =
-    _max_exp_T_23 > io_exponent_13 ? _max_exp_T_23 : io_exponent_13;
-  wire [2:0] _max_exp_T_27 =
-    _max_exp_T_25 > io_exponent_14 ? _max_exp_T_25 : io_exponent_14;
-  wire [2:0] _max_exp_T_29 =
-    _max_exp_T_27 > io_exponent_15 ? _max_exp_T_27 : io_exponent_15;
-  wire [2:0] _max_exp_T_31 =
-    _max_exp_T_29 > io_exponent_16 ? _max_exp_T_29 : io_exponent_16;
-  wire [2:0] _max_exp_T_33 =
-    _max_exp_T_31 > io_exponent_17 ? _max_exp_T_31 : io_exponent_17;
-  wire [2:0] _max_exp_T_35 =
-    _max_exp_T_33 > io_exponent_18 ? _max_exp_T_33 : io_exponent_18;
-  wire [2:0] _max_exp_T_37 =
-    _max_exp_T_35 > io_exponent_19 ? _max_exp_T_35 : io_exponent_19;
-  wire [2:0] _max_exp_T_39 =
-    _max_exp_T_37 > io_exponent_20 ? _max_exp_T_37 : io_exponent_20;
-  wire [2:0] _max_exp_T_41 =
-    _max_exp_T_39 > io_exponent_21 ? _max_exp_T_39 : io_exponent_21;
-  wire [2:0] _max_exp_T_43 =
-    _max_exp_T_41 > io_exponent_22 ? _max_exp_T_41 : io_exponent_22;
-  wire [2:0] _max_exp_T_45 =
-    _max_exp_T_43 > io_exponent_23 ? _max_exp_T_43 : io_exponent_23;
-  wire [2:0] _max_exp_T_47 =
-    _max_exp_T_45 > io_exponent_24 ? _max_exp_T_45 : io_exponent_24;
-  wire [2:0] _max_exp_T_49 =
-    _max_exp_T_47 > io_exponent_25 ? _max_exp_T_47 : io_exponent_25;
-  wire [2:0] _max_exp_T_51 =
-    _max_exp_T_49 > io_exponent_26 ? _max_exp_T_49 : io_exponent_26;
-  wire [2:0] _max_exp_T_53 =
-    _max_exp_T_51 > io_exponent_27 ? _max_exp_T_51 : io_exponent_27;
-  wire [2:0] _max_exp_T_55 =
-    _max_exp_T_53 > io_exponent_28 ? _max_exp_T_53 : io_exponent_28;
-  wire [2:0] _max_exp_T_57 =
-    _max_exp_T_55 > io_exponent_29 ? _max_exp_T_55 : io_exponent_29;
-  wire [2:0] _max_exp_T_59 =
-    _max_exp_T_57 > io_exponent_30 ? _max_exp_T_57 : io_exponent_30;
-  wire [2:0] max_exp = _max_exp_T_59 > io_exponent_31 ? _max_exp_T_59 : io_exponent_31;
+  wire [2:0] l1_0 = io_exponent_0 > io_exponent_1 ? io_exponent_0 : io_exponent_1;
+  wire [2:0] l1_1 = io_exponent_2 > io_exponent_3 ? io_exponent_2 : io_exponent_3;
+  wire [2:0] l1_2 = io_exponent_4 > io_exponent_5 ? io_exponent_4 : io_exponent_5;
+  wire [2:0] l1_3 = io_exponent_6 > io_exponent_7 ? io_exponent_6 : io_exponent_7;
+  wire [2:0] l1_4 = io_exponent_8 > io_exponent_9 ? io_exponent_8 : io_exponent_9;
+  wire [2:0] l1_5 = io_exponent_10 > io_exponent_11 ? io_exponent_10 : io_exponent_11;
+  wire [2:0] l1_6 = io_exponent_12 > io_exponent_13 ? io_exponent_12 : io_exponent_13;
+  wire [2:0] l1_7 = io_exponent_14 > io_exponent_15 ? io_exponent_14 : io_exponent_15;
+  wire [2:0] l1_8 = io_exponent_16 > io_exponent_17 ? io_exponent_16 : io_exponent_17;
+  wire [2:0] l1_9 = io_exponent_18 > io_exponent_19 ? io_exponent_18 : io_exponent_19;
+  wire [2:0] l1_10 = io_exponent_20 > io_exponent_21 ? io_exponent_20 : io_exponent_21;
+  wire [2:0] l1_11 = io_exponent_22 > io_exponent_23 ? io_exponent_22 : io_exponent_23;
+  wire [2:0] l1_12 = io_exponent_24 > io_exponent_25 ? io_exponent_24 : io_exponent_25;
+  wire [2:0] l1_13 = io_exponent_26 > io_exponent_27 ? io_exponent_26 : io_exponent_27;
+  wire [2:0] l1_14 = io_exponent_28 > io_exponent_29 ? io_exponent_28 : io_exponent_29;
+  wire [2:0] l1_15 = io_exponent_30 > io_exponent_31 ? io_exponent_30 : io_exponent_31;
+  wire [2:0] l2_0 = l1_0 > l1_1 ? l1_0 : l1_1;
+  wire [2:0] l2_1 = l1_2 > l1_3 ? l1_2 : l1_3;
+  wire [2:0] l2_2 = l1_4 > l1_5 ? l1_4 : l1_5;
+  wire [2:0] l2_3 = l1_6 > l1_7 ? l1_6 : l1_7;
+  wire [2:0] l2_4 = l1_8 > l1_9 ? l1_8 : l1_9;
+  wire [2:0] l2_5 = l1_10 > l1_11 ? l1_10 : l1_11;
+  wire [2:0] l2_6 = l1_12 > l1_13 ? l1_12 : l1_13;
+  wire [2:0] l2_7 = l1_14 > l1_15 ? l1_14 : l1_15;
+  wire [2:0] l3_0 = l2_0 > l2_1 ? l2_0 : l2_1;
+  wire [2:0] l3_1 = l2_2 > l2_3 ? l2_2 : l2_3;
+  wire [2:0] l3_2 = l2_4 > l2_5 ? l2_4 : l2_5;
+  wire [2:0] l3_3 = l2_6 > l2_7 ? l2_6 : l2_7;
+  wire [2:0] l4_0 = l3_0 > l3_1 ? l3_0 : l3_1;
+  wire [2:0] l4_1 = l3_2 > l3_3 ? l3_2 : l3_3;
+  wire [2:0] max_exp = l4_0 > l4_1 ? l4_0 : l4_1;
   assign io_out_sign_0 = io_sign_0;
   assign io_out_sign_1 = io_sign_1;
   assign io_out_sign_2 = io_sign_2;

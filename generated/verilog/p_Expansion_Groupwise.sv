@@ -39,14 +39,12 @@ module p_Expansion_Groupwise(
                 io_out_exponent_gmax_3
 );
 
-  wire            _group_idx_T_42 = io_depth == 4'h6;
-  wire            _GEN = io_depth == 4'h7;
-  wire            _GEN_0 = io_depth == 4'h8;
-  wire [3:0]      expansion_size =
-    _group_idx_T_42 ? 4'h2 : _GEN ? 4'h4 : _GEN_0 ? 4'h8 : 4'h2;
-  wire [2:0]      expansion_num =
-    _group_idx_T_42 ? 3'h4 : _GEN ? 3'h2 : _GEN_0 ? 3'h1 : 3'h4;
-  wire            enable = _group_idx_T_42 | _GEN | _GEN_0;
+  wire            _GEN = io_depth == 4'h6;
+  wire            _GEN_0 = io_depth == 4'h7;
+  wire            _GEN_1 = io_depth == 4'h8;
+  wire [3:0]      expansion_size = _GEN ? 4'h2 : _GEN_0 ? 4'h4 : _GEN_1 ? 4'h8 : 4'h2;
+  wire [2:0]      expansion_num = _GEN ? 3'h4 : _GEN_0 ? 3'h2 : _GEN_1 ? 3'h1 : 3'h4;
+  wire            enable = _GEN | _GEN_0 | _GEN_1;
   wire            laneZero_0 = io_in_0 == 14'h0;
   wire            laneZero_1 = io_in_1 == 14'h0;
   wire            laneZero_2 = io_in_2 == 14'h0;
@@ -71,26 +69,17 @@ module p_Expansion_Groupwise(
   wire            cands_ok_6 = expansion_size > 4'h6;
   wire [9:0]      cands_6 = ~cands_ok_6 | laneZero_6 ? 10'h200 : io_exponent_6;
   wire [9:0]      cands_7 = ~(expansion_size[3]) | laneZero_7 ? 10'h200 : io_exponent_7;
-  wire [9:0]      grpMax_pairs_0 =
-    $signed(cands_0) > $signed(cands_1) ? cands_0 : cands_1;
-  wire [9:0]      grpMax_pairs_1 =
-    $signed(cands_2) > $signed(cands_3) ? cands_2 : cands_3;
-  wire [9:0]      grpMax_pairs_2 =
-    $signed(cands_4) > $signed(cands_5) ? cands_4 : cands_5;
-  wire [9:0]      grpMax_pairs_3 =
-    $signed(cands_6) > $signed(cands_7) ? cands_6 : cands_7;
-  wire [9:0]      grpMax_pairs_0_1 =
-    $signed(grpMax_pairs_0) > $signed(grpMax_pairs_1) ? grpMax_pairs_0 : grpMax_pairs_1;
-  wire [9:0]      grpMax_pairs_1_1 =
-    $signed(grpMax_pairs_2) > $signed(grpMax_pairs_3) ? grpMax_pairs_2 : grpMax_pairs_3;
-  wire [9:0]      grpMax =
-    $signed(grpMax_pairs_0_1) > $signed(grpMax_pairs_1_1)
-      ? grpMax_pairs_0_1
-      : grpMax_pairs_1_1;
+  wire [9:0]      l1_0 = $signed(cands_0) > $signed(cands_1) ? cands_0 : cands_1;
+  wire [9:0]      l1_1 = $signed(cands_2) > $signed(cands_3) ? cands_2 : cands_3;
+  wire [9:0]      l1_2 = $signed(cands_4) > $signed(cands_5) ? cands_4 : cands_5;
+  wire [9:0]      l1_3 = $signed(cands_6) > $signed(cands_7) ? cands_6 : cands_7;
+  wire [9:0]      l2_0 = $signed(l1_0) > $signed(l1_1) ? l1_0 : l1_1;
+  wire [9:0]      l2_1 = $signed(l1_2) > $signed(l1_3) ? l1_2 : l1_3;
+  wire [9:0]      grpMax = $signed(l2_0) > $signed(l2_1) ? l2_0 : l2_1;
   wire [9:0]      grouped_max_exp_0 = active ? grpMax : 10'h0;
   wire            active_1 = enable & (|(expansion_num[2:1]));
-  wire [4:0]      _GEN_1 = {1'h0, expansion_size};
-  wire [7:0]      _GEN_2 =
+  wire [4:0]      _GEN_2 = {1'h0, expansion_size};
+  wire [7:0]      _GEN_3 =
     {{laneZero_7},
      {laneZero_6},
      {laneZero_5},
@@ -99,7 +88,7 @@ module p_Expansion_Groupwise(
      {laneZero_2},
      {laneZero_1},
      {laneZero_0}};
-  wire [7:0][9:0] _GEN_3 =
+  wire [7:0][9:0] _GEN_4 =
     {{io_exponent_7},
      {io_exponent_6},
      {io_exponent_5},
@@ -109,227 +98,202 @@ module p_Expansion_Groupwise(
      {io_exponent_1},
      {io_exponent_0}};
   wire [9:0]      cands_0_1 =
-    ~((|(expansion_size[3:1])) & _GEN_1 < 5'h8) | _GEN_2[expansion_size[2:0]]
+    ~((|(expansion_size[3:1])) & _GEN_2 < 5'h8) | _GEN_3[expansion_size[2:0]]
       ? 10'h200
-      : _GEN_3[expansion_size[2:0]];
-  wire [4:0]      _cands_i_T_9 = _GEN_1 + 5'h1;
+      : _GEN_4[expansion_size[2:0]];
+  wire [4:0]      _cands_i_T_9 = _GEN_2 + 5'h1;
   wire [9:0]      cands_1_1 =
-    ~((|(expansion_size[3:1])) & _cands_i_T_9 < 5'h8) | _GEN_2[_cands_i_T_9[2:0]]
+    ~((|(expansion_size[3:1])) & _cands_i_T_9 < 5'h8) | _GEN_3[_cands_i_T_9[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_9[2:0]];
-  wire [4:0]      _cands_i_T_10 = _GEN_1 + 5'h2;
+      : _GEN_4[_cands_i_T_9[2:0]];
+  wire [4:0]      _cands_i_T_10 = _GEN_2 + 5'h2;
   wire [9:0]      cands_2_1 =
-    ~(cands_ok_2 & _cands_i_T_10 < 5'h8) | _GEN_2[_cands_i_T_10[2:0]]
+    ~(cands_ok_2 & _cands_i_T_10 < 5'h8) | _GEN_3[_cands_i_T_10[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_10[2:0]];
-  wire [4:0]      _cands_i_T_11 = _GEN_1 + 5'h3;
+      : _GEN_4[_cands_i_T_10[2:0]];
+  wire [4:0]      _cands_i_T_11 = _GEN_2 + 5'h3;
   wire [9:0]      cands_3_1 =
-    ~((|(expansion_size[3:2])) & _cands_i_T_11 < 5'h8) | _GEN_2[_cands_i_T_11[2:0]]
+    ~((|(expansion_size[3:2])) & _cands_i_T_11 < 5'h8) | _GEN_3[_cands_i_T_11[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_11[2:0]];
-  wire [4:0]      _cands_i_T_12 = _GEN_1 + 5'h4;
+      : _GEN_4[_cands_i_T_11[2:0]];
+  wire [4:0]      _cands_i_T_12 = _GEN_2 + 5'h4;
   wire [9:0]      cands_4_1 =
-    ~(cands_ok_4 & _cands_i_T_12 < 5'h8) | _GEN_2[_cands_i_T_12[2:0]]
+    ~(cands_ok_4 & _cands_i_T_12 < 5'h8) | _GEN_3[_cands_i_T_12[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_12[2:0]];
-  wire [4:0]      _cands_i_T_13 = _GEN_1 + 5'h5;
+      : _GEN_4[_cands_i_T_12[2:0]];
+  wire [4:0]      _cands_i_T_13 = _GEN_2 + 5'h5;
   wire [9:0]      cands_5_1 =
-    ~(cands_ok_5 & _cands_i_T_13 < 5'h8) | _GEN_2[_cands_i_T_13[2:0]]
+    ~(cands_ok_5 & _cands_i_T_13 < 5'h8) | _GEN_3[_cands_i_T_13[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_13[2:0]];
-  wire [4:0]      _cands_i_T_14 = _GEN_1 + 5'h6;
+      : _GEN_4[_cands_i_T_13[2:0]];
+  wire [4:0]      _cands_i_T_14 = _GEN_2 + 5'h6;
   wire [9:0]      cands_6_1 =
-    ~(cands_ok_6 & _cands_i_T_14 < 5'h8) | _GEN_2[_cands_i_T_14[2:0]]
+    ~(cands_ok_6 & _cands_i_T_14 < 5'h8) | _GEN_3[_cands_i_T_14[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_14[2:0]];
-  wire [4:0]      _cands_i_T_15 = _GEN_1 + 5'h7;
+      : _GEN_4[_cands_i_T_14[2:0]];
+  wire [4:0]      _cands_i_T_15 = _GEN_2 + 5'h7;
   wire [9:0]      cands_7_1 =
-    ~(expansion_size[3] & _cands_i_T_15 < 5'h8) | _GEN_2[_cands_i_T_15[2:0]]
+    ~(expansion_size[3] & _cands_i_T_15 < 5'h8) | _GEN_3[_cands_i_T_15[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_15[2:0]];
-  wire [9:0]      grpMax_pairs_0_2 =
+      : _GEN_4[_cands_i_T_15[2:0]];
+  wire [9:0]      l1_0_1 =
     $signed(cands_0_1) > $signed(cands_1_1) ? cands_0_1 : cands_1_1;
-  wire [9:0]      grpMax_pairs_1_2 =
+  wire [9:0]      l1_1_1 =
     $signed(cands_2_1) > $signed(cands_3_1) ? cands_2_1 : cands_3_1;
-  wire [9:0]      grpMax_pairs_2_1 =
+  wire [9:0]      l1_2_1 =
     $signed(cands_4_1) > $signed(cands_5_1) ? cands_4_1 : cands_5_1;
-  wire [9:0]      grpMax_pairs_3_1 =
+  wire [9:0]      l1_3_1 =
     $signed(cands_6_1) > $signed(cands_7_1) ? cands_6_1 : cands_7_1;
-  wire [9:0]      grpMax_pairs_0_3 =
-    $signed(grpMax_pairs_0_2) > $signed(grpMax_pairs_1_2)
-      ? grpMax_pairs_0_2
-      : grpMax_pairs_1_2;
-  wire [9:0]      grpMax_pairs_1_3 =
-    $signed(grpMax_pairs_2_1) > $signed(grpMax_pairs_3_1)
-      ? grpMax_pairs_2_1
-      : grpMax_pairs_3_1;
-  wire [9:0]      grpMax_1 =
-    $signed(grpMax_pairs_0_3) > $signed(grpMax_pairs_1_3)
-      ? grpMax_pairs_0_3
-      : grpMax_pairs_1_3;
+  wire [9:0]      l2_0_1 = $signed(l1_0_1) > $signed(l1_1_1) ? l1_0_1 : l1_1_1;
+  wire [9:0]      l2_1_1 = $signed(l1_2_1) > $signed(l1_3_1) ? l1_2_1 : l1_3_1;
+  wire [9:0]      grpMax_1 = $signed(l2_0_1) > $signed(l2_1_1) ? l2_0_1 : l2_1_1;
   wire            _io_out_exponent_gmax_2_T = expansion_num > 3'h2;
   wire            active_2 = enable & _io_out_exponent_gmax_2_T;
-  wire [5:0]      _GEN_4 = {1'h0, expansion_size, 1'h0};
+  wire [5:0]      _GEN_5 = {1'h0, expansion_size, 1'h0};
   wire [2:0]      cands_idx_16 = {expansion_size[1:0], 1'h0};
   wire [9:0]      cands_0_2 =
-    ~((|(expansion_size[3:1])) & _GEN_4 < 6'h8) | _GEN_2[cands_idx_16]
+    ~((|(expansion_size[3:1])) & _GEN_5 < 6'h8) | _GEN_3[cands_idx_16]
       ? 10'h200
-      : _GEN_3[cands_idx_16];
-  wire [5:0]      _cands_i_T_17 = _GEN_4 + 6'h1;
+      : _GEN_4[cands_idx_16];
+  wire [5:0]      _cands_i_T_17 = _GEN_5 + 6'h1;
   wire [9:0]      cands_1_2 =
-    ~((|(expansion_size[3:1])) & _cands_i_T_17 < 6'h8) | _GEN_2[_cands_i_T_17[2:0]]
+    ~((|(expansion_size[3:1])) & _cands_i_T_17 < 6'h8) | _GEN_3[_cands_i_T_17[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_17[2:0]];
-  wire [5:0]      _cands_i_T_18 = _GEN_4 + 6'h2;
+      : _GEN_4[_cands_i_T_17[2:0]];
+  wire [5:0]      _cands_i_T_18 = _GEN_5 + 6'h2;
   wire [9:0]      cands_2_2 =
-    ~(cands_ok_2 & _cands_i_T_18 < 6'h8) | _GEN_2[_cands_i_T_18[2:0]]
+    ~(cands_ok_2 & _cands_i_T_18 < 6'h8) | _GEN_3[_cands_i_T_18[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_18[2:0]];
-  wire [5:0]      _cands_i_T_19 = _GEN_4 + 6'h3;
+      : _GEN_4[_cands_i_T_18[2:0]];
+  wire [5:0]      _cands_i_T_19 = _GEN_5 + 6'h3;
   wire [9:0]      cands_3_2 =
-    ~((|(expansion_size[3:2])) & _cands_i_T_19 < 6'h8) | _GEN_2[_cands_i_T_19[2:0]]
+    ~((|(expansion_size[3:2])) & _cands_i_T_19 < 6'h8) | _GEN_3[_cands_i_T_19[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_19[2:0]];
-  wire [5:0]      _cands_i_T_20 = _GEN_4 + 6'h4;
+      : _GEN_4[_cands_i_T_19[2:0]];
+  wire [5:0]      _cands_i_T_20 = _GEN_5 + 6'h4;
   wire [9:0]      cands_4_2 =
-    ~(cands_ok_4 & _cands_i_T_20 < 6'h8) | _GEN_2[_cands_i_T_20[2:0]]
+    ~(cands_ok_4 & _cands_i_T_20 < 6'h8) | _GEN_3[_cands_i_T_20[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_20[2:0]];
-  wire [5:0]      _cands_i_T_21 = _GEN_4 + 6'h5;
+      : _GEN_4[_cands_i_T_20[2:0]];
+  wire [5:0]      _cands_i_T_21 = _GEN_5 + 6'h5;
   wire [9:0]      cands_5_2 =
-    ~(cands_ok_5 & _cands_i_T_21 < 6'h8) | _GEN_2[_cands_i_T_21[2:0]]
+    ~(cands_ok_5 & _cands_i_T_21 < 6'h8) | _GEN_3[_cands_i_T_21[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_21[2:0]];
-  wire [5:0]      _cands_i_T_22 = _GEN_4 + 6'h6;
+      : _GEN_4[_cands_i_T_21[2:0]];
+  wire [5:0]      _cands_i_T_22 = _GEN_5 + 6'h6;
   wire [9:0]      cands_6_2 =
-    ~(cands_ok_6 & _cands_i_T_22 < 6'h8) | _GEN_2[_cands_i_T_22[2:0]]
+    ~(cands_ok_6 & _cands_i_T_22 < 6'h8) | _GEN_3[_cands_i_T_22[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_22[2:0]];
-  wire [5:0]      _cands_i_T_23 = _GEN_4 + 6'h7;
+      : _GEN_4[_cands_i_T_22[2:0]];
+  wire [5:0]      _cands_i_T_23 = _GEN_5 + 6'h7;
   wire [9:0]      cands_7_2 =
-    ~(expansion_size[3] & _cands_i_T_23 < 6'h8) | _GEN_2[_cands_i_T_23[2:0]]
+    ~(expansion_size[3] & _cands_i_T_23 < 6'h8) | _GEN_3[_cands_i_T_23[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_23[2:0]];
-  wire [9:0]      grpMax_pairs_0_4 =
+      : _GEN_4[_cands_i_T_23[2:0]];
+  wire [9:0]      l1_0_2 =
     $signed(cands_0_2) > $signed(cands_1_2) ? cands_0_2 : cands_1_2;
-  wire [9:0]      grpMax_pairs_1_4 =
+  wire [9:0]      l1_1_2 =
     $signed(cands_2_2) > $signed(cands_3_2) ? cands_2_2 : cands_3_2;
-  wire [9:0]      grpMax_pairs_2_2 =
+  wire [9:0]      l1_2_2 =
     $signed(cands_4_2) > $signed(cands_5_2) ? cands_4_2 : cands_5_2;
-  wire [9:0]      grpMax_pairs_3_2 =
+  wire [9:0]      l1_3_2 =
     $signed(cands_6_2) > $signed(cands_7_2) ? cands_6_2 : cands_7_2;
-  wire [9:0]      grpMax_pairs_0_5 =
-    $signed(grpMax_pairs_0_4) > $signed(grpMax_pairs_1_4)
-      ? grpMax_pairs_0_4
-      : grpMax_pairs_1_4;
-  wire [9:0]      grpMax_pairs_1_5 =
-    $signed(grpMax_pairs_2_2) > $signed(grpMax_pairs_3_2)
-      ? grpMax_pairs_2_2
-      : grpMax_pairs_3_2;
-  wire [9:0]      grpMax_2 =
-    $signed(grpMax_pairs_0_5) > $signed(grpMax_pairs_1_5)
-      ? grpMax_pairs_0_5
-      : grpMax_pairs_1_5;
+  wire [9:0]      l2_0_2 = $signed(l1_0_2) > $signed(l1_1_2) ? l1_0_2 : l1_1_2;
+  wire [9:0]      l2_1_2 = $signed(l1_2_2) > $signed(l1_3_2) ? l1_2_2 : l1_3_2;
+  wire [9:0]      grpMax_2 = $signed(l2_0_2) > $signed(l2_1_2) ? l2_0_2 : l2_1_2;
   wire            active_3 = enable & expansion_num[2];
   wire [5:0]      cands_i_24 = {2'h0, expansion_size} * 6'h3;
   wire [9:0]      cands_0_3 =
-    ~((|(expansion_size[3:1])) & cands_i_24 < 6'h8) | _GEN_2[cands_i_24[2:0]]
+    ~((|(expansion_size[3:1])) & cands_i_24 < 6'h8) | _GEN_3[cands_i_24[2:0]]
       ? 10'h200
-      : _GEN_3[cands_i_24[2:0]];
+      : _GEN_4[cands_i_24[2:0]];
   wire [5:0]      _cands_i_T_25 = cands_i_24 + 6'h1;
   wire [9:0]      cands_1_3 =
-    ~((|(expansion_size[3:1])) & _cands_i_T_25 < 6'h8) | _GEN_2[_cands_i_T_25[2:0]]
+    ~((|(expansion_size[3:1])) & _cands_i_T_25 < 6'h8) | _GEN_3[_cands_i_T_25[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_25[2:0]];
+      : _GEN_4[_cands_i_T_25[2:0]];
   wire [5:0]      _cands_i_T_26 = cands_i_24 + 6'h2;
   wire [9:0]      cands_2_3 =
-    ~(cands_ok_2 & _cands_i_T_26 < 6'h8) | _GEN_2[_cands_i_T_26[2:0]]
+    ~(cands_ok_2 & _cands_i_T_26 < 6'h8) | _GEN_3[_cands_i_T_26[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_26[2:0]];
+      : _GEN_4[_cands_i_T_26[2:0]];
   wire [5:0]      _cands_i_T_27 = cands_i_24 + 6'h3;
   wire [9:0]      cands_3_3 =
-    ~((|(expansion_size[3:2])) & _cands_i_T_27 < 6'h8) | _GEN_2[_cands_i_T_27[2:0]]
+    ~((|(expansion_size[3:2])) & _cands_i_T_27 < 6'h8) | _GEN_3[_cands_i_T_27[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_27[2:0]];
+      : _GEN_4[_cands_i_T_27[2:0]];
   wire [5:0]      _cands_i_T_28 = cands_i_24 + 6'h4;
   wire [9:0]      cands_4_3 =
-    ~(cands_ok_4 & _cands_i_T_28 < 6'h8) | _GEN_2[_cands_i_T_28[2:0]]
+    ~(cands_ok_4 & _cands_i_T_28 < 6'h8) | _GEN_3[_cands_i_T_28[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_28[2:0]];
+      : _GEN_4[_cands_i_T_28[2:0]];
   wire [5:0]      _cands_i_T_29 = cands_i_24 + 6'h5;
   wire [9:0]      cands_5_3 =
-    ~(cands_ok_5 & _cands_i_T_29 < 6'h8) | _GEN_2[_cands_i_T_29[2:0]]
+    ~(cands_ok_5 & _cands_i_T_29 < 6'h8) | _GEN_3[_cands_i_T_29[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_29[2:0]];
+      : _GEN_4[_cands_i_T_29[2:0]];
   wire [5:0]      _cands_i_T_30 = cands_i_24 + 6'h6;
   wire [9:0]      cands_6_3 =
-    ~(cands_ok_6 & _cands_i_T_30 < 6'h8) | _GEN_2[_cands_i_T_30[2:0]]
+    ~(cands_ok_6 & _cands_i_T_30 < 6'h8) | _GEN_3[_cands_i_T_30[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_30[2:0]];
+      : _GEN_4[_cands_i_T_30[2:0]];
   wire [5:0]      _cands_i_T_31 = cands_i_24 + 6'h7;
   wire [9:0]      cands_7_3 =
-    ~(expansion_size[3] & _cands_i_T_31 < 6'h8) | _GEN_2[_cands_i_T_31[2:0]]
+    ~(expansion_size[3] & _cands_i_T_31 < 6'h8) | _GEN_3[_cands_i_T_31[2:0]]
       ? 10'h200
-      : _GEN_3[_cands_i_T_31[2:0]];
-  wire [9:0]      grpMax_pairs_0_6 =
+      : _GEN_4[_cands_i_T_31[2:0]];
+  wire [9:0]      l1_0_3 =
     $signed(cands_0_3) > $signed(cands_1_3) ? cands_0_3 : cands_1_3;
-  wire [9:0]      grpMax_pairs_1_6 =
+  wire [9:0]      l1_1_3 =
     $signed(cands_2_3) > $signed(cands_3_3) ? cands_2_3 : cands_3_3;
-  wire [9:0]      grpMax_pairs_2_3 =
+  wire [9:0]      l1_2_3 =
     $signed(cands_4_3) > $signed(cands_5_3) ? cands_4_3 : cands_5_3;
-  wire [9:0]      grpMax_pairs_3_3 =
+  wire [9:0]      l1_3_3 =
     $signed(cands_6_3) > $signed(cands_7_3) ? cands_6_3 : cands_7_3;
-  wire [9:0]      grpMax_pairs_0_7 =
-    $signed(grpMax_pairs_0_6) > $signed(grpMax_pairs_1_6)
-      ? grpMax_pairs_0_6
-      : grpMax_pairs_1_6;
-  wire [9:0]      grpMax_pairs_1_7 =
-    $signed(grpMax_pairs_2_3) > $signed(grpMax_pairs_3_3)
-      ? grpMax_pairs_2_3
-      : grpMax_pairs_3_3;
-  wire [9:0]      grpMax_3 =
-    $signed(grpMax_pairs_0_7) > $signed(grpMax_pairs_1_7)
-      ? grpMax_pairs_0_7
-      : grpMax_pairs_1_7;
+  wire [9:0]      l2_0_3 = $signed(l1_0_3) > $signed(l1_1_3) ? l1_0_3 : l1_1_3;
+  wire [9:0]      l2_1_3 = $signed(l1_2_3) > $signed(l1_3_3) ? l1_2_3 : l1_3_3;
+  wire [9:0]      grpMax_3 = $signed(l2_0_3) > $signed(l2_1_3) ? l2_0_3 : l2_1_3;
+  wire [1:0]      _GEN_6 = {1'h0, _GEN_0};
+  wire [9:0]      _shift_raw_T = grouped_max_exp_0 - io_exponent_0;
   wire [43:0]     _io_out_mantissa_0_T =
-    {io_in_0[13] ? 14'h0 - io_in_0 : io_in_0, 30'h0} >> grouped_max_exp_0 - io_exponent_0;
+    {io_in_0[13] ? 14'h0 - io_in_0 : io_in_0, 30'h0}
+    >> (_shift_raw_T > 10'h2B ? 10'h2B : _shift_raw_T);
+  wire [9:0]      _shift_raw_T_3 = grouped_max_exp_0 - io_exponent_1;
   wire [43:0]     _io_out_mantissa_1_T =
-    {io_in_1[13] ? 14'h0 - io_in_1 : io_in_1, 30'h0} >> grouped_max_exp_0 - io_exponent_1;
-  wire [3:0][9:0] _GEN_5 =
+    {io_in_1[13] ? 14'h0 - io_in_1 : io_in_1, 30'h0}
+    >> (_shift_raw_T_3 > 10'h2B ? 10'h2B : _shift_raw_T_3);
+  wire [3:0][9:0] _GEN_7 =
     {{active_3 ? grpMax_3 : 10'h0},
      {active_2 ? grpMax_2 : 10'h0},
      {active_1 ? grpMax_1 : 10'h0},
      {grouped_max_exp_0}};
+  wire [9:0]      _GEN_8 = _GEN_7[{1'h0, _GEN}];
+  wire [9:0]      _shift_raw_T_6 = _GEN_8 - io_exponent_2;
   wire [43:0]     _io_out_mantissa_2_T =
     {io_in_2[13] ? 14'h0 - io_in_2 : io_in_2, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8 | io_depth == 4'h7
-                ? 2'h0
-                : {1'h0, _group_idx_T_42}] - io_exponent_2;
+    >> (_shift_raw_T_6 > 10'h2B ? 10'h2B : _shift_raw_T_6);
+  wire [9:0]      _shift_raw_T_9 = _GEN_8 - io_exponent_3;
   wire [43:0]     _io_out_mantissa_3_T =
     {io_in_3[13] ? 14'h0 - io_in_3 : io_in_3, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8 | io_depth == 4'h7
-                ? 2'h0
-                : {1'h0, _group_idx_T_42}] - io_exponent_3;
+    >> (_shift_raw_T_9 > 10'h2B ? 10'h2B : _shift_raw_T_9);
+  wire [9:0]      _GEN_9 = _GEN_7[_GEN ? 2'h2 : _GEN_6];
+  wire [9:0]      _shift_raw_T_12 = _GEN_9 - io_exponent_4;
   wire [43:0]     _io_out_mantissa_4_T =
     {io_in_4[13] ? 14'h0 - io_in_4 : io_in_4, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8
-                ? 2'h0
-                : io_depth == 4'h7 ? 2'h1 : {_group_idx_T_42, 1'h0}] - io_exponent_4;
+    >> (_shift_raw_T_12 > 10'h2B ? 10'h2B : _shift_raw_T_12);
+  wire [9:0]      _shift_raw_T_15 = _GEN_9 - io_exponent_5;
   wire [43:0]     _io_out_mantissa_5_T =
     {io_in_5[13] ? 14'h0 - io_in_5 : io_in_5, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8
-                ? 2'h0
-                : io_depth == 4'h7 ? 2'h1 : {_group_idx_T_42, 1'h0}] - io_exponent_5;
+    >> (_shift_raw_T_15 > 10'h2B ? 10'h2B : _shift_raw_T_15);
+  wire [9:0]      _GEN_10 = _GEN_7[_GEN ? 2'h3 : _GEN_6];
+  wire [9:0]      _shift_raw_T_18 = _GEN_10 - io_exponent_6;
   wire [43:0]     _io_out_mantissa_6_T =
     {io_in_6[13] ? 14'h0 - io_in_6 : io_in_6, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8
-                ? 2'h0
-                : io_depth == 4'h7 ? 2'h1 : {2{_group_idx_T_42}}] - io_exponent_6;
+    >> (_shift_raw_T_18 > 10'h2B ? 10'h2B : _shift_raw_T_18);
+  wire [9:0]      _shift_raw_T_21 = _GEN_10 - io_exponent_7;
   wire [43:0]     _io_out_mantissa_7_T =
     {io_in_7[13] ? 14'h0 - io_in_7 : io_in_7, 30'h0}
-    >> _GEN_5[~enable | io_depth == 4'h8
-                ? 2'h0
-                : io_depth == 4'h7 ? 2'h1 : {2{_group_idx_T_42}}] - io_exponent_7;
+    >> (_shift_raw_T_21 > 10'h2B ? 10'h2B : _shift_raw_T_21);
   assign io_out_mantissa_0 = enable ? _io_out_mantissa_0_T[42:0] : 43'h0;
   assign io_out_mantissa_1 = enable ? _io_out_mantissa_1_T[42:0] : 43'h0;
   assign io_out_mantissa_2 = enable ? _io_out_mantissa_2_T[42:0] : 43'h0;
