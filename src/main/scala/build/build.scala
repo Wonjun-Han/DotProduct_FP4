@@ -70,7 +70,7 @@ object build {
 
       case "p_Expansion_CSA_Groupwise" => new mxfp4.proposed.p_Expansion_CSA_Groupwise(5, 30) // location of p_Expansion_CSA_Groupwise and extra bit-precision (for testing)
       case "p_Convert_CSA" => new mxfp4.proposed.p_Convert_CSA(5) // location of p_Convert_CSA and extra bit-precision (for testing)
-
+      case "p_Convert_CSA_Groupwise" => new mxfp4.proposed.p_Convert_CSA_Groupwise(8, 30)
       case other =>
 
         System.err.println(s"❌ Unknown module: $moduleName")

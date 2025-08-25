@@ -19,7 +19,7 @@ class p_Convert_CSA_Groupwise(val d: Int, val extra: Int) extends Module {
   // 내부 고정소수점 폭: 정수부(8+d-?가 아니라 설계상 합산 결과 폭) + 소수부(6) + extra
   val mantissaWidth = 8 + d + extra
   val vecSize       = 256 >> d                 // depth 6: 4, 7: 2, 8: 1
-  val FRACW         = 6 + extra                // 이진 소수점(2^0, 정수 LSB) 비트 인덱스 (설계상 고정)
+  val FRACW         = 2 + extra                // 이진 소수점(2^0, 정수 LSB) 비트 인덱스 (설계상 고정)
 
   val io = IO(new MXFP4_CONVERT_CSA_GROUPWISE_BLOCK_IO(
     depthBitWidth = 4, mantissaWidth = mantissaWidth, vecSize = vecSize
@@ -44,7 +44,7 @@ class p_Convert_CSA_Groupwise(val d: Int, val extra: Int) extends Module {
 
     // 1) PE 기반 정렬량 계산: 유효 '1'을 FRACW(2^0 위치)에 놓도록
     val pe        = PriorityEncoder(Reverse(inMag))
-    val shift_amt = (d + 1).S - pe.asSInt
+    val shift_amt = (d + 5).S - pe.asSInt
 
     // 2) 그룹 인덱스/지수/NaN (앞에서부터 매핑 가정)
     val groupIdx = i.U(2.W)
