@@ -24,7 +24,7 @@ class p_Convert(val d: Int) extends Module {
   val enable_depth = io.depth === d.U
   val groupSize    = vecSize / 8   // d=1..5이면 16,8,4,2,1
 
-  // --- 트리형 LZC: PriorityEncoder(Reverse(x))와 동치, 폭0 재귀 없음 ---
+  // --- 트리형 LZC: PriorityEncoder(Reverse(x))를 O(log(N))!일단 합성해보기 ㅇㅇ ---
   private def PE_lzcTreeSafe(x: UInt, outW: Int): UInt = {
     val w     = x.getWidth
     val pPow  = 1 << log2Ceil(w)
