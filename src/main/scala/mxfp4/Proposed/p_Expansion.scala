@@ -40,6 +40,6 @@ class p_Expansion extends Module {
   for (i <- 0 until 32) {
     val shift_amt = (max_exp - io.exponent(i))(2, 0)        // UInt(3.W)
     val extended  = Cat(io.mantissa(i), 0.U(4.W))           // 8bit = 4bit mantissa + 4bit zero padding
-    io.out_mantissa(i) := (extended >> shift_amt)(7, 0)     // 동적 시프트(그대로 유지)
+    io.out_mantissa(i) := (extended >> shift_amt)(7, 0)     // 동적 시프트 (만약 안되면 이것도 와이어링으로 바꾸자)
   }
 }

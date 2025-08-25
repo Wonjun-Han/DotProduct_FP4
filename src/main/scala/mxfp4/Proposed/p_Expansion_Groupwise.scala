@@ -69,7 +69,6 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
   }
 
   val grouped_max_exp = Wire(Vec(vecSize/2, SInt(10.W)))
-  // 초기화(미할당 방지)
   for (g <- 0 until vecSize/2) { grouped_max_exp(g) := 0.S(10.W) }
 
   for (g <- 0 until vecSize/2) {
@@ -85,7 +84,7 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
       Mux(ok, expEff, minS10)
     }
 
-    // 명시적 비교 트리(8→4→2→1)
+    // 비교 트리(8→4→2→1) 훨씬 좋을듯 ㅇㅇ
     val l1 = (0 until 4).map(j => max2S(cands(2*j),   cands(2*j+1))) // 8 → 4
     val l2 = (0 until 2).map(j => max2S(l1(2*j),      l1(2*j+1)))    // 4 → 2
     val grpMax = max2S(l2(0), l2(1))                                  // 2 → 1
@@ -111,8 +110,8 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
   // ------------------------------
   // (3) mantissa shift 및 sign 추출
   // ------------------------------
-  val extWidth = accWidth + extra // extended 폭 = (accWidth + extra)
-  // 출력 초기화(미할당 방지)
+  val extWidth = accWidth + extra // 
+
   for (i <- 0 until vecSize) {
     io.out_sign(i)     := 0.U
     io.out_mantissa(i) := 0.U
@@ -120,8 +119,8 @@ class p_Expansion_Groupwise(val d: Int, val extra: Int) extends Module {
 
   for (i <- 0 until vecSize) {
     val max_exp   = grouped_max_exp(groupIdxLut(i))
-    val shift_raw = (max_exp - io.exponent(i)).asUInt  // 항상 양수로 취급
-    val shift_max = (extWidth - 1).U                   // 너무 크게 밀면 모두 0이므로 상한
+    val shift_raw = (max_exp - io.exponent(i)).asUInt  
+    val shift_max = (extWidth - 1).U                   // 너무 크게 밀면 모두 0이니까 굳이 처리 ㄴㄴ
     val shift_amt = Mux(shift_raw > shift_max, shift_max, shift_raw)
 
     val in       = io.in(i)
