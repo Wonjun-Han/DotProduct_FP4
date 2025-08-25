@@ -86,7 +86,7 @@ class p_TOP_Til_Dep_total_comb_CT_syn extends Module {
     expansion.io.exponent := w1_exponent.slice(base, base + 32)
     expansion.io.mantissa := w1_mantissa.slice(base, base + 32)
 
-    scaleEmax.io.nan(i)       := w1_scale_nan(i)
+    scaleEmax.io.nan_in(i)       := w1_scale_nan(i)
     scaleEmax.io.scale_sum(i) := w1_scale_sum(i)
     scaleEmax.io.emax(i)      := expansion.io.out_exponent_gmax(0)
 
@@ -96,7 +96,7 @@ class p_TOP_Til_Dep_total_comb_CT_syn extends Module {
   }
 
   val w2_exp_cand = scaleEmax.io.out
-  val w2_nan_flag = scaleEmax.io.nan
+  val w2_nan_flag = scaleEmax.io.nan_out  
 
   // ---------------------------------
   // Convert@Dep0 (조합)

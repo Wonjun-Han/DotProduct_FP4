@@ -103,7 +103,7 @@ class p_TOP_Til_Dep_5 extends Module {
       expansion(i).io.depth    := io.depth
 
       // Scale and Emax calculation
-      scale_emax.io.nan(i) := scale_sum.io.nan(i)
+      scale_emax.io.nan_in(i) := scale_sum.io.nan(i)
       scale_emax.io.scale_sum(i) := scale_sum.io.out(i)
       scale_emax.io.emax(i) := expansion(i).io.out_exponent_gmax(0)
 
@@ -139,7 +139,7 @@ class p_TOP_Til_Dep_5 extends Module {
 
       // Depth 5 Convert
       convert_dep_5.io.in(i) := dep5(i).io.out
-      convert_dep_5.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_5.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_5.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_5.io.out(i)
 

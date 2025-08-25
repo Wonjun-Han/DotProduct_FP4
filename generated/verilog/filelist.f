@@ -1,6 +1,7 @@
 p_FieldExtractor.sv
 p_Multiplier.sv
 p_Adder_ScaleSum.sv
+p_Expansion.sv
 p_Adder_ScaleEmax.sv
 p_Adder_Dep_1.sv
 p_Adder_Dep_2.sv
@@ -21,6 +22,5 @@ p_Adder_Groupwise_2.sv
 p_Convert_Groupwise.sv
 p_Convert_Groupwise_1.sv
 p_Convert_Groupwise_2.sv
-p_Expansion.sv
 FF16_FP32.sv
 p_TOP_Til_Dep_total_piped_CT_syn.sv

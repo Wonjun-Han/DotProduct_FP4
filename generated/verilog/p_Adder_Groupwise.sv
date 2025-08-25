@@ -16,7 +16,6 @@ module p_Adder_Groupwise(
                 io_sign_5,
                 io_sign_6,
                 io_sign_7,
-  input  [3:0]  io_depth,
   output [43:0] io_out_mantissa_0,
                 io_out_mantissa_1,
                 io_out_mantissa_2,
@@ -27,7 +26,6 @@ module p_Adder_Groupwise(
                 io_out_sign_3
 );
 
-  wire        enable_depth = io_depth > 4'h5;
   wire [43:0] a_sint = io_sign_0 ? 44'h0 - {1'h0, io_mantissa_0} : {1'h0, io_mantissa_0};
   wire [43:0] b_sint = io_sign_1 ? 44'h0 - {1'h0, io_mantissa_1} : {1'h0, io_mantissa_1};
   wire [44:0] sum = {a_sint[43], a_sint} + {b_sint[43], b_sint};
@@ -46,17 +44,13 @@ module p_Adder_Groupwise(
   wire [43:0] b_sint_3 =
     io_sign_7 ? 44'h0 - {1'h0, io_mantissa_7} : {1'h0, io_mantissa_7};
   wire [44:0] sum_3 = {a_sint_3[43], a_sint_3} + {b_sint_3[43], b_sint_3};
-  assign io_out_mantissa_0 =
-    enable_depth ? (sum[44] ? 44'h0 - sum[43:0] : sum[43:0]) : 44'h0;
-  assign io_out_mantissa_1 =
-    enable_depth ? (sum_1[44] ? 44'h0 - sum_1[43:0] : sum_1[43:0]) : 44'h0;
-  assign io_out_mantissa_2 =
-    enable_depth ? (sum_2[44] ? 44'h0 - sum_2[43:0] : sum_2[43:0]) : 44'h0;
-  assign io_out_mantissa_3 =
-    enable_depth ? (sum_3[44] ? 44'h0 - sum_3[43:0] : sum_3[43:0]) : 44'h0;
-  assign io_out_sign_0 = enable_depth & sum[44];
-  assign io_out_sign_1 = enable_depth & sum_1[44];
-  assign io_out_sign_2 = enable_depth & sum_2[44];
-  assign io_out_sign_3 = enable_depth & sum_3[44];
+  assign io_out_mantissa_0 = sum[44] ? 44'h0 - sum[43:0] : sum[43:0];
+  assign io_out_mantissa_1 = sum_1[44] ? 44'h0 - sum_1[43:0] : sum_1[43:0];
+  assign io_out_mantissa_2 = sum_2[44] ? 44'h0 - sum_2[43:0] : sum_2[43:0];
+  assign io_out_mantissa_3 = sum_3[44] ? 44'h0 - sum_3[43:0] : sum_3[43:0];
+  assign io_out_sign_0 = sum[44];
+  assign io_out_sign_1 = sum_1[44];
+  assign io_out_sign_2 = sum_2[44];
+  assign io_out_sign_3 = sum_3[44];
 endmodule
 

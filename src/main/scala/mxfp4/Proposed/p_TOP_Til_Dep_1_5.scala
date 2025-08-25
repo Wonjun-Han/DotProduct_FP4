@@ -62,7 +62,7 @@ class p_TOP_Til_Dep_1_5 extends Module {
     exp.io.exponent := mult.io.exponent.slice(base, base + 32)
     exp.io.mantissa := mult.io.mantissa.slice(base, base + 32)
 
-    scaleEmax.io.nan(i) := scaleSum.io.nan(i)
+    scaleEmax.io.nan_in(i) := scaleSum.io.nan(i)
     scaleEmax.io.scale_sum(i) := scaleSum.io.out(i)
     scaleEmax.io.emax(i) := exp.io.out_exponent_gmax(0)
 
@@ -99,7 +99,7 @@ class p_TOP_Til_Dep_1_5 extends Module {
 
   for (c <- Seq(convert1, convert2, convert3, convert4, convert5)) {
     c.io.depth := io.depth
-    c.io.nan := scaleEmax.io.nan
+    c.io.nan := scaleEmax.io.nan_out
     c.io.exponent := scaleEmax.io.out
   }
 

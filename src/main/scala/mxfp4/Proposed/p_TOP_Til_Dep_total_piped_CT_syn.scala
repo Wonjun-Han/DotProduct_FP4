@@ -38,6 +38,10 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   val mult   = Module(new p_Multiplier)
   val scaleSum   = Module(new p_Adder_ScaleSum)
+
+  val expansion = Seq.fill(8)(Module(new p_Expansion))
+
+
   val scaleEmax  = Module(new p_Adder_ScaleEmax)
 
   val adder1 = Seq.fill(8)(Module(new p_Adder_Dep_1))
@@ -99,37 +103,43 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val s1_scale_nan = regNextVec(scaleSum.io.nan)
 
   // ---------------------------------
-  // S1: Expansion(in-group) then (Emax+scale_sum) 
+  // S1: Expansion(in-group) then 
   // ---------------------------------
-  scaleEmax.io.depth := depth_s1
   for (i <- 0 until 8) {
     val base = i * 32
-    val expansion = Module(new p_Expansion)
-    expansion.io.depth    := depth_s1
-    expansion.io.sign     := s1_sign.slice(base, base + 32)
-    expansion.io.exponent := s1_exponent.slice(base, base + 32)
-    expansion.io.mantissa := s1_mantissa.slice(base, base + 32)
-
-    scaleEmax.io.nan(i)       := s1_scale_nan(i)
-    scaleEmax.io.scale_sum(i) := s1_scale_sum(i)
-    scaleEmax.io.emax(i)      := expansion.io.out_exponent_gmax(0)
+    expansion(i).io.depth    := depth_s1
+    expansion(i).io.sign     := s1_sign.slice(base, base + 32)
+    expansion(i).io.exponent := s1_exponent.slice(base, base + 32)
+    expansion(i).io.mantissa := s1_mantissa.slice(base, base + 32)
 
     adder1(i).io.depth    := depth_s2
-    adder1(i).io.sign     := RegNext(expansion.io.out_sign)
-    adder1(i).io.mantissa := RegNext(expansion.io.out_mantissa)
+    adder1(i).io.sign     := RegNext(expansion(i).io.out_sign)
+    adder1(i).io.mantissa := RegNext(expansion(i).io.out_mantissa)
   }
 
-  val s2_exp_cand = regNextVec(scaleEmax.io.out)
-  val s2_nan_flag = regNextVec(scaleEmax.io.nan)
+  val s2_exp_group_max = Wire(Vec(8, UInt(3.W)))
+  for (i <- 0 until 8) {
+    s2_exp_group_max(i) := RegNext(expansion(i).io.out_exponent_gmax(0))
+  }
 
   // ---------------------------------
-  // S2: Convert@Dep0, else Adder1
+  // S2: Convert@Dep0, else Adder1, else (Emax+scale_sum) 
   // ---------------------------------
   val toS2_scale_sum = delayToStage(fromS = 1, toS = 2, s1_scale_sum)
   val toS2_scale_nan = delayToStage(fromS = 1, toS = 2, s1_scale_nan)
   val toS2_sign      = delayToStage(fromS = 1, toS = 2, s1_sign)
   val toS2_exp       = delayToStage(fromS = 1, toS = 2, s1_exponent)
   val toS2_man       = delayToStage(fromS = 1, toS = 2, s1_mantissa)
+
+  scaleEmax.io.depth := depth_s2
+  for (i <- 0 until 8) {
+    scaleEmax.io.nan_in(i)    := toS2_scale_nan(i)
+    scaleEmax.io.scale_sum(i) := toS2_scale_sum(i)
+    scaleEmax.io.emax(i)      := s2_exp_group_max(i)
+  }
+
+  val s3_exp_cand = regNextVec(scaleEmax.io.out)
+  val s3_nan_flag = regNextVec(scaleEmax.io.nan_out)
 
   convert0.io.sign      := toS2_sign
   convert0.io.exponent  := toS2_exp
@@ -139,8 +149,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
 
   val s3_adder1_out = (0 until 8).map(i => regNextVec(adder1(i).io.out))
 
-  val toS3_exp_cand = delayToStage(2, 3, s2_exp_cand)
-  val toS3_nan      = delayToStage(2, 3, s2_nan_flag)
+  val toS3_exp_cand = s3_exp_cand
+  val toS3_nan      = s3_nan_flag
 
   // ------------------------------
   // S3 : Convert@Dep1, else Adder2
@@ -162,8 +172,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S4: Convert@Dep2, else Adder3
   // ---------------------------------
-  val toS4_exp_cand = delayToStage(2, 4, s2_exp_cand)
-  val toS4_nan      = delayToStage(2, 4, s2_nan_flag)
+  val toS4_exp_cand = delayToStage(3, 4, s3_exp_cand)
+  val toS4_nan      = delayToStage(3, 4, s3_nan_flag)
 
   for (i <- 0 until convert2.io.in.length) {
     val g = i / 8; val k = i % 8
@@ -182,8 +192,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S5: Convert@Dep3, else Adder4
   // ---------------------------------
-  val toS5_exp_cand = delayToStage(2, 5, s2_exp_cand)
-  val toS5_nan      = delayToStage(2, 5, s2_nan_flag)
+  val toS5_exp_cand = delayToStage(3, 5, s3_exp_cand)
+  val toS5_nan      = delayToStage(3, 5, s3_nan_flag)
 
   for (i <- 0 until convert3.io.in.length) {
     val g = i / 4; val k = i % 4
@@ -202,8 +212,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S6: Convert@Dep4, else Adder5
   // ---------------------------------
-  val toS6_exp_cand = delayToStage(2, 6, s2_exp_cand)
-  val toS6_nan      = delayToStage(2, 6, s2_nan_flag)
+  val toS6_exp_cand = delayToStage(3, 6, s3_exp_cand)
+  val toS6_nan      = delayToStage(3, 6, s3_nan_flag)
 
   for (i <- 0 until convert4.io.in.length) {
     val g = i / 2; val k = i % 2
@@ -224,8 +234,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S7: Convert@Dep5, else Expansion_Groupwise & NaN_Process
   // ---------------------------------
-  val toS7_exp_cand = delayToStage(2, 7, s2_exp_cand)
-  val toS7_nan      = delayToStage(2, 7, s2_nan_flag)
+  val toS7_exp_cand = delayToStage(3, 7, s3_exp_cand)
+  val toS7_nan      = delayToStage(3, 7, s3_nan_flag)
 
   convert5.io.depth    := depth_s7
   convert5.io.nan      := toS7_nan

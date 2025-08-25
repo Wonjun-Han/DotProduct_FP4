@@ -104,7 +104,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
     expansion.io.exponent := s1_exponent.slice(base, base + 32)
     expansion.io.mantissa := s1_mantissa.slice(base, base + 32)
 
-    scaleEmax.io.nan(i)       := s1_scale_nan(i)
+    scaleEmax.io.nan_in(i)       := s1_scale_nan(i)
     scaleEmax.io.scale_sum(i) := s1_scale_sum(i)
     scaleEmax.io.emax(i)      := expansion.io.out_exponent_gmax(0) // 그룹 gmax
 
@@ -115,7 +115,7 @@ class p_TOP_Til_Dep_total_piped_CT extends Module {
 
   // exp_cand / nan
   val s2_exp_cand = regNextVec(scaleEmax.io.out) // (S2 경계에 맞춰 1단 래치)
-  val s2_nan_flag = regNextVec(scaleEmax.io.nan)
+  val s2_nan_flag = regNextVec(scaleEmax.io.nan_out)
 
   // ---------------------------------
   // S2: Convert@Dep0, else Adder1
@@ -330,3 +330,4 @@ for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   }
   io.out := selected_out
 }
+

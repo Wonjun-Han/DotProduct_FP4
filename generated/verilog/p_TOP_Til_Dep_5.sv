@@ -1725,6 +1725,14 @@ module p_TOP_Til_Dep_5(
   wire [9:0]  _scale_emax_io_out_5;
   wire [9:0]  _scale_emax_io_out_6;
   wire [9:0]  _scale_emax_io_out_7;
+  wire        _scale_emax_io_nan_out_0;
+  wire        _scale_emax_io_nan_out_1;
+  wire        _scale_emax_io_nan_out_2;
+  wire        _scale_emax_io_nan_out_3;
+  wire        _scale_emax_io_nan_out_4;
+  wire        _scale_emax_io_nan_out_5;
+  wire        _scale_emax_io_nan_out_6;
+  wire        _scale_emax_io_nan_out_7;
   wire [13:0] _dep5_7_io_out;
   wire [13:0] _dep5_6_io_out;
   wire [13:0] _dep5_5_io_out;
@@ -9301,7 +9309,6 @@ module p_TOP_Til_Dep_5(
     .io_out  (_dep5_7_io_out)
   );
   p_Adder_ScaleEmax scale_emax (
-    .io_depth       (io_depth),
     .io_scale_sum_0 (_scale_sum_io_out_0),
     .io_scale_sum_1 (_scale_sum_io_out_1),
     .io_scale_sum_2 (_scale_sum_io_out_2),
@@ -9310,14 +9317,14 @@ module p_TOP_Til_Dep_5(
     .io_scale_sum_5 (_scale_sum_io_out_5),
     .io_scale_sum_6 (_scale_sum_io_out_6),
     .io_scale_sum_7 (_scale_sum_io_out_7),
-    .io_nan_0       (_scale_sum_io_nan_0),
-    .io_nan_1       (_scale_sum_io_nan_1),
-    .io_nan_2       (_scale_sum_io_nan_2),
-    .io_nan_3       (_scale_sum_io_nan_3),
-    .io_nan_4       (_scale_sum_io_nan_4),
-    .io_nan_5       (_scale_sum_io_nan_5),
-    .io_nan_6       (_scale_sum_io_nan_6),
-    .io_nan_7       (_scale_sum_io_nan_7),
+    .io_nan_in_0    (_scale_sum_io_nan_0),
+    .io_nan_in_1    (_scale_sum_io_nan_1),
+    .io_nan_in_2    (_scale_sum_io_nan_2),
+    .io_nan_in_3    (_scale_sum_io_nan_3),
+    .io_nan_in_4    (_scale_sum_io_nan_4),
+    .io_nan_in_5    (_scale_sum_io_nan_5),
+    .io_nan_in_6    (_scale_sum_io_nan_6),
+    .io_nan_in_7    (_scale_sum_io_nan_7),
     .io_emax_0      (_expansion_0_io_out_exponent_gmax_0),
     .io_emax_1      (_expansion_1_io_out_exponent_gmax_0),
     .io_emax_2      (_expansion_2_io_out_exponent_gmax_0),
@@ -9333,7 +9340,15 @@ module p_TOP_Til_Dep_5(
     .io_out_4       (_scale_emax_io_out_4),
     .io_out_5       (_scale_emax_io_out_5),
     .io_out_6       (_scale_emax_io_out_6),
-    .io_out_7       (_scale_emax_io_out_7)
+    .io_out_7       (_scale_emax_io_out_7),
+    .io_nan_out_0   (_scale_emax_io_nan_out_0),
+    .io_nan_out_1   (_scale_emax_io_nan_out_1),
+    .io_nan_out_2   (_scale_emax_io_nan_out_2),
+    .io_nan_out_3   (_scale_emax_io_nan_out_3),
+    .io_nan_out_4   (_scale_emax_io_nan_out_4),
+    .io_nan_out_5   (_scale_emax_io_nan_out_5),
+    .io_nan_out_6   (_scale_emax_io_nan_out_6),
+    .io_nan_out_7   (_scale_emax_io_nan_out_7)
   );
   p_Convert_Dep_5 convert_dep_5 (
     .io_depth              (io_depth),
@@ -9345,14 +9360,14 @@ module p_TOP_Til_Dep_5(
     .io_in_5               (_dep5_5_io_out),
     .io_in_6               (_dep5_6_io_out),
     .io_in_7               (_dep5_7_io_out),
-    .io_nan_0              (_scale_sum_io_nan_0),
-    .io_nan_1              (_scale_sum_io_nan_1),
-    .io_nan_2              (_scale_sum_io_nan_2),
-    .io_nan_3              (_scale_sum_io_nan_3),
-    .io_nan_4              (_scale_sum_io_nan_4),
-    .io_nan_5              (_scale_sum_io_nan_5),
-    .io_nan_6              (_scale_sum_io_nan_6),
-    .io_nan_7              (_scale_sum_io_nan_7),
+    .io_nan_0              (_scale_emax_io_nan_out_0),
+    .io_nan_1              (_scale_emax_io_nan_out_1),
+    .io_nan_2              (_scale_emax_io_nan_out_2),
+    .io_nan_3              (_scale_emax_io_nan_out_3),
+    .io_nan_4              (_scale_emax_io_nan_out_4),
+    .io_nan_5              (_scale_emax_io_nan_out_5),
+    .io_nan_6              (_scale_emax_io_nan_out_6),
+    .io_nan_7              (_scale_emax_io_nan_out_7),
     .io_exponent_0         (_scale_emax_io_out_0),
     .io_exponent_1         (_scale_emax_io_out_1),
     .io_exponent_2         (_scale_emax_io_out_2),

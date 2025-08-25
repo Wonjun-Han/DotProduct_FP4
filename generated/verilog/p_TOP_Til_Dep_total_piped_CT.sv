@@ -1680,6 +1680,14 @@ module p_TOP_Til_Dep_total_piped_CT(
   wire [9:0]  _scaleEmax_io_out_5;
   wire [9:0]  _scaleEmax_io_out_6;
   wire [9:0]  _scaleEmax_io_out_7;
+  wire        _scaleEmax_io_nan_out_0;
+  wire        _scaleEmax_io_nan_out_1;
+  wire        _scaleEmax_io_nan_out_2;
+  wire        _scaleEmax_io_nan_out_3;
+  wire        _scaleEmax_io_nan_out_4;
+  wire        _scaleEmax_io_nan_out_5;
+  wire        _scaleEmax_io_nan_out_6;
+  wire        _scaleEmax_io_nan_out_7;
   wire [8:0]  _scaleSum_io_out_0;
   wire [8:0]  _scaleSum_io_out_1;
   wire [8:0]  _scaleSum_io_out_2;
@@ -7454,14 +7462,14 @@ module p_TOP_Til_Dep_total_piped_CT(
     s2_exp_cand_REG_5 <= _scaleEmax_io_out_5;
     s2_exp_cand_REG_6 <= _scaleEmax_io_out_6;
     s2_exp_cand_REG_7 <= _scaleEmax_io_out_7;
-    s2_nan_flag_REG <= s1_scale_nan_REG;
-    s2_nan_flag_REG_1 <= s1_scale_nan_REG_1;
-    s2_nan_flag_REG_2 <= s1_scale_nan_REG_2;
-    s2_nan_flag_REG_3 <= s1_scale_nan_REG_3;
-    s2_nan_flag_REG_4 <= s1_scale_nan_REG_4;
-    s2_nan_flag_REG_5 <= s1_scale_nan_REG_5;
-    s2_nan_flag_REG_6 <= s1_scale_nan_REG_6;
-    s2_nan_flag_REG_7 <= s1_scale_nan_REG_7;
+    s2_nan_flag_REG <= _scaleEmax_io_nan_out_0;
+    s2_nan_flag_REG_1 <= _scaleEmax_io_nan_out_1;
+    s2_nan_flag_REG_2 <= _scaleEmax_io_nan_out_2;
+    s2_nan_flag_REG_3 <= _scaleEmax_io_nan_out_3;
+    s2_nan_flag_REG_4 <= _scaleEmax_io_nan_out_4;
+    s2_nan_flag_REG_5 <= _scaleEmax_io_nan_out_5;
+    s2_nan_flag_REG_6 <= _scaleEmax_io_nan_out_6;
+    s2_nan_flag_REG_7 <= _scaleEmax_io_nan_out_7;
     toS2_scale_sum_REG <= s1_scale_sum_REG;
     toS2_scale_nan_REG <= s1_scale_nan_REG;
     toS2_sign_REG <= s1_sign_REG;
@@ -11122,7 +11130,6 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_nan_7     (_scaleSum_io_nan_7)
   );
   p_Adder_ScaleEmax scaleEmax (
-    .io_depth       (depth_s1),
     .io_scale_sum_0 (s1_scale_sum_REG),
     .io_scale_sum_1 (s1_scale_sum_REG_1),
     .io_scale_sum_2 (s1_scale_sum_REG_2),
@@ -11131,14 +11138,14 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_scale_sum_5 (s1_scale_sum_REG_5),
     .io_scale_sum_6 (s1_scale_sum_REG_6),
     .io_scale_sum_7 (s1_scale_sum_REG_7),
-    .io_nan_0       (s1_scale_nan_REG),
-    .io_nan_1       (s1_scale_nan_REG_1),
-    .io_nan_2       (s1_scale_nan_REG_2),
-    .io_nan_3       (s1_scale_nan_REG_3),
-    .io_nan_4       (s1_scale_nan_REG_4),
-    .io_nan_5       (s1_scale_nan_REG_5),
-    .io_nan_6       (s1_scale_nan_REG_6),
-    .io_nan_7       (s1_scale_nan_REG_7),
+    .io_nan_in_0    (s1_scale_nan_REG),
+    .io_nan_in_1    (s1_scale_nan_REG_1),
+    .io_nan_in_2    (s1_scale_nan_REG_2),
+    .io_nan_in_3    (s1_scale_nan_REG_3),
+    .io_nan_in_4    (s1_scale_nan_REG_4),
+    .io_nan_in_5    (s1_scale_nan_REG_5),
+    .io_nan_in_6    (s1_scale_nan_REG_6),
+    .io_nan_in_7    (s1_scale_nan_REG_7),
     .io_emax_0      (_expansion_io_out_exponent_gmax_0),
     .io_emax_1      (_expansion_1_io_out_exponent_gmax_0),
     .io_emax_2      (_expansion_2_io_out_exponent_gmax_0),
@@ -11154,7 +11161,15 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_out_4       (_scaleEmax_io_out_4),
     .io_out_5       (_scaleEmax_io_out_5),
     .io_out_6       (_scaleEmax_io_out_6),
-    .io_out_7       (_scaleEmax_io_out_7)
+    .io_out_7       (_scaleEmax_io_out_7),
+    .io_nan_out_0   (_scaleEmax_io_nan_out_0),
+    .io_nan_out_1   (_scaleEmax_io_nan_out_1),
+    .io_nan_out_2   (_scaleEmax_io_nan_out_2),
+    .io_nan_out_3   (_scaleEmax_io_nan_out_3),
+    .io_nan_out_4   (_scaleEmax_io_nan_out_4),
+    .io_nan_out_5   (_scaleEmax_io_nan_out_5),
+    .io_nan_out_6   (_scaleEmax_io_nan_out_6),
+    .io_nan_out_7   (_scaleEmax_io_nan_out_7)
   );
   p_Adder_Dep_1 adder1_0 (
     .io_sign_0      (REG_0),
@@ -12756,7 +12771,6 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_sign_5         (s8_gw_sign_5),
     .io_sign_6         (s8_gw_sign_6),
     .io_sign_7         (s8_gw_sign_7),
-    .io_depth          (depth_s8),
     .io_out_mantissa_0 (_adder_groupwise_6_io_out_mantissa_0),
     .io_out_mantissa_1 (_adder_groupwise_6_io_out_mantissa_1),
     .io_out_mantissa_2 (_adder_groupwise_6_io_out_mantissa_2),
@@ -12775,7 +12789,6 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_sign_1         (s9_ad6_sign_1),
     .io_sign_2         (s9_ad6_sign_2),
     .io_sign_3         (s9_ad6_sign_3),
-    .io_depth          (depth_s9),
     .io_out_mantissa_0 (_adder_groupwise_7_io_out_mantissa_0),
     .io_out_mantissa_1 (_adder_groupwise_7_io_out_mantissa_1),
     .io_out_sign_0     (_adder_groupwise_7_io_out_sign_0),
@@ -12786,7 +12799,6 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_mantissa_1     (s10_ad7_mantissa_1),
     .io_sign_0         (s10_ad7_sign_0),
     .io_sign_1         (s10_ad7_sign_1),
-    .io_depth          (depth_s10),
     .io_out_mantissa_0 (_adder_groupwise_8_io_out_mantissa_0),
     .io_out_sign_0     (_adder_groupwise_8_io_out_sign_0)
   );

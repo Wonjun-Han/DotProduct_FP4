@@ -26,8 +26,6 @@ class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
         outWidth = outWidth
     ))
 
-    val enable_depth = io.depth >= d.U // depth가 7이면, 6,7 까지만 활성화.
-
     for (i <- 0 until vecSize/2) {
         val a_sign = io.sign(2 * i)
         val b_sign = io.sign(2 * i + 1)
@@ -45,8 +43,8 @@ class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
 
         val sum_sign = sum.head(1).asUInt
         val sum_mag = Mux(sum.head(1) === 1.U, (-sum).asUInt, sum.asUInt)
-        io.out_sign(i) := Mux(enable_depth, sum_sign, 0.U)
-        io.out_mantissa(i) := Mux(enable_depth, sum_mag, 0.U)
+        io.out_sign(i) := sum_sign
+        io.out_mantissa(i) := sum_mag
     }
 }
 

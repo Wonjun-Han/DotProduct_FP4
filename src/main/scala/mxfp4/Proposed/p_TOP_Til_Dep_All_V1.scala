@@ -198,7 +198,7 @@ class p_TOP_Til_Dep_All_V1 extends Module {
     expansion(i).io.mantissa := mult.io.mantissa.slice(base, base + 32)
 
       // Scale and Emax calculation
-    scale_emax.io.nan(i) := scale_sum.io.nan(i)
+    scale_emax.io.nan_in(i) := scale_sum.io.nan(i)
     scale_emax.io.scale_sum(i) := scale_sum.io.out(i)
     scale_emax.io.emax(i) := expansion(i).io.out_exponent_gmax(0)
 
@@ -228,7 +228,7 @@ class p_TOP_Til_Dep_All_V1 extends Module {
       for (j <- 0 until 16) {
         convert_dep_1.io.in(i * 16 + j) := dep1(i).io.out(j)
       }
-      convert_dep_1.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_1.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_1.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_1.io.out(i)
 
@@ -269,7 +269,7 @@ class p_TOP_Til_Dep_All_V1 extends Module {
       for (j <- 0 until 8) {
         convert_dep_2.io.in(i * 8 + j) := dep2(i).io.out(j)
       }
-      convert_dep_2.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_2.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_2.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_2.io.out(i)
 
@@ -304,10 +304,10 @@ class p_TOP_Til_Dep_All_V1 extends Module {
 
     for (i <- 0 until 8) {
       // Depth 3 Convert
-      for (j <- 0 until 4) {
+      for (j <- 0 until 4) { 
         convert_dep_3.io.in(i * 4 + j) := dep3(i).io.out(j)
       }
-      convert_dep_3.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_3.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_3.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_3.io.out(i)
 
@@ -345,7 +345,7 @@ class p_TOP_Til_Dep_All_V1 extends Module {
       for (j <- 0 until 2) {
         convert_dep_4.io.in(i * 2 + j) := dep4(i).io.out(j)
       }
-      convert_dep_4.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_4.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_4.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_4.io.out(i)
 
@@ -382,7 +382,7 @@ class p_TOP_Til_Dep_All_V1 extends Module {
     for (i <- 0 until 8) {
       // Depth 5 Convert
       convert_dep_5.io.in(i) := dep5(i).io.out
-      convert_dep_5.io.nan(i) := scale_emax.io.nan(i)
+      convert_dep_5.io.nan(i) := scale_emax.io.nan_out(i)
       convert_dep_5.io.exponent(i) := scale_emax.io.out(i)
       io.out(i) := convert_dep_5.io.out(i)
 

@@ -4,7 +4,6 @@ module p_Adder_Groupwise_2(
                 io_mantissa_1,
   input         io_sign_0,
                 io_sign_1,
-  input  [3:0]  io_depth,
   output [45:0] io_out_mantissa_0,
   output        io_out_sign_0
 );
@@ -12,8 +11,7 @@ module p_Adder_Groupwise_2(
   wire [45:0] a_sint = io_sign_0 ? 46'h0 - {1'h0, io_mantissa_0} : {1'h0, io_mantissa_0};
   wire [45:0] b_sint = io_sign_1 ? 46'h0 - {1'h0, io_mantissa_1} : {1'h0, io_mantissa_1};
   wire [46:0] sum = {a_sint[45], a_sint} + {b_sint[45], b_sint};
-  assign io_out_mantissa_0 =
-    io_depth[3] ? (sum[46] ? 46'h0 - sum[45:0] : sum[45:0]) : 46'h0;
-  assign io_out_sign_0 = io_depth[3] & sum[46];
+  assign io_out_mantissa_0 = sum[46] ? 46'h0 - sum[45:0] : sum[45:0];
+  assign io_out_sign_0 = sum[46];
 endmodule
 

@@ -56,7 +56,7 @@ object build {
 
 
       case "p_TOP_Til_Dep_total" => new mxfp4.proposed.p_TOP_Til_Dep_total()
-      case "p_TOP_Til_Dep_total_piped" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped()
+      //case "p_TOP_Til_Dep_total_piped" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped()
       case "p_TOP_Til_Dep_total_piped_CT" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT()
       case "p_TOP_Til_Dep_total_piped_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn()
       case "p_TOP_Til_Dep_total_comb_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_comb_CT_syn()
@@ -71,6 +71,8 @@ object build {
       case "p_Expansion_CSA_Groupwise" => new mxfp4.proposed.p_Expansion_CSA_Groupwise(5, 30) // location of p_Expansion_CSA_Groupwise and extra bit-precision (for testing)
       case "p_Convert_CSA" => new mxfp4.proposed.p_Convert_CSA(5) // location of p_Convert_CSA and extra bit-precision (for testing)
       case "p_Convert_CSA_Groupwise" => new mxfp4.proposed.p_Convert_CSA_Groupwise(8, 30)
+  
+
       case other =>
 
         System.err.println(s"❌ Unknown module: $moduleName")

@@ -581,526 +581,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   output [22:0] io_out_15_mantissa
 );
 
-  wire        _expansion_7_io_out_sign_0;
-  wire        _expansion_7_io_out_sign_1;
-  wire        _expansion_7_io_out_sign_2;
-  wire        _expansion_7_io_out_sign_3;
-  wire        _expansion_7_io_out_sign_4;
-  wire        _expansion_7_io_out_sign_5;
-  wire        _expansion_7_io_out_sign_6;
-  wire        _expansion_7_io_out_sign_7;
-  wire        _expansion_7_io_out_sign_8;
-  wire        _expansion_7_io_out_sign_9;
-  wire        _expansion_7_io_out_sign_10;
-  wire        _expansion_7_io_out_sign_11;
-  wire        _expansion_7_io_out_sign_12;
-  wire        _expansion_7_io_out_sign_13;
-  wire        _expansion_7_io_out_sign_14;
-  wire        _expansion_7_io_out_sign_15;
-  wire        _expansion_7_io_out_sign_16;
-  wire        _expansion_7_io_out_sign_17;
-  wire        _expansion_7_io_out_sign_18;
-  wire        _expansion_7_io_out_sign_19;
-  wire        _expansion_7_io_out_sign_20;
-  wire        _expansion_7_io_out_sign_21;
-  wire        _expansion_7_io_out_sign_22;
-  wire        _expansion_7_io_out_sign_23;
-  wire        _expansion_7_io_out_sign_24;
-  wire        _expansion_7_io_out_sign_25;
-  wire        _expansion_7_io_out_sign_26;
-  wire        _expansion_7_io_out_sign_27;
-  wire        _expansion_7_io_out_sign_28;
-  wire        _expansion_7_io_out_sign_29;
-  wire        _expansion_7_io_out_sign_30;
-  wire        _expansion_7_io_out_sign_31;
-  wire [2:0]  _expansion_7_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_7_io_out_mantissa_0;
-  wire [7:0]  _expansion_7_io_out_mantissa_1;
-  wire [7:0]  _expansion_7_io_out_mantissa_2;
-  wire [7:0]  _expansion_7_io_out_mantissa_3;
-  wire [7:0]  _expansion_7_io_out_mantissa_4;
-  wire [7:0]  _expansion_7_io_out_mantissa_5;
-  wire [7:0]  _expansion_7_io_out_mantissa_6;
-  wire [7:0]  _expansion_7_io_out_mantissa_7;
-  wire [7:0]  _expansion_7_io_out_mantissa_8;
-  wire [7:0]  _expansion_7_io_out_mantissa_9;
-  wire [7:0]  _expansion_7_io_out_mantissa_10;
-  wire [7:0]  _expansion_7_io_out_mantissa_11;
-  wire [7:0]  _expansion_7_io_out_mantissa_12;
-  wire [7:0]  _expansion_7_io_out_mantissa_13;
-  wire [7:0]  _expansion_7_io_out_mantissa_14;
-  wire [7:0]  _expansion_7_io_out_mantissa_15;
-  wire [7:0]  _expansion_7_io_out_mantissa_16;
-  wire [7:0]  _expansion_7_io_out_mantissa_17;
-  wire [7:0]  _expansion_7_io_out_mantissa_18;
-  wire [7:0]  _expansion_7_io_out_mantissa_19;
-  wire [7:0]  _expansion_7_io_out_mantissa_20;
-  wire [7:0]  _expansion_7_io_out_mantissa_21;
-  wire [7:0]  _expansion_7_io_out_mantissa_22;
-  wire [7:0]  _expansion_7_io_out_mantissa_23;
-  wire [7:0]  _expansion_7_io_out_mantissa_24;
-  wire [7:0]  _expansion_7_io_out_mantissa_25;
-  wire [7:0]  _expansion_7_io_out_mantissa_26;
-  wire [7:0]  _expansion_7_io_out_mantissa_27;
-  wire [7:0]  _expansion_7_io_out_mantissa_28;
-  wire [7:0]  _expansion_7_io_out_mantissa_29;
-  wire [7:0]  _expansion_7_io_out_mantissa_30;
-  wire [7:0]  _expansion_7_io_out_mantissa_31;
-  wire        _expansion_6_io_out_sign_0;
-  wire        _expansion_6_io_out_sign_1;
-  wire        _expansion_6_io_out_sign_2;
-  wire        _expansion_6_io_out_sign_3;
-  wire        _expansion_6_io_out_sign_4;
-  wire        _expansion_6_io_out_sign_5;
-  wire        _expansion_6_io_out_sign_6;
-  wire        _expansion_6_io_out_sign_7;
-  wire        _expansion_6_io_out_sign_8;
-  wire        _expansion_6_io_out_sign_9;
-  wire        _expansion_6_io_out_sign_10;
-  wire        _expansion_6_io_out_sign_11;
-  wire        _expansion_6_io_out_sign_12;
-  wire        _expansion_6_io_out_sign_13;
-  wire        _expansion_6_io_out_sign_14;
-  wire        _expansion_6_io_out_sign_15;
-  wire        _expansion_6_io_out_sign_16;
-  wire        _expansion_6_io_out_sign_17;
-  wire        _expansion_6_io_out_sign_18;
-  wire        _expansion_6_io_out_sign_19;
-  wire        _expansion_6_io_out_sign_20;
-  wire        _expansion_6_io_out_sign_21;
-  wire        _expansion_6_io_out_sign_22;
-  wire        _expansion_6_io_out_sign_23;
-  wire        _expansion_6_io_out_sign_24;
-  wire        _expansion_6_io_out_sign_25;
-  wire        _expansion_6_io_out_sign_26;
-  wire        _expansion_6_io_out_sign_27;
-  wire        _expansion_6_io_out_sign_28;
-  wire        _expansion_6_io_out_sign_29;
-  wire        _expansion_6_io_out_sign_30;
-  wire        _expansion_6_io_out_sign_31;
-  wire [2:0]  _expansion_6_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_6_io_out_mantissa_0;
-  wire [7:0]  _expansion_6_io_out_mantissa_1;
-  wire [7:0]  _expansion_6_io_out_mantissa_2;
-  wire [7:0]  _expansion_6_io_out_mantissa_3;
-  wire [7:0]  _expansion_6_io_out_mantissa_4;
-  wire [7:0]  _expansion_6_io_out_mantissa_5;
-  wire [7:0]  _expansion_6_io_out_mantissa_6;
-  wire [7:0]  _expansion_6_io_out_mantissa_7;
-  wire [7:0]  _expansion_6_io_out_mantissa_8;
-  wire [7:0]  _expansion_6_io_out_mantissa_9;
-  wire [7:0]  _expansion_6_io_out_mantissa_10;
-  wire [7:0]  _expansion_6_io_out_mantissa_11;
-  wire [7:0]  _expansion_6_io_out_mantissa_12;
-  wire [7:0]  _expansion_6_io_out_mantissa_13;
-  wire [7:0]  _expansion_6_io_out_mantissa_14;
-  wire [7:0]  _expansion_6_io_out_mantissa_15;
-  wire [7:0]  _expansion_6_io_out_mantissa_16;
-  wire [7:0]  _expansion_6_io_out_mantissa_17;
-  wire [7:0]  _expansion_6_io_out_mantissa_18;
-  wire [7:0]  _expansion_6_io_out_mantissa_19;
-  wire [7:0]  _expansion_6_io_out_mantissa_20;
-  wire [7:0]  _expansion_6_io_out_mantissa_21;
-  wire [7:0]  _expansion_6_io_out_mantissa_22;
-  wire [7:0]  _expansion_6_io_out_mantissa_23;
-  wire [7:0]  _expansion_6_io_out_mantissa_24;
-  wire [7:0]  _expansion_6_io_out_mantissa_25;
-  wire [7:0]  _expansion_6_io_out_mantissa_26;
-  wire [7:0]  _expansion_6_io_out_mantissa_27;
-  wire [7:0]  _expansion_6_io_out_mantissa_28;
-  wire [7:0]  _expansion_6_io_out_mantissa_29;
-  wire [7:0]  _expansion_6_io_out_mantissa_30;
-  wire [7:0]  _expansion_6_io_out_mantissa_31;
-  wire        _expansion_5_io_out_sign_0;
-  wire        _expansion_5_io_out_sign_1;
-  wire        _expansion_5_io_out_sign_2;
-  wire        _expansion_5_io_out_sign_3;
-  wire        _expansion_5_io_out_sign_4;
-  wire        _expansion_5_io_out_sign_5;
-  wire        _expansion_5_io_out_sign_6;
-  wire        _expansion_5_io_out_sign_7;
-  wire        _expansion_5_io_out_sign_8;
-  wire        _expansion_5_io_out_sign_9;
-  wire        _expansion_5_io_out_sign_10;
-  wire        _expansion_5_io_out_sign_11;
-  wire        _expansion_5_io_out_sign_12;
-  wire        _expansion_5_io_out_sign_13;
-  wire        _expansion_5_io_out_sign_14;
-  wire        _expansion_5_io_out_sign_15;
-  wire        _expansion_5_io_out_sign_16;
-  wire        _expansion_5_io_out_sign_17;
-  wire        _expansion_5_io_out_sign_18;
-  wire        _expansion_5_io_out_sign_19;
-  wire        _expansion_5_io_out_sign_20;
-  wire        _expansion_5_io_out_sign_21;
-  wire        _expansion_5_io_out_sign_22;
-  wire        _expansion_5_io_out_sign_23;
-  wire        _expansion_5_io_out_sign_24;
-  wire        _expansion_5_io_out_sign_25;
-  wire        _expansion_5_io_out_sign_26;
-  wire        _expansion_5_io_out_sign_27;
-  wire        _expansion_5_io_out_sign_28;
-  wire        _expansion_5_io_out_sign_29;
-  wire        _expansion_5_io_out_sign_30;
-  wire        _expansion_5_io_out_sign_31;
-  wire [2:0]  _expansion_5_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_5_io_out_mantissa_0;
-  wire [7:0]  _expansion_5_io_out_mantissa_1;
-  wire [7:0]  _expansion_5_io_out_mantissa_2;
-  wire [7:0]  _expansion_5_io_out_mantissa_3;
-  wire [7:0]  _expansion_5_io_out_mantissa_4;
-  wire [7:0]  _expansion_5_io_out_mantissa_5;
-  wire [7:0]  _expansion_5_io_out_mantissa_6;
-  wire [7:0]  _expansion_5_io_out_mantissa_7;
-  wire [7:0]  _expansion_5_io_out_mantissa_8;
-  wire [7:0]  _expansion_5_io_out_mantissa_9;
-  wire [7:0]  _expansion_5_io_out_mantissa_10;
-  wire [7:0]  _expansion_5_io_out_mantissa_11;
-  wire [7:0]  _expansion_5_io_out_mantissa_12;
-  wire [7:0]  _expansion_5_io_out_mantissa_13;
-  wire [7:0]  _expansion_5_io_out_mantissa_14;
-  wire [7:0]  _expansion_5_io_out_mantissa_15;
-  wire [7:0]  _expansion_5_io_out_mantissa_16;
-  wire [7:0]  _expansion_5_io_out_mantissa_17;
-  wire [7:0]  _expansion_5_io_out_mantissa_18;
-  wire [7:0]  _expansion_5_io_out_mantissa_19;
-  wire [7:0]  _expansion_5_io_out_mantissa_20;
-  wire [7:0]  _expansion_5_io_out_mantissa_21;
-  wire [7:0]  _expansion_5_io_out_mantissa_22;
-  wire [7:0]  _expansion_5_io_out_mantissa_23;
-  wire [7:0]  _expansion_5_io_out_mantissa_24;
-  wire [7:0]  _expansion_5_io_out_mantissa_25;
-  wire [7:0]  _expansion_5_io_out_mantissa_26;
-  wire [7:0]  _expansion_5_io_out_mantissa_27;
-  wire [7:0]  _expansion_5_io_out_mantissa_28;
-  wire [7:0]  _expansion_5_io_out_mantissa_29;
-  wire [7:0]  _expansion_5_io_out_mantissa_30;
-  wire [7:0]  _expansion_5_io_out_mantissa_31;
-  wire        _expansion_4_io_out_sign_0;
-  wire        _expansion_4_io_out_sign_1;
-  wire        _expansion_4_io_out_sign_2;
-  wire        _expansion_4_io_out_sign_3;
-  wire        _expansion_4_io_out_sign_4;
-  wire        _expansion_4_io_out_sign_5;
-  wire        _expansion_4_io_out_sign_6;
-  wire        _expansion_4_io_out_sign_7;
-  wire        _expansion_4_io_out_sign_8;
-  wire        _expansion_4_io_out_sign_9;
-  wire        _expansion_4_io_out_sign_10;
-  wire        _expansion_4_io_out_sign_11;
-  wire        _expansion_4_io_out_sign_12;
-  wire        _expansion_4_io_out_sign_13;
-  wire        _expansion_4_io_out_sign_14;
-  wire        _expansion_4_io_out_sign_15;
-  wire        _expansion_4_io_out_sign_16;
-  wire        _expansion_4_io_out_sign_17;
-  wire        _expansion_4_io_out_sign_18;
-  wire        _expansion_4_io_out_sign_19;
-  wire        _expansion_4_io_out_sign_20;
-  wire        _expansion_4_io_out_sign_21;
-  wire        _expansion_4_io_out_sign_22;
-  wire        _expansion_4_io_out_sign_23;
-  wire        _expansion_4_io_out_sign_24;
-  wire        _expansion_4_io_out_sign_25;
-  wire        _expansion_4_io_out_sign_26;
-  wire        _expansion_4_io_out_sign_27;
-  wire        _expansion_4_io_out_sign_28;
-  wire        _expansion_4_io_out_sign_29;
-  wire        _expansion_4_io_out_sign_30;
-  wire        _expansion_4_io_out_sign_31;
-  wire [2:0]  _expansion_4_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_4_io_out_mantissa_0;
-  wire [7:0]  _expansion_4_io_out_mantissa_1;
-  wire [7:0]  _expansion_4_io_out_mantissa_2;
-  wire [7:0]  _expansion_4_io_out_mantissa_3;
-  wire [7:0]  _expansion_4_io_out_mantissa_4;
-  wire [7:0]  _expansion_4_io_out_mantissa_5;
-  wire [7:0]  _expansion_4_io_out_mantissa_6;
-  wire [7:0]  _expansion_4_io_out_mantissa_7;
-  wire [7:0]  _expansion_4_io_out_mantissa_8;
-  wire [7:0]  _expansion_4_io_out_mantissa_9;
-  wire [7:0]  _expansion_4_io_out_mantissa_10;
-  wire [7:0]  _expansion_4_io_out_mantissa_11;
-  wire [7:0]  _expansion_4_io_out_mantissa_12;
-  wire [7:0]  _expansion_4_io_out_mantissa_13;
-  wire [7:0]  _expansion_4_io_out_mantissa_14;
-  wire [7:0]  _expansion_4_io_out_mantissa_15;
-  wire [7:0]  _expansion_4_io_out_mantissa_16;
-  wire [7:0]  _expansion_4_io_out_mantissa_17;
-  wire [7:0]  _expansion_4_io_out_mantissa_18;
-  wire [7:0]  _expansion_4_io_out_mantissa_19;
-  wire [7:0]  _expansion_4_io_out_mantissa_20;
-  wire [7:0]  _expansion_4_io_out_mantissa_21;
-  wire [7:0]  _expansion_4_io_out_mantissa_22;
-  wire [7:0]  _expansion_4_io_out_mantissa_23;
-  wire [7:0]  _expansion_4_io_out_mantissa_24;
-  wire [7:0]  _expansion_4_io_out_mantissa_25;
-  wire [7:0]  _expansion_4_io_out_mantissa_26;
-  wire [7:0]  _expansion_4_io_out_mantissa_27;
-  wire [7:0]  _expansion_4_io_out_mantissa_28;
-  wire [7:0]  _expansion_4_io_out_mantissa_29;
-  wire [7:0]  _expansion_4_io_out_mantissa_30;
-  wire [7:0]  _expansion_4_io_out_mantissa_31;
-  wire        _expansion_3_io_out_sign_0;
-  wire        _expansion_3_io_out_sign_1;
-  wire        _expansion_3_io_out_sign_2;
-  wire        _expansion_3_io_out_sign_3;
-  wire        _expansion_3_io_out_sign_4;
-  wire        _expansion_3_io_out_sign_5;
-  wire        _expansion_3_io_out_sign_6;
-  wire        _expansion_3_io_out_sign_7;
-  wire        _expansion_3_io_out_sign_8;
-  wire        _expansion_3_io_out_sign_9;
-  wire        _expansion_3_io_out_sign_10;
-  wire        _expansion_3_io_out_sign_11;
-  wire        _expansion_3_io_out_sign_12;
-  wire        _expansion_3_io_out_sign_13;
-  wire        _expansion_3_io_out_sign_14;
-  wire        _expansion_3_io_out_sign_15;
-  wire        _expansion_3_io_out_sign_16;
-  wire        _expansion_3_io_out_sign_17;
-  wire        _expansion_3_io_out_sign_18;
-  wire        _expansion_3_io_out_sign_19;
-  wire        _expansion_3_io_out_sign_20;
-  wire        _expansion_3_io_out_sign_21;
-  wire        _expansion_3_io_out_sign_22;
-  wire        _expansion_3_io_out_sign_23;
-  wire        _expansion_3_io_out_sign_24;
-  wire        _expansion_3_io_out_sign_25;
-  wire        _expansion_3_io_out_sign_26;
-  wire        _expansion_3_io_out_sign_27;
-  wire        _expansion_3_io_out_sign_28;
-  wire        _expansion_3_io_out_sign_29;
-  wire        _expansion_3_io_out_sign_30;
-  wire        _expansion_3_io_out_sign_31;
-  wire [2:0]  _expansion_3_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_3_io_out_mantissa_0;
-  wire [7:0]  _expansion_3_io_out_mantissa_1;
-  wire [7:0]  _expansion_3_io_out_mantissa_2;
-  wire [7:0]  _expansion_3_io_out_mantissa_3;
-  wire [7:0]  _expansion_3_io_out_mantissa_4;
-  wire [7:0]  _expansion_3_io_out_mantissa_5;
-  wire [7:0]  _expansion_3_io_out_mantissa_6;
-  wire [7:0]  _expansion_3_io_out_mantissa_7;
-  wire [7:0]  _expansion_3_io_out_mantissa_8;
-  wire [7:0]  _expansion_3_io_out_mantissa_9;
-  wire [7:0]  _expansion_3_io_out_mantissa_10;
-  wire [7:0]  _expansion_3_io_out_mantissa_11;
-  wire [7:0]  _expansion_3_io_out_mantissa_12;
-  wire [7:0]  _expansion_3_io_out_mantissa_13;
-  wire [7:0]  _expansion_3_io_out_mantissa_14;
-  wire [7:0]  _expansion_3_io_out_mantissa_15;
-  wire [7:0]  _expansion_3_io_out_mantissa_16;
-  wire [7:0]  _expansion_3_io_out_mantissa_17;
-  wire [7:0]  _expansion_3_io_out_mantissa_18;
-  wire [7:0]  _expansion_3_io_out_mantissa_19;
-  wire [7:0]  _expansion_3_io_out_mantissa_20;
-  wire [7:0]  _expansion_3_io_out_mantissa_21;
-  wire [7:0]  _expansion_3_io_out_mantissa_22;
-  wire [7:0]  _expansion_3_io_out_mantissa_23;
-  wire [7:0]  _expansion_3_io_out_mantissa_24;
-  wire [7:0]  _expansion_3_io_out_mantissa_25;
-  wire [7:0]  _expansion_3_io_out_mantissa_26;
-  wire [7:0]  _expansion_3_io_out_mantissa_27;
-  wire [7:0]  _expansion_3_io_out_mantissa_28;
-  wire [7:0]  _expansion_3_io_out_mantissa_29;
-  wire [7:0]  _expansion_3_io_out_mantissa_30;
-  wire [7:0]  _expansion_3_io_out_mantissa_31;
-  wire        _expansion_2_io_out_sign_0;
-  wire        _expansion_2_io_out_sign_1;
-  wire        _expansion_2_io_out_sign_2;
-  wire        _expansion_2_io_out_sign_3;
-  wire        _expansion_2_io_out_sign_4;
-  wire        _expansion_2_io_out_sign_5;
-  wire        _expansion_2_io_out_sign_6;
-  wire        _expansion_2_io_out_sign_7;
-  wire        _expansion_2_io_out_sign_8;
-  wire        _expansion_2_io_out_sign_9;
-  wire        _expansion_2_io_out_sign_10;
-  wire        _expansion_2_io_out_sign_11;
-  wire        _expansion_2_io_out_sign_12;
-  wire        _expansion_2_io_out_sign_13;
-  wire        _expansion_2_io_out_sign_14;
-  wire        _expansion_2_io_out_sign_15;
-  wire        _expansion_2_io_out_sign_16;
-  wire        _expansion_2_io_out_sign_17;
-  wire        _expansion_2_io_out_sign_18;
-  wire        _expansion_2_io_out_sign_19;
-  wire        _expansion_2_io_out_sign_20;
-  wire        _expansion_2_io_out_sign_21;
-  wire        _expansion_2_io_out_sign_22;
-  wire        _expansion_2_io_out_sign_23;
-  wire        _expansion_2_io_out_sign_24;
-  wire        _expansion_2_io_out_sign_25;
-  wire        _expansion_2_io_out_sign_26;
-  wire        _expansion_2_io_out_sign_27;
-  wire        _expansion_2_io_out_sign_28;
-  wire        _expansion_2_io_out_sign_29;
-  wire        _expansion_2_io_out_sign_30;
-  wire        _expansion_2_io_out_sign_31;
-  wire [2:0]  _expansion_2_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_2_io_out_mantissa_0;
-  wire [7:0]  _expansion_2_io_out_mantissa_1;
-  wire [7:0]  _expansion_2_io_out_mantissa_2;
-  wire [7:0]  _expansion_2_io_out_mantissa_3;
-  wire [7:0]  _expansion_2_io_out_mantissa_4;
-  wire [7:0]  _expansion_2_io_out_mantissa_5;
-  wire [7:0]  _expansion_2_io_out_mantissa_6;
-  wire [7:0]  _expansion_2_io_out_mantissa_7;
-  wire [7:0]  _expansion_2_io_out_mantissa_8;
-  wire [7:0]  _expansion_2_io_out_mantissa_9;
-  wire [7:0]  _expansion_2_io_out_mantissa_10;
-  wire [7:0]  _expansion_2_io_out_mantissa_11;
-  wire [7:0]  _expansion_2_io_out_mantissa_12;
-  wire [7:0]  _expansion_2_io_out_mantissa_13;
-  wire [7:0]  _expansion_2_io_out_mantissa_14;
-  wire [7:0]  _expansion_2_io_out_mantissa_15;
-  wire [7:0]  _expansion_2_io_out_mantissa_16;
-  wire [7:0]  _expansion_2_io_out_mantissa_17;
-  wire [7:0]  _expansion_2_io_out_mantissa_18;
-  wire [7:0]  _expansion_2_io_out_mantissa_19;
-  wire [7:0]  _expansion_2_io_out_mantissa_20;
-  wire [7:0]  _expansion_2_io_out_mantissa_21;
-  wire [7:0]  _expansion_2_io_out_mantissa_22;
-  wire [7:0]  _expansion_2_io_out_mantissa_23;
-  wire [7:0]  _expansion_2_io_out_mantissa_24;
-  wire [7:0]  _expansion_2_io_out_mantissa_25;
-  wire [7:0]  _expansion_2_io_out_mantissa_26;
-  wire [7:0]  _expansion_2_io_out_mantissa_27;
-  wire [7:0]  _expansion_2_io_out_mantissa_28;
-  wire [7:0]  _expansion_2_io_out_mantissa_29;
-  wire [7:0]  _expansion_2_io_out_mantissa_30;
-  wire [7:0]  _expansion_2_io_out_mantissa_31;
-  wire        _expansion_1_io_out_sign_0;
-  wire        _expansion_1_io_out_sign_1;
-  wire        _expansion_1_io_out_sign_2;
-  wire        _expansion_1_io_out_sign_3;
-  wire        _expansion_1_io_out_sign_4;
-  wire        _expansion_1_io_out_sign_5;
-  wire        _expansion_1_io_out_sign_6;
-  wire        _expansion_1_io_out_sign_7;
-  wire        _expansion_1_io_out_sign_8;
-  wire        _expansion_1_io_out_sign_9;
-  wire        _expansion_1_io_out_sign_10;
-  wire        _expansion_1_io_out_sign_11;
-  wire        _expansion_1_io_out_sign_12;
-  wire        _expansion_1_io_out_sign_13;
-  wire        _expansion_1_io_out_sign_14;
-  wire        _expansion_1_io_out_sign_15;
-  wire        _expansion_1_io_out_sign_16;
-  wire        _expansion_1_io_out_sign_17;
-  wire        _expansion_1_io_out_sign_18;
-  wire        _expansion_1_io_out_sign_19;
-  wire        _expansion_1_io_out_sign_20;
-  wire        _expansion_1_io_out_sign_21;
-  wire        _expansion_1_io_out_sign_22;
-  wire        _expansion_1_io_out_sign_23;
-  wire        _expansion_1_io_out_sign_24;
-  wire        _expansion_1_io_out_sign_25;
-  wire        _expansion_1_io_out_sign_26;
-  wire        _expansion_1_io_out_sign_27;
-  wire        _expansion_1_io_out_sign_28;
-  wire        _expansion_1_io_out_sign_29;
-  wire        _expansion_1_io_out_sign_30;
-  wire        _expansion_1_io_out_sign_31;
-  wire [2:0]  _expansion_1_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_1_io_out_mantissa_0;
-  wire [7:0]  _expansion_1_io_out_mantissa_1;
-  wire [7:0]  _expansion_1_io_out_mantissa_2;
-  wire [7:0]  _expansion_1_io_out_mantissa_3;
-  wire [7:0]  _expansion_1_io_out_mantissa_4;
-  wire [7:0]  _expansion_1_io_out_mantissa_5;
-  wire [7:0]  _expansion_1_io_out_mantissa_6;
-  wire [7:0]  _expansion_1_io_out_mantissa_7;
-  wire [7:0]  _expansion_1_io_out_mantissa_8;
-  wire [7:0]  _expansion_1_io_out_mantissa_9;
-  wire [7:0]  _expansion_1_io_out_mantissa_10;
-  wire [7:0]  _expansion_1_io_out_mantissa_11;
-  wire [7:0]  _expansion_1_io_out_mantissa_12;
-  wire [7:0]  _expansion_1_io_out_mantissa_13;
-  wire [7:0]  _expansion_1_io_out_mantissa_14;
-  wire [7:0]  _expansion_1_io_out_mantissa_15;
-  wire [7:0]  _expansion_1_io_out_mantissa_16;
-  wire [7:0]  _expansion_1_io_out_mantissa_17;
-  wire [7:0]  _expansion_1_io_out_mantissa_18;
-  wire [7:0]  _expansion_1_io_out_mantissa_19;
-  wire [7:0]  _expansion_1_io_out_mantissa_20;
-  wire [7:0]  _expansion_1_io_out_mantissa_21;
-  wire [7:0]  _expansion_1_io_out_mantissa_22;
-  wire [7:0]  _expansion_1_io_out_mantissa_23;
-  wire [7:0]  _expansion_1_io_out_mantissa_24;
-  wire [7:0]  _expansion_1_io_out_mantissa_25;
-  wire [7:0]  _expansion_1_io_out_mantissa_26;
-  wire [7:0]  _expansion_1_io_out_mantissa_27;
-  wire [7:0]  _expansion_1_io_out_mantissa_28;
-  wire [7:0]  _expansion_1_io_out_mantissa_29;
-  wire [7:0]  _expansion_1_io_out_mantissa_30;
-  wire [7:0]  _expansion_1_io_out_mantissa_31;
-  wire        _expansion_io_out_sign_0;
-  wire        _expansion_io_out_sign_1;
-  wire        _expansion_io_out_sign_2;
-  wire        _expansion_io_out_sign_3;
-  wire        _expansion_io_out_sign_4;
-  wire        _expansion_io_out_sign_5;
-  wire        _expansion_io_out_sign_6;
-  wire        _expansion_io_out_sign_7;
-  wire        _expansion_io_out_sign_8;
-  wire        _expansion_io_out_sign_9;
-  wire        _expansion_io_out_sign_10;
-  wire        _expansion_io_out_sign_11;
-  wire        _expansion_io_out_sign_12;
-  wire        _expansion_io_out_sign_13;
-  wire        _expansion_io_out_sign_14;
-  wire        _expansion_io_out_sign_15;
-  wire        _expansion_io_out_sign_16;
-  wire        _expansion_io_out_sign_17;
-  wire        _expansion_io_out_sign_18;
-  wire        _expansion_io_out_sign_19;
-  wire        _expansion_io_out_sign_20;
-  wire        _expansion_io_out_sign_21;
-  wire        _expansion_io_out_sign_22;
-  wire        _expansion_io_out_sign_23;
-  wire        _expansion_io_out_sign_24;
-  wire        _expansion_io_out_sign_25;
-  wire        _expansion_io_out_sign_26;
-  wire        _expansion_io_out_sign_27;
-  wire        _expansion_io_out_sign_28;
-  wire        _expansion_io_out_sign_29;
-  wire        _expansion_io_out_sign_30;
-  wire        _expansion_io_out_sign_31;
-  wire [2:0]  _expansion_io_out_exponent_gmax_0;
-  wire [7:0]  _expansion_io_out_mantissa_0;
-  wire [7:0]  _expansion_io_out_mantissa_1;
-  wire [7:0]  _expansion_io_out_mantissa_2;
-  wire [7:0]  _expansion_io_out_mantissa_3;
-  wire [7:0]  _expansion_io_out_mantissa_4;
-  wire [7:0]  _expansion_io_out_mantissa_5;
-  wire [7:0]  _expansion_io_out_mantissa_6;
-  wire [7:0]  _expansion_io_out_mantissa_7;
-  wire [7:0]  _expansion_io_out_mantissa_8;
-  wire [7:0]  _expansion_io_out_mantissa_9;
-  wire [7:0]  _expansion_io_out_mantissa_10;
-  wire [7:0]  _expansion_io_out_mantissa_11;
-  wire [7:0]  _expansion_io_out_mantissa_12;
-  wire [7:0]  _expansion_io_out_mantissa_13;
-  wire [7:0]  _expansion_io_out_mantissa_14;
-  wire [7:0]  _expansion_io_out_mantissa_15;
-  wire [7:0]  _expansion_io_out_mantissa_16;
-  wire [7:0]  _expansion_io_out_mantissa_17;
-  wire [7:0]  _expansion_io_out_mantissa_18;
-  wire [7:0]  _expansion_io_out_mantissa_19;
-  wire [7:0]  _expansion_io_out_mantissa_20;
-  wire [7:0]  _expansion_io_out_mantissa_21;
-  wire [7:0]  _expansion_io_out_mantissa_22;
-  wire [7:0]  _expansion_io_out_mantissa_23;
-  wire [7:0]  _expansion_io_out_mantissa_24;
-  wire [7:0]  _expansion_io_out_mantissa_25;
-  wire [7:0]  _expansion_io_out_mantissa_26;
-  wire [7:0]  _expansion_io_out_mantissa_27;
-  wire [7:0]  _expansion_io_out_mantissa_28;
-  wire [7:0]  _expansion_io_out_mantissa_29;
-  wire [7:0]  _expansion_io_out_mantissa_30;
-  wire [7:0]  _expansion_io_out_mantissa_31;
   wire        _convert_groupwise_8_io_out_0_sign;
   wire [7:0]  _convert_groupwise_8_io_out_0_exponent;
   wire [22:0] _convert_groupwise_8_io_out_0_mantissa;
@@ -1680,6 +1160,534 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   wire [9:0]  _scaleEmax_io_out_5;
   wire [9:0]  _scaleEmax_io_out_6;
   wire [9:0]  _scaleEmax_io_out_7;
+  wire        _scaleEmax_io_nan_out_0;
+  wire        _scaleEmax_io_nan_out_1;
+  wire        _scaleEmax_io_nan_out_2;
+  wire        _scaleEmax_io_nan_out_3;
+  wire        _scaleEmax_io_nan_out_4;
+  wire        _scaleEmax_io_nan_out_5;
+  wire        _scaleEmax_io_nan_out_6;
+  wire        _scaleEmax_io_nan_out_7;
+  wire        _expansion_7_io_out_sign_0;
+  wire        _expansion_7_io_out_sign_1;
+  wire        _expansion_7_io_out_sign_2;
+  wire        _expansion_7_io_out_sign_3;
+  wire        _expansion_7_io_out_sign_4;
+  wire        _expansion_7_io_out_sign_5;
+  wire        _expansion_7_io_out_sign_6;
+  wire        _expansion_7_io_out_sign_7;
+  wire        _expansion_7_io_out_sign_8;
+  wire        _expansion_7_io_out_sign_9;
+  wire        _expansion_7_io_out_sign_10;
+  wire        _expansion_7_io_out_sign_11;
+  wire        _expansion_7_io_out_sign_12;
+  wire        _expansion_7_io_out_sign_13;
+  wire        _expansion_7_io_out_sign_14;
+  wire        _expansion_7_io_out_sign_15;
+  wire        _expansion_7_io_out_sign_16;
+  wire        _expansion_7_io_out_sign_17;
+  wire        _expansion_7_io_out_sign_18;
+  wire        _expansion_7_io_out_sign_19;
+  wire        _expansion_7_io_out_sign_20;
+  wire        _expansion_7_io_out_sign_21;
+  wire        _expansion_7_io_out_sign_22;
+  wire        _expansion_7_io_out_sign_23;
+  wire        _expansion_7_io_out_sign_24;
+  wire        _expansion_7_io_out_sign_25;
+  wire        _expansion_7_io_out_sign_26;
+  wire        _expansion_7_io_out_sign_27;
+  wire        _expansion_7_io_out_sign_28;
+  wire        _expansion_7_io_out_sign_29;
+  wire        _expansion_7_io_out_sign_30;
+  wire        _expansion_7_io_out_sign_31;
+  wire [2:0]  _expansion_7_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_7_io_out_mantissa_0;
+  wire [7:0]  _expansion_7_io_out_mantissa_1;
+  wire [7:0]  _expansion_7_io_out_mantissa_2;
+  wire [7:0]  _expansion_7_io_out_mantissa_3;
+  wire [7:0]  _expansion_7_io_out_mantissa_4;
+  wire [7:0]  _expansion_7_io_out_mantissa_5;
+  wire [7:0]  _expansion_7_io_out_mantissa_6;
+  wire [7:0]  _expansion_7_io_out_mantissa_7;
+  wire [7:0]  _expansion_7_io_out_mantissa_8;
+  wire [7:0]  _expansion_7_io_out_mantissa_9;
+  wire [7:0]  _expansion_7_io_out_mantissa_10;
+  wire [7:0]  _expansion_7_io_out_mantissa_11;
+  wire [7:0]  _expansion_7_io_out_mantissa_12;
+  wire [7:0]  _expansion_7_io_out_mantissa_13;
+  wire [7:0]  _expansion_7_io_out_mantissa_14;
+  wire [7:0]  _expansion_7_io_out_mantissa_15;
+  wire [7:0]  _expansion_7_io_out_mantissa_16;
+  wire [7:0]  _expansion_7_io_out_mantissa_17;
+  wire [7:0]  _expansion_7_io_out_mantissa_18;
+  wire [7:0]  _expansion_7_io_out_mantissa_19;
+  wire [7:0]  _expansion_7_io_out_mantissa_20;
+  wire [7:0]  _expansion_7_io_out_mantissa_21;
+  wire [7:0]  _expansion_7_io_out_mantissa_22;
+  wire [7:0]  _expansion_7_io_out_mantissa_23;
+  wire [7:0]  _expansion_7_io_out_mantissa_24;
+  wire [7:0]  _expansion_7_io_out_mantissa_25;
+  wire [7:0]  _expansion_7_io_out_mantissa_26;
+  wire [7:0]  _expansion_7_io_out_mantissa_27;
+  wire [7:0]  _expansion_7_io_out_mantissa_28;
+  wire [7:0]  _expansion_7_io_out_mantissa_29;
+  wire [7:0]  _expansion_7_io_out_mantissa_30;
+  wire [7:0]  _expansion_7_io_out_mantissa_31;
+  wire        _expansion_6_io_out_sign_0;
+  wire        _expansion_6_io_out_sign_1;
+  wire        _expansion_6_io_out_sign_2;
+  wire        _expansion_6_io_out_sign_3;
+  wire        _expansion_6_io_out_sign_4;
+  wire        _expansion_6_io_out_sign_5;
+  wire        _expansion_6_io_out_sign_6;
+  wire        _expansion_6_io_out_sign_7;
+  wire        _expansion_6_io_out_sign_8;
+  wire        _expansion_6_io_out_sign_9;
+  wire        _expansion_6_io_out_sign_10;
+  wire        _expansion_6_io_out_sign_11;
+  wire        _expansion_6_io_out_sign_12;
+  wire        _expansion_6_io_out_sign_13;
+  wire        _expansion_6_io_out_sign_14;
+  wire        _expansion_6_io_out_sign_15;
+  wire        _expansion_6_io_out_sign_16;
+  wire        _expansion_6_io_out_sign_17;
+  wire        _expansion_6_io_out_sign_18;
+  wire        _expansion_6_io_out_sign_19;
+  wire        _expansion_6_io_out_sign_20;
+  wire        _expansion_6_io_out_sign_21;
+  wire        _expansion_6_io_out_sign_22;
+  wire        _expansion_6_io_out_sign_23;
+  wire        _expansion_6_io_out_sign_24;
+  wire        _expansion_6_io_out_sign_25;
+  wire        _expansion_6_io_out_sign_26;
+  wire        _expansion_6_io_out_sign_27;
+  wire        _expansion_6_io_out_sign_28;
+  wire        _expansion_6_io_out_sign_29;
+  wire        _expansion_6_io_out_sign_30;
+  wire        _expansion_6_io_out_sign_31;
+  wire [2:0]  _expansion_6_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_6_io_out_mantissa_0;
+  wire [7:0]  _expansion_6_io_out_mantissa_1;
+  wire [7:0]  _expansion_6_io_out_mantissa_2;
+  wire [7:0]  _expansion_6_io_out_mantissa_3;
+  wire [7:0]  _expansion_6_io_out_mantissa_4;
+  wire [7:0]  _expansion_6_io_out_mantissa_5;
+  wire [7:0]  _expansion_6_io_out_mantissa_6;
+  wire [7:0]  _expansion_6_io_out_mantissa_7;
+  wire [7:0]  _expansion_6_io_out_mantissa_8;
+  wire [7:0]  _expansion_6_io_out_mantissa_9;
+  wire [7:0]  _expansion_6_io_out_mantissa_10;
+  wire [7:0]  _expansion_6_io_out_mantissa_11;
+  wire [7:0]  _expansion_6_io_out_mantissa_12;
+  wire [7:0]  _expansion_6_io_out_mantissa_13;
+  wire [7:0]  _expansion_6_io_out_mantissa_14;
+  wire [7:0]  _expansion_6_io_out_mantissa_15;
+  wire [7:0]  _expansion_6_io_out_mantissa_16;
+  wire [7:0]  _expansion_6_io_out_mantissa_17;
+  wire [7:0]  _expansion_6_io_out_mantissa_18;
+  wire [7:0]  _expansion_6_io_out_mantissa_19;
+  wire [7:0]  _expansion_6_io_out_mantissa_20;
+  wire [7:0]  _expansion_6_io_out_mantissa_21;
+  wire [7:0]  _expansion_6_io_out_mantissa_22;
+  wire [7:0]  _expansion_6_io_out_mantissa_23;
+  wire [7:0]  _expansion_6_io_out_mantissa_24;
+  wire [7:0]  _expansion_6_io_out_mantissa_25;
+  wire [7:0]  _expansion_6_io_out_mantissa_26;
+  wire [7:0]  _expansion_6_io_out_mantissa_27;
+  wire [7:0]  _expansion_6_io_out_mantissa_28;
+  wire [7:0]  _expansion_6_io_out_mantissa_29;
+  wire [7:0]  _expansion_6_io_out_mantissa_30;
+  wire [7:0]  _expansion_6_io_out_mantissa_31;
+  wire        _expansion_5_io_out_sign_0;
+  wire        _expansion_5_io_out_sign_1;
+  wire        _expansion_5_io_out_sign_2;
+  wire        _expansion_5_io_out_sign_3;
+  wire        _expansion_5_io_out_sign_4;
+  wire        _expansion_5_io_out_sign_5;
+  wire        _expansion_5_io_out_sign_6;
+  wire        _expansion_5_io_out_sign_7;
+  wire        _expansion_5_io_out_sign_8;
+  wire        _expansion_5_io_out_sign_9;
+  wire        _expansion_5_io_out_sign_10;
+  wire        _expansion_5_io_out_sign_11;
+  wire        _expansion_5_io_out_sign_12;
+  wire        _expansion_5_io_out_sign_13;
+  wire        _expansion_5_io_out_sign_14;
+  wire        _expansion_5_io_out_sign_15;
+  wire        _expansion_5_io_out_sign_16;
+  wire        _expansion_5_io_out_sign_17;
+  wire        _expansion_5_io_out_sign_18;
+  wire        _expansion_5_io_out_sign_19;
+  wire        _expansion_5_io_out_sign_20;
+  wire        _expansion_5_io_out_sign_21;
+  wire        _expansion_5_io_out_sign_22;
+  wire        _expansion_5_io_out_sign_23;
+  wire        _expansion_5_io_out_sign_24;
+  wire        _expansion_5_io_out_sign_25;
+  wire        _expansion_5_io_out_sign_26;
+  wire        _expansion_5_io_out_sign_27;
+  wire        _expansion_5_io_out_sign_28;
+  wire        _expansion_5_io_out_sign_29;
+  wire        _expansion_5_io_out_sign_30;
+  wire        _expansion_5_io_out_sign_31;
+  wire [2:0]  _expansion_5_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_5_io_out_mantissa_0;
+  wire [7:0]  _expansion_5_io_out_mantissa_1;
+  wire [7:0]  _expansion_5_io_out_mantissa_2;
+  wire [7:0]  _expansion_5_io_out_mantissa_3;
+  wire [7:0]  _expansion_5_io_out_mantissa_4;
+  wire [7:0]  _expansion_5_io_out_mantissa_5;
+  wire [7:0]  _expansion_5_io_out_mantissa_6;
+  wire [7:0]  _expansion_5_io_out_mantissa_7;
+  wire [7:0]  _expansion_5_io_out_mantissa_8;
+  wire [7:0]  _expansion_5_io_out_mantissa_9;
+  wire [7:0]  _expansion_5_io_out_mantissa_10;
+  wire [7:0]  _expansion_5_io_out_mantissa_11;
+  wire [7:0]  _expansion_5_io_out_mantissa_12;
+  wire [7:0]  _expansion_5_io_out_mantissa_13;
+  wire [7:0]  _expansion_5_io_out_mantissa_14;
+  wire [7:0]  _expansion_5_io_out_mantissa_15;
+  wire [7:0]  _expansion_5_io_out_mantissa_16;
+  wire [7:0]  _expansion_5_io_out_mantissa_17;
+  wire [7:0]  _expansion_5_io_out_mantissa_18;
+  wire [7:0]  _expansion_5_io_out_mantissa_19;
+  wire [7:0]  _expansion_5_io_out_mantissa_20;
+  wire [7:0]  _expansion_5_io_out_mantissa_21;
+  wire [7:0]  _expansion_5_io_out_mantissa_22;
+  wire [7:0]  _expansion_5_io_out_mantissa_23;
+  wire [7:0]  _expansion_5_io_out_mantissa_24;
+  wire [7:0]  _expansion_5_io_out_mantissa_25;
+  wire [7:0]  _expansion_5_io_out_mantissa_26;
+  wire [7:0]  _expansion_5_io_out_mantissa_27;
+  wire [7:0]  _expansion_5_io_out_mantissa_28;
+  wire [7:0]  _expansion_5_io_out_mantissa_29;
+  wire [7:0]  _expansion_5_io_out_mantissa_30;
+  wire [7:0]  _expansion_5_io_out_mantissa_31;
+  wire        _expansion_4_io_out_sign_0;
+  wire        _expansion_4_io_out_sign_1;
+  wire        _expansion_4_io_out_sign_2;
+  wire        _expansion_4_io_out_sign_3;
+  wire        _expansion_4_io_out_sign_4;
+  wire        _expansion_4_io_out_sign_5;
+  wire        _expansion_4_io_out_sign_6;
+  wire        _expansion_4_io_out_sign_7;
+  wire        _expansion_4_io_out_sign_8;
+  wire        _expansion_4_io_out_sign_9;
+  wire        _expansion_4_io_out_sign_10;
+  wire        _expansion_4_io_out_sign_11;
+  wire        _expansion_4_io_out_sign_12;
+  wire        _expansion_4_io_out_sign_13;
+  wire        _expansion_4_io_out_sign_14;
+  wire        _expansion_4_io_out_sign_15;
+  wire        _expansion_4_io_out_sign_16;
+  wire        _expansion_4_io_out_sign_17;
+  wire        _expansion_4_io_out_sign_18;
+  wire        _expansion_4_io_out_sign_19;
+  wire        _expansion_4_io_out_sign_20;
+  wire        _expansion_4_io_out_sign_21;
+  wire        _expansion_4_io_out_sign_22;
+  wire        _expansion_4_io_out_sign_23;
+  wire        _expansion_4_io_out_sign_24;
+  wire        _expansion_4_io_out_sign_25;
+  wire        _expansion_4_io_out_sign_26;
+  wire        _expansion_4_io_out_sign_27;
+  wire        _expansion_4_io_out_sign_28;
+  wire        _expansion_4_io_out_sign_29;
+  wire        _expansion_4_io_out_sign_30;
+  wire        _expansion_4_io_out_sign_31;
+  wire [2:0]  _expansion_4_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_4_io_out_mantissa_0;
+  wire [7:0]  _expansion_4_io_out_mantissa_1;
+  wire [7:0]  _expansion_4_io_out_mantissa_2;
+  wire [7:0]  _expansion_4_io_out_mantissa_3;
+  wire [7:0]  _expansion_4_io_out_mantissa_4;
+  wire [7:0]  _expansion_4_io_out_mantissa_5;
+  wire [7:0]  _expansion_4_io_out_mantissa_6;
+  wire [7:0]  _expansion_4_io_out_mantissa_7;
+  wire [7:0]  _expansion_4_io_out_mantissa_8;
+  wire [7:0]  _expansion_4_io_out_mantissa_9;
+  wire [7:0]  _expansion_4_io_out_mantissa_10;
+  wire [7:0]  _expansion_4_io_out_mantissa_11;
+  wire [7:0]  _expansion_4_io_out_mantissa_12;
+  wire [7:0]  _expansion_4_io_out_mantissa_13;
+  wire [7:0]  _expansion_4_io_out_mantissa_14;
+  wire [7:0]  _expansion_4_io_out_mantissa_15;
+  wire [7:0]  _expansion_4_io_out_mantissa_16;
+  wire [7:0]  _expansion_4_io_out_mantissa_17;
+  wire [7:0]  _expansion_4_io_out_mantissa_18;
+  wire [7:0]  _expansion_4_io_out_mantissa_19;
+  wire [7:0]  _expansion_4_io_out_mantissa_20;
+  wire [7:0]  _expansion_4_io_out_mantissa_21;
+  wire [7:0]  _expansion_4_io_out_mantissa_22;
+  wire [7:0]  _expansion_4_io_out_mantissa_23;
+  wire [7:0]  _expansion_4_io_out_mantissa_24;
+  wire [7:0]  _expansion_4_io_out_mantissa_25;
+  wire [7:0]  _expansion_4_io_out_mantissa_26;
+  wire [7:0]  _expansion_4_io_out_mantissa_27;
+  wire [7:0]  _expansion_4_io_out_mantissa_28;
+  wire [7:0]  _expansion_4_io_out_mantissa_29;
+  wire [7:0]  _expansion_4_io_out_mantissa_30;
+  wire [7:0]  _expansion_4_io_out_mantissa_31;
+  wire        _expansion_3_io_out_sign_0;
+  wire        _expansion_3_io_out_sign_1;
+  wire        _expansion_3_io_out_sign_2;
+  wire        _expansion_3_io_out_sign_3;
+  wire        _expansion_3_io_out_sign_4;
+  wire        _expansion_3_io_out_sign_5;
+  wire        _expansion_3_io_out_sign_6;
+  wire        _expansion_3_io_out_sign_7;
+  wire        _expansion_3_io_out_sign_8;
+  wire        _expansion_3_io_out_sign_9;
+  wire        _expansion_3_io_out_sign_10;
+  wire        _expansion_3_io_out_sign_11;
+  wire        _expansion_3_io_out_sign_12;
+  wire        _expansion_3_io_out_sign_13;
+  wire        _expansion_3_io_out_sign_14;
+  wire        _expansion_3_io_out_sign_15;
+  wire        _expansion_3_io_out_sign_16;
+  wire        _expansion_3_io_out_sign_17;
+  wire        _expansion_3_io_out_sign_18;
+  wire        _expansion_3_io_out_sign_19;
+  wire        _expansion_3_io_out_sign_20;
+  wire        _expansion_3_io_out_sign_21;
+  wire        _expansion_3_io_out_sign_22;
+  wire        _expansion_3_io_out_sign_23;
+  wire        _expansion_3_io_out_sign_24;
+  wire        _expansion_3_io_out_sign_25;
+  wire        _expansion_3_io_out_sign_26;
+  wire        _expansion_3_io_out_sign_27;
+  wire        _expansion_3_io_out_sign_28;
+  wire        _expansion_3_io_out_sign_29;
+  wire        _expansion_3_io_out_sign_30;
+  wire        _expansion_3_io_out_sign_31;
+  wire [2:0]  _expansion_3_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_3_io_out_mantissa_0;
+  wire [7:0]  _expansion_3_io_out_mantissa_1;
+  wire [7:0]  _expansion_3_io_out_mantissa_2;
+  wire [7:0]  _expansion_3_io_out_mantissa_3;
+  wire [7:0]  _expansion_3_io_out_mantissa_4;
+  wire [7:0]  _expansion_3_io_out_mantissa_5;
+  wire [7:0]  _expansion_3_io_out_mantissa_6;
+  wire [7:0]  _expansion_3_io_out_mantissa_7;
+  wire [7:0]  _expansion_3_io_out_mantissa_8;
+  wire [7:0]  _expansion_3_io_out_mantissa_9;
+  wire [7:0]  _expansion_3_io_out_mantissa_10;
+  wire [7:0]  _expansion_3_io_out_mantissa_11;
+  wire [7:0]  _expansion_3_io_out_mantissa_12;
+  wire [7:0]  _expansion_3_io_out_mantissa_13;
+  wire [7:0]  _expansion_3_io_out_mantissa_14;
+  wire [7:0]  _expansion_3_io_out_mantissa_15;
+  wire [7:0]  _expansion_3_io_out_mantissa_16;
+  wire [7:0]  _expansion_3_io_out_mantissa_17;
+  wire [7:0]  _expansion_3_io_out_mantissa_18;
+  wire [7:0]  _expansion_3_io_out_mantissa_19;
+  wire [7:0]  _expansion_3_io_out_mantissa_20;
+  wire [7:0]  _expansion_3_io_out_mantissa_21;
+  wire [7:0]  _expansion_3_io_out_mantissa_22;
+  wire [7:0]  _expansion_3_io_out_mantissa_23;
+  wire [7:0]  _expansion_3_io_out_mantissa_24;
+  wire [7:0]  _expansion_3_io_out_mantissa_25;
+  wire [7:0]  _expansion_3_io_out_mantissa_26;
+  wire [7:0]  _expansion_3_io_out_mantissa_27;
+  wire [7:0]  _expansion_3_io_out_mantissa_28;
+  wire [7:0]  _expansion_3_io_out_mantissa_29;
+  wire [7:0]  _expansion_3_io_out_mantissa_30;
+  wire [7:0]  _expansion_3_io_out_mantissa_31;
+  wire        _expansion_2_io_out_sign_0;
+  wire        _expansion_2_io_out_sign_1;
+  wire        _expansion_2_io_out_sign_2;
+  wire        _expansion_2_io_out_sign_3;
+  wire        _expansion_2_io_out_sign_4;
+  wire        _expansion_2_io_out_sign_5;
+  wire        _expansion_2_io_out_sign_6;
+  wire        _expansion_2_io_out_sign_7;
+  wire        _expansion_2_io_out_sign_8;
+  wire        _expansion_2_io_out_sign_9;
+  wire        _expansion_2_io_out_sign_10;
+  wire        _expansion_2_io_out_sign_11;
+  wire        _expansion_2_io_out_sign_12;
+  wire        _expansion_2_io_out_sign_13;
+  wire        _expansion_2_io_out_sign_14;
+  wire        _expansion_2_io_out_sign_15;
+  wire        _expansion_2_io_out_sign_16;
+  wire        _expansion_2_io_out_sign_17;
+  wire        _expansion_2_io_out_sign_18;
+  wire        _expansion_2_io_out_sign_19;
+  wire        _expansion_2_io_out_sign_20;
+  wire        _expansion_2_io_out_sign_21;
+  wire        _expansion_2_io_out_sign_22;
+  wire        _expansion_2_io_out_sign_23;
+  wire        _expansion_2_io_out_sign_24;
+  wire        _expansion_2_io_out_sign_25;
+  wire        _expansion_2_io_out_sign_26;
+  wire        _expansion_2_io_out_sign_27;
+  wire        _expansion_2_io_out_sign_28;
+  wire        _expansion_2_io_out_sign_29;
+  wire        _expansion_2_io_out_sign_30;
+  wire        _expansion_2_io_out_sign_31;
+  wire [2:0]  _expansion_2_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_2_io_out_mantissa_0;
+  wire [7:0]  _expansion_2_io_out_mantissa_1;
+  wire [7:0]  _expansion_2_io_out_mantissa_2;
+  wire [7:0]  _expansion_2_io_out_mantissa_3;
+  wire [7:0]  _expansion_2_io_out_mantissa_4;
+  wire [7:0]  _expansion_2_io_out_mantissa_5;
+  wire [7:0]  _expansion_2_io_out_mantissa_6;
+  wire [7:0]  _expansion_2_io_out_mantissa_7;
+  wire [7:0]  _expansion_2_io_out_mantissa_8;
+  wire [7:0]  _expansion_2_io_out_mantissa_9;
+  wire [7:0]  _expansion_2_io_out_mantissa_10;
+  wire [7:0]  _expansion_2_io_out_mantissa_11;
+  wire [7:0]  _expansion_2_io_out_mantissa_12;
+  wire [7:0]  _expansion_2_io_out_mantissa_13;
+  wire [7:0]  _expansion_2_io_out_mantissa_14;
+  wire [7:0]  _expansion_2_io_out_mantissa_15;
+  wire [7:0]  _expansion_2_io_out_mantissa_16;
+  wire [7:0]  _expansion_2_io_out_mantissa_17;
+  wire [7:0]  _expansion_2_io_out_mantissa_18;
+  wire [7:0]  _expansion_2_io_out_mantissa_19;
+  wire [7:0]  _expansion_2_io_out_mantissa_20;
+  wire [7:0]  _expansion_2_io_out_mantissa_21;
+  wire [7:0]  _expansion_2_io_out_mantissa_22;
+  wire [7:0]  _expansion_2_io_out_mantissa_23;
+  wire [7:0]  _expansion_2_io_out_mantissa_24;
+  wire [7:0]  _expansion_2_io_out_mantissa_25;
+  wire [7:0]  _expansion_2_io_out_mantissa_26;
+  wire [7:0]  _expansion_2_io_out_mantissa_27;
+  wire [7:0]  _expansion_2_io_out_mantissa_28;
+  wire [7:0]  _expansion_2_io_out_mantissa_29;
+  wire [7:0]  _expansion_2_io_out_mantissa_30;
+  wire [7:0]  _expansion_2_io_out_mantissa_31;
+  wire        _expansion_1_io_out_sign_0;
+  wire        _expansion_1_io_out_sign_1;
+  wire        _expansion_1_io_out_sign_2;
+  wire        _expansion_1_io_out_sign_3;
+  wire        _expansion_1_io_out_sign_4;
+  wire        _expansion_1_io_out_sign_5;
+  wire        _expansion_1_io_out_sign_6;
+  wire        _expansion_1_io_out_sign_7;
+  wire        _expansion_1_io_out_sign_8;
+  wire        _expansion_1_io_out_sign_9;
+  wire        _expansion_1_io_out_sign_10;
+  wire        _expansion_1_io_out_sign_11;
+  wire        _expansion_1_io_out_sign_12;
+  wire        _expansion_1_io_out_sign_13;
+  wire        _expansion_1_io_out_sign_14;
+  wire        _expansion_1_io_out_sign_15;
+  wire        _expansion_1_io_out_sign_16;
+  wire        _expansion_1_io_out_sign_17;
+  wire        _expansion_1_io_out_sign_18;
+  wire        _expansion_1_io_out_sign_19;
+  wire        _expansion_1_io_out_sign_20;
+  wire        _expansion_1_io_out_sign_21;
+  wire        _expansion_1_io_out_sign_22;
+  wire        _expansion_1_io_out_sign_23;
+  wire        _expansion_1_io_out_sign_24;
+  wire        _expansion_1_io_out_sign_25;
+  wire        _expansion_1_io_out_sign_26;
+  wire        _expansion_1_io_out_sign_27;
+  wire        _expansion_1_io_out_sign_28;
+  wire        _expansion_1_io_out_sign_29;
+  wire        _expansion_1_io_out_sign_30;
+  wire        _expansion_1_io_out_sign_31;
+  wire [2:0]  _expansion_1_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_1_io_out_mantissa_0;
+  wire [7:0]  _expansion_1_io_out_mantissa_1;
+  wire [7:0]  _expansion_1_io_out_mantissa_2;
+  wire [7:0]  _expansion_1_io_out_mantissa_3;
+  wire [7:0]  _expansion_1_io_out_mantissa_4;
+  wire [7:0]  _expansion_1_io_out_mantissa_5;
+  wire [7:0]  _expansion_1_io_out_mantissa_6;
+  wire [7:0]  _expansion_1_io_out_mantissa_7;
+  wire [7:0]  _expansion_1_io_out_mantissa_8;
+  wire [7:0]  _expansion_1_io_out_mantissa_9;
+  wire [7:0]  _expansion_1_io_out_mantissa_10;
+  wire [7:0]  _expansion_1_io_out_mantissa_11;
+  wire [7:0]  _expansion_1_io_out_mantissa_12;
+  wire [7:0]  _expansion_1_io_out_mantissa_13;
+  wire [7:0]  _expansion_1_io_out_mantissa_14;
+  wire [7:0]  _expansion_1_io_out_mantissa_15;
+  wire [7:0]  _expansion_1_io_out_mantissa_16;
+  wire [7:0]  _expansion_1_io_out_mantissa_17;
+  wire [7:0]  _expansion_1_io_out_mantissa_18;
+  wire [7:0]  _expansion_1_io_out_mantissa_19;
+  wire [7:0]  _expansion_1_io_out_mantissa_20;
+  wire [7:0]  _expansion_1_io_out_mantissa_21;
+  wire [7:0]  _expansion_1_io_out_mantissa_22;
+  wire [7:0]  _expansion_1_io_out_mantissa_23;
+  wire [7:0]  _expansion_1_io_out_mantissa_24;
+  wire [7:0]  _expansion_1_io_out_mantissa_25;
+  wire [7:0]  _expansion_1_io_out_mantissa_26;
+  wire [7:0]  _expansion_1_io_out_mantissa_27;
+  wire [7:0]  _expansion_1_io_out_mantissa_28;
+  wire [7:0]  _expansion_1_io_out_mantissa_29;
+  wire [7:0]  _expansion_1_io_out_mantissa_30;
+  wire [7:0]  _expansion_1_io_out_mantissa_31;
+  wire        _expansion_0_io_out_sign_0;
+  wire        _expansion_0_io_out_sign_1;
+  wire        _expansion_0_io_out_sign_2;
+  wire        _expansion_0_io_out_sign_3;
+  wire        _expansion_0_io_out_sign_4;
+  wire        _expansion_0_io_out_sign_5;
+  wire        _expansion_0_io_out_sign_6;
+  wire        _expansion_0_io_out_sign_7;
+  wire        _expansion_0_io_out_sign_8;
+  wire        _expansion_0_io_out_sign_9;
+  wire        _expansion_0_io_out_sign_10;
+  wire        _expansion_0_io_out_sign_11;
+  wire        _expansion_0_io_out_sign_12;
+  wire        _expansion_0_io_out_sign_13;
+  wire        _expansion_0_io_out_sign_14;
+  wire        _expansion_0_io_out_sign_15;
+  wire        _expansion_0_io_out_sign_16;
+  wire        _expansion_0_io_out_sign_17;
+  wire        _expansion_0_io_out_sign_18;
+  wire        _expansion_0_io_out_sign_19;
+  wire        _expansion_0_io_out_sign_20;
+  wire        _expansion_0_io_out_sign_21;
+  wire        _expansion_0_io_out_sign_22;
+  wire        _expansion_0_io_out_sign_23;
+  wire        _expansion_0_io_out_sign_24;
+  wire        _expansion_0_io_out_sign_25;
+  wire        _expansion_0_io_out_sign_26;
+  wire        _expansion_0_io_out_sign_27;
+  wire        _expansion_0_io_out_sign_28;
+  wire        _expansion_0_io_out_sign_29;
+  wire        _expansion_0_io_out_sign_30;
+  wire        _expansion_0_io_out_sign_31;
+  wire [2:0]  _expansion_0_io_out_exponent_gmax_0;
+  wire [7:0]  _expansion_0_io_out_mantissa_0;
+  wire [7:0]  _expansion_0_io_out_mantissa_1;
+  wire [7:0]  _expansion_0_io_out_mantissa_2;
+  wire [7:0]  _expansion_0_io_out_mantissa_3;
+  wire [7:0]  _expansion_0_io_out_mantissa_4;
+  wire [7:0]  _expansion_0_io_out_mantissa_5;
+  wire [7:0]  _expansion_0_io_out_mantissa_6;
+  wire [7:0]  _expansion_0_io_out_mantissa_7;
+  wire [7:0]  _expansion_0_io_out_mantissa_8;
+  wire [7:0]  _expansion_0_io_out_mantissa_9;
+  wire [7:0]  _expansion_0_io_out_mantissa_10;
+  wire [7:0]  _expansion_0_io_out_mantissa_11;
+  wire [7:0]  _expansion_0_io_out_mantissa_12;
+  wire [7:0]  _expansion_0_io_out_mantissa_13;
+  wire [7:0]  _expansion_0_io_out_mantissa_14;
+  wire [7:0]  _expansion_0_io_out_mantissa_15;
+  wire [7:0]  _expansion_0_io_out_mantissa_16;
+  wire [7:0]  _expansion_0_io_out_mantissa_17;
+  wire [7:0]  _expansion_0_io_out_mantissa_18;
+  wire [7:0]  _expansion_0_io_out_mantissa_19;
+  wire [7:0]  _expansion_0_io_out_mantissa_20;
+  wire [7:0]  _expansion_0_io_out_mantissa_21;
+  wire [7:0]  _expansion_0_io_out_mantissa_22;
+  wire [7:0]  _expansion_0_io_out_mantissa_23;
+  wire [7:0]  _expansion_0_io_out_mantissa_24;
+  wire [7:0]  _expansion_0_io_out_mantissa_25;
+  wire [7:0]  _expansion_0_io_out_mantissa_26;
+  wire [7:0]  _expansion_0_io_out_mantissa_27;
+  wire [7:0]  _expansion_0_io_out_mantissa_28;
+  wire [7:0]  _expansion_0_io_out_mantissa_29;
+  wire [7:0]  _expansion_0_io_out_mantissa_30;
+  wire [7:0]  _expansion_0_io_out_mantissa_31;
   wire [8:0]  _scaleSum_io_out_0;
   wire [8:0]  _scaleSum_io_out_1;
   wire [8:0]  _scaleSum_io_out_2;
@@ -4300,24 +4308,30 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [7:0]  REG_15_29;
   reg  [7:0]  REG_15_30;
   reg  [7:0]  REG_15_31;
-  reg  [9:0]  s2_exp_cand_REG;
-  reg  [9:0]  s2_exp_cand_REG_1;
-  reg  [9:0]  s2_exp_cand_REG_2;
-  reg  [9:0]  s2_exp_cand_REG_3;
-  reg  [9:0]  s2_exp_cand_REG_4;
-  reg  [9:0]  s2_exp_cand_REG_5;
-  reg  [9:0]  s2_exp_cand_REG_6;
-  reg  [9:0]  s2_exp_cand_REG_7;
-  reg         s2_nan_flag_REG;
-  reg         s2_nan_flag_REG_1;
-  reg         s2_nan_flag_REG_2;
-  reg         s2_nan_flag_REG_3;
-  reg         s2_nan_flag_REG_4;
-  reg         s2_nan_flag_REG_5;
-  reg         s2_nan_flag_REG_6;
-  reg         s2_nan_flag_REG_7;
+  reg  [2:0]  s2_exp_group_max_0_REG;
+  reg  [2:0]  s2_exp_group_max_1_REG;
+  reg  [2:0]  s2_exp_group_max_2_REG;
+  reg  [2:0]  s2_exp_group_max_3_REG;
+  reg  [2:0]  s2_exp_group_max_4_REG;
+  reg  [2:0]  s2_exp_group_max_5_REG;
+  reg  [2:0]  s2_exp_group_max_6_REG;
+  reg  [2:0]  s2_exp_group_max_7_REG;
   reg  [8:0]  toS2_scale_sum_REG;
+  reg  [8:0]  toS2_scale_sum_REG_1;
+  reg  [8:0]  toS2_scale_sum_REG_2;
+  reg  [8:0]  toS2_scale_sum_REG_3;
+  reg  [8:0]  toS2_scale_sum_REG_4;
+  reg  [8:0]  toS2_scale_sum_REG_5;
+  reg  [8:0]  toS2_scale_sum_REG_6;
+  reg  [8:0]  toS2_scale_sum_REG_7;
   reg         toS2_scale_nan_REG;
+  reg         toS2_scale_nan_REG_1;
+  reg         toS2_scale_nan_REG_2;
+  reg         toS2_scale_nan_REG_3;
+  reg         toS2_scale_nan_REG_4;
+  reg         toS2_scale_nan_REG_5;
+  reg         toS2_scale_nan_REG_6;
+  reg         toS2_scale_nan_REG_7;
   reg         toS2_sign_REG;
   reg         toS2_sign_REG_1;
   reg         toS2_sign_REG_2;
@@ -4366,6 +4380,22 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [3:0]  toS2_man_REG_13;
   reg  [3:0]  toS2_man_REG_14;
   reg  [3:0]  toS2_man_REG_15;
+  reg  [9:0]  s3_exp_cand_REG;
+  reg  [9:0]  s3_exp_cand_REG_1;
+  reg  [9:0]  s3_exp_cand_REG_2;
+  reg  [9:0]  s3_exp_cand_REG_3;
+  reg  [9:0]  s3_exp_cand_REG_4;
+  reg  [9:0]  s3_exp_cand_REG_5;
+  reg  [9:0]  s3_exp_cand_REG_6;
+  reg  [9:0]  s3_exp_cand_REG_7;
+  reg         s3_nan_flag_REG;
+  reg         s3_nan_flag_REG_1;
+  reg         s3_nan_flag_REG_2;
+  reg         s3_nan_flag_REG_3;
+  reg         s3_nan_flag_REG_4;
+  reg         s3_nan_flag_REG_5;
+  reg         s3_nan_flag_REG_6;
+  reg         s3_nan_flag_REG_7;
   reg  [9:0]  s3_adder1_out_REG;
   reg  [9:0]  s3_adder1_out_REG_1;
   reg  [9:0]  s3_adder1_out_REG_2;
@@ -4494,8 +4524,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [9:0]  s3_adder1_out_REG_125;
   reg  [9:0]  s3_adder1_out_REG_126;
   reg  [9:0]  s3_adder1_out_REG_127;
-  reg  [9:0]  toS3_exp_cand_REG;
-  reg         toS3_nan_REG;
   reg  [10:0] s4_adder2_out_REG;
   reg  [10:0] s4_adder2_out_REG_1;
   reg  [10:0] s4_adder2_out_REG_2;
@@ -4562,12 +4590,8 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [10:0] s4_adder2_out_REG_63;
   reg  [9:0]  toS4_exp_cand_REG;
   reg  [9:0]  toS4_exp_cand_REG_1;
-  reg  [9:0]  toS4_exp_cand_REG_8;
-  reg  [9:0]  toS4_exp_cand_REG_9;
   reg         toS4_nan_REG;
   reg         toS4_nan_REG_1;
-  reg         toS4_nan_REG_8;
-  reg         toS4_nan_REG_9;
   reg  [11:0] s5_adder3_out_REG;
   reg  [11:0] s5_adder3_out_REG_1;
   reg  [11:0] s5_adder3_out_REG_2;
@@ -4608,10 +4632,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [9:0]  toS5_exp_cand_REG_9;
   reg  [9:0]  toS5_exp_cand_REG_10;
   reg  [9:0]  toS5_exp_cand_REG_11;
-  reg  [9:0]  toS5_exp_cand_REG_16;
-  reg  [9:0]  toS5_exp_cand_REG_17;
-  reg  [9:0]  toS5_exp_cand_REG_18;
-  reg  [9:0]  toS5_exp_cand_REG_19;
   reg         toS5_nan_REG;
   reg         toS5_nan_REG_1;
   reg         toS5_nan_REG_2;
@@ -4620,10 +4640,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg         toS5_nan_REG_9;
   reg         toS5_nan_REG_10;
   reg         toS5_nan_REG_11;
-  reg         toS5_nan_REG_16;
-  reg         toS5_nan_REG_17;
-  reg         toS5_nan_REG_18;
-  reg         toS5_nan_REG_19;
   reg  [12:0] s6_adder4_out_REG;
   reg  [12:0] s6_adder4_out_REG_1;
   reg  [12:0] s6_adder4_out_REG_2;
@@ -4664,14 +4680,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [9:0]  toS6_exp_cand_REG_21;
   reg  [9:0]  toS6_exp_cand_REG_22;
   reg  [9:0]  toS6_exp_cand_REG_23;
-  reg  [9:0]  toS6_exp_cand_REG_24;
-  reg  [9:0]  toS6_exp_cand_REG_25;
-  reg  [9:0]  toS6_exp_cand_REG_26;
-  reg  [9:0]  toS6_exp_cand_REG_27;
-  reg  [9:0]  toS6_exp_cand_REG_28;
-  reg  [9:0]  toS6_exp_cand_REG_29;
-  reg  [9:0]  toS6_exp_cand_REG_30;
-  reg  [9:0]  toS6_exp_cand_REG_31;
   reg         toS6_nan_REG;
   reg         toS6_nan_REG_1;
   reg         toS6_nan_REG_2;
@@ -4696,14 +4704,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg         toS6_nan_REG_21;
   reg         toS6_nan_REG_22;
   reg         toS6_nan_REG_23;
-  reg         toS6_nan_REG_24;
-  reg         toS6_nan_REG_25;
-  reg         toS6_nan_REG_26;
-  reg         toS6_nan_REG_27;
-  reg         toS6_nan_REG_28;
-  reg         toS6_nan_REG_29;
-  reg         toS6_nan_REG_30;
-  reg         toS6_nan_REG_31;
   reg  [13:0] s7_adder5_out_REG;
   reg  [13:0] s7_adder5_out_REG_1;
   reg  [13:0] s7_adder5_out_REG_2;
@@ -4744,14 +4744,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg  [9:0]  toS7_exp_cand_REG_29;
   reg  [9:0]  toS7_exp_cand_REG_30;
   reg  [9:0]  toS7_exp_cand_REG_31;
-  reg  [9:0]  toS7_exp_cand_REG_32;
-  reg  [9:0]  toS7_exp_cand_REG_33;
-  reg  [9:0]  toS7_exp_cand_REG_34;
-  reg  [9:0]  toS7_exp_cand_REG_35;
-  reg  [9:0]  toS7_exp_cand_REG_36;
-  reg  [9:0]  toS7_exp_cand_REG_37;
-  reg  [9:0]  toS7_exp_cand_REG_38;
-  reg  [9:0]  toS7_exp_cand_REG_39;
   reg         toS7_nan_REG;
   reg         toS7_nan_REG_1;
   reg         toS7_nan_REG_2;
@@ -4784,14 +4776,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   reg         toS7_nan_REG_29;
   reg         toS7_nan_REG_30;
   reg         toS7_nan_REG_31;
-  reg         toS7_nan_REG_32;
-  reg         toS7_nan_REG_33;
-  reg         toS7_nan_REG_34;
-  reg         toS7_nan_REG_35;
-  reg         toS7_nan_REG_36;
-  reg         toS7_nan_REG_37;
-  reg         toS7_nan_REG_38;
-  reg         toS7_nan_REG_39;
   reg         s8_gw_sign_0;
   reg         s8_gw_sign_1;
   reg         s8_gw_sign_2;
@@ -7992,70 +7976,70 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s1_scale_nan_REG_5 <= _scaleSum_io_nan_5;
     s1_scale_nan_REG_6 <= _scaleSum_io_nan_6;
     s1_scale_nan_REG_7 <= _scaleSum_io_nan_7;
-    REG_0 <= _expansion_io_out_sign_0;
-    REG_1 <= _expansion_io_out_sign_1;
-    REG_2 <= _expansion_io_out_sign_2;
-    REG_3 <= _expansion_io_out_sign_3;
-    REG_4 <= _expansion_io_out_sign_4;
-    REG_5 <= _expansion_io_out_sign_5;
-    REG_6 <= _expansion_io_out_sign_6;
-    REG_7 <= _expansion_io_out_sign_7;
-    REG_8 <= _expansion_io_out_sign_8;
-    REG_9 <= _expansion_io_out_sign_9;
-    REG_10 <= _expansion_io_out_sign_10;
-    REG_11 <= _expansion_io_out_sign_11;
-    REG_12 <= _expansion_io_out_sign_12;
-    REG_13 <= _expansion_io_out_sign_13;
-    REG_14 <= _expansion_io_out_sign_14;
-    REG_15 <= _expansion_io_out_sign_15;
-    REG_16 <= _expansion_io_out_sign_16;
-    REG_17 <= _expansion_io_out_sign_17;
-    REG_18 <= _expansion_io_out_sign_18;
-    REG_19 <= _expansion_io_out_sign_19;
-    REG_20 <= _expansion_io_out_sign_20;
-    REG_21 <= _expansion_io_out_sign_21;
-    REG_22 <= _expansion_io_out_sign_22;
-    REG_23 <= _expansion_io_out_sign_23;
-    REG_24 <= _expansion_io_out_sign_24;
-    REG_25 <= _expansion_io_out_sign_25;
-    REG_26 <= _expansion_io_out_sign_26;
-    REG_27 <= _expansion_io_out_sign_27;
-    REG_28 <= _expansion_io_out_sign_28;
-    REG_29 <= _expansion_io_out_sign_29;
-    REG_30 <= _expansion_io_out_sign_30;
-    REG_31 <= _expansion_io_out_sign_31;
-    REG_1_0 <= _expansion_io_out_mantissa_0;
-    REG_1_1 <= _expansion_io_out_mantissa_1;
-    REG_1_2 <= _expansion_io_out_mantissa_2;
-    REG_1_3 <= _expansion_io_out_mantissa_3;
-    REG_1_4 <= _expansion_io_out_mantissa_4;
-    REG_1_5 <= _expansion_io_out_mantissa_5;
-    REG_1_6 <= _expansion_io_out_mantissa_6;
-    REG_1_7 <= _expansion_io_out_mantissa_7;
-    REG_1_8 <= _expansion_io_out_mantissa_8;
-    REG_1_9 <= _expansion_io_out_mantissa_9;
-    REG_1_10 <= _expansion_io_out_mantissa_10;
-    REG_1_11 <= _expansion_io_out_mantissa_11;
-    REG_1_12 <= _expansion_io_out_mantissa_12;
-    REG_1_13 <= _expansion_io_out_mantissa_13;
-    REG_1_14 <= _expansion_io_out_mantissa_14;
-    REG_1_15 <= _expansion_io_out_mantissa_15;
-    REG_1_16 <= _expansion_io_out_mantissa_16;
-    REG_1_17 <= _expansion_io_out_mantissa_17;
-    REG_1_18 <= _expansion_io_out_mantissa_18;
-    REG_1_19 <= _expansion_io_out_mantissa_19;
-    REG_1_20 <= _expansion_io_out_mantissa_20;
-    REG_1_21 <= _expansion_io_out_mantissa_21;
-    REG_1_22 <= _expansion_io_out_mantissa_22;
-    REG_1_23 <= _expansion_io_out_mantissa_23;
-    REG_1_24 <= _expansion_io_out_mantissa_24;
-    REG_1_25 <= _expansion_io_out_mantissa_25;
-    REG_1_26 <= _expansion_io_out_mantissa_26;
-    REG_1_27 <= _expansion_io_out_mantissa_27;
-    REG_1_28 <= _expansion_io_out_mantissa_28;
-    REG_1_29 <= _expansion_io_out_mantissa_29;
-    REG_1_30 <= _expansion_io_out_mantissa_30;
-    REG_1_31 <= _expansion_io_out_mantissa_31;
+    REG_0 <= _expansion_0_io_out_sign_0;
+    REG_1 <= _expansion_0_io_out_sign_1;
+    REG_2 <= _expansion_0_io_out_sign_2;
+    REG_3 <= _expansion_0_io_out_sign_3;
+    REG_4 <= _expansion_0_io_out_sign_4;
+    REG_5 <= _expansion_0_io_out_sign_5;
+    REG_6 <= _expansion_0_io_out_sign_6;
+    REG_7 <= _expansion_0_io_out_sign_7;
+    REG_8 <= _expansion_0_io_out_sign_8;
+    REG_9 <= _expansion_0_io_out_sign_9;
+    REG_10 <= _expansion_0_io_out_sign_10;
+    REG_11 <= _expansion_0_io_out_sign_11;
+    REG_12 <= _expansion_0_io_out_sign_12;
+    REG_13 <= _expansion_0_io_out_sign_13;
+    REG_14 <= _expansion_0_io_out_sign_14;
+    REG_15 <= _expansion_0_io_out_sign_15;
+    REG_16 <= _expansion_0_io_out_sign_16;
+    REG_17 <= _expansion_0_io_out_sign_17;
+    REG_18 <= _expansion_0_io_out_sign_18;
+    REG_19 <= _expansion_0_io_out_sign_19;
+    REG_20 <= _expansion_0_io_out_sign_20;
+    REG_21 <= _expansion_0_io_out_sign_21;
+    REG_22 <= _expansion_0_io_out_sign_22;
+    REG_23 <= _expansion_0_io_out_sign_23;
+    REG_24 <= _expansion_0_io_out_sign_24;
+    REG_25 <= _expansion_0_io_out_sign_25;
+    REG_26 <= _expansion_0_io_out_sign_26;
+    REG_27 <= _expansion_0_io_out_sign_27;
+    REG_28 <= _expansion_0_io_out_sign_28;
+    REG_29 <= _expansion_0_io_out_sign_29;
+    REG_30 <= _expansion_0_io_out_sign_30;
+    REG_31 <= _expansion_0_io_out_sign_31;
+    REG_1_0 <= _expansion_0_io_out_mantissa_0;
+    REG_1_1 <= _expansion_0_io_out_mantissa_1;
+    REG_1_2 <= _expansion_0_io_out_mantissa_2;
+    REG_1_3 <= _expansion_0_io_out_mantissa_3;
+    REG_1_4 <= _expansion_0_io_out_mantissa_4;
+    REG_1_5 <= _expansion_0_io_out_mantissa_5;
+    REG_1_6 <= _expansion_0_io_out_mantissa_6;
+    REG_1_7 <= _expansion_0_io_out_mantissa_7;
+    REG_1_8 <= _expansion_0_io_out_mantissa_8;
+    REG_1_9 <= _expansion_0_io_out_mantissa_9;
+    REG_1_10 <= _expansion_0_io_out_mantissa_10;
+    REG_1_11 <= _expansion_0_io_out_mantissa_11;
+    REG_1_12 <= _expansion_0_io_out_mantissa_12;
+    REG_1_13 <= _expansion_0_io_out_mantissa_13;
+    REG_1_14 <= _expansion_0_io_out_mantissa_14;
+    REG_1_15 <= _expansion_0_io_out_mantissa_15;
+    REG_1_16 <= _expansion_0_io_out_mantissa_16;
+    REG_1_17 <= _expansion_0_io_out_mantissa_17;
+    REG_1_18 <= _expansion_0_io_out_mantissa_18;
+    REG_1_19 <= _expansion_0_io_out_mantissa_19;
+    REG_1_20 <= _expansion_0_io_out_mantissa_20;
+    REG_1_21 <= _expansion_0_io_out_mantissa_21;
+    REG_1_22 <= _expansion_0_io_out_mantissa_22;
+    REG_1_23 <= _expansion_0_io_out_mantissa_23;
+    REG_1_24 <= _expansion_0_io_out_mantissa_24;
+    REG_1_25 <= _expansion_0_io_out_mantissa_25;
+    REG_1_26 <= _expansion_0_io_out_mantissa_26;
+    REG_1_27 <= _expansion_0_io_out_mantissa_27;
+    REG_1_28 <= _expansion_0_io_out_mantissa_28;
+    REG_1_29 <= _expansion_0_io_out_mantissa_29;
+    REG_1_30 <= _expansion_0_io_out_mantissa_30;
+    REG_1_31 <= _expansion_0_io_out_mantissa_31;
     REG_2_0 <= _expansion_1_io_out_sign_0;
     REG_2_1 <= _expansion_1_io_out_sign_1;
     REG_2_2 <= _expansion_1_io_out_sign_2;
@@ -8504,24 +8488,30 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     REG_15_29 <= _expansion_7_io_out_mantissa_29;
     REG_15_30 <= _expansion_7_io_out_mantissa_30;
     REG_15_31 <= _expansion_7_io_out_mantissa_31;
-    s2_exp_cand_REG <= _scaleEmax_io_out_0;
-    s2_exp_cand_REG_1 <= _scaleEmax_io_out_1;
-    s2_exp_cand_REG_2 <= _scaleEmax_io_out_2;
-    s2_exp_cand_REG_3 <= _scaleEmax_io_out_3;
-    s2_exp_cand_REG_4 <= _scaleEmax_io_out_4;
-    s2_exp_cand_REG_5 <= _scaleEmax_io_out_5;
-    s2_exp_cand_REG_6 <= _scaleEmax_io_out_6;
-    s2_exp_cand_REG_7 <= _scaleEmax_io_out_7;
-    s2_nan_flag_REG <= s1_scale_nan_REG;
-    s2_nan_flag_REG_1 <= s1_scale_nan_REG_1;
-    s2_nan_flag_REG_2 <= s1_scale_nan_REG_2;
-    s2_nan_flag_REG_3 <= s1_scale_nan_REG_3;
-    s2_nan_flag_REG_4 <= s1_scale_nan_REG_4;
-    s2_nan_flag_REG_5 <= s1_scale_nan_REG_5;
-    s2_nan_flag_REG_6 <= s1_scale_nan_REG_6;
-    s2_nan_flag_REG_7 <= s1_scale_nan_REG_7;
+    s2_exp_group_max_0_REG <= _expansion_0_io_out_exponent_gmax_0;
+    s2_exp_group_max_1_REG <= _expansion_1_io_out_exponent_gmax_0;
+    s2_exp_group_max_2_REG <= _expansion_2_io_out_exponent_gmax_0;
+    s2_exp_group_max_3_REG <= _expansion_3_io_out_exponent_gmax_0;
+    s2_exp_group_max_4_REG <= _expansion_4_io_out_exponent_gmax_0;
+    s2_exp_group_max_5_REG <= _expansion_5_io_out_exponent_gmax_0;
+    s2_exp_group_max_6_REG <= _expansion_6_io_out_exponent_gmax_0;
+    s2_exp_group_max_7_REG <= _expansion_7_io_out_exponent_gmax_0;
     toS2_scale_sum_REG <= s1_scale_sum_REG;
+    toS2_scale_sum_REG_1 <= s1_scale_sum_REG_1;
+    toS2_scale_sum_REG_2 <= s1_scale_sum_REG_2;
+    toS2_scale_sum_REG_3 <= s1_scale_sum_REG_3;
+    toS2_scale_sum_REG_4 <= s1_scale_sum_REG_4;
+    toS2_scale_sum_REG_5 <= s1_scale_sum_REG_5;
+    toS2_scale_sum_REG_6 <= s1_scale_sum_REG_6;
+    toS2_scale_sum_REG_7 <= s1_scale_sum_REG_7;
     toS2_scale_nan_REG <= s1_scale_nan_REG;
+    toS2_scale_nan_REG_1 <= s1_scale_nan_REG_1;
+    toS2_scale_nan_REG_2 <= s1_scale_nan_REG_2;
+    toS2_scale_nan_REG_3 <= s1_scale_nan_REG_3;
+    toS2_scale_nan_REG_4 <= s1_scale_nan_REG_4;
+    toS2_scale_nan_REG_5 <= s1_scale_nan_REG_5;
+    toS2_scale_nan_REG_6 <= s1_scale_nan_REG_6;
+    toS2_scale_nan_REG_7 <= s1_scale_nan_REG_7;
     toS2_sign_REG <= s1_sign_REG;
     toS2_sign_REG_1 <= s1_sign_REG_1;
     toS2_sign_REG_2 <= s1_sign_REG_2;
@@ -8570,6 +8560,22 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     toS2_man_REG_13 <= s1_mantissa_REG_13;
     toS2_man_REG_14 <= s1_mantissa_REG_14;
     toS2_man_REG_15 <= s1_mantissa_REG_15;
+    s3_exp_cand_REG <= _scaleEmax_io_out_0;
+    s3_exp_cand_REG_1 <= _scaleEmax_io_out_1;
+    s3_exp_cand_REG_2 <= _scaleEmax_io_out_2;
+    s3_exp_cand_REG_3 <= _scaleEmax_io_out_3;
+    s3_exp_cand_REG_4 <= _scaleEmax_io_out_4;
+    s3_exp_cand_REG_5 <= _scaleEmax_io_out_5;
+    s3_exp_cand_REG_6 <= _scaleEmax_io_out_6;
+    s3_exp_cand_REG_7 <= _scaleEmax_io_out_7;
+    s3_nan_flag_REG <= _scaleEmax_io_nan_out_0;
+    s3_nan_flag_REG_1 <= _scaleEmax_io_nan_out_1;
+    s3_nan_flag_REG_2 <= _scaleEmax_io_nan_out_2;
+    s3_nan_flag_REG_3 <= _scaleEmax_io_nan_out_3;
+    s3_nan_flag_REG_4 <= _scaleEmax_io_nan_out_4;
+    s3_nan_flag_REG_5 <= _scaleEmax_io_nan_out_5;
+    s3_nan_flag_REG_6 <= _scaleEmax_io_nan_out_6;
+    s3_nan_flag_REG_7 <= _scaleEmax_io_nan_out_7;
     s3_adder1_out_REG <= _adder1_0_io_out_0;
     s3_adder1_out_REG_1 <= _adder1_0_io_out_1;
     s3_adder1_out_REG_2 <= _adder1_0_io_out_2;
@@ -8698,8 +8704,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s3_adder1_out_REG_125 <= _adder1_7_io_out_13;
     s3_adder1_out_REG_126 <= _adder1_7_io_out_14;
     s3_adder1_out_REG_127 <= _adder1_7_io_out_15;
-    toS3_exp_cand_REG <= s2_exp_cand_REG;
-    toS3_nan_REG <= s2_nan_flag_REG;
     s4_adder2_out_REG <= _adder2_0_io_out_0;
     s4_adder2_out_REG_1 <= _adder2_0_io_out_1;
     s4_adder2_out_REG_2 <= _adder2_0_io_out_2;
@@ -8764,14 +8768,10 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s4_adder2_out_REG_61 <= _adder2_7_io_out_5;
     s4_adder2_out_REG_62 <= _adder2_7_io_out_6;
     s4_adder2_out_REG_63 <= _adder2_7_io_out_7;
-    toS4_exp_cand_REG <= s2_exp_cand_REG;
-    toS4_exp_cand_REG_1 <= s2_exp_cand_REG_1;
-    toS4_exp_cand_REG_8 <= toS4_exp_cand_REG;
-    toS4_exp_cand_REG_9 <= toS4_exp_cand_REG_1;
-    toS4_nan_REG <= s2_nan_flag_REG;
-    toS4_nan_REG_1 <= s2_nan_flag_REG_1;
-    toS4_nan_REG_8 <= toS4_nan_REG;
-    toS4_nan_REG_9 <= toS4_nan_REG_1;
+    toS4_exp_cand_REG <= s3_exp_cand_REG;
+    toS4_exp_cand_REG_1 <= s3_exp_cand_REG_1;
+    toS4_nan_REG <= s3_nan_flag_REG;
+    toS4_nan_REG_1 <= s3_nan_flag_REG_1;
     s5_adder3_out_REG <= _adder3_0_io_out_0;
     s5_adder3_out_REG_1 <= _adder3_0_io_out_1;
     s5_adder3_out_REG_2 <= _adder3_0_io_out_2;
@@ -8804,30 +8804,22 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s5_adder3_out_REG_29 <= _adder3_7_io_out_1;
     s5_adder3_out_REG_30 <= _adder3_7_io_out_2;
     s5_adder3_out_REG_31 <= _adder3_7_io_out_3;
-    toS5_exp_cand_REG <= s2_exp_cand_REG;
-    toS5_exp_cand_REG_1 <= s2_exp_cand_REG_1;
-    toS5_exp_cand_REG_2 <= s2_exp_cand_REG_2;
-    toS5_exp_cand_REG_3 <= s2_exp_cand_REG_3;
+    toS5_exp_cand_REG <= s3_exp_cand_REG;
+    toS5_exp_cand_REG_1 <= s3_exp_cand_REG_1;
+    toS5_exp_cand_REG_2 <= s3_exp_cand_REG_2;
+    toS5_exp_cand_REG_3 <= s3_exp_cand_REG_3;
     toS5_exp_cand_REG_8 <= toS5_exp_cand_REG;
     toS5_exp_cand_REG_9 <= toS5_exp_cand_REG_1;
     toS5_exp_cand_REG_10 <= toS5_exp_cand_REG_2;
     toS5_exp_cand_REG_11 <= toS5_exp_cand_REG_3;
-    toS5_exp_cand_REG_16 <= toS5_exp_cand_REG_8;
-    toS5_exp_cand_REG_17 <= toS5_exp_cand_REG_9;
-    toS5_exp_cand_REG_18 <= toS5_exp_cand_REG_10;
-    toS5_exp_cand_REG_19 <= toS5_exp_cand_REG_11;
-    toS5_nan_REG <= s2_nan_flag_REG;
-    toS5_nan_REG_1 <= s2_nan_flag_REG_1;
-    toS5_nan_REG_2 <= s2_nan_flag_REG_2;
-    toS5_nan_REG_3 <= s2_nan_flag_REG_3;
+    toS5_nan_REG <= s3_nan_flag_REG;
+    toS5_nan_REG_1 <= s3_nan_flag_REG_1;
+    toS5_nan_REG_2 <= s3_nan_flag_REG_2;
+    toS5_nan_REG_3 <= s3_nan_flag_REG_3;
     toS5_nan_REG_8 <= toS5_nan_REG;
     toS5_nan_REG_9 <= toS5_nan_REG_1;
     toS5_nan_REG_10 <= toS5_nan_REG_2;
     toS5_nan_REG_11 <= toS5_nan_REG_3;
-    toS5_nan_REG_16 <= toS5_nan_REG_8;
-    toS5_nan_REG_17 <= toS5_nan_REG_9;
-    toS5_nan_REG_18 <= toS5_nan_REG_10;
-    toS5_nan_REG_19 <= toS5_nan_REG_11;
     s6_adder4_out_REG <= _adder4_0_io_out_0;
     s6_adder4_out_REG_1 <= _adder4_0_io_out_1;
     s6_adder4_out_REG_2 <= _adder4_1_io_out_0;
@@ -8844,14 +8836,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s6_adder4_out_REG_13 <= _adder4_6_io_out_1;
     s6_adder4_out_REG_14 <= _adder4_7_io_out_0;
     s6_adder4_out_REG_15 <= _adder4_7_io_out_1;
-    toS6_exp_cand_REG <= s2_exp_cand_REG;
-    toS6_exp_cand_REG_1 <= s2_exp_cand_REG_1;
-    toS6_exp_cand_REG_2 <= s2_exp_cand_REG_2;
-    toS6_exp_cand_REG_3 <= s2_exp_cand_REG_3;
-    toS6_exp_cand_REG_4 <= s2_exp_cand_REG_4;
-    toS6_exp_cand_REG_5 <= s2_exp_cand_REG_5;
-    toS6_exp_cand_REG_6 <= s2_exp_cand_REG_6;
-    toS6_exp_cand_REG_7 <= s2_exp_cand_REG_7;
+    toS6_exp_cand_REG <= s3_exp_cand_REG;
+    toS6_exp_cand_REG_1 <= s3_exp_cand_REG_1;
+    toS6_exp_cand_REG_2 <= s3_exp_cand_REG_2;
+    toS6_exp_cand_REG_3 <= s3_exp_cand_REG_3;
+    toS6_exp_cand_REG_4 <= s3_exp_cand_REG_4;
+    toS6_exp_cand_REG_5 <= s3_exp_cand_REG_5;
+    toS6_exp_cand_REG_6 <= s3_exp_cand_REG_6;
+    toS6_exp_cand_REG_7 <= s3_exp_cand_REG_7;
     toS6_exp_cand_REG_8 <= toS6_exp_cand_REG;
     toS6_exp_cand_REG_9 <= toS6_exp_cand_REG_1;
     toS6_exp_cand_REG_10 <= toS6_exp_cand_REG_2;
@@ -8868,22 +8860,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     toS6_exp_cand_REG_21 <= toS6_exp_cand_REG_13;
     toS6_exp_cand_REG_22 <= toS6_exp_cand_REG_14;
     toS6_exp_cand_REG_23 <= toS6_exp_cand_REG_15;
-    toS6_exp_cand_REG_24 <= toS6_exp_cand_REG_16;
-    toS6_exp_cand_REG_25 <= toS6_exp_cand_REG_17;
-    toS6_exp_cand_REG_26 <= toS6_exp_cand_REG_18;
-    toS6_exp_cand_REG_27 <= toS6_exp_cand_REG_19;
-    toS6_exp_cand_REG_28 <= toS6_exp_cand_REG_20;
-    toS6_exp_cand_REG_29 <= toS6_exp_cand_REG_21;
-    toS6_exp_cand_REG_30 <= toS6_exp_cand_REG_22;
-    toS6_exp_cand_REG_31 <= toS6_exp_cand_REG_23;
-    toS6_nan_REG <= s2_nan_flag_REG;
-    toS6_nan_REG_1 <= s2_nan_flag_REG_1;
-    toS6_nan_REG_2 <= s2_nan_flag_REG_2;
-    toS6_nan_REG_3 <= s2_nan_flag_REG_3;
-    toS6_nan_REG_4 <= s2_nan_flag_REG_4;
-    toS6_nan_REG_5 <= s2_nan_flag_REG_5;
-    toS6_nan_REG_6 <= s2_nan_flag_REG_6;
-    toS6_nan_REG_7 <= s2_nan_flag_REG_7;
+    toS6_nan_REG <= s3_nan_flag_REG;
+    toS6_nan_REG_1 <= s3_nan_flag_REG_1;
+    toS6_nan_REG_2 <= s3_nan_flag_REG_2;
+    toS6_nan_REG_3 <= s3_nan_flag_REG_3;
+    toS6_nan_REG_4 <= s3_nan_flag_REG_4;
+    toS6_nan_REG_5 <= s3_nan_flag_REG_5;
+    toS6_nan_REG_6 <= s3_nan_flag_REG_6;
+    toS6_nan_REG_7 <= s3_nan_flag_REG_7;
     toS6_nan_REG_8 <= toS6_nan_REG;
     toS6_nan_REG_9 <= toS6_nan_REG_1;
     toS6_nan_REG_10 <= toS6_nan_REG_2;
@@ -8900,14 +8884,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     toS6_nan_REG_21 <= toS6_nan_REG_13;
     toS6_nan_REG_22 <= toS6_nan_REG_14;
     toS6_nan_REG_23 <= toS6_nan_REG_15;
-    toS6_nan_REG_24 <= toS6_nan_REG_16;
-    toS6_nan_REG_25 <= toS6_nan_REG_17;
-    toS6_nan_REG_26 <= toS6_nan_REG_18;
-    toS6_nan_REG_27 <= toS6_nan_REG_19;
-    toS6_nan_REG_28 <= toS6_nan_REG_20;
-    toS6_nan_REG_29 <= toS6_nan_REG_21;
-    toS6_nan_REG_30 <= toS6_nan_REG_22;
-    toS6_nan_REG_31 <= toS6_nan_REG_23;
     s7_adder5_out_REG <= _adder5_0_io_out;
     s7_adder5_out_REG_1 <= _adder5_1_io_out;
     s7_adder5_out_REG_2 <= _adder5_2_io_out;
@@ -8916,14 +8892,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     s7_adder5_out_REG_5 <= _adder5_5_io_out;
     s7_adder5_out_REG_6 <= _adder5_6_io_out;
     s7_adder5_out_REG_7 <= _adder5_7_io_out;
-    toS7_exp_cand_REG <= s2_exp_cand_REG;
-    toS7_exp_cand_REG_1 <= s2_exp_cand_REG_1;
-    toS7_exp_cand_REG_2 <= s2_exp_cand_REG_2;
-    toS7_exp_cand_REG_3 <= s2_exp_cand_REG_3;
-    toS7_exp_cand_REG_4 <= s2_exp_cand_REG_4;
-    toS7_exp_cand_REG_5 <= s2_exp_cand_REG_5;
-    toS7_exp_cand_REG_6 <= s2_exp_cand_REG_6;
-    toS7_exp_cand_REG_7 <= s2_exp_cand_REG_7;
+    toS7_exp_cand_REG <= s3_exp_cand_REG;
+    toS7_exp_cand_REG_1 <= s3_exp_cand_REG_1;
+    toS7_exp_cand_REG_2 <= s3_exp_cand_REG_2;
+    toS7_exp_cand_REG_3 <= s3_exp_cand_REG_3;
+    toS7_exp_cand_REG_4 <= s3_exp_cand_REG_4;
+    toS7_exp_cand_REG_5 <= s3_exp_cand_REG_5;
+    toS7_exp_cand_REG_6 <= s3_exp_cand_REG_6;
+    toS7_exp_cand_REG_7 <= s3_exp_cand_REG_7;
     toS7_exp_cand_REG_8 <= toS7_exp_cand_REG;
     toS7_exp_cand_REG_9 <= toS7_exp_cand_REG_1;
     toS7_exp_cand_REG_10 <= toS7_exp_cand_REG_2;
@@ -8948,22 +8924,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     toS7_exp_cand_REG_29 <= toS7_exp_cand_REG_21;
     toS7_exp_cand_REG_30 <= toS7_exp_cand_REG_22;
     toS7_exp_cand_REG_31 <= toS7_exp_cand_REG_23;
-    toS7_exp_cand_REG_32 <= toS7_exp_cand_REG_24;
-    toS7_exp_cand_REG_33 <= toS7_exp_cand_REG_25;
-    toS7_exp_cand_REG_34 <= toS7_exp_cand_REG_26;
-    toS7_exp_cand_REG_35 <= toS7_exp_cand_REG_27;
-    toS7_exp_cand_REG_36 <= toS7_exp_cand_REG_28;
-    toS7_exp_cand_REG_37 <= toS7_exp_cand_REG_29;
-    toS7_exp_cand_REG_38 <= toS7_exp_cand_REG_30;
-    toS7_exp_cand_REG_39 <= toS7_exp_cand_REG_31;
-    toS7_nan_REG <= s2_nan_flag_REG;
-    toS7_nan_REG_1 <= s2_nan_flag_REG_1;
-    toS7_nan_REG_2 <= s2_nan_flag_REG_2;
-    toS7_nan_REG_3 <= s2_nan_flag_REG_3;
-    toS7_nan_REG_4 <= s2_nan_flag_REG_4;
-    toS7_nan_REG_5 <= s2_nan_flag_REG_5;
-    toS7_nan_REG_6 <= s2_nan_flag_REG_6;
-    toS7_nan_REG_7 <= s2_nan_flag_REG_7;
+    toS7_nan_REG <= s3_nan_flag_REG;
+    toS7_nan_REG_1 <= s3_nan_flag_REG_1;
+    toS7_nan_REG_2 <= s3_nan_flag_REG_2;
+    toS7_nan_REG_3 <= s3_nan_flag_REG_3;
+    toS7_nan_REG_4 <= s3_nan_flag_REG_4;
+    toS7_nan_REG_5 <= s3_nan_flag_REG_5;
+    toS7_nan_REG_6 <= s3_nan_flag_REG_6;
+    toS7_nan_REG_7 <= s3_nan_flag_REG_7;
     toS7_nan_REG_8 <= toS7_nan_REG;
     toS7_nan_REG_9 <= toS7_nan_REG_1;
     toS7_nan_REG_10 <= toS7_nan_REG_2;
@@ -8988,14 +8956,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     toS7_nan_REG_29 <= toS7_nan_REG_21;
     toS7_nan_REG_30 <= toS7_nan_REG_22;
     toS7_nan_REG_31 <= toS7_nan_REG_23;
-    toS7_nan_REG_32 <= toS7_nan_REG_24;
-    toS7_nan_REG_33 <= toS7_nan_REG_25;
-    toS7_nan_REG_34 <= toS7_nan_REG_26;
-    toS7_nan_REG_35 <= toS7_nan_REG_27;
-    toS7_nan_REG_36 <= toS7_nan_REG_28;
-    toS7_nan_REG_37 <= toS7_nan_REG_29;
-    toS7_nan_REG_38 <= toS7_nan_REG_30;
-    toS7_nan_REG_39 <= toS7_nan_REG_31;
     s8_gw_sign_0 <= _expansion_groupwise_io_out_sign_0;
     s8_gw_sign_1 <= _expansion_groupwise_io_out_sign_1;
     s8_gw_sign_2 <= _expansion_groupwise_io_out_sign_2;
@@ -12179,32 +12139,1335 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_nan_6     (_scaleSum_io_nan_6),
     .io_nan_7     (_scaleSum_io_nan_7)
   );
+  p_Expansion expansion_0 (
+    .io_sign_0              (s1_sign_REG),
+    .io_sign_1              (s1_sign_REG_1),
+    .io_sign_2              (s1_sign_REG_2),
+    .io_sign_3              (s1_sign_REG_3),
+    .io_sign_4              (s1_sign_REG_4),
+    .io_sign_5              (s1_sign_REG_5),
+    .io_sign_6              (s1_sign_REG_6),
+    .io_sign_7              (s1_sign_REG_7),
+    .io_sign_8              (s1_sign_REG_8),
+    .io_sign_9              (s1_sign_REG_9),
+    .io_sign_10             (s1_sign_REG_10),
+    .io_sign_11             (s1_sign_REG_11),
+    .io_sign_12             (s1_sign_REG_12),
+    .io_sign_13             (s1_sign_REG_13),
+    .io_sign_14             (s1_sign_REG_14),
+    .io_sign_15             (s1_sign_REG_15),
+    .io_sign_16             (s1_sign_REG_16),
+    .io_sign_17             (s1_sign_REG_17),
+    .io_sign_18             (s1_sign_REG_18),
+    .io_sign_19             (s1_sign_REG_19),
+    .io_sign_20             (s1_sign_REG_20),
+    .io_sign_21             (s1_sign_REG_21),
+    .io_sign_22             (s1_sign_REG_22),
+    .io_sign_23             (s1_sign_REG_23),
+    .io_sign_24             (s1_sign_REG_24),
+    .io_sign_25             (s1_sign_REG_25),
+    .io_sign_26             (s1_sign_REG_26),
+    .io_sign_27             (s1_sign_REG_27),
+    .io_sign_28             (s1_sign_REG_28),
+    .io_sign_29             (s1_sign_REG_29),
+    .io_sign_30             (s1_sign_REG_30),
+    .io_sign_31             (s1_sign_REG_31),
+    .io_exponent_0          (s1_exponent_REG),
+    .io_exponent_1          (s1_exponent_REG_1),
+    .io_exponent_2          (s1_exponent_REG_2),
+    .io_exponent_3          (s1_exponent_REG_3),
+    .io_exponent_4          (s1_exponent_REG_4),
+    .io_exponent_5          (s1_exponent_REG_5),
+    .io_exponent_6          (s1_exponent_REG_6),
+    .io_exponent_7          (s1_exponent_REG_7),
+    .io_exponent_8          (s1_exponent_REG_8),
+    .io_exponent_9          (s1_exponent_REG_9),
+    .io_exponent_10         (s1_exponent_REG_10),
+    .io_exponent_11         (s1_exponent_REG_11),
+    .io_exponent_12         (s1_exponent_REG_12),
+    .io_exponent_13         (s1_exponent_REG_13),
+    .io_exponent_14         (s1_exponent_REG_14),
+    .io_exponent_15         (s1_exponent_REG_15),
+    .io_exponent_16         (s1_exponent_REG_16),
+    .io_exponent_17         (s1_exponent_REG_17),
+    .io_exponent_18         (s1_exponent_REG_18),
+    .io_exponent_19         (s1_exponent_REG_19),
+    .io_exponent_20         (s1_exponent_REG_20),
+    .io_exponent_21         (s1_exponent_REG_21),
+    .io_exponent_22         (s1_exponent_REG_22),
+    .io_exponent_23         (s1_exponent_REG_23),
+    .io_exponent_24         (s1_exponent_REG_24),
+    .io_exponent_25         (s1_exponent_REG_25),
+    .io_exponent_26         (s1_exponent_REG_26),
+    .io_exponent_27         (s1_exponent_REG_27),
+    .io_exponent_28         (s1_exponent_REG_28),
+    .io_exponent_29         (s1_exponent_REG_29),
+    .io_exponent_30         (s1_exponent_REG_30),
+    .io_exponent_31         (s1_exponent_REG_31),
+    .io_mantissa_0          (s1_mantissa_REG),
+    .io_mantissa_1          (s1_mantissa_REG_1),
+    .io_mantissa_2          (s1_mantissa_REG_2),
+    .io_mantissa_3          (s1_mantissa_REG_3),
+    .io_mantissa_4          (s1_mantissa_REG_4),
+    .io_mantissa_5          (s1_mantissa_REG_5),
+    .io_mantissa_6          (s1_mantissa_REG_6),
+    .io_mantissa_7          (s1_mantissa_REG_7),
+    .io_mantissa_8          (s1_mantissa_REG_8),
+    .io_mantissa_9          (s1_mantissa_REG_9),
+    .io_mantissa_10         (s1_mantissa_REG_10),
+    .io_mantissa_11         (s1_mantissa_REG_11),
+    .io_mantissa_12         (s1_mantissa_REG_12),
+    .io_mantissa_13         (s1_mantissa_REG_13),
+    .io_mantissa_14         (s1_mantissa_REG_14),
+    .io_mantissa_15         (s1_mantissa_REG_15),
+    .io_mantissa_16         (s1_mantissa_REG_16),
+    .io_mantissa_17         (s1_mantissa_REG_17),
+    .io_mantissa_18         (s1_mantissa_REG_18),
+    .io_mantissa_19         (s1_mantissa_REG_19),
+    .io_mantissa_20         (s1_mantissa_REG_20),
+    .io_mantissa_21         (s1_mantissa_REG_21),
+    .io_mantissa_22         (s1_mantissa_REG_22),
+    .io_mantissa_23         (s1_mantissa_REG_23),
+    .io_mantissa_24         (s1_mantissa_REG_24),
+    .io_mantissa_25         (s1_mantissa_REG_25),
+    .io_mantissa_26         (s1_mantissa_REG_26),
+    .io_mantissa_27         (s1_mantissa_REG_27),
+    .io_mantissa_28         (s1_mantissa_REG_28),
+    .io_mantissa_29         (s1_mantissa_REG_29),
+    .io_mantissa_30         (s1_mantissa_REG_30),
+    .io_mantissa_31         (s1_mantissa_REG_31),
+    .io_out_sign_0          (_expansion_0_io_out_sign_0),
+    .io_out_sign_1          (_expansion_0_io_out_sign_1),
+    .io_out_sign_2          (_expansion_0_io_out_sign_2),
+    .io_out_sign_3          (_expansion_0_io_out_sign_3),
+    .io_out_sign_4          (_expansion_0_io_out_sign_4),
+    .io_out_sign_5          (_expansion_0_io_out_sign_5),
+    .io_out_sign_6          (_expansion_0_io_out_sign_6),
+    .io_out_sign_7          (_expansion_0_io_out_sign_7),
+    .io_out_sign_8          (_expansion_0_io_out_sign_8),
+    .io_out_sign_9          (_expansion_0_io_out_sign_9),
+    .io_out_sign_10         (_expansion_0_io_out_sign_10),
+    .io_out_sign_11         (_expansion_0_io_out_sign_11),
+    .io_out_sign_12         (_expansion_0_io_out_sign_12),
+    .io_out_sign_13         (_expansion_0_io_out_sign_13),
+    .io_out_sign_14         (_expansion_0_io_out_sign_14),
+    .io_out_sign_15         (_expansion_0_io_out_sign_15),
+    .io_out_sign_16         (_expansion_0_io_out_sign_16),
+    .io_out_sign_17         (_expansion_0_io_out_sign_17),
+    .io_out_sign_18         (_expansion_0_io_out_sign_18),
+    .io_out_sign_19         (_expansion_0_io_out_sign_19),
+    .io_out_sign_20         (_expansion_0_io_out_sign_20),
+    .io_out_sign_21         (_expansion_0_io_out_sign_21),
+    .io_out_sign_22         (_expansion_0_io_out_sign_22),
+    .io_out_sign_23         (_expansion_0_io_out_sign_23),
+    .io_out_sign_24         (_expansion_0_io_out_sign_24),
+    .io_out_sign_25         (_expansion_0_io_out_sign_25),
+    .io_out_sign_26         (_expansion_0_io_out_sign_26),
+    .io_out_sign_27         (_expansion_0_io_out_sign_27),
+    .io_out_sign_28         (_expansion_0_io_out_sign_28),
+    .io_out_sign_29         (_expansion_0_io_out_sign_29),
+    .io_out_sign_30         (_expansion_0_io_out_sign_30),
+    .io_out_sign_31         (_expansion_0_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_0_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_0_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_0_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_0_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_0_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_0_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_0_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_0_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_0_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_0_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_0_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_0_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_0_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_0_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_0_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_0_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_0_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_0_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_0_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_0_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_0_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_0_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_0_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_0_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_0_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_0_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_0_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_0_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_0_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_0_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_0_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_0_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_0_io_out_mantissa_31)
+  );
+  p_Expansion expansion_1 (
+    .io_sign_0              (s1_sign_REG_32),
+    .io_sign_1              (s1_sign_REG_33),
+    .io_sign_2              (s1_sign_REG_34),
+    .io_sign_3              (s1_sign_REG_35),
+    .io_sign_4              (s1_sign_REG_36),
+    .io_sign_5              (s1_sign_REG_37),
+    .io_sign_6              (s1_sign_REG_38),
+    .io_sign_7              (s1_sign_REG_39),
+    .io_sign_8              (s1_sign_REG_40),
+    .io_sign_9              (s1_sign_REG_41),
+    .io_sign_10             (s1_sign_REG_42),
+    .io_sign_11             (s1_sign_REG_43),
+    .io_sign_12             (s1_sign_REG_44),
+    .io_sign_13             (s1_sign_REG_45),
+    .io_sign_14             (s1_sign_REG_46),
+    .io_sign_15             (s1_sign_REG_47),
+    .io_sign_16             (s1_sign_REG_48),
+    .io_sign_17             (s1_sign_REG_49),
+    .io_sign_18             (s1_sign_REG_50),
+    .io_sign_19             (s1_sign_REG_51),
+    .io_sign_20             (s1_sign_REG_52),
+    .io_sign_21             (s1_sign_REG_53),
+    .io_sign_22             (s1_sign_REG_54),
+    .io_sign_23             (s1_sign_REG_55),
+    .io_sign_24             (s1_sign_REG_56),
+    .io_sign_25             (s1_sign_REG_57),
+    .io_sign_26             (s1_sign_REG_58),
+    .io_sign_27             (s1_sign_REG_59),
+    .io_sign_28             (s1_sign_REG_60),
+    .io_sign_29             (s1_sign_REG_61),
+    .io_sign_30             (s1_sign_REG_62),
+    .io_sign_31             (s1_sign_REG_63),
+    .io_exponent_0          (s1_exponent_REG_32),
+    .io_exponent_1          (s1_exponent_REG_33),
+    .io_exponent_2          (s1_exponent_REG_34),
+    .io_exponent_3          (s1_exponent_REG_35),
+    .io_exponent_4          (s1_exponent_REG_36),
+    .io_exponent_5          (s1_exponent_REG_37),
+    .io_exponent_6          (s1_exponent_REG_38),
+    .io_exponent_7          (s1_exponent_REG_39),
+    .io_exponent_8          (s1_exponent_REG_40),
+    .io_exponent_9          (s1_exponent_REG_41),
+    .io_exponent_10         (s1_exponent_REG_42),
+    .io_exponent_11         (s1_exponent_REG_43),
+    .io_exponent_12         (s1_exponent_REG_44),
+    .io_exponent_13         (s1_exponent_REG_45),
+    .io_exponent_14         (s1_exponent_REG_46),
+    .io_exponent_15         (s1_exponent_REG_47),
+    .io_exponent_16         (s1_exponent_REG_48),
+    .io_exponent_17         (s1_exponent_REG_49),
+    .io_exponent_18         (s1_exponent_REG_50),
+    .io_exponent_19         (s1_exponent_REG_51),
+    .io_exponent_20         (s1_exponent_REG_52),
+    .io_exponent_21         (s1_exponent_REG_53),
+    .io_exponent_22         (s1_exponent_REG_54),
+    .io_exponent_23         (s1_exponent_REG_55),
+    .io_exponent_24         (s1_exponent_REG_56),
+    .io_exponent_25         (s1_exponent_REG_57),
+    .io_exponent_26         (s1_exponent_REG_58),
+    .io_exponent_27         (s1_exponent_REG_59),
+    .io_exponent_28         (s1_exponent_REG_60),
+    .io_exponent_29         (s1_exponent_REG_61),
+    .io_exponent_30         (s1_exponent_REG_62),
+    .io_exponent_31         (s1_exponent_REG_63),
+    .io_mantissa_0          (s1_mantissa_REG_32),
+    .io_mantissa_1          (s1_mantissa_REG_33),
+    .io_mantissa_2          (s1_mantissa_REG_34),
+    .io_mantissa_3          (s1_mantissa_REG_35),
+    .io_mantissa_4          (s1_mantissa_REG_36),
+    .io_mantissa_5          (s1_mantissa_REG_37),
+    .io_mantissa_6          (s1_mantissa_REG_38),
+    .io_mantissa_7          (s1_mantissa_REG_39),
+    .io_mantissa_8          (s1_mantissa_REG_40),
+    .io_mantissa_9          (s1_mantissa_REG_41),
+    .io_mantissa_10         (s1_mantissa_REG_42),
+    .io_mantissa_11         (s1_mantissa_REG_43),
+    .io_mantissa_12         (s1_mantissa_REG_44),
+    .io_mantissa_13         (s1_mantissa_REG_45),
+    .io_mantissa_14         (s1_mantissa_REG_46),
+    .io_mantissa_15         (s1_mantissa_REG_47),
+    .io_mantissa_16         (s1_mantissa_REG_48),
+    .io_mantissa_17         (s1_mantissa_REG_49),
+    .io_mantissa_18         (s1_mantissa_REG_50),
+    .io_mantissa_19         (s1_mantissa_REG_51),
+    .io_mantissa_20         (s1_mantissa_REG_52),
+    .io_mantissa_21         (s1_mantissa_REG_53),
+    .io_mantissa_22         (s1_mantissa_REG_54),
+    .io_mantissa_23         (s1_mantissa_REG_55),
+    .io_mantissa_24         (s1_mantissa_REG_56),
+    .io_mantissa_25         (s1_mantissa_REG_57),
+    .io_mantissa_26         (s1_mantissa_REG_58),
+    .io_mantissa_27         (s1_mantissa_REG_59),
+    .io_mantissa_28         (s1_mantissa_REG_60),
+    .io_mantissa_29         (s1_mantissa_REG_61),
+    .io_mantissa_30         (s1_mantissa_REG_62),
+    .io_mantissa_31         (s1_mantissa_REG_63),
+    .io_out_sign_0          (_expansion_1_io_out_sign_0),
+    .io_out_sign_1          (_expansion_1_io_out_sign_1),
+    .io_out_sign_2          (_expansion_1_io_out_sign_2),
+    .io_out_sign_3          (_expansion_1_io_out_sign_3),
+    .io_out_sign_4          (_expansion_1_io_out_sign_4),
+    .io_out_sign_5          (_expansion_1_io_out_sign_5),
+    .io_out_sign_6          (_expansion_1_io_out_sign_6),
+    .io_out_sign_7          (_expansion_1_io_out_sign_7),
+    .io_out_sign_8          (_expansion_1_io_out_sign_8),
+    .io_out_sign_9          (_expansion_1_io_out_sign_9),
+    .io_out_sign_10         (_expansion_1_io_out_sign_10),
+    .io_out_sign_11         (_expansion_1_io_out_sign_11),
+    .io_out_sign_12         (_expansion_1_io_out_sign_12),
+    .io_out_sign_13         (_expansion_1_io_out_sign_13),
+    .io_out_sign_14         (_expansion_1_io_out_sign_14),
+    .io_out_sign_15         (_expansion_1_io_out_sign_15),
+    .io_out_sign_16         (_expansion_1_io_out_sign_16),
+    .io_out_sign_17         (_expansion_1_io_out_sign_17),
+    .io_out_sign_18         (_expansion_1_io_out_sign_18),
+    .io_out_sign_19         (_expansion_1_io_out_sign_19),
+    .io_out_sign_20         (_expansion_1_io_out_sign_20),
+    .io_out_sign_21         (_expansion_1_io_out_sign_21),
+    .io_out_sign_22         (_expansion_1_io_out_sign_22),
+    .io_out_sign_23         (_expansion_1_io_out_sign_23),
+    .io_out_sign_24         (_expansion_1_io_out_sign_24),
+    .io_out_sign_25         (_expansion_1_io_out_sign_25),
+    .io_out_sign_26         (_expansion_1_io_out_sign_26),
+    .io_out_sign_27         (_expansion_1_io_out_sign_27),
+    .io_out_sign_28         (_expansion_1_io_out_sign_28),
+    .io_out_sign_29         (_expansion_1_io_out_sign_29),
+    .io_out_sign_30         (_expansion_1_io_out_sign_30),
+    .io_out_sign_31         (_expansion_1_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_1_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_1_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_1_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_1_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_1_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_1_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_1_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_1_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_1_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_1_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_1_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_1_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_1_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_1_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_1_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_1_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_1_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_1_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_1_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_1_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_1_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_1_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_1_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_1_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_1_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_1_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_1_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_1_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_1_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_1_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_1_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_1_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_1_io_out_mantissa_31)
+  );
+  p_Expansion expansion_2 (
+    .io_sign_0              (s1_sign_REG_64),
+    .io_sign_1              (s1_sign_REG_65),
+    .io_sign_2              (s1_sign_REG_66),
+    .io_sign_3              (s1_sign_REG_67),
+    .io_sign_4              (s1_sign_REG_68),
+    .io_sign_5              (s1_sign_REG_69),
+    .io_sign_6              (s1_sign_REG_70),
+    .io_sign_7              (s1_sign_REG_71),
+    .io_sign_8              (s1_sign_REG_72),
+    .io_sign_9              (s1_sign_REG_73),
+    .io_sign_10             (s1_sign_REG_74),
+    .io_sign_11             (s1_sign_REG_75),
+    .io_sign_12             (s1_sign_REG_76),
+    .io_sign_13             (s1_sign_REG_77),
+    .io_sign_14             (s1_sign_REG_78),
+    .io_sign_15             (s1_sign_REG_79),
+    .io_sign_16             (s1_sign_REG_80),
+    .io_sign_17             (s1_sign_REG_81),
+    .io_sign_18             (s1_sign_REG_82),
+    .io_sign_19             (s1_sign_REG_83),
+    .io_sign_20             (s1_sign_REG_84),
+    .io_sign_21             (s1_sign_REG_85),
+    .io_sign_22             (s1_sign_REG_86),
+    .io_sign_23             (s1_sign_REG_87),
+    .io_sign_24             (s1_sign_REG_88),
+    .io_sign_25             (s1_sign_REG_89),
+    .io_sign_26             (s1_sign_REG_90),
+    .io_sign_27             (s1_sign_REG_91),
+    .io_sign_28             (s1_sign_REG_92),
+    .io_sign_29             (s1_sign_REG_93),
+    .io_sign_30             (s1_sign_REG_94),
+    .io_sign_31             (s1_sign_REG_95),
+    .io_exponent_0          (s1_exponent_REG_64),
+    .io_exponent_1          (s1_exponent_REG_65),
+    .io_exponent_2          (s1_exponent_REG_66),
+    .io_exponent_3          (s1_exponent_REG_67),
+    .io_exponent_4          (s1_exponent_REG_68),
+    .io_exponent_5          (s1_exponent_REG_69),
+    .io_exponent_6          (s1_exponent_REG_70),
+    .io_exponent_7          (s1_exponent_REG_71),
+    .io_exponent_8          (s1_exponent_REG_72),
+    .io_exponent_9          (s1_exponent_REG_73),
+    .io_exponent_10         (s1_exponent_REG_74),
+    .io_exponent_11         (s1_exponent_REG_75),
+    .io_exponent_12         (s1_exponent_REG_76),
+    .io_exponent_13         (s1_exponent_REG_77),
+    .io_exponent_14         (s1_exponent_REG_78),
+    .io_exponent_15         (s1_exponent_REG_79),
+    .io_exponent_16         (s1_exponent_REG_80),
+    .io_exponent_17         (s1_exponent_REG_81),
+    .io_exponent_18         (s1_exponent_REG_82),
+    .io_exponent_19         (s1_exponent_REG_83),
+    .io_exponent_20         (s1_exponent_REG_84),
+    .io_exponent_21         (s1_exponent_REG_85),
+    .io_exponent_22         (s1_exponent_REG_86),
+    .io_exponent_23         (s1_exponent_REG_87),
+    .io_exponent_24         (s1_exponent_REG_88),
+    .io_exponent_25         (s1_exponent_REG_89),
+    .io_exponent_26         (s1_exponent_REG_90),
+    .io_exponent_27         (s1_exponent_REG_91),
+    .io_exponent_28         (s1_exponent_REG_92),
+    .io_exponent_29         (s1_exponent_REG_93),
+    .io_exponent_30         (s1_exponent_REG_94),
+    .io_exponent_31         (s1_exponent_REG_95),
+    .io_mantissa_0          (s1_mantissa_REG_64),
+    .io_mantissa_1          (s1_mantissa_REG_65),
+    .io_mantissa_2          (s1_mantissa_REG_66),
+    .io_mantissa_3          (s1_mantissa_REG_67),
+    .io_mantissa_4          (s1_mantissa_REG_68),
+    .io_mantissa_5          (s1_mantissa_REG_69),
+    .io_mantissa_6          (s1_mantissa_REG_70),
+    .io_mantissa_7          (s1_mantissa_REG_71),
+    .io_mantissa_8          (s1_mantissa_REG_72),
+    .io_mantissa_9          (s1_mantissa_REG_73),
+    .io_mantissa_10         (s1_mantissa_REG_74),
+    .io_mantissa_11         (s1_mantissa_REG_75),
+    .io_mantissa_12         (s1_mantissa_REG_76),
+    .io_mantissa_13         (s1_mantissa_REG_77),
+    .io_mantissa_14         (s1_mantissa_REG_78),
+    .io_mantissa_15         (s1_mantissa_REG_79),
+    .io_mantissa_16         (s1_mantissa_REG_80),
+    .io_mantissa_17         (s1_mantissa_REG_81),
+    .io_mantissa_18         (s1_mantissa_REG_82),
+    .io_mantissa_19         (s1_mantissa_REG_83),
+    .io_mantissa_20         (s1_mantissa_REG_84),
+    .io_mantissa_21         (s1_mantissa_REG_85),
+    .io_mantissa_22         (s1_mantissa_REG_86),
+    .io_mantissa_23         (s1_mantissa_REG_87),
+    .io_mantissa_24         (s1_mantissa_REG_88),
+    .io_mantissa_25         (s1_mantissa_REG_89),
+    .io_mantissa_26         (s1_mantissa_REG_90),
+    .io_mantissa_27         (s1_mantissa_REG_91),
+    .io_mantissa_28         (s1_mantissa_REG_92),
+    .io_mantissa_29         (s1_mantissa_REG_93),
+    .io_mantissa_30         (s1_mantissa_REG_94),
+    .io_mantissa_31         (s1_mantissa_REG_95),
+    .io_out_sign_0          (_expansion_2_io_out_sign_0),
+    .io_out_sign_1          (_expansion_2_io_out_sign_1),
+    .io_out_sign_2          (_expansion_2_io_out_sign_2),
+    .io_out_sign_3          (_expansion_2_io_out_sign_3),
+    .io_out_sign_4          (_expansion_2_io_out_sign_4),
+    .io_out_sign_5          (_expansion_2_io_out_sign_5),
+    .io_out_sign_6          (_expansion_2_io_out_sign_6),
+    .io_out_sign_7          (_expansion_2_io_out_sign_7),
+    .io_out_sign_8          (_expansion_2_io_out_sign_8),
+    .io_out_sign_9          (_expansion_2_io_out_sign_9),
+    .io_out_sign_10         (_expansion_2_io_out_sign_10),
+    .io_out_sign_11         (_expansion_2_io_out_sign_11),
+    .io_out_sign_12         (_expansion_2_io_out_sign_12),
+    .io_out_sign_13         (_expansion_2_io_out_sign_13),
+    .io_out_sign_14         (_expansion_2_io_out_sign_14),
+    .io_out_sign_15         (_expansion_2_io_out_sign_15),
+    .io_out_sign_16         (_expansion_2_io_out_sign_16),
+    .io_out_sign_17         (_expansion_2_io_out_sign_17),
+    .io_out_sign_18         (_expansion_2_io_out_sign_18),
+    .io_out_sign_19         (_expansion_2_io_out_sign_19),
+    .io_out_sign_20         (_expansion_2_io_out_sign_20),
+    .io_out_sign_21         (_expansion_2_io_out_sign_21),
+    .io_out_sign_22         (_expansion_2_io_out_sign_22),
+    .io_out_sign_23         (_expansion_2_io_out_sign_23),
+    .io_out_sign_24         (_expansion_2_io_out_sign_24),
+    .io_out_sign_25         (_expansion_2_io_out_sign_25),
+    .io_out_sign_26         (_expansion_2_io_out_sign_26),
+    .io_out_sign_27         (_expansion_2_io_out_sign_27),
+    .io_out_sign_28         (_expansion_2_io_out_sign_28),
+    .io_out_sign_29         (_expansion_2_io_out_sign_29),
+    .io_out_sign_30         (_expansion_2_io_out_sign_30),
+    .io_out_sign_31         (_expansion_2_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_2_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_2_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_2_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_2_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_2_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_2_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_2_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_2_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_2_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_2_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_2_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_2_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_2_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_2_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_2_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_2_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_2_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_2_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_2_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_2_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_2_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_2_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_2_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_2_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_2_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_2_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_2_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_2_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_2_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_2_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_2_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_2_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_2_io_out_mantissa_31)
+  );
+  p_Expansion expansion_3 (
+    .io_sign_0              (s1_sign_REG_96),
+    .io_sign_1              (s1_sign_REG_97),
+    .io_sign_2              (s1_sign_REG_98),
+    .io_sign_3              (s1_sign_REG_99),
+    .io_sign_4              (s1_sign_REG_100),
+    .io_sign_5              (s1_sign_REG_101),
+    .io_sign_6              (s1_sign_REG_102),
+    .io_sign_7              (s1_sign_REG_103),
+    .io_sign_8              (s1_sign_REG_104),
+    .io_sign_9              (s1_sign_REG_105),
+    .io_sign_10             (s1_sign_REG_106),
+    .io_sign_11             (s1_sign_REG_107),
+    .io_sign_12             (s1_sign_REG_108),
+    .io_sign_13             (s1_sign_REG_109),
+    .io_sign_14             (s1_sign_REG_110),
+    .io_sign_15             (s1_sign_REG_111),
+    .io_sign_16             (s1_sign_REG_112),
+    .io_sign_17             (s1_sign_REG_113),
+    .io_sign_18             (s1_sign_REG_114),
+    .io_sign_19             (s1_sign_REG_115),
+    .io_sign_20             (s1_sign_REG_116),
+    .io_sign_21             (s1_sign_REG_117),
+    .io_sign_22             (s1_sign_REG_118),
+    .io_sign_23             (s1_sign_REG_119),
+    .io_sign_24             (s1_sign_REG_120),
+    .io_sign_25             (s1_sign_REG_121),
+    .io_sign_26             (s1_sign_REG_122),
+    .io_sign_27             (s1_sign_REG_123),
+    .io_sign_28             (s1_sign_REG_124),
+    .io_sign_29             (s1_sign_REG_125),
+    .io_sign_30             (s1_sign_REG_126),
+    .io_sign_31             (s1_sign_REG_127),
+    .io_exponent_0          (s1_exponent_REG_96),
+    .io_exponent_1          (s1_exponent_REG_97),
+    .io_exponent_2          (s1_exponent_REG_98),
+    .io_exponent_3          (s1_exponent_REG_99),
+    .io_exponent_4          (s1_exponent_REG_100),
+    .io_exponent_5          (s1_exponent_REG_101),
+    .io_exponent_6          (s1_exponent_REG_102),
+    .io_exponent_7          (s1_exponent_REG_103),
+    .io_exponent_8          (s1_exponent_REG_104),
+    .io_exponent_9          (s1_exponent_REG_105),
+    .io_exponent_10         (s1_exponent_REG_106),
+    .io_exponent_11         (s1_exponent_REG_107),
+    .io_exponent_12         (s1_exponent_REG_108),
+    .io_exponent_13         (s1_exponent_REG_109),
+    .io_exponent_14         (s1_exponent_REG_110),
+    .io_exponent_15         (s1_exponent_REG_111),
+    .io_exponent_16         (s1_exponent_REG_112),
+    .io_exponent_17         (s1_exponent_REG_113),
+    .io_exponent_18         (s1_exponent_REG_114),
+    .io_exponent_19         (s1_exponent_REG_115),
+    .io_exponent_20         (s1_exponent_REG_116),
+    .io_exponent_21         (s1_exponent_REG_117),
+    .io_exponent_22         (s1_exponent_REG_118),
+    .io_exponent_23         (s1_exponent_REG_119),
+    .io_exponent_24         (s1_exponent_REG_120),
+    .io_exponent_25         (s1_exponent_REG_121),
+    .io_exponent_26         (s1_exponent_REG_122),
+    .io_exponent_27         (s1_exponent_REG_123),
+    .io_exponent_28         (s1_exponent_REG_124),
+    .io_exponent_29         (s1_exponent_REG_125),
+    .io_exponent_30         (s1_exponent_REG_126),
+    .io_exponent_31         (s1_exponent_REG_127),
+    .io_mantissa_0          (s1_mantissa_REG_96),
+    .io_mantissa_1          (s1_mantissa_REG_97),
+    .io_mantissa_2          (s1_mantissa_REG_98),
+    .io_mantissa_3          (s1_mantissa_REG_99),
+    .io_mantissa_4          (s1_mantissa_REG_100),
+    .io_mantissa_5          (s1_mantissa_REG_101),
+    .io_mantissa_6          (s1_mantissa_REG_102),
+    .io_mantissa_7          (s1_mantissa_REG_103),
+    .io_mantissa_8          (s1_mantissa_REG_104),
+    .io_mantissa_9          (s1_mantissa_REG_105),
+    .io_mantissa_10         (s1_mantissa_REG_106),
+    .io_mantissa_11         (s1_mantissa_REG_107),
+    .io_mantissa_12         (s1_mantissa_REG_108),
+    .io_mantissa_13         (s1_mantissa_REG_109),
+    .io_mantissa_14         (s1_mantissa_REG_110),
+    .io_mantissa_15         (s1_mantissa_REG_111),
+    .io_mantissa_16         (s1_mantissa_REG_112),
+    .io_mantissa_17         (s1_mantissa_REG_113),
+    .io_mantissa_18         (s1_mantissa_REG_114),
+    .io_mantissa_19         (s1_mantissa_REG_115),
+    .io_mantissa_20         (s1_mantissa_REG_116),
+    .io_mantissa_21         (s1_mantissa_REG_117),
+    .io_mantissa_22         (s1_mantissa_REG_118),
+    .io_mantissa_23         (s1_mantissa_REG_119),
+    .io_mantissa_24         (s1_mantissa_REG_120),
+    .io_mantissa_25         (s1_mantissa_REG_121),
+    .io_mantissa_26         (s1_mantissa_REG_122),
+    .io_mantissa_27         (s1_mantissa_REG_123),
+    .io_mantissa_28         (s1_mantissa_REG_124),
+    .io_mantissa_29         (s1_mantissa_REG_125),
+    .io_mantissa_30         (s1_mantissa_REG_126),
+    .io_mantissa_31         (s1_mantissa_REG_127),
+    .io_out_sign_0          (_expansion_3_io_out_sign_0),
+    .io_out_sign_1          (_expansion_3_io_out_sign_1),
+    .io_out_sign_2          (_expansion_3_io_out_sign_2),
+    .io_out_sign_3          (_expansion_3_io_out_sign_3),
+    .io_out_sign_4          (_expansion_3_io_out_sign_4),
+    .io_out_sign_5          (_expansion_3_io_out_sign_5),
+    .io_out_sign_6          (_expansion_3_io_out_sign_6),
+    .io_out_sign_7          (_expansion_3_io_out_sign_7),
+    .io_out_sign_8          (_expansion_3_io_out_sign_8),
+    .io_out_sign_9          (_expansion_3_io_out_sign_9),
+    .io_out_sign_10         (_expansion_3_io_out_sign_10),
+    .io_out_sign_11         (_expansion_3_io_out_sign_11),
+    .io_out_sign_12         (_expansion_3_io_out_sign_12),
+    .io_out_sign_13         (_expansion_3_io_out_sign_13),
+    .io_out_sign_14         (_expansion_3_io_out_sign_14),
+    .io_out_sign_15         (_expansion_3_io_out_sign_15),
+    .io_out_sign_16         (_expansion_3_io_out_sign_16),
+    .io_out_sign_17         (_expansion_3_io_out_sign_17),
+    .io_out_sign_18         (_expansion_3_io_out_sign_18),
+    .io_out_sign_19         (_expansion_3_io_out_sign_19),
+    .io_out_sign_20         (_expansion_3_io_out_sign_20),
+    .io_out_sign_21         (_expansion_3_io_out_sign_21),
+    .io_out_sign_22         (_expansion_3_io_out_sign_22),
+    .io_out_sign_23         (_expansion_3_io_out_sign_23),
+    .io_out_sign_24         (_expansion_3_io_out_sign_24),
+    .io_out_sign_25         (_expansion_3_io_out_sign_25),
+    .io_out_sign_26         (_expansion_3_io_out_sign_26),
+    .io_out_sign_27         (_expansion_3_io_out_sign_27),
+    .io_out_sign_28         (_expansion_3_io_out_sign_28),
+    .io_out_sign_29         (_expansion_3_io_out_sign_29),
+    .io_out_sign_30         (_expansion_3_io_out_sign_30),
+    .io_out_sign_31         (_expansion_3_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_3_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_3_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_3_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_3_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_3_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_3_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_3_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_3_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_3_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_3_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_3_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_3_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_3_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_3_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_3_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_3_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_3_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_3_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_3_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_3_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_3_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_3_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_3_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_3_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_3_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_3_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_3_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_3_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_3_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_3_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_3_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_3_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_3_io_out_mantissa_31)
+  );
+  p_Expansion expansion_4 (
+    .io_sign_0              (s1_sign_REG_128),
+    .io_sign_1              (s1_sign_REG_129),
+    .io_sign_2              (s1_sign_REG_130),
+    .io_sign_3              (s1_sign_REG_131),
+    .io_sign_4              (s1_sign_REG_132),
+    .io_sign_5              (s1_sign_REG_133),
+    .io_sign_6              (s1_sign_REG_134),
+    .io_sign_7              (s1_sign_REG_135),
+    .io_sign_8              (s1_sign_REG_136),
+    .io_sign_9              (s1_sign_REG_137),
+    .io_sign_10             (s1_sign_REG_138),
+    .io_sign_11             (s1_sign_REG_139),
+    .io_sign_12             (s1_sign_REG_140),
+    .io_sign_13             (s1_sign_REG_141),
+    .io_sign_14             (s1_sign_REG_142),
+    .io_sign_15             (s1_sign_REG_143),
+    .io_sign_16             (s1_sign_REG_144),
+    .io_sign_17             (s1_sign_REG_145),
+    .io_sign_18             (s1_sign_REG_146),
+    .io_sign_19             (s1_sign_REG_147),
+    .io_sign_20             (s1_sign_REG_148),
+    .io_sign_21             (s1_sign_REG_149),
+    .io_sign_22             (s1_sign_REG_150),
+    .io_sign_23             (s1_sign_REG_151),
+    .io_sign_24             (s1_sign_REG_152),
+    .io_sign_25             (s1_sign_REG_153),
+    .io_sign_26             (s1_sign_REG_154),
+    .io_sign_27             (s1_sign_REG_155),
+    .io_sign_28             (s1_sign_REG_156),
+    .io_sign_29             (s1_sign_REG_157),
+    .io_sign_30             (s1_sign_REG_158),
+    .io_sign_31             (s1_sign_REG_159),
+    .io_exponent_0          (s1_exponent_REG_128),
+    .io_exponent_1          (s1_exponent_REG_129),
+    .io_exponent_2          (s1_exponent_REG_130),
+    .io_exponent_3          (s1_exponent_REG_131),
+    .io_exponent_4          (s1_exponent_REG_132),
+    .io_exponent_5          (s1_exponent_REG_133),
+    .io_exponent_6          (s1_exponent_REG_134),
+    .io_exponent_7          (s1_exponent_REG_135),
+    .io_exponent_8          (s1_exponent_REG_136),
+    .io_exponent_9          (s1_exponent_REG_137),
+    .io_exponent_10         (s1_exponent_REG_138),
+    .io_exponent_11         (s1_exponent_REG_139),
+    .io_exponent_12         (s1_exponent_REG_140),
+    .io_exponent_13         (s1_exponent_REG_141),
+    .io_exponent_14         (s1_exponent_REG_142),
+    .io_exponent_15         (s1_exponent_REG_143),
+    .io_exponent_16         (s1_exponent_REG_144),
+    .io_exponent_17         (s1_exponent_REG_145),
+    .io_exponent_18         (s1_exponent_REG_146),
+    .io_exponent_19         (s1_exponent_REG_147),
+    .io_exponent_20         (s1_exponent_REG_148),
+    .io_exponent_21         (s1_exponent_REG_149),
+    .io_exponent_22         (s1_exponent_REG_150),
+    .io_exponent_23         (s1_exponent_REG_151),
+    .io_exponent_24         (s1_exponent_REG_152),
+    .io_exponent_25         (s1_exponent_REG_153),
+    .io_exponent_26         (s1_exponent_REG_154),
+    .io_exponent_27         (s1_exponent_REG_155),
+    .io_exponent_28         (s1_exponent_REG_156),
+    .io_exponent_29         (s1_exponent_REG_157),
+    .io_exponent_30         (s1_exponent_REG_158),
+    .io_exponent_31         (s1_exponent_REG_159),
+    .io_mantissa_0          (s1_mantissa_REG_128),
+    .io_mantissa_1          (s1_mantissa_REG_129),
+    .io_mantissa_2          (s1_mantissa_REG_130),
+    .io_mantissa_3          (s1_mantissa_REG_131),
+    .io_mantissa_4          (s1_mantissa_REG_132),
+    .io_mantissa_5          (s1_mantissa_REG_133),
+    .io_mantissa_6          (s1_mantissa_REG_134),
+    .io_mantissa_7          (s1_mantissa_REG_135),
+    .io_mantissa_8          (s1_mantissa_REG_136),
+    .io_mantissa_9          (s1_mantissa_REG_137),
+    .io_mantissa_10         (s1_mantissa_REG_138),
+    .io_mantissa_11         (s1_mantissa_REG_139),
+    .io_mantissa_12         (s1_mantissa_REG_140),
+    .io_mantissa_13         (s1_mantissa_REG_141),
+    .io_mantissa_14         (s1_mantissa_REG_142),
+    .io_mantissa_15         (s1_mantissa_REG_143),
+    .io_mantissa_16         (s1_mantissa_REG_144),
+    .io_mantissa_17         (s1_mantissa_REG_145),
+    .io_mantissa_18         (s1_mantissa_REG_146),
+    .io_mantissa_19         (s1_mantissa_REG_147),
+    .io_mantissa_20         (s1_mantissa_REG_148),
+    .io_mantissa_21         (s1_mantissa_REG_149),
+    .io_mantissa_22         (s1_mantissa_REG_150),
+    .io_mantissa_23         (s1_mantissa_REG_151),
+    .io_mantissa_24         (s1_mantissa_REG_152),
+    .io_mantissa_25         (s1_mantissa_REG_153),
+    .io_mantissa_26         (s1_mantissa_REG_154),
+    .io_mantissa_27         (s1_mantissa_REG_155),
+    .io_mantissa_28         (s1_mantissa_REG_156),
+    .io_mantissa_29         (s1_mantissa_REG_157),
+    .io_mantissa_30         (s1_mantissa_REG_158),
+    .io_mantissa_31         (s1_mantissa_REG_159),
+    .io_out_sign_0          (_expansion_4_io_out_sign_0),
+    .io_out_sign_1          (_expansion_4_io_out_sign_1),
+    .io_out_sign_2          (_expansion_4_io_out_sign_2),
+    .io_out_sign_3          (_expansion_4_io_out_sign_3),
+    .io_out_sign_4          (_expansion_4_io_out_sign_4),
+    .io_out_sign_5          (_expansion_4_io_out_sign_5),
+    .io_out_sign_6          (_expansion_4_io_out_sign_6),
+    .io_out_sign_7          (_expansion_4_io_out_sign_7),
+    .io_out_sign_8          (_expansion_4_io_out_sign_8),
+    .io_out_sign_9          (_expansion_4_io_out_sign_9),
+    .io_out_sign_10         (_expansion_4_io_out_sign_10),
+    .io_out_sign_11         (_expansion_4_io_out_sign_11),
+    .io_out_sign_12         (_expansion_4_io_out_sign_12),
+    .io_out_sign_13         (_expansion_4_io_out_sign_13),
+    .io_out_sign_14         (_expansion_4_io_out_sign_14),
+    .io_out_sign_15         (_expansion_4_io_out_sign_15),
+    .io_out_sign_16         (_expansion_4_io_out_sign_16),
+    .io_out_sign_17         (_expansion_4_io_out_sign_17),
+    .io_out_sign_18         (_expansion_4_io_out_sign_18),
+    .io_out_sign_19         (_expansion_4_io_out_sign_19),
+    .io_out_sign_20         (_expansion_4_io_out_sign_20),
+    .io_out_sign_21         (_expansion_4_io_out_sign_21),
+    .io_out_sign_22         (_expansion_4_io_out_sign_22),
+    .io_out_sign_23         (_expansion_4_io_out_sign_23),
+    .io_out_sign_24         (_expansion_4_io_out_sign_24),
+    .io_out_sign_25         (_expansion_4_io_out_sign_25),
+    .io_out_sign_26         (_expansion_4_io_out_sign_26),
+    .io_out_sign_27         (_expansion_4_io_out_sign_27),
+    .io_out_sign_28         (_expansion_4_io_out_sign_28),
+    .io_out_sign_29         (_expansion_4_io_out_sign_29),
+    .io_out_sign_30         (_expansion_4_io_out_sign_30),
+    .io_out_sign_31         (_expansion_4_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_4_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_4_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_4_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_4_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_4_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_4_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_4_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_4_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_4_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_4_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_4_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_4_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_4_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_4_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_4_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_4_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_4_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_4_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_4_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_4_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_4_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_4_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_4_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_4_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_4_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_4_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_4_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_4_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_4_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_4_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_4_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_4_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_4_io_out_mantissa_31)
+  );
+  p_Expansion expansion_5 (
+    .io_sign_0              (s1_sign_REG_160),
+    .io_sign_1              (s1_sign_REG_161),
+    .io_sign_2              (s1_sign_REG_162),
+    .io_sign_3              (s1_sign_REG_163),
+    .io_sign_4              (s1_sign_REG_164),
+    .io_sign_5              (s1_sign_REG_165),
+    .io_sign_6              (s1_sign_REG_166),
+    .io_sign_7              (s1_sign_REG_167),
+    .io_sign_8              (s1_sign_REG_168),
+    .io_sign_9              (s1_sign_REG_169),
+    .io_sign_10             (s1_sign_REG_170),
+    .io_sign_11             (s1_sign_REG_171),
+    .io_sign_12             (s1_sign_REG_172),
+    .io_sign_13             (s1_sign_REG_173),
+    .io_sign_14             (s1_sign_REG_174),
+    .io_sign_15             (s1_sign_REG_175),
+    .io_sign_16             (s1_sign_REG_176),
+    .io_sign_17             (s1_sign_REG_177),
+    .io_sign_18             (s1_sign_REG_178),
+    .io_sign_19             (s1_sign_REG_179),
+    .io_sign_20             (s1_sign_REG_180),
+    .io_sign_21             (s1_sign_REG_181),
+    .io_sign_22             (s1_sign_REG_182),
+    .io_sign_23             (s1_sign_REG_183),
+    .io_sign_24             (s1_sign_REG_184),
+    .io_sign_25             (s1_sign_REG_185),
+    .io_sign_26             (s1_sign_REG_186),
+    .io_sign_27             (s1_sign_REG_187),
+    .io_sign_28             (s1_sign_REG_188),
+    .io_sign_29             (s1_sign_REG_189),
+    .io_sign_30             (s1_sign_REG_190),
+    .io_sign_31             (s1_sign_REG_191),
+    .io_exponent_0          (s1_exponent_REG_160),
+    .io_exponent_1          (s1_exponent_REG_161),
+    .io_exponent_2          (s1_exponent_REG_162),
+    .io_exponent_3          (s1_exponent_REG_163),
+    .io_exponent_4          (s1_exponent_REG_164),
+    .io_exponent_5          (s1_exponent_REG_165),
+    .io_exponent_6          (s1_exponent_REG_166),
+    .io_exponent_7          (s1_exponent_REG_167),
+    .io_exponent_8          (s1_exponent_REG_168),
+    .io_exponent_9          (s1_exponent_REG_169),
+    .io_exponent_10         (s1_exponent_REG_170),
+    .io_exponent_11         (s1_exponent_REG_171),
+    .io_exponent_12         (s1_exponent_REG_172),
+    .io_exponent_13         (s1_exponent_REG_173),
+    .io_exponent_14         (s1_exponent_REG_174),
+    .io_exponent_15         (s1_exponent_REG_175),
+    .io_exponent_16         (s1_exponent_REG_176),
+    .io_exponent_17         (s1_exponent_REG_177),
+    .io_exponent_18         (s1_exponent_REG_178),
+    .io_exponent_19         (s1_exponent_REG_179),
+    .io_exponent_20         (s1_exponent_REG_180),
+    .io_exponent_21         (s1_exponent_REG_181),
+    .io_exponent_22         (s1_exponent_REG_182),
+    .io_exponent_23         (s1_exponent_REG_183),
+    .io_exponent_24         (s1_exponent_REG_184),
+    .io_exponent_25         (s1_exponent_REG_185),
+    .io_exponent_26         (s1_exponent_REG_186),
+    .io_exponent_27         (s1_exponent_REG_187),
+    .io_exponent_28         (s1_exponent_REG_188),
+    .io_exponent_29         (s1_exponent_REG_189),
+    .io_exponent_30         (s1_exponent_REG_190),
+    .io_exponent_31         (s1_exponent_REG_191),
+    .io_mantissa_0          (s1_mantissa_REG_160),
+    .io_mantissa_1          (s1_mantissa_REG_161),
+    .io_mantissa_2          (s1_mantissa_REG_162),
+    .io_mantissa_3          (s1_mantissa_REG_163),
+    .io_mantissa_4          (s1_mantissa_REG_164),
+    .io_mantissa_5          (s1_mantissa_REG_165),
+    .io_mantissa_6          (s1_mantissa_REG_166),
+    .io_mantissa_7          (s1_mantissa_REG_167),
+    .io_mantissa_8          (s1_mantissa_REG_168),
+    .io_mantissa_9          (s1_mantissa_REG_169),
+    .io_mantissa_10         (s1_mantissa_REG_170),
+    .io_mantissa_11         (s1_mantissa_REG_171),
+    .io_mantissa_12         (s1_mantissa_REG_172),
+    .io_mantissa_13         (s1_mantissa_REG_173),
+    .io_mantissa_14         (s1_mantissa_REG_174),
+    .io_mantissa_15         (s1_mantissa_REG_175),
+    .io_mantissa_16         (s1_mantissa_REG_176),
+    .io_mantissa_17         (s1_mantissa_REG_177),
+    .io_mantissa_18         (s1_mantissa_REG_178),
+    .io_mantissa_19         (s1_mantissa_REG_179),
+    .io_mantissa_20         (s1_mantissa_REG_180),
+    .io_mantissa_21         (s1_mantissa_REG_181),
+    .io_mantissa_22         (s1_mantissa_REG_182),
+    .io_mantissa_23         (s1_mantissa_REG_183),
+    .io_mantissa_24         (s1_mantissa_REG_184),
+    .io_mantissa_25         (s1_mantissa_REG_185),
+    .io_mantissa_26         (s1_mantissa_REG_186),
+    .io_mantissa_27         (s1_mantissa_REG_187),
+    .io_mantissa_28         (s1_mantissa_REG_188),
+    .io_mantissa_29         (s1_mantissa_REG_189),
+    .io_mantissa_30         (s1_mantissa_REG_190),
+    .io_mantissa_31         (s1_mantissa_REG_191),
+    .io_out_sign_0          (_expansion_5_io_out_sign_0),
+    .io_out_sign_1          (_expansion_5_io_out_sign_1),
+    .io_out_sign_2          (_expansion_5_io_out_sign_2),
+    .io_out_sign_3          (_expansion_5_io_out_sign_3),
+    .io_out_sign_4          (_expansion_5_io_out_sign_4),
+    .io_out_sign_5          (_expansion_5_io_out_sign_5),
+    .io_out_sign_6          (_expansion_5_io_out_sign_6),
+    .io_out_sign_7          (_expansion_5_io_out_sign_7),
+    .io_out_sign_8          (_expansion_5_io_out_sign_8),
+    .io_out_sign_9          (_expansion_5_io_out_sign_9),
+    .io_out_sign_10         (_expansion_5_io_out_sign_10),
+    .io_out_sign_11         (_expansion_5_io_out_sign_11),
+    .io_out_sign_12         (_expansion_5_io_out_sign_12),
+    .io_out_sign_13         (_expansion_5_io_out_sign_13),
+    .io_out_sign_14         (_expansion_5_io_out_sign_14),
+    .io_out_sign_15         (_expansion_5_io_out_sign_15),
+    .io_out_sign_16         (_expansion_5_io_out_sign_16),
+    .io_out_sign_17         (_expansion_5_io_out_sign_17),
+    .io_out_sign_18         (_expansion_5_io_out_sign_18),
+    .io_out_sign_19         (_expansion_5_io_out_sign_19),
+    .io_out_sign_20         (_expansion_5_io_out_sign_20),
+    .io_out_sign_21         (_expansion_5_io_out_sign_21),
+    .io_out_sign_22         (_expansion_5_io_out_sign_22),
+    .io_out_sign_23         (_expansion_5_io_out_sign_23),
+    .io_out_sign_24         (_expansion_5_io_out_sign_24),
+    .io_out_sign_25         (_expansion_5_io_out_sign_25),
+    .io_out_sign_26         (_expansion_5_io_out_sign_26),
+    .io_out_sign_27         (_expansion_5_io_out_sign_27),
+    .io_out_sign_28         (_expansion_5_io_out_sign_28),
+    .io_out_sign_29         (_expansion_5_io_out_sign_29),
+    .io_out_sign_30         (_expansion_5_io_out_sign_30),
+    .io_out_sign_31         (_expansion_5_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_5_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_5_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_5_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_5_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_5_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_5_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_5_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_5_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_5_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_5_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_5_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_5_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_5_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_5_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_5_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_5_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_5_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_5_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_5_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_5_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_5_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_5_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_5_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_5_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_5_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_5_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_5_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_5_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_5_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_5_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_5_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_5_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_5_io_out_mantissa_31)
+  );
+  p_Expansion expansion_6 (
+    .io_sign_0              (s1_sign_REG_192),
+    .io_sign_1              (s1_sign_REG_193),
+    .io_sign_2              (s1_sign_REG_194),
+    .io_sign_3              (s1_sign_REG_195),
+    .io_sign_4              (s1_sign_REG_196),
+    .io_sign_5              (s1_sign_REG_197),
+    .io_sign_6              (s1_sign_REG_198),
+    .io_sign_7              (s1_sign_REG_199),
+    .io_sign_8              (s1_sign_REG_200),
+    .io_sign_9              (s1_sign_REG_201),
+    .io_sign_10             (s1_sign_REG_202),
+    .io_sign_11             (s1_sign_REG_203),
+    .io_sign_12             (s1_sign_REG_204),
+    .io_sign_13             (s1_sign_REG_205),
+    .io_sign_14             (s1_sign_REG_206),
+    .io_sign_15             (s1_sign_REG_207),
+    .io_sign_16             (s1_sign_REG_208),
+    .io_sign_17             (s1_sign_REG_209),
+    .io_sign_18             (s1_sign_REG_210),
+    .io_sign_19             (s1_sign_REG_211),
+    .io_sign_20             (s1_sign_REG_212),
+    .io_sign_21             (s1_sign_REG_213),
+    .io_sign_22             (s1_sign_REG_214),
+    .io_sign_23             (s1_sign_REG_215),
+    .io_sign_24             (s1_sign_REG_216),
+    .io_sign_25             (s1_sign_REG_217),
+    .io_sign_26             (s1_sign_REG_218),
+    .io_sign_27             (s1_sign_REG_219),
+    .io_sign_28             (s1_sign_REG_220),
+    .io_sign_29             (s1_sign_REG_221),
+    .io_sign_30             (s1_sign_REG_222),
+    .io_sign_31             (s1_sign_REG_223),
+    .io_exponent_0          (s1_exponent_REG_192),
+    .io_exponent_1          (s1_exponent_REG_193),
+    .io_exponent_2          (s1_exponent_REG_194),
+    .io_exponent_3          (s1_exponent_REG_195),
+    .io_exponent_4          (s1_exponent_REG_196),
+    .io_exponent_5          (s1_exponent_REG_197),
+    .io_exponent_6          (s1_exponent_REG_198),
+    .io_exponent_7          (s1_exponent_REG_199),
+    .io_exponent_8          (s1_exponent_REG_200),
+    .io_exponent_9          (s1_exponent_REG_201),
+    .io_exponent_10         (s1_exponent_REG_202),
+    .io_exponent_11         (s1_exponent_REG_203),
+    .io_exponent_12         (s1_exponent_REG_204),
+    .io_exponent_13         (s1_exponent_REG_205),
+    .io_exponent_14         (s1_exponent_REG_206),
+    .io_exponent_15         (s1_exponent_REG_207),
+    .io_exponent_16         (s1_exponent_REG_208),
+    .io_exponent_17         (s1_exponent_REG_209),
+    .io_exponent_18         (s1_exponent_REG_210),
+    .io_exponent_19         (s1_exponent_REG_211),
+    .io_exponent_20         (s1_exponent_REG_212),
+    .io_exponent_21         (s1_exponent_REG_213),
+    .io_exponent_22         (s1_exponent_REG_214),
+    .io_exponent_23         (s1_exponent_REG_215),
+    .io_exponent_24         (s1_exponent_REG_216),
+    .io_exponent_25         (s1_exponent_REG_217),
+    .io_exponent_26         (s1_exponent_REG_218),
+    .io_exponent_27         (s1_exponent_REG_219),
+    .io_exponent_28         (s1_exponent_REG_220),
+    .io_exponent_29         (s1_exponent_REG_221),
+    .io_exponent_30         (s1_exponent_REG_222),
+    .io_exponent_31         (s1_exponent_REG_223),
+    .io_mantissa_0          (s1_mantissa_REG_192),
+    .io_mantissa_1          (s1_mantissa_REG_193),
+    .io_mantissa_2          (s1_mantissa_REG_194),
+    .io_mantissa_3          (s1_mantissa_REG_195),
+    .io_mantissa_4          (s1_mantissa_REG_196),
+    .io_mantissa_5          (s1_mantissa_REG_197),
+    .io_mantissa_6          (s1_mantissa_REG_198),
+    .io_mantissa_7          (s1_mantissa_REG_199),
+    .io_mantissa_8          (s1_mantissa_REG_200),
+    .io_mantissa_9          (s1_mantissa_REG_201),
+    .io_mantissa_10         (s1_mantissa_REG_202),
+    .io_mantissa_11         (s1_mantissa_REG_203),
+    .io_mantissa_12         (s1_mantissa_REG_204),
+    .io_mantissa_13         (s1_mantissa_REG_205),
+    .io_mantissa_14         (s1_mantissa_REG_206),
+    .io_mantissa_15         (s1_mantissa_REG_207),
+    .io_mantissa_16         (s1_mantissa_REG_208),
+    .io_mantissa_17         (s1_mantissa_REG_209),
+    .io_mantissa_18         (s1_mantissa_REG_210),
+    .io_mantissa_19         (s1_mantissa_REG_211),
+    .io_mantissa_20         (s1_mantissa_REG_212),
+    .io_mantissa_21         (s1_mantissa_REG_213),
+    .io_mantissa_22         (s1_mantissa_REG_214),
+    .io_mantissa_23         (s1_mantissa_REG_215),
+    .io_mantissa_24         (s1_mantissa_REG_216),
+    .io_mantissa_25         (s1_mantissa_REG_217),
+    .io_mantissa_26         (s1_mantissa_REG_218),
+    .io_mantissa_27         (s1_mantissa_REG_219),
+    .io_mantissa_28         (s1_mantissa_REG_220),
+    .io_mantissa_29         (s1_mantissa_REG_221),
+    .io_mantissa_30         (s1_mantissa_REG_222),
+    .io_mantissa_31         (s1_mantissa_REG_223),
+    .io_out_sign_0          (_expansion_6_io_out_sign_0),
+    .io_out_sign_1          (_expansion_6_io_out_sign_1),
+    .io_out_sign_2          (_expansion_6_io_out_sign_2),
+    .io_out_sign_3          (_expansion_6_io_out_sign_3),
+    .io_out_sign_4          (_expansion_6_io_out_sign_4),
+    .io_out_sign_5          (_expansion_6_io_out_sign_5),
+    .io_out_sign_6          (_expansion_6_io_out_sign_6),
+    .io_out_sign_7          (_expansion_6_io_out_sign_7),
+    .io_out_sign_8          (_expansion_6_io_out_sign_8),
+    .io_out_sign_9          (_expansion_6_io_out_sign_9),
+    .io_out_sign_10         (_expansion_6_io_out_sign_10),
+    .io_out_sign_11         (_expansion_6_io_out_sign_11),
+    .io_out_sign_12         (_expansion_6_io_out_sign_12),
+    .io_out_sign_13         (_expansion_6_io_out_sign_13),
+    .io_out_sign_14         (_expansion_6_io_out_sign_14),
+    .io_out_sign_15         (_expansion_6_io_out_sign_15),
+    .io_out_sign_16         (_expansion_6_io_out_sign_16),
+    .io_out_sign_17         (_expansion_6_io_out_sign_17),
+    .io_out_sign_18         (_expansion_6_io_out_sign_18),
+    .io_out_sign_19         (_expansion_6_io_out_sign_19),
+    .io_out_sign_20         (_expansion_6_io_out_sign_20),
+    .io_out_sign_21         (_expansion_6_io_out_sign_21),
+    .io_out_sign_22         (_expansion_6_io_out_sign_22),
+    .io_out_sign_23         (_expansion_6_io_out_sign_23),
+    .io_out_sign_24         (_expansion_6_io_out_sign_24),
+    .io_out_sign_25         (_expansion_6_io_out_sign_25),
+    .io_out_sign_26         (_expansion_6_io_out_sign_26),
+    .io_out_sign_27         (_expansion_6_io_out_sign_27),
+    .io_out_sign_28         (_expansion_6_io_out_sign_28),
+    .io_out_sign_29         (_expansion_6_io_out_sign_29),
+    .io_out_sign_30         (_expansion_6_io_out_sign_30),
+    .io_out_sign_31         (_expansion_6_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_6_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_6_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_6_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_6_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_6_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_6_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_6_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_6_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_6_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_6_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_6_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_6_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_6_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_6_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_6_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_6_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_6_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_6_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_6_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_6_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_6_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_6_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_6_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_6_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_6_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_6_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_6_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_6_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_6_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_6_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_6_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_6_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_6_io_out_mantissa_31)
+  );
+  p_Expansion expansion_7 (
+    .io_sign_0              (s1_sign_REG_224),
+    .io_sign_1              (s1_sign_REG_225),
+    .io_sign_2              (s1_sign_REG_226),
+    .io_sign_3              (s1_sign_REG_227),
+    .io_sign_4              (s1_sign_REG_228),
+    .io_sign_5              (s1_sign_REG_229),
+    .io_sign_6              (s1_sign_REG_230),
+    .io_sign_7              (s1_sign_REG_231),
+    .io_sign_8              (s1_sign_REG_232),
+    .io_sign_9              (s1_sign_REG_233),
+    .io_sign_10             (s1_sign_REG_234),
+    .io_sign_11             (s1_sign_REG_235),
+    .io_sign_12             (s1_sign_REG_236),
+    .io_sign_13             (s1_sign_REG_237),
+    .io_sign_14             (s1_sign_REG_238),
+    .io_sign_15             (s1_sign_REG_239),
+    .io_sign_16             (s1_sign_REG_240),
+    .io_sign_17             (s1_sign_REG_241),
+    .io_sign_18             (s1_sign_REG_242),
+    .io_sign_19             (s1_sign_REG_243),
+    .io_sign_20             (s1_sign_REG_244),
+    .io_sign_21             (s1_sign_REG_245),
+    .io_sign_22             (s1_sign_REG_246),
+    .io_sign_23             (s1_sign_REG_247),
+    .io_sign_24             (s1_sign_REG_248),
+    .io_sign_25             (s1_sign_REG_249),
+    .io_sign_26             (s1_sign_REG_250),
+    .io_sign_27             (s1_sign_REG_251),
+    .io_sign_28             (s1_sign_REG_252),
+    .io_sign_29             (s1_sign_REG_253),
+    .io_sign_30             (s1_sign_REG_254),
+    .io_sign_31             (s1_sign_REG_255),
+    .io_exponent_0          (s1_exponent_REG_224),
+    .io_exponent_1          (s1_exponent_REG_225),
+    .io_exponent_2          (s1_exponent_REG_226),
+    .io_exponent_3          (s1_exponent_REG_227),
+    .io_exponent_4          (s1_exponent_REG_228),
+    .io_exponent_5          (s1_exponent_REG_229),
+    .io_exponent_6          (s1_exponent_REG_230),
+    .io_exponent_7          (s1_exponent_REG_231),
+    .io_exponent_8          (s1_exponent_REG_232),
+    .io_exponent_9          (s1_exponent_REG_233),
+    .io_exponent_10         (s1_exponent_REG_234),
+    .io_exponent_11         (s1_exponent_REG_235),
+    .io_exponent_12         (s1_exponent_REG_236),
+    .io_exponent_13         (s1_exponent_REG_237),
+    .io_exponent_14         (s1_exponent_REG_238),
+    .io_exponent_15         (s1_exponent_REG_239),
+    .io_exponent_16         (s1_exponent_REG_240),
+    .io_exponent_17         (s1_exponent_REG_241),
+    .io_exponent_18         (s1_exponent_REG_242),
+    .io_exponent_19         (s1_exponent_REG_243),
+    .io_exponent_20         (s1_exponent_REG_244),
+    .io_exponent_21         (s1_exponent_REG_245),
+    .io_exponent_22         (s1_exponent_REG_246),
+    .io_exponent_23         (s1_exponent_REG_247),
+    .io_exponent_24         (s1_exponent_REG_248),
+    .io_exponent_25         (s1_exponent_REG_249),
+    .io_exponent_26         (s1_exponent_REG_250),
+    .io_exponent_27         (s1_exponent_REG_251),
+    .io_exponent_28         (s1_exponent_REG_252),
+    .io_exponent_29         (s1_exponent_REG_253),
+    .io_exponent_30         (s1_exponent_REG_254),
+    .io_exponent_31         (s1_exponent_REG_255),
+    .io_mantissa_0          (s1_mantissa_REG_224),
+    .io_mantissa_1          (s1_mantissa_REG_225),
+    .io_mantissa_2          (s1_mantissa_REG_226),
+    .io_mantissa_3          (s1_mantissa_REG_227),
+    .io_mantissa_4          (s1_mantissa_REG_228),
+    .io_mantissa_5          (s1_mantissa_REG_229),
+    .io_mantissa_6          (s1_mantissa_REG_230),
+    .io_mantissa_7          (s1_mantissa_REG_231),
+    .io_mantissa_8          (s1_mantissa_REG_232),
+    .io_mantissa_9          (s1_mantissa_REG_233),
+    .io_mantissa_10         (s1_mantissa_REG_234),
+    .io_mantissa_11         (s1_mantissa_REG_235),
+    .io_mantissa_12         (s1_mantissa_REG_236),
+    .io_mantissa_13         (s1_mantissa_REG_237),
+    .io_mantissa_14         (s1_mantissa_REG_238),
+    .io_mantissa_15         (s1_mantissa_REG_239),
+    .io_mantissa_16         (s1_mantissa_REG_240),
+    .io_mantissa_17         (s1_mantissa_REG_241),
+    .io_mantissa_18         (s1_mantissa_REG_242),
+    .io_mantissa_19         (s1_mantissa_REG_243),
+    .io_mantissa_20         (s1_mantissa_REG_244),
+    .io_mantissa_21         (s1_mantissa_REG_245),
+    .io_mantissa_22         (s1_mantissa_REG_246),
+    .io_mantissa_23         (s1_mantissa_REG_247),
+    .io_mantissa_24         (s1_mantissa_REG_248),
+    .io_mantissa_25         (s1_mantissa_REG_249),
+    .io_mantissa_26         (s1_mantissa_REG_250),
+    .io_mantissa_27         (s1_mantissa_REG_251),
+    .io_mantissa_28         (s1_mantissa_REG_252),
+    .io_mantissa_29         (s1_mantissa_REG_253),
+    .io_mantissa_30         (s1_mantissa_REG_254),
+    .io_mantissa_31         (s1_mantissa_REG_255),
+    .io_out_sign_0          (_expansion_7_io_out_sign_0),
+    .io_out_sign_1          (_expansion_7_io_out_sign_1),
+    .io_out_sign_2          (_expansion_7_io_out_sign_2),
+    .io_out_sign_3          (_expansion_7_io_out_sign_3),
+    .io_out_sign_4          (_expansion_7_io_out_sign_4),
+    .io_out_sign_5          (_expansion_7_io_out_sign_5),
+    .io_out_sign_6          (_expansion_7_io_out_sign_6),
+    .io_out_sign_7          (_expansion_7_io_out_sign_7),
+    .io_out_sign_8          (_expansion_7_io_out_sign_8),
+    .io_out_sign_9          (_expansion_7_io_out_sign_9),
+    .io_out_sign_10         (_expansion_7_io_out_sign_10),
+    .io_out_sign_11         (_expansion_7_io_out_sign_11),
+    .io_out_sign_12         (_expansion_7_io_out_sign_12),
+    .io_out_sign_13         (_expansion_7_io_out_sign_13),
+    .io_out_sign_14         (_expansion_7_io_out_sign_14),
+    .io_out_sign_15         (_expansion_7_io_out_sign_15),
+    .io_out_sign_16         (_expansion_7_io_out_sign_16),
+    .io_out_sign_17         (_expansion_7_io_out_sign_17),
+    .io_out_sign_18         (_expansion_7_io_out_sign_18),
+    .io_out_sign_19         (_expansion_7_io_out_sign_19),
+    .io_out_sign_20         (_expansion_7_io_out_sign_20),
+    .io_out_sign_21         (_expansion_7_io_out_sign_21),
+    .io_out_sign_22         (_expansion_7_io_out_sign_22),
+    .io_out_sign_23         (_expansion_7_io_out_sign_23),
+    .io_out_sign_24         (_expansion_7_io_out_sign_24),
+    .io_out_sign_25         (_expansion_7_io_out_sign_25),
+    .io_out_sign_26         (_expansion_7_io_out_sign_26),
+    .io_out_sign_27         (_expansion_7_io_out_sign_27),
+    .io_out_sign_28         (_expansion_7_io_out_sign_28),
+    .io_out_sign_29         (_expansion_7_io_out_sign_29),
+    .io_out_sign_30         (_expansion_7_io_out_sign_30),
+    .io_out_sign_31         (_expansion_7_io_out_sign_31),
+    .io_out_exponent_gmax_0 (_expansion_7_io_out_exponent_gmax_0),
+    .io_out_mantissa_0      (_expansion_7_io_out_mantissa_0),
+    .io_out_mantissa_1      (_expansion_7_io_out_mantissa_1),
+    .io_out_mantissa_2      (_expansion_7_io_out_mantissa_2),
+    .io_out_mantissa_3      (_expansion_7_io_out_mantissa_3),
+    .io_out_mantissa_4      (_expansion_7_io_out_mantissa_4),
+    .io_out_mantissa_5      (_expansion_7_io_out_mantissa_5),
+    .io_out_mantissa_6      (_expansion_7_io_out_mantissa_6),
+    .io_out_mantissa_7      (_expansion_7_io_out_mantissa_7),
+    .io_out_mantissa_8      (_expansion_7_io_out_mantissa_8),
+    .io_out_mantissa_9      (_expansion_7_io_out_mantissa_9),
+    .io_out_mantissa_10     (_expansion_7_io_out_mantissa_10),
+    .io_out_mantissa_11     (_expansion_7_io_out_mantissa_11),
+    .io_out_mantissa_12     (_expansion_7_io_out_mantissa_12),
+    .io_out_mantissa_13     (_expansion_7_io_out_mantissa_13),
+    .io_out_mantissa_14     (_expansion_7_io_out_mantissa_14),
+    .io_out_mantissa_15     (_expansion_7_io_out_mantissa_15),
+    .io_out_mantissa_16     (_expansion_7_io_out_mantissa_16),
+    .io_out_mantissa_17     (_expansion_7_io_out_mantissa_17),
+    .io_out_mantissa_18     (_expansion_7_io_out_mantissa_18),
+    .io_out_mantissa_19     (_expansion_7_io_out_mantissa_19),
+    .io_out_mantissa_20     (_expansion_7_io_out_mantissa_20),
+    .io_out_mantissa_21     (_expansion_7_io_out_mantissa_21),
+    .io_out_mantissa_22     (_expansion_7_io_out_mantissa_22),
+    .io_out_mantissa_23     (_expansion_7_io_out_mantissa_23),
+    .io_out_mantissa_24     (_expansion_7_io_out_mantissa_24),
+    .io_out_mantissa_25     (_expansion_7_io_out_mantissa_25),
+    .io_out_mantissa_26     (_expansion_7_io_out_mantissa_26),
+    .io_out_mantissa_27     (_expansion_7_io_out_mantissa_27),
+    .io_out_mantissa_28     (_expansion_7_io_out_mantissa_28),
+    .io_out_mantissa_29     (_expansion_7_io_out_mantissa_29),
+    .io_out_mantissa_30     (_expansion_7_io_out_mantissa_30),
+    .io_out_mantissa_31     (_expansion_7_io_out_mantissa_31)
+  );
   p_Adder_ScaleEmax scaleEmax (
-    .io_depth       (depth_s1),
-    .io_scale_sum_0 (s1_scale_sum_REG),
-    .io_scale_sum_1 (s1_scale_sum_REG_1),
-    .io_scale_sum_2 (s1_scale_sum_REG_2),
-    .io_scale_sum_3 (s1_scale_sum_REG_3),
-    .io_scale_sum_4 (s1_scale_sum_REG_4),
-    .io_scale_sum_5 (s1_scale_sum_REG_5),
-    .io_scale_sum_6 (s1_scale_sum_REG_6),
-    .io_scale_sum_7 (s1_scale_sum_REG_7),
-    .io_nan_0       (s1_scale_nan_REG),
-    .io_nan_1       (s1_scale_nan_REG_1),
-    .io_nan_2       (s1_scale_nan_REG_2),
-    .io_nan_3       (s1_scale_nan_REG_3),
-    .io_nan_4       (s1_scale_nan_REG_4),
-    .io_nan_5       (s1_scale_nan_REG_5),
-    .io_nan_6       (s1_scale_nan_REG_6),
-    .io_nan_7       (s1_scale_nan_REG_7),
-    .io_emax_0      (_expansion_io_out_exponent_gmax_0),
-    .io_emax_1      (_expansion_1_io_out_exponent_gmax_0),
-    .io_emax_2      (_expansion_2_io_out_exponent_gmax_0),
-    .io_emax_3      (_expansion_3_io_out_exponent_gmax_0),
-    .io_emax_4      (_expansion_4_io_out_exponent_gmax_0),
-    .io_emax_5      (_expansion_5_io_out_exponent_gmax_0),
-    .io_emax_6      (_expansion_6_io_out_exponent_gmax_0),
-    .io_emax_7      (_expansion_7_io_out_exponent_gmax_0),
+    .io_scale_sum_0 (toS2_scale_sum_REG),
+    .io_scale_sum_1 (toS2_scale_sum_REG_1),
+    .io_scale_sum_2 (toS2_scale_sum_REG_2),
+    .io_scale_sum_3 (toS2_scale_sum_REG_3),
+    .io_scale_sum_4 (toS2_scale_sum_REG_4),
+    .io_scale_sum_5 (toS2_scale_sum_REG_5),
+    .io_scale_sum_6 (toS2_scale_sum_REG_6),
+    .io_scale_sum_7 (toS2_scale_sum_REG_7),
+    .io_nan_in_0    (toS2_scale_nan_REG),
+    .io_nan_in_1    (toS2_scale_nan_REG_1),
+    .io_nan_in_2    (toS2_scale_nan_REG_2),
+    .io_nan_in_3    (toS2_scale_nan_REG_3),
+    .io_nan_in_4    (toS2_scale_nan_REG_4),
+    .io_nan_in_5    (toS2_scale_nan_REG_5),
+    .io_nan_in_6    (toS2_scale_nan_REG_6),
+    .io_nan_in_7    (toS2_scale_nan_REG_7),
+    .io_emax_0      (s2_exp_group_max_0_REG),
+    .io_emax_1      (s2_exp_group_max_1_REG),
+    .io_emax_2      (s2_exp_group_max_2_REG),
+    .io_emax_3      (s2_exp_group_max_3_REG),
+    .io_emax_4      (s2_exp_group_max_4_REG),
+    .io_emax_5      (s2_exp_group_max_5_REG),
+    .io_emax_6      (s2_exp_group_max_6_REG),
+    .io_emax_7      (s2_exp_group_max_7_REG),
     .io_out_0       (_scaleEmax_io_out_0),
     .io_out_1       (_scaleEmax_io_out_1),
     .io_out_2       (_scaleEmax_io_out_2),
@@ -12212,7 +13475,15 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_out_4       (_scaleEmax_io_out_4),
     .io_out_5       (_scaleEmax_io_out_5),
     .io_out_6       (_scaleEmax_io_out_6),
-    .io_out_7       (_scaleEmax_io_out_7)
+    .io_out_7       (_scaleEmax_io_out_7),
+    .io_nan_out_0   (_scaleEmax_io_nan_out_0),
+    .io_nan_out_1   (_scaleEmax_io_nan_out_1),
+    .io_nan_out_2   (_scaleEmax_io_nan_out_2),
+    .io_nan_out_3   (_scaleEmax_io_nan_out_3),
+    .io_nan_out_4   (_scaleEmax_io_nan_out_4),
+    .io_nan_out_5   (_scaleEmax_io_nan_out_5),
+    .io_nan_out_6   (_scaleEmax_io_nan_out_6),
+    .io_nan_out_7   (_scaleEmax_io_nan_out_7)
   );
   p_Adder_Dep_1 adder1_0 (
     .io_sign_0      (REG_0),
@@ -13412,8 +14683,8 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_13           (s3_adder1_out_REG_13),
     .io_in_14           (s3_adder1_out_REG_14),
     .io_in_15           (s3_adder1_out_REG_15),
-    .io_nan_0           (toS3_nan_REG),
-    .io_exponent_0      (toS3_exp_cand_REG),
+    .io_nan_0           (s3_nan_flag_REG),
+    .io_exponent_0      (s3_exp_cand_REG),
     .io_out_0_sign      (_convert1_io_out_0_sign),
     .io_out_0_exponent  (_convert1_io_out_0_exponent),
     .io_out_0_mantissa  (_convert1_io_out_0_mantissa),
@@ -13481,10 +14752,10 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_13           (s4_adder2_out_REG_13),
     .io_in_14           (s4_adder2_out_REG_14),
     .io_in_15           (s4_adder2_out_REG_15),
-    .io_nan_0           (toS4_nan_REG_8),
-    .io_nan_1           (toS4_nan_REG_9),
-    .io_exponent_0      (toS4_exp_cand_REG_8),
-    .io_exponent_1      (toS4_exp_cand_REG_9),
+    .io_nan_0           (toS4_nan_REG),
+    .io_nan_1           (toS4_nan_REG_1),
+    .io_exponent_0      (toS4_exp_cand_REG),
+    .io_exponent_1      (toS4_exp_cand_REG_1),
     .io_out_0_sign      (_convert2_io_out_0_sign),
     .io_out_0_exponent  (_convert2_io_out_0_exponent),
     .io_out_0_mantissa  (_convert2_io_out_0_mantissa),
@@ -13552,14 +14823,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_13           (s5_adder3_out_REG_13),
     .io_in_14           (s5_adder3_out_REG_14),
     .io_in_15           (s5_adder3_out_REG_15),
-    .io_nan_0           (toS5_nan_REG_16),
-    .io_nan_1           (toS5_nan_REG_17),
-    .io_nan_2           (toS5_nan_REG_18),
-    .io_nan_3           (toS5_nan_REG_19),
-    .io_exponent_0      (toS5_exp_cand_REG_16),
-    .io_exponent_1      (toS5_exp_cand_REG_17),
-    .io_exponent_2      (toS5_exp_cand_REG_18),
-    .io_exponent_3      (toS5_exp_cand_REG_19),
+    .io_nan_0           (toS5_nan_REG_8),
+    .io_nan_1           (toS5_nan_REG_9),
+    .io_nan_2           (toS5_nan_REG_10),
+    .io_nan_3           (toS5_nan_REG_11),
+    .io_exponent_0      (toS5_exp_cand_REG_8),
+    .io_exponent_1      (toS5_exp_cand_REG_9),
+    .io_exponent_2      (toS5_exp_cand_REG_10),
+    .io_exponent_3      (toS5_exp_cand_REG_11),
     .io_out_0_sign      (_convert3_io_out_0_sign),
     .io_out_0_exponent  (_convert3_io_out_0_exponent),
     .io_out_0_mantissa  (_convert3_io_out_0_mantissa),
@@ -13627,22 +14898,22 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_13           (s6_adder4_out_REG_13),
     .io_in_14           (s6_adder4_out_REG_14),
     .io_in_15           (s6_adder4_out_REG_15),
-    .io_nan_0           (toS6_nan_REG_24),
-    .io_nan_1           (toS6_nan_REG_25),
-    .io_nan_2           (toS6_nan_REG_26),
-    .io_nan_3           (toS6_nan_REG_27),
-    .io_nan_4           (toS6_nan_REG_28),
-    .io_nan_5           (toS6_nan_REG_29),
-    .io_nan_6           (toS6_nan_REG_30),
-    .io_nan_7           (toS6_nan_REG_31),
-    .io_exponent_0      (toS6_exp_cand_REG_24),
-    .io_exponent_1      (toS6_exp_cand_REG_25),
-    .io_exponent_2      (toS6_exp_cand_REG_26),
-    .io_exponent_3      (toS6_exp_cand_REG_27),
-    .io_exponent_4      (toS6_exp_cand_REG_28),
-    .io_exponent_5      (toS6_exp_cand_REG_29),
-    .io_exponent_6      (toS6_exp_cand_REG_30),
-    .io_exponent_7      (toS6_exp_cand_REG_31),
+    .io_nan_0           (toS6_nan_REG_16),
+    .io_nan_1           (toS6_nan_REG_17),
+    .io_nan_2           (toS6_nan_REG_18),
+    .io_nan_3           (toS6_nan_REG_19),
+    .io_nan_4           (toS6_nan_REG_20),
+    .io_nan_5           (toS6_nan_REG_21),
+    .io_nan_6           (toS6_nan_REG_22),
+    .io_nan_7           (toS6_nan_REG_23),
+    .io_exponent_0      (toS6_exp_cand_REG_16),
+    .io_exponent_1      (toS6_exp_cand_REG_17),
+    .io_exponent_2      (toS6_exp_cand_REG_18),
+    .io_exponent_3      (toS6_exp_cand_REG_19),
+    .io_exponent_4      (toS6_exp_cand_REG_20),
+    .io_exponent_5      (toS6_exp_cand_REG_21),
+    .io_exponent_6      (toS6_exp_cand_REG_22),
+    .io_exponent_7      (toS6_exp_cand_REG_23),
     .io_out_0_sign      (_convert4_io_out_0_sign),
     .io_out_0_exponent  (_convert4_io_out_0_exponent),
     .io_out_0_mantissa  (_convert4_io_out_0_mantissa),
@@ -13702,22 +14973,22 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_5           (s7_adder5_out_REG_5),
     .io_in_6           (s7_adder5_out_REG_6),
     .io_in_7           (s7_adder5_out_REG_7),
-    .io_nan_0          (toS7_nan_REG_32),
-    .io_nan_1          (toS7_nan_REG_33),
-    .io_nan_2          (toS7_nan_REG_34),
-    .io_nan_3          (toS7_nan_REG_35),
-    .io_nan_4          (toS7_nan_REG_36),
-    .io_nan_5          (toS7_nan_REG_37),
-    .io_nan_6          (toS7_nan_REG_38),
-    .io_nan_7          (toS7_nan_REG_39),
-    .io_exponent_0     (toS7_exp_cand_REG_32),
-    .io_exponent_1     (toS7_exp_cand_REG_33),
-    .io_exponent_2     (toS7_exp_cand_REG_34),
-    .io_exponent_3     (toS7_exp_cand_REG_35),
-    .io_exponent_4     (toS7_exp_cand_REG_36),
-    .io_exponent_5     (toS7_exp_cand_REG_37),
-    .io_exponent_6     (toS7_exp_cand_REG_38),
-    .io_exponent_7     (toS7_exp_cand_REG_39),
+    .io_nan_0          (toS7_nan_REG_24),
+    .io_nan_1          (toS7_nan_REG_25),
+    .io_nan_2          (toS7_nan_REG_26),
+    .io_nan_3          (toS7_nan_REG_27),
+    .io_nan_4          (toS7_nan_REG_28),
+    .io_nan_5          (toS7_nan_REG_29),
+    .io_nan_6          (toS7_nan_REG_30),
+    .io_nan_7          (toS7_nan_REG_31),
+    .io_exponent_0     (toS7_exp_cand_REG_24),
+    .io_exponent_1     (toS7_exp_cand_REG_25),
+    .io_exponent_2     (toS7_exp_cand_REG_26),
+    .io_exponent_3     (toS7_exp_cand_REG_27),
+    .io_exponent_4     (toS7_exp_cand_REG_28),
+    .io_exponent_5     (toS7_exp_cand_REG_29),
+    .io_exponent_6     (toS7_exp_cand_REG_30),
+    .io_exponent_7     (toS7_exp_cand_REG_31),
     .io_out_0_sign     (_convert5_io_out_0_sign),
     .io_out_0_exponent (_convert5_io_out_0_exponent),
     .io_out_0_mantissa (_convert5_io_out_0_mantissa),
@@ -13752,14 +15023,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_in_5                (s7_adder5_out_REG_5),
     .io_in_6                (s7_adder5_out_REG_6),
     .io_in_7                (s7_adder5_out_REG_7),
-    .io_exponent_0          (toS7_exp_cand_REG_32),
-    .io_exponent_1          (toS7_exp_cand_REG_33),
-    .io_exponent_2          (toS7_exp_cand_REG_34),
-    .io_exponent_3          (toS7_exp_cand_REG_35),
-    .io_exponent_4          (toS7_exp_cand_REG_36),
-    .io_exponent_5          (toS7_exp_cand_REG_37),
-    .io_exponent_6          (toS7_exp_cand_REG_38),
-    .io_exponent_7          (toS7_exp_cand_REG_39),
+    .io_exponent_0          (toS7_exp_cand_REG_24),
+    .io_exponent_1          (toS7_exp_cand_REG_25),
+    .io_exponent_2          (toS7_exp_cand_REG_26),
+    .io_exponent_3          (toS7_exp_cand_REG_27),
+    .io_exponent_4          (toS7_exp_cand_REG_28),
+    .io_exponent_5          (toS7_exp_cand_REG_29),
+    .io_exponent_6          (toS7_exp_cand_REG_30),
+    .io_exponent_7          (toS7_exp_cand_REG_31),
     .io_depth               (depth_s7),
     .io_out_mantissa_0      (_expansion_groupwise_io_out_mantissa_0),
     .io_out_mantissa_1      (_expansion_groupwise_io_out_mantissa_1),
@@ -13784,14 +15055,14 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
   );
   p_NaN_Process nan_process (
     .io_depth        (depth_s7),
-    .io_group_nan_0  (toS7_nan_REG_32),
-    .io_group_nan_1  (toS7_nan_REG_33),
-    .io_group_nan_2  (toS7_nan_REG_34),
-    .io_group_nan_3  (toS7_nan_REG_35),
-    .io_group_nan_4  (toS7_nan_REG_36),
-    .io_group_nan_5  (toS7_nan_REG_37),
-    .io_group_nan_6  (toS7_nan_REG_38),
-    .io_group_nan_7  (toS7_nan_REG_39),
+    .io_group_nan_0  (toS7_nan_REG_24),
+    .io_group_nan_1  (toS7_nan_REG_25),
+    .io_group_nan_2  (toS7_nan_REG_26),
+    .io_group_nan_3  (toS7_nan_REG_27),
+    .io_group_nan_4  (toS7_nan_REG_28),
+    .io_group_nan_5  (toS7_nan_REG_29),
+    .io_group_nan_6  (toS7_nan_REG_30),
+    .io_group_nan_7  (toS7_nan_REG_31),
     .io_result_nan_0 (_nan_process_io_result_nan_0),
     .io_result_nan_1 (_nan_process_io_result_nan_1),
     .io_result_nan_2 (_nan_process_io_result_nan_2),
@@ -13814,7 +15085,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_sign_5         (s8_gw_sign_5),
     .io_sign_6         (s8_gw_sign_6),
     .io_sign_7         (s8_gw_sign_7),
-    .io_depth          (depth_s8),
     .io_out_mantissa_0 (_adder_groupwise_6_io_out_mantissa_0),
     .io_out_mantissa_1 (_adder_groupwise_6_io_out_mantissa_1),
     .io_out_mantissa_2 (_adder_groupwise_6_io_out_mantissa_2),
@@ -13833,7 +15103,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_sign_1         (s9_ad6_sign_1),
     .io_sign_2         (s9_ad6_sign_2),
     .io_sign_3         (s9_ad6_sign_3),
-    .io_depth          (depth_s9),
     .io_out_mantissa_0 (_adder_groupwise_7_io_out_mantissa_0),
     .io_out_mantissa_1 (_adder_groupwise_7_io_out_mantissa_1),
     .io_out_sign_0     (_adder_groupwise_7_io_out_sign_0),
@@ -13844,7 +15113,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_mantissa_1     (s10_ad7_mantissa_1),
     .io_sign_0         (s10_ad7_sign_0),
     .io_sign_1         (s10_ad7_sign_1),
-    .io_depth          (depth_s10),
     .io_out_mantissa_0 (_adder_groupwise_8_io_out_mantissa_0),
     .io_out_sign_0     (_adder_groupwise_8_io_out_sign_0)
   );
@@ -13905,1310 +15173,6 @@ module p_TOP_Til_Dep_total_piped_CT_syn(
     .io_out_0_sign     (_convert_groupwise_8_io_out_0_sign),
     .io_out_0_exponent (_convert_groupwise_8_io_out_0_exponent),
     .io_out_0_mantissa (_convert_groupwise_8_io_out_0_mantissa)
-  );
-  p_Expansion expansion (
-    .io_sign_0              (s1_sign_REG),
-    .io_sign_1              (s1_sign_REG_1),
-    .io_sign_2              (s1_sign_REG_2),
-    .io_sign_3              (s1_sign_REG_3),
-    .io_sign_4              (s1_sign_REG_4),
-    .io_sign_5              (s1_sign_REG_5),
-    .io_sign_6              (s1_sign_REG_6),
-    .io_sign_7              (s1_sign_REG_7),
-    .io_sign_8              (s1_sign_REG_8),
-    .io_sign_9              (s1_sign_REG_9),
-    .io_sign_10             (s1_sign_REG_10),
-    .io_sign_11             (s1_sign_REG_11),
-    .io_sign_12             (s1_sign_REG_12),
-    .io_sign_13             (s1_sign_REG_13),
-    .io_sign_14             (s1_sign_REG_14),
-    .io_sign_15             (s1_sign_REG_15),
-    .io_sign_16             (s1_sign_REG_16),
-    .io_sign_17             (s1_sign_REG_17),
-    .io_sign_18             (s1_sign_REG_18),
-    .io_sign_19             (s1_sign_REG_19),
-    .io_sign_20             (s1_sign_REG_20),
-    .io_sign_21             (s1_sign_REG_21),
-    .io_sign_22             (s1_sign_REG_22),
-    .io_sign_23             (s1_sign_REG_23),
-    .io_sign_24             (s1_sign_REG_24),
-    .io_sign_25             (s1_sign_REG_25),
-    .io_sign_26             (s1_sign_REG_26),
-    .io_sign_27             (s1_sign_REG_27),
-    .io_sign_28             (s1_sign_REG_28),
-    .io_sign_29             (s1_sign_REG_29),
-    .io_sign_30             (s1_sign_REG_30),
-    .io_sign_31             (s1_sign_REG_31),
-    .io_exponent_0          (s1_exponent_REG),
-    .io_exponent_1          (s1_exponent_REG_1),
-    .io_exponent_2          (s1_exponent_REG_2),
-    .io_exponent_3          (s1_exponent_REG_3),
-    .io_exponent_4          (s1_exponent_REG_4),
-    .io_exponent_5          (s1_exponent_REG_5),
-    .io_exponent_6          (s1_exponent_REG_6),
-    .io_exponent_7          (s1_exponent_REG_7),
-    .io_exponent_8          (s1_exponent_REG_8),
-    .io_exponent_9          (s1_exponent_REG_9),
-    .io_exponent_10         (s1_exponent_REG_10),
-    .io_exponent_11         (s1_exponent_REG_11),
-    .io_exponent_12         (s1_exponent_REG_12),
-    .io_exponent_13         (s1_exponent_REG_13),
-    .io_exponent_14         (s1_exponent_REG_14),
-    .io_exponent_15         (s1_exponent_REG_15),
-    .io_exponent_16         (s1_exponent_REG_16),
-    .io_exponent_17         (s1_exponent_REG_17),
-    .io_exponent_18         (s1_exponent_REG_18),
-    .io_exponent_19         (s1_exponent_REG_19),
-    .io_exponent_20         (s1_exponent_REG_20),
-    .io_exponent_21         (s1_exponent_REG_21),
-    .io_exponent_22         (s1_exponent_REG_22),
-    .io_exponent_23         (s1_exponent_REG_23),
-    .io_exponent_24         (s1_exponent_REG_24),
-    .io_exponent_25         (s1_exponent_REG_25),
-    .io_exponent_26         (s1_exponent_REG_26),
-    .io_exponent_27         (s1_exponent_REG_27),
-    .io_exponent_28         (s1_exponent_REG_28),
-    .io_exponent_29         (s1_exponent_REG_29),
-    .io_exponent_30         (s1_exponent_REG_30),
-    .io_exponent_31         (s1_exponent_REG_31),
-    .io_mantissa_0          (s1_mantissa_REG),
-    .io_mantissa_1          (s1_mantissa_REG_1),
-    .io_mantissa_2          (s1_mantissa_REG_2),
-    .io_mantissa_3          (s1_mantissa_REG_3),
-    .io_mantissa_4          (s1_mantissa_REG_4),
-    .io_mantissa_5          (s1_mantissa_REG_5),
-    .io_mantissa_6          (s1_mantissa_REG_6),
-    .io_mantissa_7          (s1_mantissa_REG_7),
-    .io_mantissa_8          (s1_mantissa_REG_8),
-    .io_mantissa_9          (s1_mantissa_REG_9),
-    .io_mantissa_10         (s1_mantissa_REG_10),
-    .io_mantissa_11         (s1_mantissa_REG_11),
-    .io_mantissa_12         (s1_mantissa_REG_12),
-    .io_mantissa_13         (s1_mantissa_REG_13),
-    .io_mantissa_14         (s1_mantissa_REG_14),
-    .io_mantissa_15         (s1_mantissa_REG_15),
-    .io_mantissa_16         (s1_mantissa_REG_16),
-    .io_mantissa_17         (s1_mantissa_REG_17),
-    .io_mantissa_18         (s1_mantissa_REG_18),
-    .io_mantissa_19         (s1_mantissa_REG_19),
-    .io_mantissa_20         (s1_mantissa_REG_20),
-    .io_mantissa_21         (s1_mantissa_REG_21),
-    .io_mantissa_22         (s1_mantissa_REG_22),
-    .io_mantissa_23         (s1_mantissa_REG_23),
-    .io_mantissa_24         (s1_mantissa_REG_24),
-    .io_mantissa_25         (s1_mantissa_REG_25),
-    .io_mantissa_26         (s1_mantissa_REG_26),
-    .io_mantissa_27         (s1_mantissa_REG_27),
-    .io_mantissa_28         (s1_mantissa_REG_28),
-    .io_mantissa_29         (s1_mantissa_REG_29),
-    .io_mantissa_30         (s1_mantissa_REG_30),
-    .io_mantissa_31         (s1_mantissa_REG_31),
-    .io_out_sign_0          (_expansion_io_out_sign_0),
-    .io_out_sign_1          (_expansion_io_out_sign_1),
-    .io_out_sign_2          (_expansion_io_out_sign_2),
-    .io_out_sign_3          (_expansion_io_out_sign_3),
-    .io_out_sign_4          (_expansion_io_out_sign_4),
-    .io_out_sign_5          (_expansion_io_out_sign_5),
-    .io_out_sign_6          (_expansion_io_out_sign_6),
-    .io_out_sign_7          (_expansion_io_out_sign_7),
-    .io_out_sign_8          (_expansion_io_out_sign_8),
-    .io_out_sign_9          (_expansion_io_out_sign_9),
-    .io_out_sign_10         (_expansion_io_out_sign_10),
-    .io_out_sign_11         (_expansion_io_out_sign_11),
-    .io_out_sign_12         (_expansion_io_out_sign_12),
-    .io_out_sign_13         (_expansion_io_out_sign_13),
-    .io_out_sign_14         (_expansion_io_out_sign_14),
-    .io_out_sign_15         (_expansion_io_out_sign_15),
-    .io_out_sign_16         (_expansion_io_out_sign_16),
-    .io_out_sign_17         (_expansion_io_out_sign_17),
-    .io_out_sign_18         (_expansion_io_out_sign_18),
-    .io_out_sign_19         (_expansion_io_out_sign_19),
-    .io_out_sign_20         (_expansion_io_out_sign_20),
-    .io_out_sign_21         (_expansion_io_out_sign_21),
-    .io_out_sign_22         (_expansion_io_out_sign_22),
-    .io_out_sign_23         (_expansion_io_out_sign_23),
-    .io_out_sign_24         (_expansion_io_out_sign_24),
-    .io_out_sign_25         (_expansion_io_out_sign_25),
-    .io_out_sign_26         (_expansion_io_out_sign_26),
-    .io_out_sign_27         (_expansion_io_out_sign_27),
-    .io_out_sign_28         (_expansion_io_out_sign_28),
-    .io_out_sign_29         (_expansion_io_out_sign_29),
-    .io_out_sign_30         (_expansion_io_out_sign_30),
-    .io_out_sign_31         (_expansion_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_io_out_mantissa_31)
-  );
-  p_Expansion expansion_1 (
-    .io_sign_0              (s1_sign_REG_32),
-    .io_sign_1              (s1_sign_REG_33),
-    .io_sign_2              (s1_sign_REG_34),
-    .io_sign_3              (s1_sign_REG_35),
-    .io_sign_4              (s1_sign_REG_36),
-    .io_sign_5              (s1_sign_REG_37),
-    .io_sign_6              (s1_sign_REG_38),
-    .io_sign_7              (s1_sign_REG_39),
-    .io_sign_8              (s1_sign_REG_40),
-    .io_sign_9              (s1_sign_REG_41),
-    .io_sign_10             (s1_sign_REG_42),
-    .io_sign_11             (s1_sign_REG_43),
-    .io_sign_12             (s1_sign_REG_44),
-    .io_sign_13             (s1_sign_REG_45),
-    .io_sign_14             (s1_sign_REG_46),
-    .io_sign_15             (s1_sign_REG_47),
-    .io_sign_16             (s1_sign_REG_48),
-    .io_sign_17             (s1_sign_REG_49),
-    .io_sign_18             (s1_sign_REG_50),
-    .io_sign_19             (s1_sign_REG_51),
-    .io_sign_20             (s1_sign_REG_52),
-    .io_sign_21             (s1_sign_REG_53),
-    .io_sign_22             (s1_sign_REG_54),
-    .io_sign_23             (s1_sign_REG_55),
-    .io_sign_24             (s1_sign_REG_56),
-    .io_sign_25             (s1_sign_REG_57),
-    .io_sign_26             (s1_sign_REG_58),
-    .io_sign_27             (s1_sign_REG_59),
-    .io_sign_28             (s1_sign_REG_60),
-    .io_sign_29             (s1_sign_REG_61),
-    .io_sign_30             (s1_sign_REG_62),
-    .io_sign_31             (s1_sign_REG_63),
-    .io_exponent_0          (s1_exponent_REG_32),
-    .io_exponent_1          (s1_exponent_REG_33),
-    .io_exponent_2          (s1_exponent_REG_34),
-    .io_exponent_3          (s1_exponent_REG_35),
-    .io_exponent_4          (s1_exponent_REG_36),
-    .io_exponent_5          (s1_exponent_REG_37),
-    .io_exponent_6          (s1_exponent_REG_38),
-    .io_exponent_7          (s1_exponent_REG_39),
-    .io_exponent_8          (s1_exponent_REG_40),
-    .io_exponent_9          (s1_exponent_REG_41),
-    .io_exponent_10         (s1_exponent_REG_42),
-    .io_exponent_11         (s1_exponent_REG_43),
-    .io_exponent_12         (s1_exponent_REG_44),
-    .io_exponent_13         (s1_exponent_REG_45),
-    .io_exponent_14         (s1_exponent_REG_46),
-    .io_exponent_15         (s1_exponent_REG_47),
-    .io_exponent_16         (s1_exponent_REG_48),
-    .io_exponent_17         (s1_exponent_REG_49),
-    .io_exponent_18         (s1_exponent_REG_50),
-    .io_exponent_19         (s1_exponent_REG_51),
-    .io_exponent_20         (s1_exponent_REG_52),
-    .io_exponent_21         (s1_exponent_REG_53),
-    .io_exponent_22         (s1_exponent_REG_54),
-    .io_exponent_23         (s1_exponent_REG_55),
-    .io_exponent_24         (s1_exponent_REG_56),
-    .io_exponent_25         (s1_exponent_REG_57),
-    .io_exponent_26         (s1_exponent_REG_58),
-    .io_exponent_27         (s1_exponent_REG_59),
-    .io_exponent_28         (s1_exponent_REG_60),
-    .io_exponent_29         (s1_exponent_REG_61),
-    .io_exponent_30         (s1_exponent_REG_62),
-    .io_exponent_31         (s1_exponent_REG_63),
-    .io_mantissa_0          (s1_mantissa_REG_32),
-    .io_mantissa_1          (s1_mantissa_REG_33),
-    .io_mantissa_2          (s1_mantissa_REG_34),
-    .io_mantissa_3          (s1_mantissa_REG_35),
-    .io_mantissa_4          (s1_mantissa_REG_36),
-    .io_mantissa_5          (s1_mantissa_REG_37),
-    .io_mantissa_6          (s1_mantissa_REG_38),
-    .io_mantissa_7          (s1_mantissa_REG_39),
-    .io_mantissa_8          (s1_mantissa_REG_40),
-    .io_mantissa_9          (s1_mantissa_REG_41),
-    .io_mantissa_10         (s1_mantissa_REG_42),
-    .io_mantissa_11         (s1_mantissa_REG_43),
-    .io_mantissa_12         (s1_mantissa_REG_44),
-    .io_mantissa_13         (s1_mantissa_REG_45),
-    .io_mantissa_14         (s1_mantissa_REG_46),
-    .io_mantissa_15         (s1_mantissa_REG_47),
-    .io_mantissa_16         (s1_mantissa_REG_48),
-    .io_mantissa_17         (s1_mantissa_REG_49),
-    .io_mantissa_18         (s1_mantissa_REG_50),
-    .io_mantissa_19         (s1_mantissa_REG_51),
-    .io_mantissa_20         (s1_mantissa_REG_52),
-    .io_mantissa_21         (s1_mantissa_REG_53),
-    .io_mantissa_22         (s1_mantissa_REG_54),
-    .io_mantissa_23         (s1_mantissa_REG_55),
-    .io_mantissa_24         (s1_mantissa_REG_56),
-    .io_mantissa_25         (s1_mantissa_REG_57),
-    .io_mantissa_26         (s1_mantissa_REG_58),
-    .io_mantissa_27         (s1_mantissa_REG_59),
-    .io_mantissa_28         (s1_mantissa_REG_60),
-    .io_mantissa_29         (s1_mantissa_REG_61),
-    .io_mantissa_30         (s1_mantissa_REG_62),
-    .io_mantissa_31         (s1_mantissa_REG_63),
-    .io_out_sign_0          (_expansion_1_io_out_sign_0),
-    .io_out_sign_1          (_expansion_1_io_out_sign_1),
-    .io_out_sign_2          (_expansion_1_io_out_sign_2),
-    .io_out_sign_3          (_expansion_1_io_out_sign_3),
-    .io_out_sign_4          (_expansion_1_io_out_sign_4),
-    .io_out_sign_5          (_expansion_1_io_out_sign_5),
-    .io_out_sign_6          (_expansion_1_io_out_sign_6),
-    .io_out_sign_7          (_expansion_1_io_out_sign_7),
-    .io_out_sign_8          (_expansion_1_io_out_sign_8),
-    .io_out_sign_9          (_expansion_1_io_out_sign_9),
-    .io_out_sign_10         (_expansion_1_io_out_sign_10),
-    .io_out_sign_11         (_expansion_1_io_out_sign_11),
-    .io_out_sign_12         (_expansion_1_io_out_sign_12),
-    .io_out_sign_13         (_expansion_1_io_out_sign_13),
-    .io_out_sign_14         (_expansion_1_io_out_sign_14),
-    .io_out_sign_15         (_expansion_1_io_out_sign_15),
-    .io_out_sign_16         (_expansion_1_io_out_sign_16),
-    .io_out_sign_17         (_expansion_1_io_out_sign_17),
-    .io_out_sign_18         (_expansion_1_io_out_sign_18),
-    .io_out_sign_19         (_expansion_1_io_out_sign_19),
-    .io_out_sign_20         (_expansion_1_io_out_sign_20),
-    .io_out_sign_21         (_expansion_1_io_out_sign_21),
-    .io_out_sign_22         (_expansion_1_io_out_sign_22),
-    .io_out_sign_23         (_expansion_1_io_out_sign_23),
-    .io_out_sign_24         (_expansion_1_io_out_sign_24),
-    .io_out_sign_25         (_expansion_1_io_out_sign_25),
-    .io_out_sign_26         (_expansion_1_io_out_sign_26),
-    .io_out_sign_27         (_expansion_1_io_out_sign_27),
-    .io_out_sign_28         (_expansion_1_io_out_sign_28),
-    .io_out_sign_29         (_expansion_1_io_out_sign_29),
-    .io_out_sign_30         (_expansion_1_io_out_sign_30),
-    .io_out_sign_31         (_expansion_1_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_1_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_1_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_1_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_1_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_1_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_1_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_1_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_1_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_1_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_1_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_1_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_1_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_1_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_1_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_1_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_1_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_1_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_1_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_1_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_1_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_1_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_1_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_1_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_1_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_1_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_1_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_1_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_1_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_1_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_1_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_1_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_1_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_1_io_out_mantissa_31)
-  );
-  p_Expansion expansion_2 (
-    .io_sign_0              (s1_sign_REG_64),
-    .io_sign_1              (s1_sign_REG_65),
-    .io_sign_2              (s1_sign_REG_66),
-    .io_sign_3              (s1_sign_REG_67),
-    .io_sign_4              (s1_sign_REG_68),
-    .io_sign_5              (s1_sign_REG_69),
-    .io_sign_6              (s1_sign_REG_70),
-    .io_sign_7              (s1_sign_REG_71),
-    .io_sign_8              (s1_sign_REG_72),
-    .io_sign_9              (s1_sign_REG_73),
-    .io_sign_10             (s1_sign_REG_74),
-    .io_sign_11             (s1_sign_REG_75),
-    .io_sign_12             (s1_sign_REG_76),
-    .io_sign_13             (s1_sign_REG_77),
-    .io_sign_14             (s1_sign_REG_78),
-    .io_sign_15             (s1_sign_REG_79),
-    .io_sign_16             (s1_sign_REG_80),
-    .io_sign_17             (s1_sign_REG_81),
-    .io_sign_18             (s1_sign_REG_82),
-    .io_sign_19             (s1_sign_REG_83),
-    .io_sign_20             (s1_sign_REG_84),
-    .io_sign_21             (s1_sign_REG_85),
-    .io_sign_22             (s1_sign_REG_86),
-    .io_sign_23             (s1_sign_REG_87),
-    .io_sign_24             (s1_sign_REG_88),
-    .io_sign_25             (s1_sign_REG_89),
-    .io_sign_26             (s1_sign_REG_90),
-    .io_sign_27             (s1_sign_REG_91),
-    .io_sign_28             (s1_sign_REG_92),
-    .io_sign_29             (s1_sign_REG_93),
-    .io_sign_30             (s1_sign_REG_94),
-    .io_sign_31             (s1_sign_REG_95),
-    .io_exponent_0          (s1_exponent_REG_64),
-    .io_exponent_1          (s1_exponent_REG_65),
-    .io_exponent_2          (s1_exponent_REG_66),
-    .io_exponent_3          (s1_exponent_REG_67),
-    .io_exponent_4          (s1_exponent_REG_68),
-    .io_exponent_5          (s1_exponent_REG_69),
-    .io_exponent_6          (s1_exponent_REG_70),
-    .io_exponent_7          (s1_exponent_REG_71),
-    .io_exponent_8          (s1_exponent_REG_72),
-    .io_exponent_9          (s1_exponent_REG_73),
-    .io_exponent_10         (s1_exponent_REG_74),
-    .io_exponent_11         (s1_exponent_REG_75),
-    .io_exponent_12         (s1_exponent_REG_76),
-    .io_exponent_13         (s1_exponent_REG_77),
-    .io_exponent_14         (s1_exponent_REG_78),
-    .io_exponent_15         (s1_exponent_REG_79),
-    .io_exponent_16         (s1_exponent_REG_80),
-    .io_exponent_17         (s1_exponent_REG_81),
-    .io_exponent_18         (s1_exponent_REG_82),
-    .io_exponent_19         (s1_exponent_REG_83),
-    .io_exponent_20         (s1_exponent_REG_84),
-    .io_exponent_21         (s1_exponent_REG_85),
-    .io_exponent_22         (s1_exponent_REG_86),
-    .io_exponent_23         (s1_exponent_REG_87),
-    .io_exponent_24         (s1_exponent_REG_88),
-    .io_exponent_25         (s1_exponent_REG_89),
-    .io_exponent_26         (s1_exponent_REG_90),
-    .io_exponent_27         (s1_exponent_REG_91),
-    .io_exponent_28         (s1_exponent_REG_92),
-    .io_exponent_29         (s1_exponent_REG_93),
-    .io_exponent_30         (s1_exponent_REG_94),
-    .io_exponent_31         (s1_exponent_REG_95),
-    .io_mantissa_0          (s1_mantissa_REG_64),
-    .io_mantissa_1          (s1_mantissa_REG_65),
-    .io_mantissa_2          (s1_mantissa_REG_66),
-    .io_mantissa_3          (s1_mantissa_REG_67),
-    .io_mantissa_4          (s1_mantissa_REG_68),
-    .io_mantissa_5          (s1_mantissa_REG_69),
-    .io_mantissa_6          (s1_mantissa_REG_70),
-    .io_mantissa_7          (s1_mantissa_REG_71),
-    .io_mantissa_8          (s1_mantissa_REG_72),
-    .io_mantissa_9          (s1_mantissa_REG_73),
-    .io_mantissa_10         (s1_mantissa_REG_74),
-    .io_mantissa_11         (s1_mantissa_REG_75),
-    .io_mantissa_12         (s1_mantissa_REG_76),
-    .io_mantissa_13         (s1_mantissa_REG_77),
-    .io_mantissa_14         (s1_mantissa_REG_78),
-    .io_mantissa_15         (s1_mantissa_REG_79),
-    .io_mantissa_16         (s1_mantissa_REG_80),
-    .io_mantissa_17         (s1_mantissa_REG_81),
-    .io_mantissa_18         (s1_mantissa_REG_82),
-    .io_mantissa_19         (s1_mantissa_REG_83),
-    .io_mantissa_20         (s1_mantissa_REG_84),
-    .io_mantissa_21         (s1_mantissa_REG_85),
-    .io_mantissa_22         (s1_mantissa_REG_86),
-    .io_mantissa_23         (s1_mantissa_REG_87),
-    .io_mantissa_24         (s1_mantissa_REG_88),
-    .io_mantissa_25         (s1_mantissa_REG_89),
-    .io_mantissa_26         (s1_mantissa_REG_90),
-    .io_mantissa_27         (s1_mantissa_REG_91),
-    .io_mantissa_28         (s1_mantissa_REG_92),
-    .io_mantissa_29         (s1_mantissa_REG_93),
-    .io_mantissa_30         (s1_mantissa_REG_94),
-    .io_mantissa_31         (s1_mantissa_REG_95),
-    .io_out_sign_0          (_expansion_2_io_out_sign_0),
-    .io_out_sign_1          (_expansion_2_io_out_sign_1),
-    .io_out_sign_2          (_expansion_2_io_out_sign_2),
-    .io_out_sign_3          (_expansion_2_io_out_sign_3),
-    .io_out_sign_4          (_expansion_2_io_out_sign_4),
-    .io_out_sign_5          (_expansion_2_io_out_sign_5),
-    .io_out_sign_6          (_expansion_2_io_out_sign_6),
-    .io_out_sign_7          (_expansion_2_io_out_sign_7),
-    .io_out_sign_8          (_expansion_2_io_out_sign_8),
-    .io_out_sign_9          (_expansion_2_io_out_sign_9),
-    .io_out_sign_10         (_expansion_2_io_out_sign_10),
-    .io_out_sign_11         (_expansion_2_io_out_sign_11),
-    .io_out_sign_12         (_expansion_2_io_out_sign_12),
-    .io_out_sign_13         (_expansion_2_io_out_sign_13),
-    .io_out_sign_14         (_expansion_2_io_out_sign_14),
-    .io_out_sign_15         (_expansion_2_io_out_sign_15),
-    .io_out_sign_16         (_expansion_2_io_out_sign_16),
-    .io_out_sign_17         (_expansion_2_io_out_sign_17),
-    .io_out_sign_18         (_expansion_2_io_out_sign_18),
-    .io_out_sign_19         (_expansion_2_io_out_sign_19),
-    .io_out_sign_20         (_expansion_2_io_out_sign_20),
-    .io_out_sign_21         (_expansion_2_io_out_sign_21),
-    .io_out_sign_22         (_expansion_2_io_out_sign_22),
-    .io_out_sign_23         (_expansion_2_io_out_sign_23),
-    .io_out_sign_24         (_expansion_2_io_out_sign_24),
-    .io_out_sign_25         (_expansion_2_io_out_sign_25),
-    .io_out_sign_26         (_expansion_2_io_out_sign_26),
-    .io_out_sign_27         (_expansion_2_io_out_sign_27),
-    .io_out_sign_28         (_expansion_2_io_out_sign_28),
-    .io_out_sign_29         (_expansion_2_io_out_sign_29),
-    .io_out_sign_30         (_expansion_2_io_out_sign_30),
-    .io_out_sign_31         (_expansion_2_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_2_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_2_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_2_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_2_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_2_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_2_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_2_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_2_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_2_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_2_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_2_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_2_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_2_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_2_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_2_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_2_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_2_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_2_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_2_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_2_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_2_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_2_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_2_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_2_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_2_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_2_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_2_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_2_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_2_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_2_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_2_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_2_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_2_io_out_mantissa_31)
-  );
-  p_Expansion expansion_3 (
-    .io_sign_0              (s1_sign_REG_96),
-    .io_sign_1              (s1_sign_REG_97),
-    .io_sign_2              (s1_sign_REG_98),
-    .io_sign_3              (s1_sign_REG_99),
-    .io_sign_4              (s1_sign_REG_100),
-    .io_sign_5              (s1_sign_REG_101),
-    .io_sign_6              (s1_sign_REG_102),
-    .io_sign_7              (s1_sign_REG_103),
-    .io_sign_8              (s1_sign_REG_104),
-    .io_sign_9              (s1_sign_REG_105),
-    .io_sign_10             (s1_sign_REG_106),
-    .io_sign_11             (s1_sign_REG_107),
-    .io_sign_12             (s1_sign_REG_108),
-    .io_sign_13             (s1_sign_REG_109),
-    .io_sign_14             (s1_sign_REG_110),
-    .io_sign_15             (s1_sign_REG_111),
-    .io_sign_16             (s1_sign_REG_112),
-    .io_sign_17             (s1_sign_REG_113),
-    .io_sign_18             (s1_sign_REG_114),
-    .io_sign_19             (s1_sign_REG_115),
-    .io_sign_20             (s1_sign_REG_116),
-    .io_sign_21             (s1_sign_REG_117),
-    .io_sign_22             (s1_sign_REG_118),
-    .io_sign_23             (s1_sign_REG_119),
-    .io_sign_24             (s1_sign_REG_120),
-    .io_sign_25             (s1_sign_REG_121),
-    .io_sign_26             (s1_sign_REG_122),
-    .io_sign_27             (s1_sign_REG_123),
-    .io_sign_28             (s1_sign_REG_124),
-    .io_sign_29             (s1_sign_REG_125),
-    .io_sign_30             (s1_sign_REG_126),
-    .io_sign_31             (s1_sign_REG_127),
-    .io_exponent_0          (s1_exponent_REG_96),
-    .io_exponent_1          (s1_exponent_REG_97),
-    .io_exponent_2          (s1_exponent_REG_98),
-    .io_exponent_3          (s1_exponent_REG_99),
-    .io_exponent_4          (s1_exponent_REG_100),
-    .io_exponent_5          (s1_exponent_REG_101),
-    .io_exponent_6          (s1_exponent_REG_102),
-    .io_exponent_7          (s1_exponent_REG_103),
-    .io_exponent_8          (s1_exponent_REG_104),
-    .io_exponent_9          (s1_exponent_REG_105),
-    .io_exponent_10         (s1_exponent_REG_106),
-    .io_exponent_11         (s1_exponent_REG_107),
-    .io_exponent_12         (s1_exponent_REG_108),
-    .io_exponent_13         (s1_exponent_REG_109),
-    .io_exponent_14         (s1_exponent_REG_110),
-    .io_exponent_15         (s1_exponent_REG_111),
-    .io_exponent_16         (s1_exponent_REG_112),
-    .io_exponent_17         (s1_exponent_REG_113),
-    .io_exponent_18         (s1_exponent_REG_114),
-    .io_exponent_19         (s1_exponent_REG_115),
-    .io_exponent_20         (s1_exponent_REG_116),
-    .io_exponent_21         (s1_exponent_REG_117),
-    .io_exponent_22         (s1_exponent_REG_118),
-    .io_exponent_23         (s1_exponent_REG_119),
-    .io_exponent_24         (s1_exponent_REG_120),
-    .io_exponent_25         (s1_exponent_REG_121),
-    .io_exponent_26         (s1_exponent_REG_122),
-    .io_exponent_27         (s1_exponent_REG_123),
-    .io_exponent_28         (s1_exponent_REG_124),
-    .io_exponent_29         (s1_exponent_REG_125),
-    .io_exponent_30         (s1_exponent_REG_126),
-    .io_exponent_31         (s1_exponent_REG_127),
-    .io_mantissa_0          (s1_mantissa_REG_96),
-    .io_mantissa_1          (s1_mantissa_REG_97),
-    .io_mantissa_2          (s1_mantissa_REG_98),
-    .io_mantissa_3          (s1_mantissa_REG_99),
-    .io_mantissa_4          (s1_mantissa_REG_100),
-    .io_mantissa_5          (s1_mantissa_REG_101),
-    .io_mantissa_6          (s1_mantissa_REG_102),
-    .io_mantissa_7          (s1_mantissa_REG_103),
-    .io_mantissa_8          (s1_mantissa_REG_104),
-    .io_mantissa_9          (s1_mantissa_REG_105),
-    .io_mantissa_10         (s1_mantissa_REG_106),
-    .io_mantissa_11         (s1_mantissa_REG_107),
-    .io_mantissa_12         (s1_mantissa_REG_108),
-    .io_mantissa_13         (s1_mantissa_REG_109),
-    .io_mantissa_14         (s1_mantissa_REG_110),
-    .io_mantissa_15         (s1_mantissa_REG_111),
-    .io_mantissa_16         (s1_mantissa_REG_112),
-    .io_mantissa_17         (s1_mantissa_REG_113),
-    .io_mantissa_18         (s1_mantissa_REG_114),
-    .io_mantissa_19         (s1_mantissa_REG_115),
-    .io_mantissa_20         (s1_mantissa_REG_116),
-    .io_mantissa_21         (s1_mantissa_REG_117),
-    .io_mantissa_22         (s1_mantissa_REG_118),
-    .io_mantissa_23         (s1_mantissa_REG_119),
-    .io_mantissa_24         (s1_mantissa_REG_120),
-    .io_mantissa_25         (s1_mantissa_REG_121),
-    .io_mantissa_26         (s1_mantissa_REG_122),
-    .io_mantissa_27         (s1_mantissa_REG_123),
-    .io_mantissa_28         (s1_mantissa_REG_124),
-    .io_mantissa_29         (s1_mantissa_REG_125),
-    .io_mantissa_30         (s1_mantissa_REG_126),
-    .io_mantissa_31         (s1_mantissa_REG_127),
-    .io_out_sign_0          (_expansion_3_io_out_sign_0),
-    .io_out_sign_1          (_expansion_3_io_out_sign_1),
-    .io_out_sign_2          (_expansion_3_io_out_sign_2),
-    .io_out_sign_3          (_expansion_3_io_out_sign_3),
-    .io_out_sign_4          (_expansion_3_io_out_sign_4),
-    .io_out_sign_5          (_expansion_3_io_out_sign_5),
-    .io_out_sign_6          (_expansion_3_io_out_sign_6),
-    .io_out_sign_7          (_expansion_3_io_out_sign_7),
-    .io_out_sign_8          (_expansion_3_io_out_sign_8),
-    .io_out_sign_9          (_expansion_3_io_out_sign_9),
-    .io_out_sign_10         (_expansion_3_io_out_sign_10),
-    .io_out_sign_11         (_expansion_3_io_out_sign_11),
-    .io_out_sign_12         (_expansion_3_io_out_sign_12),
-    .io_out_sign_13         (_expansion_3_io_out_sign_13),
-    .io_out_sign_14         (_expansion_3_io_out_sign_14),
-    .io_out_sign_15         (_expansion_3_io_out_sign_15),
-    .io_out_sign_16         (_expansion_3_io_out_sign_16),
-    .io_out_sign_17         (_expansion_3_io_out_sign_17),
-    .io_out_sign_18         (_expansion_3_io_out_sign_18),
-    .io_out_sign_19         (_expansion_3_io_out_sign_19),
-    .io_out_sign_20         (_expansion_3_io_out_sign_20),
-    .io_out_sign_21         (_expansion_3_io_out_sign_21),
-    .io_out_sign_22         (_expansion_3_io_out_sign_22),
-    .io_out_sign_23         (_expansion_3_io_out_sign_23),
-    .io_out_sign_24         (_expansion_3_io_out_sign_24),
-    .io_out_sign_25         (_expansion_3_io_out_sign_25),
-    .io_out_sign_26         (_expansion_3_io_out_sign_26),
-    .io_out_sign_27         (_expansion_3_io_out_sign_27),
-    .io_out_sign_28         (_expansion_3_io_out_sign_28),
-    .io_out_sign_29         (_expansion_3_io_out_sign_29),
-    .io_out_sign_30         (_expansion_3_io_out_sign_30),
-    .io_out_sign_31         (_expansion_3_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_3_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_3_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_3_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_3_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_3_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_3_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_3_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_3_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_3_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_3_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_3_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_3_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_3_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_3_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_3_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_3_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_3_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_3_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_3_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_3_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_3_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_3_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_3_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_3_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_3_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_3_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_3_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_3_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_3_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_3_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_3_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_3_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_3_io_out_mantissa_31)
-  );
-  p_Expansion expansion_4 (
-    .io_sign_0              (s1_sign_REG_128),
-    .io_sign_1              (s1_sign_REG_129),
-    .io_sign_2              (s1_sign_REG_130),
-    .io_sign_3              (s1_sign_REG_131),
-    .io_sign_4              (s1_sign_REG_132),
-    .io_sign_5              (s1_sign_REG_133),
-    .io_sign_6              (s1_sign_REG_134),
-    .io_sign_7              (s1_sign_REG_135),
-    .io_sign_8              (s1_sign_REG_136),
-    .io_sign_9              (s1_sign_REG_137),
-    .io_sign_10             (s1_sign_REG_138),
-    .io_sign_11             (s1_sign_REG_139),
-    .io_sign_12             (s1_sign_REG_140),
-    .io_sign_13             (s1_sign_REG_141),
-    .io_sign_14             (s1_sign_REG_142),
-    .io_sign_15             (s1_sign_REG_143),
-    .io_sign_16             (s1_sign_REG_144),
-    .io_sign_17             (s1_sign_REG_145),
-    .io_sign_18             (s1_sign_REG_146),
-    .io_sign_19             (s1_sign_REG_147),
-    .io_sign_20             (s1_sign_REG_148),
-    .io_sign_21             (s1_sign_REG_149),
-    .io_sign_22             (s1_sign_REG_150),
-    .io_sign_23             (s1_sign_REG_151),
-    .io_sign_24             (s1_sign_REG_152),
-    .io_sign_25             (s1_sign_REG_153),
-    .io_sign_26             (s1_sign_REG_154),
-    .io_sign_27             (s1_sign_REG_155),
-    .io_sign_28             (s1_sign_REG_156),
-    .io_sign_29             (s1_sign_REG_157),
-    .io_sign_30             (s1_sign_REG_158),
-    .io_sign_31             (s1_sign_REG_159),
-    .io_exponent_0          (s1_exponent_REG_128),
-    .io_exponent_1          (s1_exponent_REG_129),
-    .io_exponent_2          (s1_exponent_REG_130),
-    .io_exponent_3          (s1_exponent_REG_131),
-    .io_exponent_4          (s1_exponent_REG_132),
-    .io_exponent_5          (s1_exponent_REG_133),
-    .io_exponent_6          (s1_exponent_REG_134),
-    .io_exponent_7          (s1_exponent_REG_135),
-    .io_exponent_8          (s1_exponent_REG_136),
-    .io_exponent_9          (s1_exponent_REG_137),
-    .io_exponent_10         (s1_exponent_REG_138),
-    .io_exponent_11         (s1_exponent_REG_139),
-    .io_exponent_12         (s1_exponent_REG_140),
-    .io_exponent_13         (s1_exponent_REG_141),
-    .io_exponent_14         (s1_exponent_REG_142),
-    .io_exponent_15         (s1_exponent_REG_143),
-    .io_exponent_16         (s1_exponent_REG_144),
-    .io_exponent_17         (s1_exponent_REG_145),
-    .io_exponent_18         (s1_exponent_REG_146),
-    .io_exponent_19         (s1_exponent_REG_147),
-    .io_exponent_20         (s1_exponent_REG_148),
-    .io_exponent_21         (s1_exponent_REG_149),
-    .io_exponent_22         (s1_exponent_REG_150),
-    .io_exponent_23         (s1_exponent_REG_151),
-    .io_exponent_24         (s1_exponent_REG_152),
-    .io_exponent_25         (s1_exponent_REG_153),
-    .io_exponent_26         (s1_exponent_REG_154),
-    .io_exponent_27         (s1_exponent_REG_155),
-    .io_exponent_28         (s1_exponent_REG_156),
-    .io_exponent_29         (s1_exponent_REG_157),
-    .io_exponent_30         (s1_exponent_REG_158),
-    .io_exponent_31         (s1_exponent_REG_159),
-    .io_mantissa_0          (s1_mantissa_REG_128),
-    .io_mantissa_1          (s1_mantissa_REG_129),
-    .io_mantissa_2          (s1_mantissa_REG_130),
-    .io_mantissa_3          (s1_mantissa_REG_131),
-    .io_mantissa_4          (s1_mantissa_REG_132),
-    .io_mantissa_5          (s1_mantissa_REG_133),
-    .io_mantissa_6          (s1_mantissa_REG_134),
-    .io_mantissa_7          (s1_mantissa_REG_135),
-    .io_mantissa_8          (s1_mantissa_REG_136),
-    .io_mantissa_9          (s1_mantissa_REG_137),
-    .io_mantissa_10         (s1_mantissa_REG_138),
-    .io_mantissa_11         (s1_mantissa_REG_139),
-    .io_mantissa_12         (s1_mantissa_REG_140),
-    .io_mantissa_13         (s1_mantissa_REG_141),
-    .io_mantissa_14         (s1_mantissa_REG_142),
-    .io_mantissa_15         (s1_mantissa_REG_143),
-    .io_mantissa_16         (s1_mantissa_REG_144),
-    .io_mantissa_17         (s1_mantissa_REG_145),
-    .io_mantissa_18         (s1_mantissa_REG_146),
-    .io_mantissa_19         (s1_mantissa_REG_147),
-    .io_mantissa_20         (s1_mantissa_REG_148),
-    .io_mantissa_21         (s1_mantissa_REG_149),
-    .io_mantissa_22         (s1_mantissa_REG_150),
-    .io_mantissa_23         (s1_mantissa_REG_151),
-    .io_mantissa_24         (s1_mantissa_REG_152),
-    .io_mantissa_25         (s1_mantissa_REG_153),
-    .io_mantissa_26         (s1_mantissa_REG_154),
-    .io_mantissa_27         (s1_mantissa_REG_155),
-    .io_mantissa_28         (s1_mantissa_REG_156),
-    .io_mantissa_29         (s1_mantissa_REG_157),
-    .io_mantissa_30         (s1_mantissa_REG_158),
-    .io_mantissa_31         (s1_mantissa_REG_159),
-    .io_out_sign_0          (_expansion_4_io_out_sign_0),
-    .io_out_sign_1          (_expansion_4_io_out_sign_1),
-    .io_out_sign_2          (_expansion_4_io_out_sign_2),
-    .io_out_sign_3          (_expansion_4_io_out_sign_3),
-    .io_out_sign_4          (_expansion_4_io_out_sign_4),
-    .io_out_sign_5          (_expansion_4_io_out_sign_5),
-    .io_out_sign_6          (_expansion_4_io_out_sign_6),
-    .io_out_sign_7          (_expansion_4_io_out_sign_7),
-    .io_out_sign_8          (_expansion_4_io_out_sign_8),
-    .io_out_sign_9          (_expansion_4_io_out_sign_9),
-    .io_out_sign_10         (_expansion_4_io_out_sign_10),
-    .io_out_sign_11         (_expansion_4_io_out_sign_11),
-    .io_out_sign_12         (_expansion_4_io_out_sign_12),
-    .io_out_sign_13         (_expansion_4_io_out_sign_13),
-    .io_out_sign_14         (_expansion_4_io_out_sign_14),
-    .io_out_sign_15         (_expansion_4_io_out_sign_15),
-    .io_out_sign_16         (_expansion_4_io_out_sign_16),
-    .io_out_sign_17         (_expansion_4_io_out_sign_17),
-    .io_out_sign_18         (_expansion_4_io_out_sign_18),
-    .io_out_sign_19         (_expansion_4_io_out_sign_19),
-    .io_out_sign_20         (_expansion_4_io_out_sign_20),
-    .io_out_sign_21         (_expansion_4_io_out_sign_21),
-    .io_out_sign_22         (_expansion_4_io_out_sign_22),
-    .io_out_sign_23         (_expansion_4_io_out_sign_23),
-    .io_out_sign_24         (_expansion_4_io_out_sign_24),
-    .io_out_sign_25         (_expansion_4_io_out_sign_25),
-    .io_out_sign_26         (_expansion_4_io_out_sign_26),
-    .io_out_sign_27         (_expansion_4_io_out_sign_27),
-    .io_out_sign_28         (_expansion_4_io_out_sign_28),
-    .io_out_sign_29         (_expansion_4_io_out_sign_29),
-    .io_out_sign_30         (_expansion_4_io_out_sign_30),
-    .io_out_sign_31         (_expansion_4_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_4_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_4_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_4_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_4_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_4_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_4_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_4_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_4_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_4_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_4_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_4_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_4_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_4_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_4_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_4_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_4_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_4_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_4_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_4_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_4_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_4_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_4_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_4_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_4_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_4_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_4_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_4_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_4_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_4_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_4_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_4_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_4_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_4_io_out_mantissa_31)
-  );
-  p_Expansion expansion_5 (
-    .io_sign_0              (s1_sign_REG_160),
-    .io_sign_1              (s1_sign_REG_161),
-    .io_sign_2              (s1_sign_REG_162),
-    .io_sign_3              (s1_sign_REG_163),
-    .io_sign_4              (s1_sign_REG_164),
-    .io_sign_5              (s1_sign_REG_165),
-    .io_sign_6              (s1_sign_REG_166),
-    .io_sign_7              (s1_sign_REG_167),
-    .io_sign_8              (s1_sign_REG_168),
-    .io_sign_9              (s1_sign_REG_169),
-    .io_sign_10             (s1_sign_REG_170),
-    .io_sign_11             (s1_sign_REG_171),
-    .io_sign_12             (s1_sign_REG_172),
-    .io_sign_13             (s1_sign_REG_173),
-    .io_sign_14             (s1_sign_REG_174),
-    .io_sign_15             (s1_sign_REG_175),
-    .io_sign_16             (s1_sign_REG_176),
-    .io_sign_17             (s1_sign_REG_177),
-    .io_sign_18             (s1_sign_REG_178),
-    .io_sign_19             (s1_sign_REG_179),
-    .io_sign_20             (s1_sign_REG_180),
-    .io_sign_21             (s1_sign_REG_181),
-    .io_sign_22             (s1_sign_REG_182),
-    .io_sign_23             (s1_sign_REG_183),
-    .io_sign_24             (s1_sign_REG_184),
-    .io_sign_25             (s1_sign_REG_185),
-    .io_sign_26             (s1_sign_REG_186),
-    .io_sign_27             (s1_sign_REG_187),
-    .io_sign_28             (s1_sign_REG_188),
-    .io_sign_29             (s1_sign_REG_189),
-    .io_sign_30             (s1_sign_REG_190),
-    .io_sign_31             (s1_sign_REG_191),
-    .io_exponent_0          (s1_exponent_REG_160),
-    .io_exponent_1          (s1_exponent_REG_161),
-    .io_exponent_2          (s1_exponent_REG_162),
-    .io_exponent_3          (s1_exponent_REG_163),
-    .io_exponent_4          (s1_exponent_REG_164),
-    .io_exponent_5          (s1_exponent_REG_165),
-    .io_exponent_6          (s1_exponent_REG_166),
-    .io_exponent_7          (s1_exponent_REG_167),
-    .io_exponent_8          (s1_exponent_REG_168),
-    .io_exponent_9          (s1_exponent_REG_169),
-    .io_exponent_10         (s1_exponent_REG_170),
-    .io_exponent_11         (s1_exponent_REG_171),
-    .io_exponent_12         (s1_exponent_REG_172),
-    .io_exponent_13         (s1_exponent_REG_173),
-    .io_exponent_14         (s1_exponent_REG_174),
-    .io_exponent_15         (s1_exponent_REG_175),
-    .io_exponent_16         (s1_exponent_REG_176),
-    .io_exponent_17         (s1_exponent_REG_177),
-    .io_exponent_18         (s1_exponent_REG_178),
-    .io_exponent_19         (s1_exponent_REG_179),
-    .io_exponent_20         (s1_exponent_REG_180),
-    .io_exponent_21         (s1_exponent_REG_181),
-    .io_exponent_22         (s1_exponent_REG_182),
-    .io_exponent_23         (s1_exponent_REG_183),
-    .io_exponent_24         (s1_exponent_REG_184),
-    .io_exponent_25         (s1_exponent_REG_185),
-    .io_exponent_26         (s1_exponent_REG_186),
-    .io_exponent_27         (s1_exponent_REG_187),
-    .io_exponent_28         (s1_exponent_REG_188),
-    .io_exponent_29         (s1_exponent_REG_189),
-    .io_exponent_30         (s1_exponent_REG_190),
-    .io_exponent_31         (s1_exponent_REG_191),
-    .io_mantissa_0          (s1_mantissa_REG_160),
-    .io_mantissa_1          (s1_mantissa_REG_161),
-    .io_mantissa_2          (s1_mantissa_REG_162),
-    .io_mantissa_3          (s1_mantissa_REG_163),
-    .io_mantissa_4          (s1_mantissa_REG_164),
-    .io_mantissa_5          (s1_mantissa_REG_165),
-    .io_mantissa_6          (s1_mantissa_REG_166),
-    .io_mantissa_7          (s1_mantissa_REG_167),
-    .io_mantissa_8          (s1_mantissa_REG_168),
-    .io_mantissa_9          (s1_mantissa_REG_169),
-    .io_mantissa_10         (s1_mantissa_REG_170),
-    .io_mantissa_11         (s1_mantissa_REG_171),
-    .io_mantissa_12         (s1_mantissa_REG_172),
-    .io_mantissa_13         (s1_mantissa_REG_173),
-    .io_mantissa_14         (s1_mantissa_REG_174),
-    .io_mantissa_15         (s1_mantissa_REG_175),
-    .io_mantissa_16         (s1_mantissa_REG_176),
-    .io_mantissa_17         (s1_mantissa_REG_177),
-    .io_mantissa_18         (s1_mantissa_REG_178),
-    .io_mantissa_19         (s1_mantissa_REG_179),
-    .io_mantissa_20         (s1_mantissa_REG_180),
-    .io_mantissa_21         (s1_mantissa_REG_181),
-    .io_mantissa_22         (s1_mantissa_REG_182),
-    .io_mantissa_23         (s1_mantissa_REG_183),
-    .io_mantissa_24         (s1_mantissa_REG_184),
-    .io_mantissa_25         (s1_mantissa_REG_185),
-    .io_mantissa_26         (s1_mantissa_REG_186),
-    .io_mantissa_27         (s1_mantissa_REG_187),
-    .io_mantissa_28         (s1_mantissa_REG_188),
-    .io_mantissa_29         (s1_mantissa_REG_189),
-    .io_mantissa_30         (s1_mantissa_REG_190),
-    .io_mantissa_31         (s1_mantissa_REG_191),
-    .io_out_sign_0          (_expansion_5_io_out_sign_0),
-    .io_out_sign_1          (_expansion_5_io_out_sign_1),
-    .io_out_sign_2          (_expansion_5_io_out_sign_2),
-    .io_out_sign_3          (_expansion_5_io_out_sign_3),
-    .io_out_sign_4          (_expansion_5_io_out_sign_4),
-    .io_out_sign_5          (_expansion_5_io_out_sign_5),
-    .io_out_sign_6          (_expansion_5_io_out_sign_6),
-    .io_out_sign_7          (_expansion_5_io_out_sign_7),
-    .io_out_sign_8          (_expansion_5_io_out_sign_8),
-    .io_out_sign_9          (_expansion_5_io_out_sign_9),
-    .io_out_sign_10         (_expansion_5_io_out_sign_10),
-    .io_out_sign_11         (_expansion_5_io_out_sign_11),
-    .io_out_sign_12         (_expansion_5_io_out_sign_12),
-    .io_out_sign_13         (_expansion_5_io_out_sign_13),
-    .io_out_sign_14         (_expansion_5_io_out_sign_14),
-    .io_out_sign_15         (_expansion_5_io_out_sign_15),
-    .io_out_sign_16         (_expansion_5_io_out_sign_16),
-    .io_out_sign_17         (_expansion_5_io_out_sign_17),
-    .io_out_sign_18         (_expansion_5_io_out_sign_18),
-    .io_out_sign_19         (_expansion_5_io_out_sign_19),
-    .io_out_sign_20         (_expansion_5_io_out_sign_20),
-    .io_out_sign_21         (_expansion_5_io_out_sign_21),
-    .io_out_sign_22         (_expansion_5_io_out_sign_22),
-    .io_out_sign_23         (_expansion_5_io_out_sign_23),
-    .io_out_sign_24         (_expansion_5_io_out_sign_24),
-    .io_out_sign_25         (_expansion_5_io_out_sign_25),
-    .io_out_sign_26         (_expansion_5_io_out_sign_26),
-    .io_out_sign_27         (_expansion_5_io_out_sign_27),
-    .io_out_sign_28         (_expansion_5_io_out_sign_28),
-    .io_out_sign_29         (_expansion_5_io_out_sign_29),
-    .io_out_sign_30         (_expansion_5_io_out_sign_30),
-    .io_out_sign_31         (_expansion_5_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_5_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_5_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_5_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_5_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_5_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_5_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_5_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_5_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_5_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_5_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_5_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_5_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_5_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_5_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_5_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_5_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_5_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_5_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_5_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_5_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_5_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_5_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_5_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_5_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_5_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_5_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_5_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_5_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_5_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_5_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_5_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_5_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_5_io_out_mantissa_31)
-  );
-  p_Expansion expansion_6 (
-    .io_sign_0              (s1_sign_REG_192),
-    .io_sign_1              (s1_sign_REG_193),
-    .io_sign_2              (s1_sign_REG_194),
-    .io_sign_3              (s1_sign_REG_195),
-    .io_sign_4              (s1_sign_REG_196),
-    .io_sign_5              (s1_sign_REG_197),
-    .io_sign_6              (s1_sign_REG_198),
-    .io_sign_7              (s1_sign_REG_199),
-    .io_sign_8              (s1_sign_REG_200),
-    .io_sign_9              (s1_sign_REG_201),
-    .io_sign_10             (s1_sign_REG_202),
-    .io_sign_11             (s1_sign_REG_203),
-    .io_sign_12             (s1_sign_REG_204),
-    .io_sign_13             (s1_sign_REG_205),
-    .io_sign_14             (s1_sign_REG_206),
-    .io_sign_15             (s1_sign_REG_207),
-    .io_sign_16             (s1_sign_REG_208),
-    .io_sign_17             (s1_sign_REG_209),
-    .io_sign_18             (s1_sign_REG_210),
-    .io_sign_19             (s1_sign_REG_211),
-    .io_sign_20             (s1_sign_REG_212),
-    .io_sign_21             (s1_sign_REG_213),
-    .io_sign_22             (s1_sign_REG_214),
-    .io_sign_23             (s1_sign_REG_215),
-    .io_sign_24             (s1_sign_REG_216),
-    .io_sign_25             (s1_sign_REG_217),
-    .io_sign_26             (s1_sign_REG_218),
-    .io_sign_27             (s1_sign_REG_219),
-    .io_sign_28             (s1_sign_REG_220),
-    .io_sign_29             (s1_sign_REG_221),
-    .io_sign_30             (s1_sign_REG_222),
-    .io_sign_31             (s1_sign_REG_223),
-    .io_exponent_0          (s1_exponent_REG_192),
-    .io_exponent_1          (s1_exponent_REG_193),
-    .io_exponent_2          (s1_exponent_REG_194),
-    .io_exponent_3          (s1_exponent_REG_195),
-    .io_exponent_4          (s1_exponent_REG_196),
-    .io_exponent_5          (s1_exponent_REG_197),
-    .io_exponent_6          (s1_exponent_REG_198),
-    .io_exponent_7          (s1_exponent_REG_199),
-    .io_exponent_8          (s1_exponent_REG_200),
-    .io_exponent_9          (s1_exponent_REG_201),
-    .io_exponent_10         (s1_exponent_REG_202),
-    .io_exponent_11         (s1_exponent_REG_203),
-    .io_exponent_12         (s1_exponent_REG_204),
-    .io_exponent_13         (s1_exponent_REG_205),
-    .io_exponent_14         (s1_exponent_REG_206),
-    .io_exponent_15         (s1_exponent_REG_207),
-    .io_exponent_16         (s1_exponent_REG_208),
-    .io_exponent_17         (s1_exponent_REG_209),
-    .io_exponent_18         (s1_exponent_REG_210),
-    .io_exponent_19         (s1_exponent_REG_211),
-    .io_exponent_20         (s1_exponent_REG_212),
-    .io_exponent_21         (s1_exponent_REG_213),
-    .io_exponent_22         (s1_exponent_REG_214),
-    .io_exponent_23         (s1_exponent_REG_215),
-    .io_exponent_24         (s1_exponent_REG_216),
-    .io_exponent_25         (s1_exponent_REG_217),
-    .io_exponent_26         (s1_exponent_REG_218),
-    .io_exponent_27         (s1_exponent_REG_219),
-    .io_exponent_28         (s1_exponent_REG_220),
-    .io_exponent_29         (s1_exponent_REG_221),
-    .io_exponent_30         (s1_exponent_REG_222),
-    .io_exponent_31         (s1_exponent_REG_223),
-    .io_mantissa_0          (s1_mantissa_REG_192),
-    .io_mantissa_1          (s1_mantissa_REG_193),
-    .io_mantissa_2          (s1_mantissa_REG_194),
-    .io_mantissa_3          (s1_mantissa_REG_195),
-    .io_mantissa_4          (s1_mantissa_REG_196),
-    .io_mantissa_5          (s1_mantissa_REG_197),
-    .io_mantissa_6          (s1_mantissa_REG_198),
-    .io_mantissa_7          (s1_mantissa_REG_199),
-    .io_mantissa_8          (s1_mantissa_REG_200),
-    .io_mantissa_9          (s1_mantissa_REG_201),
-    .io_mantissa_10         (s1_mantissa_REG_202),
-    .io_mantissa_11         (s1_mantissa_REG_203),
-    .io_mantissa_12         (s1_mantissa_REG_204),
-    .io_mantissa_13         (s1_mantissa_REG_205),
-    .io_mantissa_14         (s1_mantissa_REG_206),
-    .io_mantissa_15         (s1_mantissa_REG_207),
-    .io_mantissa_16         (s1_mantissa_REG_208),
-    .io_mantissa_17         (s1_mantissa_REG_209),
-    .io_mantissa_18         (s1_mantissa_REG_210),
-    .io_mantissa_19         (s1_mantissa_REG_211),
-    .io_mantissa_20         (s1_mantissa_REG_212),
-    .io_mantissa_21         (s1_mantissa_REG_213),
-    .io_mantissa_22         (s1_mantissa_REG_214),
-    .io_mantissa_23         (s1_mantissa_REG_215),
-    .io_mantissa_24         (s1_mantissa_REG_216),
-    .io_mantissa_25         (s1_mantissa_REG_217),
-    .io_mantissa_26         (s1_mantissa_REG_218),
-    .io_mantissa_27         (s1_mantissa_REG_219),
-    .io_mantissa_28         (s1_mantissa_REG_220),
-    .io_mantissa_29         (s1_mantissa_REG_221),
-    .io_mantissa_30         (s1_mantissa_REG_222),
-    .io_mantissa_31         (s1_mantissa_REG_223),
-    .io_out_sign_0          (_expansion_6_io_out_sign_0),
-    .io_out_sign_1          (_expansion_6_io_out_sign_1),
-    .io_out_sign_2          (_expansion_6_io_out_sign_2),
-    .io_out_sign_3          (_expansion_6_io_out_sign_3),
-    .io_out_sign_4          (_expansion_6_io_out_sign_4),
-    .io_out_sign_5          (_expansion_6_io_out_sign_5),
-    .io_out_sign_6          (_expansion_6_io_out_sign_6),
-    .io_out_sign_7          (_expansion_6_io_out_sign_7),
-    .io_out_sign_8          (_expansion_6_io_out_sign_8),
-    .io_out_sign_9          (_expansion_6_io_out_sign_9),
-    .io_out_sign_10         (_expansion_6_io_out_sign_10),
-    .io_out_sign_11         (_expansion_6_io_out_sign_11),
-    .io_out_sign_12         (_expansion_6_io_out_sign_12),
-    .io_out_sign_13         (_expansion_6_io_out_sign_13),
-    .io_out_sign_14         (_expansion_6_io_out_sign_14),
-    .io_out_sign_15         (_expansion_6_io_out_sign_15),
-    .io_out_sign_16         (_expansion_6_io_out_sign_16),
-    .io_out_sign_17         (_expansion_6_io_out_sign_17),
-    .io_out_sign_18         (_expansion_6_io_out_sign_18),
-    .io_out_sign_19         (_expansion_6_io_out_sign_19),
-    .io_out_sign_20         (_expansion_6_io_out_sign_20),
-    .io_out_sign_21         (_expansion_6_io_out_sign_21),
-    .io_out_sign_22         (_expansion_6_io_out_sign_22),
-    .io_out_sign_23         (_expansion_6_io_out_sign_23),
-    .io_out_sign_24         (_expansion_6_io_out_sign_24),
-    .io_out_sign_25         (_expansion_6_io_out_sign_25),
-    .io_out_sign_26         (_expansion_6_io_out_sign_26),
-    .io_out_sign_27         (_expansion_6_io_out_sign_27),
-    .io_out_sign_28         (_expansion_6_io_out_sign_28),
-    .io_out_sign_29         (_expansion_6_io_out_sign_29),
-    .io_out_sign_30         (_expansion_6_io_out_sign_30),
-    .io_out_sign_31         (_expansion_6_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_6_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_6_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_6_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_6_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_6_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_6_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_6_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_6_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_6_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_6_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_6_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_6_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_6_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_6_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_6_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_6_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_6_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_6_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_6_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_6_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_6_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_6_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_6_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_6_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_6_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_6_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_6_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_6_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_6_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_6_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_6_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_6_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_6_io_out_mantissa_31)
-  );
-  p_Expansion expansion_7 (
-    .io_sign_0              (s1_sign_REG_224),
-    .io_sign_1              (s1_sign_REG_225),
-    .io_sign_2              (s1_sign_REG_226),
-    .io_sign_3              (s1_sign_REG_227),
-    .io_sign_4              (s1_sign_REG_228),
-    .io_sign_5              (s1_sign_REG_229),
-    .io_sign_6              (s1_sign_REG_230),
-    .io_sign_7              (s1_sign_REG_231),
-    .io_sign_8              (s1_sign_REG_232),
-    .io_sign_9              (s1_sign_REG_233),
-    .io_sign_10             (s1_sign_REG_234),
-    .io_sign_11             (s1_sign_REG_235),
-    .io_sign_12             (s1_sign_REG_236),
-    .io_sign_13             (s1_sign_REG_237),
-    .io_sign_14             (s1_sign_REG_238),
-    .io_sign_15             (s1_sign_REG_239),
-    .io_sign_16             (s1_sign_REG_240),
-    .io_sign_17             (s1_sign_REG_241),
-    .io_sign_18             (s1_sign_REG_242),
-    .io_sign_19             (s1_sign_REG_243),
-    .io_sign_20             (s1_sign_REG_244),
-    .io_sign_21             (s1_sign_REG_245),
-    .io_sign_22             (s1_sign_REG_246),
-    .io_sign_23             (s1_sign_REG_247),
-    .io_sign_24             (s1_sign_REG_248),
-    .io_sign_25             (s1_sign_REG_249),
-    .io_sign_26             (s1_sign_REG_250),
-    .io_sign_27             (s1_sign_REG_251),
-    .io_sign_28             (s1_sign_REG_252),
-    .io_sign_29             (s1_sign_REG_253),
-    .io_sign_30             (s1_sign_REG_254),
-    .io_sign_31             (s1_sign_REG_255),
-    .io_exponent_0          (s1_exponent_REG_224),
-    .io_exponent_1          (s1_exponent_REG_225),
-    .io_exponent_2          (s1_exponent_REG_226),
-    .io_exponent_3          (s1_exponent_REG_227),
-    .io_exponent_4          (s1_exponent_REG_228),
-    .io_exponent_5          (s1_exponent_REG_229),
-    .io_exponent_6          (s1_exponent_REG_230),
-    .io_exponent_7          (s1_exponent_REG_231),
-    .io_exponent_8          (s1_exponent_REG_232),
-    .io_exponent_9          (s1_exponent_REG_233),
-    .io_exponent_10         (s1_exponent_REG_234),
-    .io_exponent_11         (s1_exponent_REG_235),
-    .io_exponent_12         (s1_exponent_REG_236),
-    .io_exponent_13         (s1_exponent_REG_237),
-    .io_exponent_14         (s1_exponent_REG_238),
-    .io_exponent_15         (s1_exponent_REG_239),
-    .io_exponent_16         (s1_exponent_REG_240),
-    .io_exponent_17         (s1_exponent_REG_241),
-    .io_exponent_18         (s1_exponent_REG_242),
-    .io_exponent_19         (s1_exponent_REG_243),
-    .io_exponent_20         (s1_exponent_REG_244),
-    .io_exponent_21         (s1_exponent_REG_245),
-    .io_exponent_22         (s1_exponent_REG_246),
-    .io_exponent_23         (s1_exponent_REG_247),
-    .io_exponent_24         (s1_exponent_REG_248),
-    .io_exponent_25         (s1_exponent_REG_249),
-    .io_exponent_26         (s1_exponent_REG_250),
-    .io_exponent_27         (s1_exponent_REG_251),
-    .io_exponent_28         (s1_exponent_REG_252),
-    .io_exponent_29         (s1_exponent_REG_253),
-    .io_exponent_30         (s1_exponent_REG_254),
-    .io_exponent_31         (s1_exponent_REG_255),
-    .io_mantissa_0          (s1_mantissa_REG_224),
-    .io_mantissa_1          (s1_mantissa_REG_225),
-    .io_mantissa_2          (s1_mantissa_REG_226),
-    .io_mantissa_3          (s1_mantissa_REG_227),
-    .io_mantissa_4          (s1_mantissa_REG_228),
-    .io_mantissa_5          (s1_mantissa_REG_229),
-    .io_mantissa_6          (s1_mantissa_REG_230),
-    .io_mantissa_7          (s1_mantissa_REG_231),
-    .io_mantissa_8          (s1_mantissa_REG_232),
-    .io_mantissa_9          (s1_mantissa_REG_233),
-    .io_mantissa_10         (s1_mantissa_REG_234),
-    .io_mantissa_11         (s1_mantissa_REG_235),
-    .io_mantissa_12         (s1_mantissa_REG_236),
-    .io_mantissa_13         (s1_mantissa_REG_237),
-    .io_mantissa_14         (s1_mantissa_REG_238),
-    .io_mantissa_15         (s1_mantissa_REG_239),
-    .io_mantissa_16         (s1_mantissa_REG_240),
-    .io_mantissa_17         (s1_mantissa_REG_241),
-    .io_mantissa_18         (s1_mantissa_REG_242),
-    .io_mantissa_19         (s1_mantissa_REG_243),
-    .io_mantissa_20         (s1_mantissa_REG_244),
-    .io_mantissa_21         (s1_mantissa_REG_245),
-    .io_mantissa_22         (s1_mantissa_REG_246),
-    .io_mantissa_23         (s1_mantissa_REG_247),
-    .io_mantissa_24         (s1_mantissa_REG_248),
-    .io_mantissa_25         (s1_mantissa_REG_249),
-    .io_mantissa_26         (s1_mantissa_REG_250),
-    .io_mantissa_27         (s1_mantissa_REG_251),
-    .io_mantissa_28         (s1_mantissa_REG_252),
-    .io_mantissa_29         (s1_mantissa_REG_253),
-    .io_mantissa_30         (s1_mantissa_REG_254),
-    .io_mantissa_31         (s1_mantissa_REG_255),
-    .io_out_sign_0          (_expansion_7_io_out_sign_0),
-    .io_out_sign_1          (_expansion_7_io_out_sign_1),
-    .io_out_sign_2          (_expansion_7_io_out_sign_2),
-    .io_out_sign_3          (_expansion_7_io_out_sign_3),
-    .io_out_sign_4          (_expansion_7_io_out_sign_4),
-    .io_out_sign_5          (_expansion_7_io_out_sign_5),
-    .io_out_sign_6          (_expansion_7_io_out_sign_6),
-    .io_out_sign_7          (_expansion_7_io_out_sign_7),
-    .io_out_sign_8          (_expansion_7_io_out_sign_8),
-    .io_out_sign_9          (_expansion_7_io_out_sign_9),
-    .io_out_sign_10         (_expansion_7_io_out_sign_10),
-    .io_out_sign_11         (_expansion_7_io_out_sign_11),
-    .io_out_sign_12         (_expansion_7_io_out_sign_12),
-    .io_out_sign_13         (_expansion_7_io_out_sign_13),
-    .io_out_sign_14         (_expansion_7_io_out_sign_14),
-    .io_out_sign_15         (_expansion_7_io_out_sign_15),
-    .io_out_sign_16         (_expansion_7_io_out_sign_16),
-    .io_out_sign_17         (_expansion_7_io_out_sign_17),
-    .io_out_sign_18         (_expansion_7_io_out_sign_18),
-    .io_out_sign_19         (_expansion_7_io_out_sign_19),
-    .io_out_sign_20         (_expansion_7_io_out_sign_20),
-    .io_out_sign_21         (_expansion_7_io_out_sign_21),
-    .io_out_sign_22         (_expansion_7_io_out_sign_22),
-    .io_out_sign_23         (_expansion_7_io_out_sign_23),
-    .io_out_sign_24         (_expansion_7_io_out_sign_24),
-    .io_out_sign_25         (_expansion_7_io_out_sign_25),
-    .io_out_sign_26         (_expansion_7_io_out_sign_26),
-    .io_out_sign_27         (_expansion_7_io_out_sign_27),
-    .io_out_sign_28         (_expansion_7_io_out_sign_28),
-    .io_out_sign_29         (_expansion_7_io_out_sign_29),
-    .io_out_sign_30         (_expansion_7_io_out_sign_30),
-    .io_out_sign_31         (_expansion_7_io_out_sign_31),
-    .io_out_exponent_gmax_0 (_expansion_7_io_out_exponent_gmax_0),
-    .io_out_mantissa_0      (_expansion_7_io_out_mantissa_0),
-    .io_out_mantissa_1      (_expansion_7_io_out_mantissa_1),
-    .io_out_mantissa_2      (_expansion_7_io_out_mantissa_2),
-    .io_out_mantissa_3      (_expansion_7_io_out_mantissa_3),
-    .io_out_mantissa_4      (_expansion_7_io_out_mantissa_4),
-    .io_out_mantissa_5      (_expansion_7_io_out_mantissa_5),
-    .io_out_mantissa_6      (_expansion_7_io_out_mantissa_6),
-    .io_out_mantissa_7      (_expansion_7_io_out_mantissa_7),
-    .io_out_mantissa_8      (_expansion_7_io_out_mantissa_8),
-    .io_out_mantissa_9      (_expansion_7_io_out_mantissa_9),
-    .io_out_mantissa_10     (_expansion_7_io_out_mantissa_10),
-    .io_out_mantissa_11     (_expansion_7_io_out_mantissa_11),
-    .io_out_mantissa_12     (_expansion_7_io_out_mantissa_12),
-    .io_out_mantissa_13     (_expansion_7_io_out_mantissa_13),
-    .io_out_mantissa_14     (_expansion_7_io_out_mantissa_14),
-    .io_out_mantissa_15     (_expansion_7_io_out_mantissa_15),
-    .io_out_mantissa_16     (_expansion_7_io_out_mantissa_16),
-    .io_out_mantissa_17     (_expansion_7_io_out_mantissa_17),
-    .io_out_mantissa_18     (_expansion_7_io_out_mantissa_18),
-    .io_out_mantissa_19     (_expansion_7_io_out_mantissa_19),
-    .io_out_mantissa_20     (_expansion_7_io_out_mantissa_20),
-    .io_out_mantissa_21     (_expansion_7_io_out_mantissa_21),
-    .io_out_mantissa_22     (_expansion_7_io_out_mantissa_22),
-    .io_out_mantissa_23     (_expansion_7_io_out_mantissa_23),
-    .io_out_mantissa_24     (_expansion_7_io_out_mantissa_24),
-    .io_out_mantissa_25     (_expansion_7_io_out_mantissa_25),
-    .io_out_mantissa_26     (_expansion_7_io_out_mantissa_26),
-    .io_out_mantissa_27     (_expansion_7_io_out_mantissa_27),
-    .io_out_mantissa_28     (_expansion_7_io_out_mantissa_28),
-    .io_out_mantissa_29     (_expansion_7_io_out_mantissa_29),
-    .io_out_mantissa_30     (_expansion_7_io_out_mantissa_30),
-    .io_out_mantissa_31     (_expansion_7_io_out_mantissa_31)
   );
   FF16_FP32 outff (
     .clock              (clock),
