@@ -1122,20 +1122,21 @@ module p_TOP_Til_Dep_total_piped_CT(
   wire        _convert_groupwise_6_io_out_3_sign;
   wire [7:0]  _convert_groupwise_6_io_out_3_exponent;
   wire [22:0] _convert_groupwise_6_io_out_3_mantissa;
-  wire [45:0] _adder_groupwise_8_io_out_mantissa_0;
-  wire        _adder_groupwise_8_io_out_sign_0;
-  wire [44:0] _adder_groupwise_7_io_out_mantissa_0;
-  wire [44:0] _adder_groupwise_7_io_out_mantissa_1;
-  wire        _adder_groupwise_7_io_out_sign_0;
-  wire        _adder_groupwise_7_io_out_sign_1;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_0;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_1;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_2;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_3;
-  wire        _adder_groupwise_6_io_out_sign_0;
-  wire        _adder_groupwise_6_io_out_sign_1;
-  wire        _adder_groupwise_6_io_out_sign_2;
-  wire        _adder_groupwise_6_io_out_sign_3;
+  wire [46:0] _adder_groupwise_8_io_out_0;
+  wire [45:0] _adder_groupwise_7_io_out_0;
+  wire [45:0] _adder_groupwise_7_io_out_1;
+  wire [44:0] _adder_groupwise_6_io_out_0;
+  wire [44:0] _adder_groupwise_6_io_out_1;
+  wire [44:0] _adder_groupwise_6_io_out_2;
+  wire [44:0] _adder_groupwise_6_io_out_3;
+  wire [43:0] _convert_twos_io_out_0;
+  wire [43:0] _convert_twos_io_out_1;
+  wire [43:0] _convert_twos_io_out_2;
+  wire [43:0] _convert_twos_io_out_3;
+  wire [43:0] _convert_twos_io_out_4;
+  wire [43:0] _convert_twos_io_out_5;
+  wire [43:0] _convert_twos_io_out_6;
+  wire [43:0] _convert_twos_io_out_7;
   wire        _nan_process_io_result_nan_0;
   wire        _nan_process_io_result_nan_1;
   wire        _nan_process_io_result_nan_2;
@@ -4295,14 +4296,10 @@ module p_TOP_Til_Dep_total_piped_CT(
   reg         s8_nan_proc_1;
   reg         s8_nan_proc_2;
   reg         s8_nan_proc_3;
-  reg         s9_ad6_sign_0;
-  reg         s9_ad6_sign_1;
-  reg         s9_ad6_sign_2;
-  reg         s9_ad6_sign_3;
-  reg  [43:0] s9_ad6_mantissa_0;
-  reg  [43:0] s9_ad6_mantissa_1;
-  reg  [43:0] s9_ad6_mantissa_2;
-  reg  [43:0] s9_ad6_mantissa_3;
+  reg  [44:0] s9_ad6_out_0;
+  reg  [44:0] s9_ad6_out_1;
+  reg  [44:0] s9_ad6_out_2;
+  reg  [44:0] s9_ad6_out_3;
   reg  [9:0]  toS9_gw_emax_REG;
   reg  [9:0]  toS9_gw_emax_REG_1;
   reg  [9:0]  toS9_gw_emax_REG_2;
@@ -4311,10 +4308,8 @@ module p_TOP_Til_Dep_total_piped_CT(
   reg         toS9_nan_REG_1;
   reg         toS9_nan_REG_2;
   reg         toS9_nan_REG_3;
-  reg         s10_ad7_sign_0;
-  reg         s10_ad7_sign_1;
-  reg  [44:0] s10_ad7_mantissa_0;
-  reg  [44:0] s10_ad7_mantissa_1;
+  reg  [45:0] s10_ad7_out_0;
+  reg  [45:0] s10_ad7_out_1;
   reg  [9:0]  toS10_gw_emax_REG;
   reg  [9:0]  toS10_gw_emax_REG_1;
   reg  [9:0]  toS10_gw_emax_REG_4;
@@ -4323,8 +4318,7 @@ module p_TOP_Til_Dep_total_piped_CT(
   reg         toS10_nan_REG_1;
   reg         toS10_nan_REG_4;
   reg         toS10_nan_REG_5;
-  reg         s11_ad8_sign_0;
-  reg  [45:0] s11_ad8_mantissa_0;
+  reg  [46:0] s11_ad8_out_0;
   reg  [9:0]  toS11_gw_emax_REG;
   reg  [9:0]  toS11_gw_emax_REG_4;
   reg  [9:0]  toS11_gw_emax_REG_8;
@@ -7970,14 +7964,10 @@ module p_TOP_Til_Dep_total_piped_CT(
     s8_nan_proc_1 <= _nan_process_io_result_nan_1;
     s8_nan_proc_2 <= _nan_process_io_result_nan_2;
     s8_nan_proc_3 <= _nan_process_io_result_nan_3;
-    s9_ad6_sign_0 <= _adder_groupwise_6_io_out_sign_0;
-    s9_ad6_sign_1 <= _adder_groupwise_6_io_out_sign_1;
-    s9_ad6_sign_2 <= _adder_groupwise_6_io_out_sign_2;
-    s9_ad6_sign_3 <= _adder_groupwise_6_io_out_sign_3;
-    s9_ad6_mantissa_0 <= _adder_groupwise_6_io_out_mantissa_0;
-    s9_ad6_mantissa_1 <= _adder_groupwise_6_io_out_mantissa_1;
-    s9_ad6_mantissa_2 <= _adder_groupwise_6_io_out_mantissa_2;
-    s9_ad6_mantissa_3 <= _adder_groupwise_6_io_out_mantissa_3;
+    s9_ad6_out_0 <= _adder_groupwise_6_io_out_0;
+    s9_ad6_out_1 <= _adder_groupwise_6_io_out_1;
+    s9_ad6_out_2 <= _adder_groupwise_6_io_out_2;
+    s9_ad6_out_3 <= _adder_groupwise_6_io_out_3;
     toS9_gw_emax_REG <= s8_gw_emax_0;
     toS9_gw_emax_REG_1 <= s8_gw_emax_1;
     toS9_gw_emax_REG_2 <= s8_gw_emax_2;
@@ -7986,10 +7976,8 @@ module p_TOP_Til_Dep_total_piped_CT(
     toS9_nan_REG_1 <= s8_nan_proc_1;
     toS9_nan_REG_2 <= s8_nan_proc_2;
     toS9_nan_REG_3 <= s8_nan_proc_3;
-    s10_ad7_sign_0 <= _adder_groupwise_7_io_out_sign_0;
-    s10_ad7_sign_1 <= _adder_groupwise_7_io_out_sign_1;
-    s10_ad7_mantissa_0 <= _adder_groupwise_7_io_out_mantissa_0;
-    s10_ad7_mantissa_1 <= _adder_groupwise_7_io_out_mantissa_1;
+    s10_ad7_out_0 <= _adder_groupwise_7_io_out_0;
+    s10_ad7_out_1 <= _adder_groupwise_7_io_out_1;
     toS10_gw_emax_REG <= s8_gw_emax_0;
     toS10_gw_emax_REG_1 <= s8_gw_emax_1;
     toS10_gw_emax_REG_4 <= toS10_gw_emax_REG;
@@ -7998,8 +7986,7 @@ module p_TOP_Til_Dep_total_piped_CT(
     toS10_nan_REG_1 <= s8_nan_proc_1;
     toS10_nan_REG_4 <= toS10_nan_REG;
     toS10_nan_REG_5 <= toS10_nan_REG_1;
-    s11_ad8_sign_0 <= _adder_groupwise_8_io_out_sign_0;
-    s11_ad8_mantissa_0 <= _adder_groupwise_8_io_out_mantissa_0;
+    s11_ad8_out_0 <= _adder_groupwise_8_io_out_0;
     toS11_gw_emax_REG <= s8_gw_emax_0;
     toS11_gw_emax_REG_4 <= toS11_gw_emax_REG;
     toS11_gw_emax_REG_8 <= toS11_gw_emax_REG_4;
@@ -12754,64 +12741,65 @@ module p_TOP_Til_Dep_total_piped_CT(
     .io_result_nan_2 (_nan_process_io_result_nan_2),
     .io_result_nan_3 (_nan_process_io_result_nan_3)
   );
+  p_Convert_Twos convert_twos (
+    .io_in_0   (s8_gw_mantissa_0),
+    .io_in_1   (s8_gw_mantissa_1),
+    .io_in_2   (s8_gw_mantissa_2),
+    .io_in_3   (s8_gw_mantissa_3),
+    .io_in_4   (s8_gw_mantissa_4),
+    .io_in_5   (s8_gw_mantissa_5),
+    .io_in_6   (s8_gw_mantissa_6),
+    .io_in_7   (s8_gw_mantissa_7),
+    .io_sign_0 (s8_gw_sign_0),
+    .io_sign_1 (s8_gw_sign_1),
+    .io_sign_2 (s8_gw_sign_2),
+    .io_sign_3 (s8_gw_sign_3),
+    .io_sign_4 (s8_gw_sign_4),
+    .io_sign_5 (s8_gw_sign_5),
+    .io_sign_6 (s8_gw_sign_6),
+    .io_sign_7 (s8_gw_sign_7),
+    .io_out_0  (_convert_twos_io_out_0),
+    .io_out_1  (_convert_twos_io_out_1),
+    .io_out_2  (_convert_twos_io_out_2),
+    .io_out_3  (_convert_twos_io_out_3),
+    .io_out_4  (_convert_twos_io_out_4),
+    .io_out_5  (_convert_twos_io_out_5),
+    .io_out_6  (_convert_twos_io_out_6),
+    .io_out_7  (_convert_twos_io_out_7)
+  );
   p_Adder_Groupwise adder_groupwise_6 (
-    .io_mantissa_0     (s8_gw_mantissa_0),
-    .io_mantissa_1     (s8_gw_mantissa_1),
-    .io_mantissa_2     (s8_gw_mantissa_2),
-    .io_mantissa_3     (s8_gw_mantissa_3),
-    .io_mantissa_4     (s8_gw_mantissa_4),
-    .io_mantissa_5     (s8_gw_mantissa_5),
-    .io_mantissa_6     (s8_gw_mantissa_6),
-    .io_mantissa_7     (s8_gw_mantissa_7),
-    .io_sign_0         (s8_gw_sign_0),
-    .io_sign_1         (s8_gw_sign_1),
-    .io_sign_2         (s8_gw_sign_2),
-    .io_sign_3         (s8_gw_sign_3),
-    .io_sign_4         (s8_gw_sign_4),
-    .io_sign_5         (s8_gw_sign_5),
-    .io_sign_6         (s8_gw_sign_6),
-    .io_sign_7         (s8_gw_sign_7),
-    .io_out_mantissa_0 (_adder_groupwise_6_io_out_mantissa_0),
-    .io_out_mantissa_1 (_adder_groupwise_6_io_out_mantissa_1),
-    .io_out_mantissa_2 (_adder_groupwise_6_io_out_mantissa_2),
-    .io_out_mantissa_3 (_adder_groupwise_6_io_out_mantissa_3),
-    .io_out_sign_0     (_adder_groupwise_6_io_out_sign_0),
-    .io_out_sign_1     (_adder_groupwise_6_io_out_sign_1),
-    .io_out_sign_2     (_adder_groupwise_6_io_out_sign_2),
-    .io_out_sign_3     (_adder_groupwise_6_io_out_sign_3)
+    .io_in_0  (_convert_twos_io_out_0),
+    .io_in_1  (_convert_twos_io_out_1),
+    .io_in_2  (_convert_twos_io_out_2),
+    .io_in_3  (_convert_twos_io_out_3),
+    .io_in_4  (_convert_twos_io_out_4),
+    .io_in_5  (_convert_twos_io_out_5),
+    .io_in_6  (_convert_twos_io_out_6),
+    .io_in_7  (_convert_twos_io_out_7),
+    .io_out_0 (_adder_groupwise_6_io_out_0),
+    .io_out_1 (_adder_groupwise_6_io_out_1),
+    .io_out_2 (_adder_groupwise_6_io_out_2),
+    .io_out_3 (_adder_groupwise_6_io_out_3)
   );
   p_Adder_Groupwise_1 adder_groupwise_7 (
-    .io_mantissa_0     (s9_ad6_mantissa_0),
-    .io_mantissa_1     (s9_ad6_mantissa_1),
-    .io_mantissa_2     (s9_ad6_mantissa_2),
-    .io_mantissa_3     (s9_ad6_mantissa_3),
-    .io_sign_0         (s9_ad6_sign_0),
-    .io_sign_1         (s9_ad6_sign_1),
-    .io_sign_2         (s9_ad6_sign_2),
-    .io_sign_3         (s9_ad6_sign_3),
-    .io_out_mantissa_0 (_adder_groupwise_7_io_out_mantissa_0),
-    .io_out_mantissa_1 (_adder_groupwise_7_io_out_mantissa_1),
-    .io_out_sign_0     (_adder_groupwise_7_io_out_sign_0),
-    .io_out_sign_1     (_adder_groupwise_7_io_out_sign_1)
+    .io_in_0  (s9_ad6_out_0),
+    .io_in_1  (s9_ad6_out_1),
+    .io_in_2  (s9_ad6_out_2),
+    .io_in_3  (s9_ad6_out_3),
+    .io_out_0 (_adder_groupwise_7_io_out_0),
+    .io_out_1 (_adder_groupwise_7_io_out_1)
   );
   p_Adder_Groupwise_2 adder_groupwise_8 (
-    .io_mantissa_0     (s10_ad7_mantissa_0),
-    .io_mantissa_1     (s10_ad7_mantissa_1),
-    .io_sign_0         (s10_ad7_sign_0),
-    .io_sign_1         (s10_ad7_sign_1),
-    .io_out_mantissa_0 (_adder_groupwise_8_io_out_mantissa_0),
-    .io_out_sign_0     (_adder_groupwise_8_io_out_sign_0)
+    .io_in_0  (s10_ad7_out_0),
+    .io_in_1  (s10_ad7_out_1),
+    .io_out_0 (_adder_groupwise_8_io_out_0)
   );
   p_Convert_Groupwise convert_groupwise_6 (
     .io_depth          (depth_s9),
-    .io_mantissa_0     (s9_ad6_mantissa_0),
-    .io_mantissa_1     (s9_ad6_mantissa_1),
-    .io_mantissa_2     (s9_ad6_mantissa_2),
-    .io_mantissa_3     (s9_ad6_mantissa_3),
-    .io_sign_0         (s9_ad6_sign_0),
-    .io_sign_1         (s9_ad6_sign_1),
-    .io_sign_2         (s9_ad6_sign_2),
-    .io_sign_3         (s9_ad6_sign_3),
+    .io_in_0           (s9_ad6_out_0),
+    .io_in_1           (s9_ad6_out_1),
+    .io_in_2           (s9_ad6_out_2),
+    .io_in_3           (s9_ad6_out_3),
     .io_nan_0          (toS9_nan_REG),
     .io_nan_1          (toS9_nan_REG_1),
     .io_nan_2          (toS9_nan_REG_2),
@@ -12835,10 +12823,8 @@ module p_TOP_Til_Dep_total_piped_CT(
   );
   p_Convert_Groupwise_1 convert_groupwise_7 (
     .io_depth          (depth_s10),
-    .io_mantissa_0     (s10_ad7_mantissa_0),
-    .io_mantissa_1     (s10_ad7_mantissa_1),
-    .io_sign_0         (s10_ad7_sign_0),
-    .io_sign_1         (s10_ad7_sign_1),
+    .io_in_0           (s10_ad7_out_0),
+    .io_in_1           (s10_ad7_out_1),
     .io_nan_0          (toS10_nan_REG_4),
     .io_nan_1          (toS10_nan_REG_5),
     .io_exponent_0     (toS10_gw_emax_REG_4),
@@ -12852,8 +12838,7 @@ module p_TOP_Til_Dep_total_piped_CT(
   );
   p_Convert_Groupwise_2 convert_groupwise_8 (
     .io_depth          (depth_s11),
-    .io_mantissa_0     (s11_ad8_mantissa_0),
-    .io_sign_0         (s11_ad8_sign_0),
+    .io_in_0           (s11_ad8_out_0),
     .io_nan_0          (toS11_nan_REG_8),
     .io_exponent_0     (toS11_gw_emax_REG_8),
     .io_out_0_sign     (_convert_groupwise_8_io_out_0_sign),

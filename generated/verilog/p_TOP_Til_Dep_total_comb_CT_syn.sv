@@ -1122,20 +1122,21 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
   wire        _convert_groupwise_6_io_out_3_sign;
   wire [7:0]  _convert_groupwise_6_io_out_3_exponent;
   wire [22:0] _convert_groupwise_6_io_out_3_mantissa;
-  wire [45:0] _adder_groupwise_8_io_out_mantissa_0;
-  wire        _adder_groupwise_8_io_out_sign_0;
-  wire [44:0] _adder_groupwise_7_io_out_mantissa_0;
-  wire [44:0] _adder_groupwise_7_io_out_mantissa_1;
-  wire        _adder_groupwise_7_io_out_sign_0;
-  wire        _adder_groupwise_7_io_out_sign_1;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_0;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_1;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_2;
-  wire [43:0] _adder_groupwise_6_io_out_mantissa_3;
-  wire        _adder_groupwise_6_io_out_sign_0;
-  wire        _adder_groupwise_6_io_out_sign_1;
-  wire        _adder_groupwise_6_io_out_sign_2;
-  wire        _adder_groupwise_6_io_out_sign_3;
+  wire [46:0] _adder_groupwise_8_io_out_0;
+  wire [45:0] _adder_groupwise_7_io_out_0;
+  wire [45:0] _adder_groupwise_7_io_out_1;
+  wire [44:0] _adder_groupwise_6_io_out_0;
+  wire [44:0] _adder_groupwise_6_io_out_1;
+  wire [44:0] _adder_groupwise_6_io_out_2;
+  wire [44:0] _adder_groupwise_6_io_out_3;
+  wire [43:0] _convert_twos_io_out_0;
+  wire [43:0] _convert_twos_io_out_1;
+  wire [43:0] _convert_twos_io_out_2;
+  wire [43:0] _convert_twos_io_out_3;
+  wire [43:0] _convert_twos_io_out_4;
+  wire [43:0] _convert_twos_io_out_5;
+  wire [43:0] _convert_twos_io_out_6;
+  wire [43:0] _convert_twos_io_out_7;
   wire        _nan_process_io_result_nan_0;
   wire        _nan_process_io_result_nan_1;
   wire        _nan_process_io_result_nan_2;
@@ -1680,6 +1681,14 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
   wire [9:0]  _scaleEmax_io_out_5;
   wire [9:0]  _scaleEmax_io_out_6;
   wire [9:0]  _scaleEmax_io_out_7;
+  wire        _scaleEmax_io_nan_out_0;
+  wire        _scaleEmax_io_nan_out_1;
+  wire        _scaleEmax_io_nan_out_2;
+  wire        _scaleEmax_io_nan_out_3;
+  wire        _scaleEmax_io_nan_out_4;
+  wire        _scaleEmax_io_nan_out_5;
+  wire        _scaleEmax_io_nan_out_6;
+  wire        _scaleEmax_io_nan_out_7;
   wire [8:0]  _scaleSum_io_out_0;
   wire [8:0]  _scaleSum_io_out_1;
   wire [8:0]  _scaleSum_io_out_2;
@@ -4850,7 +4859,6 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_nan_7     (_scaleSum_io_nan_7)
   );
   p_Adder_ScaleEmax scaleEmax (
-    .io_depth       (in_depth),
     .io_scale_sum_0 (_scaleSum_io_out_0),
     .io_scale_sum_1 (_scaleSum_io_out_1),
     .io_scale_sum_2 (_scaleSum_io_out_2),
@@ -4859,14 +4867,14 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_scale_sum_5 (_scaleSum_io_out_5),
     .io_scale_sum_6 (_scaleSum_io_out_6),
     .io_scale_sum_7 (_scaleSum_io_out_7),
-    .io_nan_0       (_scaleSum_io_nan_0),
-    .io_nan_1       (_scaleSum_io_nan_1),
-    .io_nan_2       (_scaleSum_io_nan_2),
-    .io_nan_3       (_scaleSum_io_nan_3),
-    .io_nan_4       (_scaleSum_io_nan_4),
-    .io_nan_5       (_scaleSum_io_nan_5),
-    .io_nan_6       (_scaleSum_io_nan_6),
-    .io_nan_7       (_scaleSum_io_nan_7),
+    .io_nan_in_0    (_scaleSum_io_nan_0),
+    .io_nan_in_1    (_scaleSum_io_nan_1),
+    .io_nan_in_2    (_scaleSum_io_nan_2),
+    .io_nan_in_3    (_scaleSum_io_nan_3),
+    .io_nan_in_4    (_scaleSum_io_nan_4),
+    .io_nan_in_5    (_scaleSum_io_nan_5),
+    .io_nan_in_6    (_scaleSum_io_nan_6),
+    .io_nan_in_7    (_scaleSum_io_nan_7),
     .io_emax_0      (_expansion_io_out_exponent_gmax_0),
     .io_emax_1      (_expansion_1_io_out_exponent_gmax_0),
     .io_emax_2      (_expansion_2_io_out_exponent_gmax_0),
@@ -4882,7 +4890,15 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_out_4       (_scaleEmax_io_out_4),
     .io_out_5       (_scaleEmax_io_out_5),
     .io_out_6       (_scaleEmax_io_out_6),
-    .io_out_7       (_scaleEmax_io_out_7)
+    .io_out_7       (_scaleEmax_io_out_7),
+    .io_nan_out_0   (_scaleEmax_io_nan_out_0),
+    .io_nan_out_1   (_scaleEmax_io_nan_out_1),
+    .io_nan_out_2   (_scaleEmax_io_nan_out_2),
+    .io_nan_out_3   (_scaleEmax_io_nan_out_3),
+    .io_nan_out_4   (_scaleEmax_io_nan_out_4),
+    .io_nan_out_5   (_scaleEmax_io_nan_out_5),
+    .io_nan_out_6   (_scaleEmax_io_nan_out_6),
+    .io_nan_out_7   (_scaleEmax_io_nan_out_7)
   );
   p_Adder_Dep_1 adder1_0 (
     .io_sign_0      (_expansion_io_out_sign_0),
@@ -6082,7 +6098,7 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_in_13           (_adder1_0_io_out_13),
     .io_in_14           (_adder1_0_io_out_14),
     .io_in_15           (_adder1_0_io_out_15),
-    .io_nan_0           (_scaleSum_io_nan_0),
+    .io_nan_0           (_scaleEmax_io_nan_out_0),
     .io_exponent_0      (_scaleEmax_io_out_0),
     .io_out_0_sign      (_convert1_io_out_0_sign),
     .io_out_0_exponent  (_convert1_io_out_0_exponent),
@@ -6151,8 +6167,8 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_in_13           (_adder2_1_io_out_5),
     .io_in_14           (_adder2_1_io_out_6),
     .io_in_15           (_adder2_1_io_out_7),
-    .io_nan_0           (_scaleSum_io_nan_0),
-    .io_nan_1           (_scaleSum_io_nan_1),
+    .io_nan_0           (_scaleEmax_io_nan_out_0),
+    .io_nan_1           (_scaleEmax_io_nan_out_1),
     .io_exponent_0      (_scaleEmax_io_out_0),
     .io_exponent_1      (_scaleEmax_io_out_1),
     .io_out_0_sign      (_convert2_io_out_0_sign),
@@ -6222,10 +6238,10 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_in_13           (_adder3_3_io_out_1),
     .io_in_14           (_adder3_3_io_out_2),
     .io_in_15           (_adder3_3_io_out_3),
-    .io_nan_0           (_scaleSum_io_nan_0),
-    .io_nan_1           (_scaleSum_io_nan_1),
-    .io_nan_2           (_scaleSum_io_nan_2),
-    .io_nan_3           (_scaleSum_io_nan_3),
+    .io_nan_0           (_scaleEmax_io_nan_out_0),
+    .io_nan_1           (_scaleEmax_io_nan_out_1),
+    .io_nan_2           (_scaleEmax_io_nan_out_2),
+    .io_nan_3           (_scaleEmax_io_nan_out_3),
     .io_exponent_0      (_scaleEmax_io_out_0),
     .io_exponent_1      (_scaleEmax_io_out_1),
     .io_exponent_2      (_scaleEmax_io_out_2),
@@ -6297,14 +6313,14 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_in_13           (_adder4_6_io_out_1),
     .io_in_14           (_adder4_7_io_out_0),
     .io_in_15           (_adder4_7_io_out_1),
-    .io_nan_0           (_scaleSum_io_nan_0),
-    .io_nan_1           (_scaleSum_io_nan_1),
-    .io_nan_2           (_scaleSum_io_nan_2),
-    .io_nan_3           (_scaleSum_io_nan_3),
-    .io_nan_4           (_scaleSum_io_nan_4),
-    .io_nan_5           (_scaleSum_io_nan_5),
-    .io_nan_6           (_scaleSum_io_nan_6),
-    .io_nan_7           (_scaleSum_io_nan_7),
+    .io_nan_0           (_scaleEmax_io_nan_out_0),
+    .io_nan_1           (_scaleEmax_io_nan_out_1),
+    .io_nan_2           (_scaleEmax_io_nan_out_2),
+    .io_nan_3           (_scaleEmax_io_nan_out_3),
+    .io_nan_4           (_scaleEmax_io_nan_out_4),
+    .io_nan_5           (_scaleEmax_io_nan_out_5),
+    .io_nan_6           (_scaleEmax_io_nan_out_6),
+    .io_nan_7           (_scaleEmax_io_nan_out_7),
     .io_exponent_0      (_scaleEmax_io_out_0),
     .io_exponent_1      (_scaleEmax_io_out_1),
     .io_exponent_2      (_scaleEmax_io_out_2),
@@ -6372,14 +6388,14 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
     .io_in_5           (_adder5_5_io_out),
     .io_in_6           (_adder5_6_io_out),
     .io_in_7           (_adder5_7_io_out),
-    .io_nan_0          (_scaleSum_io_nan_0),
-    .io_nan_1          (_scaleSum_io_nan_1),
-    .io_nan_2          (_scaleSum_io_nan_2),
-    .io_nan_3          (_scaleSum_io_nan_3),
-    .io_nan_4          (_scaleSum_io_nan_4),
-    .io_nan_5          (_scaleSum_io_nan_5),
-    .io_nan_6          (_scaleSum_io_nan_6),
-    .io_nan_7          (_scaleSum_io_nan_7),
+    .io_nan_0          (_scaleEmax_io_nan_out_0),
+    .io_nan_1          (_scaleEmax_io_nan_out_1),
+    .io_nan_2          (_scaleEmax_io_nan_out_2),
+    .io_nan_3          (_scaleEmax_io_nan_out_3),
+    .io_nan_4          (_scaleEmax_io_nan_out_4),
+    .io_nan_5          (_scaleEmax_io_nan_out_5),
+    .io_nan_6          (_scaleEmax_io_nan_out_6),
+    .io_nan_7          (_scaleEmax_io_nan_out_7),
     .io_exponent_0     (_scaleEmax_io_out_0),
     .io_exponent_1     (_scaleEmax_io_out_1),
     .io_exponent_2     (_scaleEmax_io_out_2),
@@ -6454,80 +6470,78 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
   );
   p_NaN_Process nan_process (
     .io_depth        (in_depth),
-    .io_group_nan_0  (_scaleSum_io_nan_0),
-    .io_group_nan_1  (_scaleSum_io_nan_1),
-    .io_group_nan_2  (_scaleSum_io_nan_2),
-    .io_group_nan_3  (_scaleSum_io_nan_3),
-    .io_group_nan_4  (_scaleSum_io_nan_4),
-    .io_group_nan_5  (_scaleSum_io_nan_5),
-    .io_group_nan_6  (_scaleSum_io_nan_6),
-    .io_group_nan_7  (_scaleSum_io_nan_7),
+    .io_group_nan_0  (_scaleEmax_io_nan_out_0),
+    .io_group_nan_1  (_scaleEmax_io_nan_out_1),
+    .io_group_nan_2  (_scaleEmax_io_nan_out_2),
+    .io_group_nan_3  (_scaleEmax_io_nan_out_3),
+    .io_group_nan_4  (_scaleEmax_io_nan_out_4),
+    .io_group_nan_5  (_scaleEmax_io_nan_out_5),
+    .io_group_nan_6  (_scaleEmax_io_nan_out_6),
+    .io_group_nan_7  (_scaleEmax_io_nan_out_7),
     .io_result_nan_0 (_nan_process_io_result_nan_0),
     .io_result_nan_1 (_nan_process_io_result_nan_1),
     .io_result_nan_2 (_nan_process_io_result_nan_2),
     .io_result_nan_3 (_nan_process_io_result_nan_3)
   );
+  p_Convert_Twos convert_twos (
+    .io_in_0   (_expansion_groupwise_io_out_mantissa_0),
+    .io_in_1   (_expansion_groupwise_io_out_mantissa_1),
+    .io_in_2   (_expansion_groupwise_io_out_mantissa_2),
+    .io_in_3   (_expansion_groupwise_io_out_mantissa_3),
+    .io_in_4   (_expansion_groupwise_io_out_mantissa_4),
+    .io_in_5   (_expansion_groupwise_io_out_mantissa_5),
+    .io_in_6   (_expansion_groupwise_io_out_mantissa_6),
+    .io_in_7   (_expansion_groupwise_io_out_mantissa_7),
+    .io_sign_0 (_expansion_groupwise_io_out_sign_0),
+    .io_sign_1 (_expansion_groupwise_io_out_sign_1),
+    .io_sign_2 (_expansion_groupwise_io_out_sign_2),
+    .io_sign_3 (_expansion_groupwise_io_out_sign_3),
+    .io_sign_4 (_expansion_groupwise_io_out_sign_4),
+    .io_sign_5 (_expansion_groupwise_io_out_sign_5),
+    .io_sign_6 (_expansion_groupwise_io_out_sign_6),
+    .io_sign_7 (_expansion_groupwise_io_out_sign_7),
+    .io_out_0  (_convert_twos_io_out_0),
+    .io_out_1  (_convert_twos_io_out_1),
+    .io_out_2  (_convert_twos_io_out_2),
+    .io_out_3  (_convert_twos_io_out_3),
+    .io_out_4  (_convert_twos_io_out_4),
+    .io_out_5  (_convert_twos_io_out_5),
+    .io_out_6  (_convert_twos_io_out_6),
+    .io_out_7  (_convert_twos_io_out_7)
+  );
   p_Adder_Groupwise adder_groupwise_6 (
-    .io_mantissa_0     (_expansion_groupwise_io_out_mantissa_0),
-    .io_mantissa_1     (_expansion_groupwise_io_out_mantissa_1),
-    .io_mantissa_2     (_expansion_groupwise_io_out_mantissa_2),
-    .io_mantissa_3     (_expansion_groupwise_io_out_mantissa_3),
-    .io_mantissa_4     (_expansion_groupwise_io_out_mantissa_4),
-    .io_mantissa_5     (_expansion_groupwise_io_out_mantissa_5),
-    .io_mantissa_6     (_expansion_groupwise_io_out_mantissa_6),
-    .io_mantissa_7     (_expansion_groupwise_io_out_mantissa_7),
-    .io_sign_0         (_expansion_groupwise_io_out_sign_0),
-    .io_sign_1         (_expansion_groupwise_io_out_sign_1),
-    .io_sign_2         (_expansion_groupwise_io_out_sign_2),
-    .io_sign_3         (_expansion_groupwise_io_out_sign_3),
-    .io_sign_4         (_expansion_groupwise_io_out_sign_4),
-    .io_sign_5         (_expansion_groupwise_io_out_sign_5),
-    .io_sign_6         (_expansion_groupwise_io_out_sign_6),
-    .io_sign_7         (_expansion_groupwise_io_out_sign_7),
-    .io_depth          (in_depth),
-    .io_out_mantissa_0 (_adder_groupwise_6_io_out_mantissa_0),
-    .io_out_mantissa_1 (_adder_groupwise_6_io_out_mantissa_1),
-    .io_out_mantissa_2 (_adder_groupwise_6_io_out_mantissa_2),
-    .io_out_mantissa_3 (_adder_groupwise_6_io_out_mantissa_3),
-    .io_out_sign_0     (_adder_groupwise_6_io_out_sign_0),
-    .io_out_sign_1     (_adder_groupwise_6_io_out_sign_1),
-    .io_out_sign_2     (_adder_groupwise_6_io_out_sign_2),
-    .io_out_sign_3     (_adder_groupwise_6_io_out_sign_3)
+    .io_in_0  (_convert_twos_io_out_0),
+    .io_in_1  (_convert_twos_io_out_1),
+    .io_in_2  (_convert_twos_io_out_2),
+    .io_in_3  (_convert_twos_io_out_3),
+    .io_in_4  (_convert_twos_io_out_4),
+    .io_in_5  (_convert_twos_io_out_5),
+    .io_in_6  (_convert_twos_io_out_6),
+    .io_in_7  (_convert_twos_io_out_7),
+    .io_out_0 (_adder_groupwise_6_io_out_0),
+    .io_out_1 (_adder_groupwise_6_io_out_1),
+    .io_out_2 (_adder_groupwise_6_io_out_2),
+    .io_out_3 (_adder_groupwise_6_io_out_3)
   );
   p_Adder_Groupwise_1 adder_groupwise_7 (
-    .io_mantissa_0     (_adder_groupwise_6_io_out_mantissa_0),
-    .io_mantissa_1     (_adder_groupwise_6_io_out_mantissa_1),
-    .io_mantissa_2     (_adder_groupwise_6_io_out_mantissa_2),
-    .io_mantissa_3     (_adder_groupwise_6_io_out_mantissa_3),
-    .io_sign_0         (_adder_groupwise_6_io_out_sign_0),
-    .io_sign_1         (_adder_groupwise_6_io_out_sign_1),
-    .io_sign_2         (_adder_groupwise_6_io_out_sign_2),
-    .io_sign_3         (_adder_groupwise_6_io_out_sign_3),
-    .io_depth          (in_depth),
-    .io_out_mantissa_0 (_adder_groupwise_7_io_out_mantissa_0),
-    .io_out_mantissa_1 (_adder_groupwise_7_io_out_mantissa_1),
-    .io_out_sign_0     (_adder_groupwise_7_io_out_sign_0),
-    .io_out_sign_1     (_adder_groupwise_7_io_out_sign_1)
+    .io_in_0  (_adder_groupwise_6_io_out_0),
+    .io_in_1  (_adder_groupwise_6_io_out_1),
+    .io_in_2  (_adder_groupwise_6_io_out_2),
+    .io_in_3  (_adder_groupwise_6_io_out_3),
+    .io_out_0 (_adder_groupwise_7_io_out_0),
+    .io_out_1 (_adder_groupwise_7_io_out_1)
   );
   p_Adder_Groupwise_2 adder_groupwise_8 (
-    .io_mantissa_0     (_adder_groupwise_7_io_out_mantissa_0),
-    .io_mantissa_1     (_adder_groupwise_7_io_out_mantissa_1),
-    .io_sign_0         (_adder_groupwise_7_io_out_sign_0),
-    .io_sign_1         (_adder_groupwise_7_io_out_sign_1),
-    .io_depth          (in_depth),
-    .io_out_mantissa_0 (_adder_groupwise_8_io_out_mantissa_0),
-    .io_out_sign_0     (_adder_groupwise_8_io_out_sign_0)
+    .io_in_0  (_adder_groupwise_7_io_out_0),
+    .io_in_1  (_adder_groupwise_7_io_out_1),
+    .io_out_0 (_adder_groupwise_8_io_out_0)
   );
   p_Convert_Groupwise convert_groupwise_6 (
     .io_depth          (in_depth),
-    .io_mantissa_0     (_adder_groupwise_6_io_out_mantissa_0),
-    .io_mantissa_1     (_adder_groupwise_6_io_out_mantissa_1),
-    .io_mantissa_2     (_adder_groupwise_6_io_out_mantissa_2),
-    .io_mantissa_3     (_adder_groupwise_6_io_out_mantissa_3),
-    .io_sign_0         (_adder_groupwise_6_io_out_sign_0),
-    .io_sign_1         (_adder_groupwise_6_io_out_sign_1),
-    .io_sign_2         (_adder_groupwise_6_io_out_sign_2),
-    .io_sign_3         (_adder_groupwise_6_io_out_sign_3),
+    .io_in_0           (_adder_groupwise_6_io_out_0),
+    .io_in_1           (_adder_groupwise_6_io_out_1),
+    .io_in_2           (_adder_groupwise_6_io_out_2),
+    .io_in_3           (_adder_groupwise_6_io_out_3),
     .io_nan_0          (_nan_process_io_result_nan_0),
     .io_nan_1          (_nan_process_io_result_nan_1),
     .io_nan_2          (_nan_process_io_result_nan_2),
@@ -6551,10 +6565,8 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
   );
   p_Convert_Groupwise_1 convert_groupwise_7 (
     .io_depth          (in_depth),
-    .io_mantissa_0     (_adder_groupwise_7_io_out_mantissa_0),
-    .io_mantissa_1     (_adder_groupwise_7_io_out_mantissa_1),
-    .io_sign_0         (_adder_groupwise_7_io_out_sign_0),
-    .io_sign_1         (_adder_groupwise_7_io_out_sign_1),
+    .io_in_0           (_adder_groupwise_7_io_out_0),
+    .io_in_1           (_adder_groupwise_7_io_out_1),
     .io_nan_0          (_nan_process_io_result_nan_0),
     .io_nan_1          (_nan_process_io_result_nan_1),
     .io_exponent_0     (_expansion_groupwise_io_out_exponent_gmax_0),
@@ -6568,8 +6580,7 @@ module p_TOP_Til_Dep_total_comb_CT_syn(
   );
   p_Convert_Groupwise_2 convert_groupwise_8 (
     .io_depth          (in_depth),
-    .io_mantissa_0     (_adder_groupwise_8_io_out_mantissa_0),
-    .io_sign_0         (_adder_groupwise_8_io_out_sign_0),
+    .io_in_0           (_adder_groupwise_8_io_out_0),
     .io_nan_0          (_nan_process_io_result_nan_0),
     .io_exponent_0     (_expansion_groupwise_io_out_exponent_gmax_0),
     .io_out_0_sign     (_convert_groupwise_8_io_out_0_sign),
