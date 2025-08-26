@@ -5,13 +5,13 @@ import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class p_Adder_Groupwise_IO (depthBitWidth: Int, mantissaWidth: Int, vecSize: Int, outWidth: Int) extends Bundle {
-    val mantissa = Input(Vec(vecSize, UInt(mantissaWidth.W)))
-    val sign = Input(Vec(vecSize, UInt(1.W)))
-
+    //val mantissa = Input(Vec(vecSize, UInt(mantissaWidth.W)))
+    //val sign = Input(Vec(vecSize, UInt(1.W)))
+    val in = Input(Vec(vecSize, SInt((mantissaWidth + 1).W))) // with sign bit
     val depth = Input(UInt(depthBitWidth.W)) // Still not used (for power gating)
-
-    val out_mantissa = Output(Vec(vecSize/2, UInt(outWidth.W)))
-    val out_sign = Output(Vec(vecSize/2, UInt(1.W)))
+    val out = Output(Vec(vecSize/2, SInt((outWidth+1).W)))
+    //val out_mantissa = Output(Vec(vecSize/2, UInt(outWidth.W)))
+    //val out_sign = Output(Vec(vecSize/2, UInt(1.W)))
 }
 
 class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
@@ -27,6 +27,7 @@ class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
     ))
 
     for (i <- 0 until vecSize/2) {
+        /*
         val a_sign = io.sign(2 * i)
         val b_sign = io.sign(2 * i + 1)
 
@@ -38,13 +39,12 @@ class p_Adder_Groupwise(val d: Int, val extra: Int) extends Module {
 
         val a_sint = Mux(io.sign(2 * i) === 1.U, -a_ext, a_ext)
         val b_sint = Mux(io.sign(2 * i + 1) === 1.U, -b_ext, b_ext)
+        */
 
+        val a_sint = io.in(2 * i)
+        val b_sint = io.in(2 * i + 1)
         val sum = a_sint +& b_sint
-
-        val sum_sign = sum.head(1).asUInt
-        val sum_mag = Mux(sum.head(1) === 1.U, (-sum).asUInt, sum.asUInt)
-        io.out_sign(i) := sum_sign
-        io.out_mantissa(i) := sum_mag
+        io.out(i) := sum
     }
 }
 

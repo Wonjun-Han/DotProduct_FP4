@@ -1,8 +1,12 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1756130075" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="4.340583324432373" sim_time_ns="5150.001" ratio_time="1186.4767048731812" />
-    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="422" time="4.218148231506348" sim_time_ns="5160.001" ratio_time="1223.2858393782208" />
-    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="435" time="8.59737515449524" sim_time_ns="10320.001" ratio_time="1200.36648564813" />
+    <property name="random_seed" value="1756184667" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="419.2428159713745" sim_time_ns="500150.001" ratio_time="1192.984070200859" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="422" time="0.0810091495513916" sim_time_ns="170.0009999999893" ratio_time="2098.5407320211643">
+      <failure message="Test failed with RANDOM_SEED=1756184667" />
+    </testcase>
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="435" time="0.17300176620483398" sim_time_ns="230.0010000000475" ratio_time="1329.4719761862225">
+      <failure message="Test failed with RANDOM_SEED=1756184667" />
+    </testcase>
   </testsuite>
 </testsuites>

@@ -60,6 +60,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
   val nan_process         = Module(new p_NaN_Process(5))
 
+  val convert_twos = Module(new p_Convert_Twos(5, 30))
   val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 30))
   val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 30))
   val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 30))
@@ -254,11 +255,12 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S8: Adder_Groupwise_6
   // ---------------------------------
+  convert_twos.io.in := s8_gw_mantissa
+  convert_twos.io.sign := s8_gw_sign
+
   adder_groupwise_6.io.depth    := depth_s8
-  adder_groupwise_6.io.sign     := s8_gw_sign
-  adder_groupwise_6.io.mantissa := s8_gw_mantissa
-  val s9_ad6_sign     = RegNext(adder_groupwise_6.io.out_sign)
-  val s9_ad6_mantissa = RegNext(adder_groupwise_6.io.out_mantissa)
+  adder_groupwise_6.io.in       := convert_twos.io.out
+  val s9_ad6_out     = RegNext(adder_groupwise_6.io.out)
 
   // ---------------------------------
   // S9: Convert@Dep6, else Adder_Groupwise_7
@@ -267,16 +269,14 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val toS9_nan     = delayToStage(8, 9, s8_nan_proc)
 
   convert_groupwise_6.io.depth    := depth_s9
-  convert_groupwise_6.io.sign     := s9_ad6_sign
-  convert_groupwise_6.io.mantissa := s9_ad6_mantissa
+  convert_groupwise_6.io.in       := s9_ad6_out
   convert_groupwise_6.io.exponent := toS9_gw_emax
   convert_groupwise_6.io.nan      := toS9_nan
 
+
   adder_groupwise_7.io.depth    := depth_s9
-  adder_groupwise_7.io.sign     := s9_ad6_sign
-  adder_groupwise_7.io.mantissa := s9_ad6_mantissa
-  val s10_ad7_sign     = RegNext(adder_groupwise_7.io.out_sign)
-  val s10_ad7_mantissa = RegNext(adder_groupwise_7.io.out_mantissa)
+  adder_groupwise_7.io.in       := s9_ad6_out
+  val s10_ad7_out     = RegNext(adder_groupwise_7.io.out)
 
   // ---------------------------------
   // S10: Convert@Dep7, else Adder_Groupwise_8
@@ -285,16 +285,14 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val toS10_nan     = delayToStage(8, 10, s8_nan_proc)
 
   convert_groupwise_7.io.depth    := depth_s10
-  convert_groupwise_7.io.sign     := s10_ad7_sign
-  convert_groupwise_7.io.mantissa := s10_ad7_mantissa
+  convert_groupwise_7.io.in       := s10_ad7_out
   convert_groupwise_7.io.exponent := toS10_gw_emax
   convert_groupwise_7.io.nan      := toS10_nan
 
+
   adder_groupwise_8.io.depth    := depth_s10
-  adder_groupwise_8.io.sign     := s10_ad7_sign
-  adder_groupwise_8.io.mantissa := s10_ad7_mantissa
-  val s11_ad8_sign     = RegNext(adder_groupwise_8.io.out_sign)
-  val s11_ad8_mantissa = RegNext(adder_groupwise_8.io.out_mantissa)
+  adder_groupwise_8.io.in       := s10_ad7_out
+  val s11_ad8_out     = RegNext(adder_groupwise_8.io.out)
 
   // ---------------------------------
   // S11: Convert@Dep8
@@ -303,8 +301,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val toS11_nan     = delayToStage(8, 11, s8_nan_proc)
 
   convert_groupwise_8.io.depth    := depth_s11
-  convert_groupwise_8.io.sign     := s11_ad8_sign
-  convert_groupwise_8.io.mantissa := s11_ad8_mantissa
+  convert_groupwise_8.io.in       := s11_ad8_out
   convert_groupwise_8.io.exponent := toS11_gw_emax
   convert_groupwise_8.io.nan      := toS11_nan
 

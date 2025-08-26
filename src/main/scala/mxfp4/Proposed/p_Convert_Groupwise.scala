@@ -6,8 +6,9 @@ import _root_.circt.stage.ChiselStage
 
 class MXFP4_CONVERT_GROUPWISE_BLOCK_IO(depthBitWidth: Int, mantissaWidth: Int, vecSize: Int) extends Bundle {
   val depth    = Input(UInt(depthBitWidth.W))
-  val mantissa = Input(Vec(vecSize, UInt(mantissaWidth.W))) // from p_Adder_Groupwise (magnitude only)
-  val sign     = Input(Vec(vecSize, UInt(1.W)))             // from p_Adder_Groupwise
+  val in      = Input(Vec(vecSize, SInt((mantissaWidth + 1).W))) // from p_Adder_Groupwise (with sign bit)
+  //val mantissa = Input(Vec(vecSize, UInt(mantissaWidth.W))) // from p_Adder_Groupwise (magnitude only)
+  //val sign     = Input(Vec(vecSize, UInt(1.W)))             // from p_Adder_Groupwise
   val nan      = Input(Vec(4, UInt(1.W)))                   // from p_NaN_Process (앞에서부터 매핑)
   val exponent = Input(Vec(4, SInt(10.W)))                  // from p_Expansion_Groupwise (앞에서부터 매핑)
   val out      = Output(Vec(vecSize, new FP32))
@@ -75,10 +76,9 @@ class p_Convert_Groupwise(val d: Int, val extra: Int) extends Module {
     groupIdxLut(0) := 0.U
   }
 
-  // -------------------- 본 연산 --------------------
   for (i <- 0 until vecSize) {
-    val inMag    = io.mantissa(i)
-    val inSign   = io.sign(i)
+    val inMag    = Mux(io.in(i).head(1) === 1.U, (-io.in(i)).asUInt, io.in(i).asUInt)
+    val inSign   = io.in(i).head(1).asUInt
     val groupIdx = groupIdxLut(i)
     val grpExp   = io.exponent(groupIdx)
     val nanFlag  = io.nan(groupIdx)

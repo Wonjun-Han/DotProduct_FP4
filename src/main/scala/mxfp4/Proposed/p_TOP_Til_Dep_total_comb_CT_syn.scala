@@ -50,6 +50,7 @@ class p_TOP_Til_Dep_total_comb_CT_syn extends Module {
   val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
   val nan_process         = Module(new p_NaN_Process(5))
 
+  val convert_twos = Module(new p_Convert_Twos(5, 30))
   val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 30))
   val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 30))
   val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 30))
@@ -197,37 +198,34 @@ class p_TOP_Til_Dep_total_comb_CT_syn extends Module {
   // ---------------------------------
   // Groupwise Adders (조합)
   // ---------------------------------
+  convert_twos.io.in      := w_gw_mantissa
+  convert_twos.io.sign    := w_gw_sign
+
   adder_groupwise_6.io.depth    := in_depth
-  adder_groupwise_6.io.sign     := w_gw_sign
-  adder_groupwise_6.io.mantissa := w_gw_mantissa
+  adder_groupwise_6.io.in       := convert_twos.io.out
 
   adder_groupwise_7.io.depth    := in_depth
-  adder_groupwise_7.io.sign     := adder_groupwise_6.io.out_sign
-  adder_groupwise_7.io.mantissa := adder_groupwise_6.io.out_mantissa
+  adder_groupwise_7.io.in      := adder_groupwise_6.io.out
 
   adder_groupwise_8.io.depth    := in_depth
-  adder_groupwise_8.io.sign     := adder_groupwise_7.io.out_sign
-  adder_groupwise_8.io.mantissa := adder_groupwise_7.io.out_mantissa
+  adder_groupwise_8.io.in      := adder_groupwise_7.io.out
 
   // ---------------------------------
   // Groupwise Converts (조합)
   // (w_gw_emax / w_nan_proc는 동일한 값을 공유)
   // ---------------------------------
   convert_groupwise_6.io.depth    := in_depth
-  convert_groupwise_6.io.sign     := adder_groupwise_6.io.out_sign
-  convert_groupwise_6.io.mantissa := adder_groupwise_6.io.out_mantissa
+  convert_groupwise_6.io.in       := adder_groupwise_6.io.out
   convert_groupwise_6.io.exponent := w_gw_emax
   convert_groupwise_6.io.nan      := w_nan_proc
 
   convert_groupwise_7.io.depth    := in_depth
-  convert_groupwise_7.io.sign     := adder_groupwise_7.io.out_sign
-  convert_groupwise_7.io.mantissa := adder_groupwise_7.io.out_mantissa
+  convert_groupwise_7.io.in       := adder_groupwise_7.io.out
   convert_groupwise_7.io.exponent := w_gw_emax
   convert_groupwise_7.io.nan      := w_nan_proc
 
   convert_groupwise_8.io.depth    := in_depth
-  convert_groupwise_8.io.sign     := adder_groupwise_8.io.out_sign
-  convert_groupwise_8.io.mantissa := adder_groupwise_8.io.out_mantissa
+  convert_groupwise_8.io.in       := adder_groupwise_8.io.out
   convert_groupwise_8.io.exponent := w_gw_emax
   convert_groupwise_8.io.nan      := w_nan_proc
 
