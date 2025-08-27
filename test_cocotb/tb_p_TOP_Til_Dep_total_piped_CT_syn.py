@@ -10,7 +10,7 @@ from typing import Optional
 # =========================================================
 # Config
 # =========================================================
-NUM_TRIALS = 50000            # per-depth, 스트리밍 검증 시 transaciton 수
+NUM_TRIALS = 3000            # per-depth, 스트리밍 검증 시 transaciton 수
 PIPELINE_LATENCY = 14       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
 ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부
 

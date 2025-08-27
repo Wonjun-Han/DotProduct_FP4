@@ -17,7 +17,7 @@ module p_Expansion_Groupwise(
                 io_exponent_6,
                 io_exponent_7,
   input  [3:0]  io_depth,
-  output [42:0] io_out_mantissa_0,
+  output [22:0] io_out_mantissa_0,
                 io_out_mantissa_1,
                 io_out_mantissa_2,
                 io_out_mantissa_3,
@@ -255,13 +255,13 @@ module p_Expansion_Groupwise(
   wire [9:0]      grpMax_3 = $signed(l2_0_3) > $signed(l2_1_3) ? l2_0_3 : l2_1_3;
   wire [1:0]      _GEN_6 = {1'h0, _GEN_0};
   wire [9:0]      _shift_raw_T = grouped_max_exp_0 - io_exponent_0;
-  wire [43:0]     _io_out_mantissa_0_T =
-    {io_in_0[13] ? 14'h0 - io_in_0 : io_in_0, 30'h0}
-    >> (_shift_raw_T > 10'h2B ? 10'h2B : _shift_raw_T);
+  wire [23:0]     _io_out_mantissa_0_T =
+    {io_in_0[13] ? 14'h0 - io_in_0 : io_in_0, 10'h0}
+    >> (_shift_raw_T > 10'h17 ? 10'h17 : _shift_raw_T);
   wire [9:0]      _shift_raw_T_3 = grouped_max_exp_0 - io_exponent_1;
-  wire [43:0]     _io_out_mantissa_1_T =
-    {io_in_1[13] ? 14'h0 - io_in_1 : io_in_1, 30'h0}
-    >> (_shift_raw_T_3 > 10'h2B ? 10'h2B : _shift_raw_T_3);
+  wire [23:0]     _io_out_mantissa_1_T =
+    {io_in_1[13] ? 14'h0 - io_in_1 : io_in_1, 10'h0}
+    >> (_shift_raw_T_3 > 10'h17 ? 10'h17 : _shift_raw_T_3);
   wire [3:0][9:0] _GEN_7 =
     {{active_3 ? grpMax_3 : 10'h0},
      {active_2 ? grpMax_2 : 10'h0},
@@ -269,39 +269,39 @@ module p_Expansion_Groupwise(
      {grouped_max_exp_0}};
   wire [9:0]      _GEN_8 = _GEN_7[{1'h0, _GEN}];
   wire [9:0]      _shift_raw_T_6 = _GEN_8 - io_exponent_2;
-  wire [43:0]     _io_out_mantissa_2_T =
-    {io_in_2[13] ? 14'h0 - io_in_2 : io_in_2, 30'h0}
-    >> (_shift_raw_T_6 > 10'h2B ? 10'h2B : _shift_raw_T_6);
+  wire [23:0]     _io_out_mantissa_2_T =
+    {io_in_2[13] ? 14'h0 - io_in_2 : io_in_2, 10'h0}
+    >> (_shift_raw_T_6 > 10'h17 ? 10'h17 : _shift_raw_T_6);
   wire [9:0]      _shift_raw_T_9 = _GEN_8 - io_exponent_3;
-  wire [43:0]     _io_out_mantissa_3_T =
-    {io_in_3[13] ? 14'h0 - io_in_3 : io_in_3, 30'h0}
-    >> (_shift_raw_T_9 > 10'h2B ? 10'h2B : _shift_raw_T_9);
+  wire [23:0]     _io_out_mantissa_3_T =
+    {io_in_3[13] ? 14'h0 - io_in_3 : io_in_3, 10'h0}
+    >> (_shift_raw_T_9 > 10'h17 ? 10'h17 : _shift_raw_T_9);
   wire [9:0]      _GEN_9 = _GEN_7[_GEN ? 2'h2 : _GEN_6];
   wire [9:0]      _shift_raw_T_12 = _GEN_9 - io_exponent_4;
-  wire [43:0]     _io_out_mantissa_4_T =
-    {io_in_4[13] ? 14'h0 - io_in_4 : io_in_4, 30'h0}
-    >> (_shift_raw_T_12 > 10'h2B ? 10'h2B : _shift_raw_T_12);
+  wire [23:0]     _io_out_mantissa_4_T =
+    {io_in_4[13] ? 14'h0 - io_in_4 : io_in_4, 10'h0}
+    >> (_shift_raw_T_12 > 10'h17 ? 10'h17 : _shift_raw_T_12);
   wire [9:0]      _shift_raw_T_15 = _GEN_9 - io_exponent_5;
-  wire [43:0]     _io_out_mantissa_5_T =
-    {io_in_5[13] ? 14'h0 - io_in_5 : io_in_5, 30'h0}
-    >> (_shift_raw_T_15 > 10'h2B ? 10'h2B : _shift_raw_T_15);
+  wire [23:0]     _io_out_mantissa_5_T =
+    {io_in_5[13] ? 14'h0 - io_in_5 : io_in_5, 10'h0}
+    >> (_shift_raw_T_15 > 10'h17 ? 10'h17 : _shift_raw_T_15);
   wire [9:0]      _GEN_10 = _GEN_7[_GEN ? 2'h3 : _GEN_6];
   wire [9:0]      _shift_raw_T_18 = _GEN_10 - io_exponent_6;
-  wire [43:0]     _io_out_mantissa_6_T =
-    {io_in_6[13] ? 14'h0 - io_in_6 : io_in_6, 30'h0}
-    >> (_shift_raw_T_18 > 10'h2B ? 10'h2B : _shift_raw_T_18);
+  wire [23:0]     _io_out_mantissa_6_T =
+    {io_in_6[13] ? 14'h0 - io_in_6 : io_in_6, 10'h0}
+    >> (_shift_raw_T_18 > 10'h17 ? 10'h17 : _shift_raw_T_18);
   wire [9:0]      _shift_raw_T_21 = _GEN_10 - io_exponent_7;
-  wire [43:0]     _io_out_mantissa_7_T =
-    {io_in_7[13] ? 14'h0 - io_in_7 : io_in_7, 30'h0}
-    >> (_shift_raw_T_21 > 10'h2B ? 10'h2B : _shift_raw_T_21);
-  assign io_out_mantissa_0 = enable ? _io_out_mantissa_0_T[42:0] : 43'h0;
-  assign io_out_mantissa_1 = enable ? _io_out_mantissa_1_T[42:0] : 43'h0;
-  assign io_out_mantissa_2 = enable ? _io_out_mantissa_2_T[42:0] : 43'h0;
-  assign io_out_mantissa_3 = enable ? _io_out_mantissa_3_T[42:0] : 43'h0;
-  assign io_out_mantissa_4 = enable ? _io_out_mantissa_4_T[42:0] : 43'h0;
-  assign io_out_mantissa_5 = enable ? _io_out_mantissa_5_T[42:0] : 43'h0;
-  assign io_out_mantissa_6 = enable ? _io_out_mantissa_6_T[42:0] : 43'h0;
-  assign io_out_mantissa_7 = enable ? _io_out_mantissa_7_T[42:0] : 43'h0;
+  wire [23:0]     _io_out_mantissa_7_T =
+    {io_in_7[13] ? 14'h0 - io_in_7 : io_in_7, 10'h0}
+    >> (_shift_raw_T_21 > 10'h17 ? 10'h17 : _shift_raw_T_21);
+  assign io_out_mantissa_0 = enable ? _io_out_mantissa_0_T[22:0] : 23'h0;
+  assign io_out_mantissa_1 = enable ? _io_out_mantissa_1_T[22:0] : 23'h0;
+  assign io_out_mantissa_2 = enable ? _io_out_mantissa_2_T[22:0] : 23'h0;
+  assign io_out_mantissa_3 = enable ? _io_out_mantissa_3_T[22:0] : 23'h0;
+  assign io_out_mantissa_4 = enable ? _io_out_mantissa_4_T[22:0] : 23'h0;
+  assign io_out_mantissa_5 = enable ? _io_out_mantissa_5_T[22:0] : 23'h0;
+  assign io_out_mantissa_6 = enable ? _io_out_mantissa_6_T[22:0] : 23'h0;
+  assign io_out_mantissa_7 = enable ? _io_out_mantissa_7_T[22:0] : 23'h0;
   assign io_out_sign_0 = enable & io_in_0[13];
   assign io_out_sign_1 = enable & io_in_1[13];
   assign io_out_sign_2 = enable & io_in_2[13];

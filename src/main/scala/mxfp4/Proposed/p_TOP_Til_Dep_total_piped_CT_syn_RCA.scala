@@ -4,7 +4,7 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class p_TOP_Til_Dep_total_PIPED_CT_SYN_BLOCK_IO extends Bundle {
+class p_TOP_Til_Dep_total_PIPED_CT_SYN_RCA_BLOCK_IO extends Bundle {
   val a_vec   = Input(Vec(256, UInt(4.W)))
   val b_vec   = Input(Vec(256, UInt(4.W)))
   val a_scale = Input(Vec(8, UInt(8.W)))
@@ -13,8 +13,8 @@ class p_TOP_Til_Dep_total_PIPED_CT_SYN_BLOCK_IO extends Bundle {
   val out     = Output(Vec(16, new FP32))
 }
 
-class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
-  val io = IO(new p_TOP_Til_Dep_total_PIPED_CT_SYN_BLOCK_IO)
+class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
+  val io = IO(new p_TOP_Til_Dep_total_PIPED_CT_SYN_RCA_BLOCK_IO)
 
   // --------------------------
   // Util: Vec 레지스터 파이프
@@ -40,7 +40,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val scaleSum   = Module(new p_Adder_ScaleSum)
 
   val expansion = Seq.fill(8)(Module(new p_Expansion))
-
+  val LUT_expansion = Seq.fill(8)(Module(new p_LUT_2D))
 
   val scaleEmax  = Module(new p_Adder_ScaleEmax)
 
@@ -57,17 +57,17 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
 
-  val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
+  val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 10))
   val nan_process         = Module(new p_NaN_Process(5))
 
-  val convert_twos = Module(new p_Convert_Twos(5, 30))
-  val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 30))
-  val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 30))
-  val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 30))
+  val convert_twos = Module(new p_Convert_Twos(5, 10))
+  val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 10))
+  val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 10))
+  val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 10))
 
-  val convert_groupwise_6 = Module(new p_Convert_Groupwise(6, 30))
-  val convert_groupwise_7 = Module(new p_Convert_Groupwise(7, 30))
-  val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 30))
+  val convert_groupwise_6 = Module(new p_Convert_Groupwise(6, 10))
+  val convert_groupwise_7 = Module(new p_Convert_Groupwise(7, 10))
+  val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 10))
 
   // ---------------------------------
   // Depth 파이프라인 레지스터 (각 스테이지별)
@@ -281,8 +281,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S10: Convert@Dep7, else Adder_Groupwise_8
   // ---------------------------------
-  val toS10_gw_emax = delayToStage(8, 30, s8_gw_emax)
-  val toS10_nan     = delayToStage(8, 30, s8_nan_proc)
+  val toS10_gw_emax = delayToStage(8, 10, s8_gw_emax)
+  val toS10_nan     = delayToStage(8, 10, s8_nan_proc)
 
   convert_groupwise_7.io.depth    := depth_s10
   convert_groupwise_7.io.in       := s10_ad7_out

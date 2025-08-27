@@ -1,12 +1,12 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1756184667" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="419.2428159713745" sim_time_ns="500150.001" ratio_time="1192.984070200859" />
-    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="422" time="0.0810091495513916" sim_time_ns="170.0009999999893" ratio_time="2098.5407320211643">
-      <failure message="Test failed with RANDOM_SEED=1756184667" />
+    <property name="random_seed" value="1756264504" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="409" time="24.179534196853638" sim_time_ns="30150.001" ratio_time="1246.9223250761906" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="422" time="0.0965268611907959" sim_time_ns="170.0010000000002" ratio_time="1761.1781622524184">
+      <failure message="Test failed with RANDOM_SEED=1756264504" />
     </testcase>
-    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="435" time="0.17300176620483398" sim_time_ns="230.0010000000475" ratio_time="1329.4719761862225">
-      <failure message="Test failed with RANDOM_SEED=1756184667" />
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn.py" lineno="435" time="0.1348133087158203" sim_time_ns="230.0010000000002" ratio_time="1706.0704331857232">
+      <failure message="Test failed with RANDOM_SEED=1756264504" />
     </testcase>
   </testsuite>
 </testsuites>
