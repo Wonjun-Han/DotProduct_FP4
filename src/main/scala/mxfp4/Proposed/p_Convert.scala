@@ -12,6 +12,12 @@ class MXFP4_CONVERT_BLOCK_IO(depthBitWidth: Int, accWidth: Int, vecSize: Int, ab
   val out      = Output(Vec(vecSize, new FP32))
 }
 
+class FP32 extends Bundle {
+  val sign     = UInt(1.W)
+  val exponent = UInt(8.W)
+  val mantissa = UInt(23.W)
+}
+
 class p_Convert(val d: Int) extends Module {
   val accWidth = 9 + d
   val vecSize  = 256 >> d          // d = 1..5 사용 가정 (vecSize >= 8)
