@@ -61,6 +61,7 @@ object build {
       case "p_TOP_Til_Dep_total_piped_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn()
       case "p_TOP_Til_Dep_total_comb_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_comb_CT_syn()
       case "p_TOP_Til_Dep_total_piped_CT_syn_RCA" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn_RCA()
+      case "p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT()
 
       // LUT INT Conversion and CSA Accumulation (Design Choice)
       case "p_LUT_2D" => new mxfp4.proposed.p_LUT_2D()
@@ -69,9 +70,9 @@ object build {
       case "p_CSA_Total" => new mxfp4.proposed.p_CSA_Total(9, 32, 14) // Depth(from zero) CSA: input bit-width 9, input port number 32
       case "p_Adder_sumcarry" => new mxfp4.proposed.p_Adder_sumcarry(14) // Adder for final Carry and sum : input bit-width 14
 
-      case "p_Expansion_CSA_Groupwise" => new mxfp4.proposed.p_Expansion_CSA_Groupwise(5, 30) // location of p_Expansion_CSA_Groupwise and extra bit-precision (for testing)
+      case "p_Expansion_CSA_Groupwise" => new mxfp4.proposed.p_Expansion_Groupwise_CSA(5, 30) // location of p_Expansion_CSA_Groupwise and extra bit-precision (for testing)
       case "p_Convert_CSA" => new mxfp4.proposed.p_Convert_CSA(5) // location of p_Convert_CSA and extra bit-precision (for testing)
-      case "p_Convert_CSA_Groupwise" => new mxfp4.proposed.p_Convert_CSA_Groupwise(8, 30)
+      //case "p_Convert_CSA_Groupwise" => new mxfp4.proposed.p_Convert_Groupwise_CSA(8, 30)
   
 
       case other =>

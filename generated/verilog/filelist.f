@@ -10,10 +10,6 @@ p_Adder_Dep_4.sv
 p_Adder_Dep_5.sv
 p_MulConvert.sv
 p_Convert.sv
-p_Convert_1.sv
-p_Convert_2.sv
-p_Convert_3.sv
-p_Convert_4.sv
 p_Expansion_Groupwise.sv
 p_NaN_Process.sv
 p_Convert_Twos.sv
@@ -21,7 +17,5 @@ p_Adder_Groupwise.sv
 p_Adder_Groupwise_1.sv
 p_Adder_Groupwise_2.sv
 p_Convert_Groupwise.sv
-p_Convert_Groupwise_1.sv
-p_Convert_Groupwise_2.sv
 FF16_FP32.sv
-p_TOP_Til_Dep_total_piped_CT_syn.sv
+p_TOP_Til_Dep_total_piped_CT_syn_RCA.sv

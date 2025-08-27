@@ -40,8 +40,6 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val scaleSum   = Module(new p_Adder_ScaleSum)
 
   val expansion = Seq.fill(8)(Module(new p_Expansion))
-  val LUT_expansion = Seq.fill(8)(Module(new p_LUT_2D))
-
   val scaleEmax  = Module(new p_Adder_ScaleEmax)
 
   val adder1 = Seq.fill(8)(Module(new p_Adder_Dep_1))
@@ -51,23 +49,17 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val adder5 = Seq.fill(8)(Module(new p_Adder_Dep_5))
 
   val convert0 = Module(new p_MulConvert)
-  val convert1 = Module(new p_Convert(1))
-  val convert2 = Module(new p_Convert(2))
-  val convert3 = Module(new p_Convert(3))
-  val convert4 = Module(new p_Convert(4))
   val convert5 = Module(new p_Convert(5))
 
-  val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 10))
+  val expansion_groupwise = Module(new p_Expansion_Groupwise(5, 30))
   val nan_process         = Module(new p_NaN_Process(5))
 
-  val convert_twos = Module(new p_Convert_Twos(5, 10))
-  val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 10))
-  val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 10))
-  val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 10))
+  val convert_twos = Module(new p_Convert_Twos(5, 30))
+  val adder_groupwise_6 = Module(new p_Adder_Groupwise(6, 30))
+  val adder_groupwise_7 = Module(new p_Adder_Groupwise(7, 30))
+  val adder_groupwise_8 = Module(new p_Adder_Groupwise(8, 30))
 
-  val convert_groupwise_6 = Module(new p_Convert_Groupwise(6, 10))
-  val convert_groupwise_7 = Module(new p_Convert_Groupwise(7, 10))
-  val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 10))
+  val convert_groupwise_8 = Module(new p_Convert_Groupwise(8, 30))
 
   // ---------------------------------
   // Depth 파이프라인 레지스터 (각 스테이지별)
@@ -124,7 +116,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   }
 
   // ---------------------------------
-  // S2: Convert@Dep0, else Adder1, else (Emax+scale_sum) 
+  // S2: Convert@Dep0, else Adder1, else ScaleEmax
   // ---------------------------------
   val toS2_scale_sum = delayToStage(fromS = 1, toS = 2, s1_scale_sum)
   val toS2_scale_nan = delayToStage(fromS = 1, toS = 2, s1_scale_nan)
@@ -154,16 +146,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val toS3_nan      = s3_nan_flag
 
   // ------------------------------
-  // S3 : Convert@Dep1, else Adder2
+  // S3 : Adder2
   // ------------------------------
-  for (i <- 0 until convert1.io.in.length) {
-    val g = i / 16; val k = i % 16
-    convert1.io.in(i) := s3_adder1_out(g)(k)
-  }
-  convert1.io.depth    := depth_s3
-  convert1.io.nan      := toS3_nan
-  convert1.io.exponent := toS3_exp_cand
-
   for (i <- 0 until 8) {
     adder2(i).io.depth := depth_s3
     adder2(i).io.in    := s3_adder1_out(i)
@@ -171,19 +155,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val s4_adder2_out = (0 until 8).map(i => regNextVec(adder2(i).io.out))
 
   // ---------------------------------
-  // S4: Convert@Dep2, else Adder3
+  // S4: Adder3
   // ---------------------------------
-  val toS4_exp_cand = delayToStage(3, 4, s3_exp_cand)
-  val toS4_nan      = delayToStage(3, 4, s3_nan_flag)
-
-  for (i <- 0 until convert2.io.in.length) {
-    val g = i / 8; val k = i % 8
-    convert2.io.in(i) := s4_adder2_out(g)(k)
-  }
-  convert2.io.depth    := depth_s4
-  convert2.io.nan      := toS4_nan
-  convert2.io.exponent := toS4_exp_cand
-
   for (i <- 0 until 8) {
     adder3(i).io.depth := depth_s4
     adder3(i).io.in    := s4_adder2_out(i)
@@ -191,19 +164,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val s5_adder3_out = (0 until 8).map(i => regNextVec(adder3(i).io.out))
 
   // ---------------------------------
-  // S5: Convert@Dep3, else Adder4
+  // S5: Adder4
   // ---------------------------------
-  val toS5_exp_cand = delayToStage(3, 5, s3_exp_cand)
-  val toS5_nan      = delayToStage(3, 5, s3_nan_flag)
-
-  for (i <- 0 until convert3.io.in.length) {
-    val g = i / 4; val k = i % 4
-    convert3.io.in(i) := s5_adder3_out(g)(k)
-  }
-  convert3.io.depth    := depth_s5
-  convert3.io.nan      := toS5_nan
-  convert3.io.exponent := toS5_exp_cand
-
   for (i <- 0 until 8) {
     adder4(i).io.depth := depth_s5
     adder4(i).io.in    := s5_adder3_out(i)
@@ -211,18 +173,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val s6_adder4_out = (0 until 8).map(i => regNextVec(adder4(i).io.out))
 
   // ---------------------------------
-  // S6: Convert@Dep4, else Adder5
+  // S6: Adder5
   // ---------------------------------
-  val toS6_exp_cand = delayToStage(3, 6, s3_exp_cand)
-  val toS6_nan      = delayToStage(3, 6, s3_nan_flag)
-
-  for (i <- 0 until convert4.io.in.length) {
-    val g = i / 2; val k = i % 2
-    convert4.io.in(i) := s6_adder4_out(g)(k)
-  }
-  convert4.io.depth    := depth_s6
-  convert4.io.nan      := toS6_nan
-  convert4.io.exponent := toS6_exp_cand
 
   for (i <- 0 until 8) {
     adder5(i).io.depth := depth_s6
@@ -230,7 +182,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   }
 
   val s7_adder5_out = VecInit((0 until 8).map(i => RegNext(adder5(i).io.out)))
-  for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
+
 
   // ---------------------------------
   // S7: Convert@Dep5, else Expansion_Groupwise & NaN_Process
@@ -238,6 +190,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val toS7_exp_cand = delayToStage(3, 7, s3_exp_cand)
   val toS7_nan      = delayToStage(3, 7, s3_nan_flag)
 
+  for (i <- 0 until 8) convert5.io.in(i) := s7_adder5_out(i)
   convert5.io.depth    := depth_s7
   convert5.io.nan      := toS7_nan
   convert5.io.exponent := toS7_exp_cand
@@ -263,33 +216,15 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   val s9_ad6_out     = RegNext(adder_groupwise_6.io.out)
 
   // ---------------------------------
-  // S9: Convert@Dep6, else Adder_Groupwise_7
+  // S9: Adder_Groupwise_7
   // ---------------------------------
-  val toS9_gw_emax = delayToStage(8, 9, s8_gw_emax)
-  val toS9_nan     = delayToStage(8, 9, s8_nan_proc)
-
-  convert_groupwise_6.io.depth    := depth_s9
-  convert_groupwise_6.io.in       := s9_ad6_out
-  convert_groupwise_6.io.exponent := toS9_gw_emax
-  convert_groupwise_6.io.nan      := toS9_nan
-
-
   adder_groupwise_7.io.depth    := depth_s9
   adder_groupwise_7.io.in       := s9_ad6_out
   val s10_ad7_out     = RegNext(adder_groupwise_7.io.out)
 
   // ---------------------------------
-  // S10: Convert@Dep7, else Adder_Groupwise_8
+  // S10: Adder_Groupwise_8
   // ---------------------------------
-  val toS10_gw_emax = delayToStage(8, 10, s8_gw_emax)
-  val toS10_nan     = delayToStage(8, 10, s8_nan_proc)
-
-  convert_groupwise_7.io.depth    := depth_s10
-  convert_groupwise_7.io.in       := s10_ad7_out
-  convert_groupwise_7.io.exponent := toS10_gw_emax
-  convert_groupwise_7.io.nan      := toS10_nan
-
-
   adder_groupwise_8.io.depth    := depth_s10
   adder_groupwise_8.io.in       := s10_ad7_out
   val s11_ad8_out     = RegNext(adder_groupwise_8.io.out)
@@ -312,13 +247,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
     VecInit((0 until 16).map(i => if (i < vec.length) vec(i) else 0.U.asTypeOf(new FP32)))
 
   val d0_atS11 = pipeVecN(padTo16(convert0.io.out),            9) // S2→S11
-  val d1_atS11 = pipeVecN(padTo16(convert1.io.out),            8) // S3→S11
-  val d2_atS11 = pipeVecN(padTo16(convert2.io.out),            7) // S4→S11
-  val d3_atS11 = pipeVecN(padTo16(convert3.io.out),            6) // S5→S11
-  val d4_atS11 = pipeVecN(padTo16(convert4.io.out),            5) // S6→S11
   val d5_atS11 = pipeVecN(padTo16(convert5.io.out),            4) // S7→S11
-  val d6_atS11 = pipeVecN(padTo16(convert_groupwise_6.io.out), 2) // S9→S11
-  val d7_atS11 = pipeVecN(padTo16(convert_groupwise_7.io.out), 1) // S10→S11
   val d8_atS11 = padTo16(convert_groupwise_8.io.out)                 // S11
 
   val selected_out = WireDefault(VecInit(Seq.fill(16)(0.U.asTypeOf(new FP32))))
@@ -334,13 +263,7 @@ class p_TOP_Til_Dep_total_piped_CT_syn_RCA extends Module {
   }
 
   when(depth_s11 === 0.U) { selected_out := d0_atS11 }
-  .elsewhen(depth_s11 === 1.U) { selected_out := d1_atS11 }
-  .elsewhen(depth_s11 === 2.U) { selected_out := d2_atS11 }
-  .elsewhen(depth_s11 === 3.U) { selected_out := d3_atS11 }
-  .elsewhen(depth_s11 === 4.U) { selected_out := d4_atS11 }
   .elsewhen(depth_s11 === 5.U) { selected_out := d5_atS11 }
-  .elsewhen(depth_s11 === 6.U) { selected_out := d6_atS11 }
-  .elsewhen(depth_s11 === 7.U) { selected_out := d7_atS11 }
   .elsewhen(depth_s11 === 8.U) { selected_out := d8_atS11 }
 
   val outff = Module(new FF16_FP32)
