@@ -60,6 +60,7 @@ object build {
       case "p_TOP_Til_Dep_total_piped_CT" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT()
       case "p_TOP_Til_Dep_total_piped_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn()
       case "p_TOP_Til_Dep_total_comb_CT_syn" => new mxfp4.proposed.p_TOP_Til_Dep_total_comb_CT_syn()
+      case "p_TOP_Til_Dep_total_piped_CT_syn_RCA" => new mxfp4.proposed.p_TOP_Til_Dep_total_piped_CT_syn_RCA()
 
       // LUT INT Conversion and CSA Accumulation (Design Choice)
       case "p_LUT_2D" => new mxfp4.proposed.p_LUT_2D()

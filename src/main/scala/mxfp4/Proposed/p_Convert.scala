@@ -65,14 +65,13 @@ class p_Convert(val d: Int) extends Module {
     val nan           = io.nan(groupIdx)
     val isZero        = input === 0.S
 
-    // --- Zero/NaN 선제 게이팅: 헤비 경로 토글 억제 (원 변수명 확장) ---
+    // Zero/NaN 선제 게이팅: 헤비 경로 토글 억제
     val abs_val_eff   = Mux(enable_depth && (nan =/= 1.U) && !isZero, abs_val, 0.U(absWidth.W))
 
-    // --- MSB 탐색: 트리형으로 (변수명 PE 유지) ---
+    // MSB 탐색: 트리
     val PE            = PE_lzcTreeSafe(abs_val_eff, outW = log2Ceil(absWidth + 1))
     val shift_amt     = (d + 1).S - PE.asSInt
 
-    // --- mantissa 생성 (원 변수명 유지, eff 사용) ---
     val extended_mantissa = Cat(abs_val_eff, 0.U(17.W))
     val extW_U            = (extended_mantissa.getWidth - 1).U
 

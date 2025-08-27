@@ -10,7 +10,7 @@ from typing import Optional
 # =========================================================
 # Config
 # =========================================================
-NUM_TRIALS = 3000            # per-depth, 스트리밍 검증 시 transaciton 수
+NUM_TRIALS = 5000            # per-depth, 스트리밍 검증 시 transaciton 수
 PIPELINE_LATENCY = 14       # 설계 고정 레이턴시 (입력 cycle t -> 출력 cycle t+12)
 ALLOW_MANTISSA_ULP1 = True  # mantissa ±1 ULP 허용 여부
 
@@ -413,7 +413,7 @@ async def test_mxfp4_mac_pipelined_single_depth_streaming(dut):
     await reset_dut(dut)
 
     banner(dut, "[Single-depth streaming]")
-    depth = 5
+    depth = 6
     num_transactions = NUM_TRIALS
     dut._log.info(f"🧪 Single-depth streaming | depth={depth}, tx={num_transactions}, LAT={PIPELINE_LATENCY}, ±1ULP={'ON' if ALLOW_MANTISSA_ULP1 else 'OFF'}")
     await stream_and_check(dut, depth, num_transactions)

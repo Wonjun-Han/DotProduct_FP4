@@ -28,210 +28,224 @@ module p_Convert_Groupwise(
 );
 
   wire          enable_depth = io_depth == 4'h6;
-  wire [44:0]   inMag = io_in_0[44] ? 45'h0 - io_in_0 : io_in_0;
-  wire [44:0]   inMagEff = enable_depth & ~io_nan_0 & (|inMag) ? inMag : 45'h0;
-  wire [30:0]   _pe_T = (|(inMagEff[44:13])) ? inMagEff[44:14] : {inMagEff[12:0], 18'h0};
+  wire          isNeg = $signed(io_in_0) < 45'sh0;
+  wire [44:0]   inAbsFull = isNeg ? 45'h0 - io_in_0 : io_in_0;
+  wire [43:0]   inMag = inAbsFull[44] ? 44'hFFFFFFFFFFF : inAbsFull[43:0];
+  wire [43:0]   inMagEff = enable_depth & ~io_nan_0 & (|inMag) ? inMag : 44'h0;
+  wire [30:0]   _pe_T = (|(inMagEff[43:12])) ? inMagEff[43:13] : {inMagEff[11:0], 19'h0};
   wire [14:0]   _pe_T_4 = (|(_pe_T[30:15])) ? _pe_T[30:16] : _pe_T[14:0];
-  wire [5:0]    _pe_T_7 =
+  wire [6:0]    _pe_T_7 =
     (|(_pe_T[30:15]))
-      ? {~(|(inMagEff[44:13])), 5'h0}
-      : {~(|(inMagEff[44:13])), 5'h0} + 6'h10;
+      ? {1'h0, ~(|(inMagEff[43:12])), 5'h0}
+      : {1'h0, ~(|(inMagEff[43:12])), 5'h0} + 7'h10;
   wire [6:0]    _pe_T_8 = (|(_pe_T_4[14:7])) ? _pe_T_4[14:8] : _pe_T_4[6:0];
-  wire [5:0]    _pe_T_11 = (|(_pe_T_4[14:7])) ? _pe_T_7 : _pe_T_7 + 6'h8;
+  wire [6:0]    _pe_T_11 = (|(_pe_T_4[14:7])) ? _pe_T_7 : _pe_T_7 + 7'h8;
   wire [2:0]    _pe_T_12 = (|(_pe_T_8[6:3])) ? _pe_T_8[6:4] : _pe_T_8[2:0];
-  wire [5:0]    _pe_T_15 = (|(_pe_T_8[6:3])) ? _pe_T_11 : _pe_T_11 + 6'h4;
-  wire [5:0]    _pe_T_19 = (|(_pe_T_12[2:1])) ? _pe_T_15 : _pe_T_15 + 6'h2;
-  wire [5:0]    _pe_T_23 =
-    ((|(_pe_T_12[2:1])) ? _pe_T_12[2] : _pe_T_12[0]) ? _pe_T_19 : _pe_T_19 + 6'h1;
-  wire [5:0]    _shift_amt_T_1 = 6'h7 - (_pe_T_23 > 6'h2D ? 6'h2D : _pe_T_23);
+  wire [6:0]    _pe_T_15 = (|(_pe_T_8[6:3])) ? _pe_T_11 : _pe_T_11 + 7'h4;
+  wire [6:0]    _pe_T_19 = (|(_pe_T_12[2:1])) ? _pe_T_15 : _pe_T_15 + 7'h2;
+  wire [6:0]    _pe_T_23 =
+    ((|(_pe_T_12[2:1])) ? _pe_T_12[2] : _pe_T_12[0]) ? _pe_T_19 : _pe_T_19 + 7'h1;
+  wire [5:0]    _shift_amt_T_1 = 6'h7 - (_pe_T_23 > 7'h2C ? 6'h2C : _pe_T_23[5:0]);
   wire          _GEN = $signed(_shift_amt_T_1) > -6'sh1;
-  wire [5:0]    shCap = _shift_amt_T_1 > 6'h2B ? 6'h2B : _shift_amt_T_1;
-  wire          big = shCap > 6'h2C;
-  wire [44:0]   _shifted_T = inMagEff >> shCap;
-  wire [107:0]  _mask_T = 108'h1 << shCap;
+  wire          _shCap_T = _shift_amt_T_1 > 6'h2B;
+  wire          geW = (_shCap_T ? 6'h2B : _shift_amt_T_1) > 6'h2B;
+  wire [5:0]    shCap_1 = geW | _shCap_T ? 6'h2B : _shift_amt_T_1;
+  wire [43:0]   _shifted_T = inMagEff >> shCap_1;
+  wire [106:0]  _mask_T = 107'h1 << shCap_1;
   wire [5:0]    _shL_T = 6'h0 - _shift_amt_T_1;
-  wire [107:0]  _alignedMag_T = {63'h0, inMagEff} << (_shL_T > 6'h2B ? 6'h2B : _shL_T);
+  wire [106:0]  _alignedMag_T = {63'h0, inMagEff} << (_shL_T > 6'h2B ? 6'h2B : _shL_T);
   wire [36:0]   alignedMag =
-    _GEN ? (big ? 37'h0 : _shifted_T[36:0]) : _alignedMag_T[36:0];
-  wire [24:0]   rounded24 =
+    _GEN ? (geW ? 37'h0 : _shifted_T[36:0]) : _alignedMag_T[36:0];
+  wire [24:0]   roundedDyn =
     {1'h0, alignedMag[36:13]}
     + {24'h0,
        alignedMag[12]
-         & ((|{_GEN & (|((big ? 45'h1FFFFFFFFFFF : _mask_T[44:0] - 45'h1) & inMagEff)),
-               alignedMag[11:0]}) | alignedMag[13])};
-  wire [23:0]   mant24Norm = rounded24[24] ? rounded24[24:1] : rounded24[23:0];
-  wire [9:0]    _biasedExpAfterRound_T_1 =
-    io_exponent_0 + {{4{_shift_amt_T_1[5]}}, _shift_amt_T_1} + {9'h0, rounded24[24]}
-    + 10'h7F;
-  wire          _GEN_0 = $signed(_biasedExpAfterRound_T_1) > 10'shFE;
-  wire          _GEN_1 = $signed(_biasedExpAfterRound_T_1) < 10'sh1;
-  wire [9:0]    _k_T = 10'h1 - _biasedExpAfterRound_T_1;
-  wire [9:0]    kCap = (|(_k_T[9:5])) ? 10'h1F : _k_T;
-  wire          big_1 = kCap > 10'h17;
-  wire [23:0]   subSig24 = big_1 ? 24'h0 : mant24Norm >> kCap;
-  wire [1046:0] _mask_T_3 = 1047'h1 << kCap;
+         & ((|{_GEN & (geW ? (|inMagEff) : (|(_mask_T[43:0] - 44'h1 & inMagEff))),
+               alignedMag[11:0]}) | inAbsFull[44] | alignedMag[13])};
+  wire [23:0]   mant24Norm = roundedDyn[24] ? roundedDyn[24:1] : roundedDyn[23:0];
+  wire [10:0]   _biasedExpAfterRound_T_1 =
+    {io_exponent_0[9], io_exponent_0} + {{5{_shift_amt_T_1[5]}}, _shift_amt_T_1}
+    + {10'h0, roundedDyn[24]} + 11'h7F;
+  wire          _GEN_0 = $signed(_biasedExpAfterRound_T_1) > 11'shFE;
+  wire          _GEN_1 = $signed(_biasedExpAfterRound_T_1) < 11'sh1;
+  wire [10:0]   _k_T = 11'h1 - _biasedExpAfterRound_T_1;
+  wire [10:0]   kCap = (|(_k_T[10:5])) ? 11'h1F : _k_T;
+  wire          geW_2 = kCap > 11'h17;
+  wire [10:0]   shCap_4 = geW_2 ? 11'h17 : kCap;
+  wire [23:0]   subSig24 = geW_2 ? 24'h0 : mant24Norm >> shCap_4;
+  wire [2070:0] _mask_T_4 = 2071'h1 << shCap_4;
   wire [23:0]   rounded23 =
     {1'h0, subSig24[23:1]}
     + {23'h0,
        subSig24[0]
-         & ((|((big_1 ? 24'hFFFFFF : _mask_T_3[23:0] - 24'h1) & mant24Norm))
+         & ((geW_2 ? (|mant24Norm) : (|(_mask_T_4[23:0] - 24'h1 & mant24Norm)))
             | subSig24[1])};
-  wire [44:0]   inMag_1 = io_in_1[44] ? 45'h0 - io_in_1 : io_in_1;
-  wire [44:0]   inMagEff_1 = enable_depth & ~io_nan_1 & (|inMag_1) ? inMag_1 : 45'h0;
+  wire          isNeg_1 = $signed(io_in_1) < 45'sh0;
+  wire [44:0]   inAbsFull_1 = isNeg_1 ? 45'h0 - io_in_1 : io_in_1;
+  wire [43:0]   inMag_1 = inAbsFull_1[44] ? 44'hFFFFFFFFFFF : inAbsFull_1[43:0];
+  wire [43:0]   inMagEff_1 = enable_depth & ~io_nan_1 & (|inMag_1) ? inMag_1 : 44'h0;
   wire [30:0]   _pe_T_26 =
-    (|(inMagEff_1[44:13])) ? inMagEff_1[44:14] : {inMagEff_1[12:0], 18'h0};
+    (|(inMagEff_1[43:12])) ? inMagEff_1[43:13] : {inMagEff_1[11:0], 19'h0};
   wire [14:0]   _pe_T_30 = (|(_pe_T_26[30:15])) ? _pe_T_26[30:16] : _pe_T_26[14:0];
-  wire [5:0]    _pe_T_33 =
+  wire [6:0]    _pe_T_33 =
     (|(_pe_T_26[30:15]))
-      ? {~(|(inMagEff_1[44:13])), 5'h0}
-      : {~(|(inMagEff_1[44:13])), 5'h0} + 6'h10;
+      ? {1'h0, ~(|(inMagEff_1[43:12])), 5'h0}
+      : {1'h0, ~(|(inMagEff_1[43:12])), 5'h0} + 7'h10;
   wire [6:0]    _pe_T_34 = (|(_pe_T_30[14:7])) ? _pe_T_30[14:8] : _pe_T_30[6:0];
-  wire [5:0]    _pe_T_37 = (|(_pe_T_30[14:7])) ? _pe_T_33 : _pe_T_33 + 6'h8;
+  wire [6:0]    _pe_T_37 = (|(_pe_T_30[14:7])) ? _pe_T_33 : _pe_T_33 + 7'h8;
   wire [2:0]    _pe_T_38 = (|(_pe_T_34[6:3])) ? _pe_T_34[6:4] : _pe_T_34[2:0];
-  wire [5:0]    _pe_T_41 = (|(_pe_T_34[6:3])) ? _pe_T_37 : _pe_T_37 + 6'h4;
-  wire [5:0]    _pe_T_45 = (|(_pe_T_38[2:1])) ? _pe_T_41 : _pe_T_41 + 6'h2;
-  wire [5:0]    _pe_T_49 =
-    ((|(_pe_T_38[2:1])) ? _pe_T_38[2] : _pe_T_38[0]) ? _pe_T_45 : _pe_T_45 + 6'h1;
-  wire [5:0]    _shift_amt_T_4 = 6'h7 - (_pe_T_49 > 6'h2D ? 6'h2D : _pe_T_49);
+  wire [6:0]    _pe_T_41 = (|(_pe_T_34[6:3])) ? _pe_T_37 : _pe_T_37 + 7'h4;
+  wire [6:0]    _pe_T_45 = (|(_pe_T_38[2:1])) ? _pe_T_41 : _pe_T_41 + 7'h2;
+  wire [6:0]    _pe_T_49 =
+    ((|(_pe_T_38[2:1])) ? _pe_T_38[2] : _pe_T_38[0]) ? _pe_T_45 : _pe_T_45 + 7'h1;
+  wire [5:0]    _shift_amt_T_4 = 6'h7 - (_pe_T_49 > 7'h2C ? 6'h2C : _pe_T_49[5:0]);
   wire          _GEN_2 = $signed(_shift_amt_T_4) > -6'sh1;
-  wire [5:0]    shCap_2 = _shift_amt_T_4 > 6'h2B ? 6'h2B : _shift_amt_T_4;
-  wire          big_2 = shCap_2 > 6'h2C;
-  wire [44:0]   _shifted_T_2 = inMagEff_1 >> shCap_2;
-  wire [107:0]  _mask_T_6 = 108'h1 << shCap_2;
+  wire          _shCap_T_2 = _shift_amt_T_4 > 6'h2B;
+  wire          geW_3 = (_shCap_T_2 ? 6'h2B : _shift_amt_T_4) > 6'h2B;
+  wire [5:0]    shCap_6 = geW_3 | _shCap_T_2 ? 6'h2B : _shift_amt_T_4;
+  wire [43:0]   _shifted_T_3 = inMagEff_1 >> shCap_6;
+  wire [106:0]  _mask_T_6 = 107'h1 << shCap_6;
   wire [5:0]    _shL_T_3 = 6'h0 - _shift_amt_T_4;
-  wire [107:0]  _alignedMag_T_2 =
+  wire [106:0]  _alignedMag_T_2 =
     {63'h0, inMagEff_1} << (_shL_T_3 > 6'h2B ? 6'h2B : _shL_T_3);
   wire [36:0]   alignedMag_1 =
-    _GEN_2 ? (big_2 ? 37'h0 : _shifted_T_2[36:0]) : _alignedMag_T_2[36:0];
-  wire [24:0]   rounded24_1 =
+    _GEN_2 ? (geW_3 ? 37'h0 : _shifted_T_3[36:0]) : _alignedMag_T_2[36:0];
+  wire [24:0]   roundedDyn_1 =
     {1'h0, alignedMag_1[36:13]}
     + {24'h0,
        alignedMag_1[12]
          & ((|{_GEN_2
-                 & (|((big_2 ? 45'h1FFFFFFFFFFF : _mask_T_6[44:0] - 45'h1) & inMagEff_1)),
-               alignedMag_1[11:0]}) | alignedMag_1[13])};
-  wire [23:0]   mant24Norm_1 = rounded24_1[24] ? rounded24_1[24:1] : rounded24_1[23:0];
-  wire [9:0]    _biasedExpAfterRound_T_4 =
-    io_exponent_1 + {{4{_shift_amt_T_4[5]}}, _shift_amt_T_4} + {9'h0, rounded24_1[24]}
-    + 10'h7F;
-  wire          _GEN_3 = $signed(_biasedExpAfterRound_T_4) > 10'shFE;
-  wire          _GEN_4 = $signed(_biasedExpAfterRound_T_4) < 10'sh1;
-  wire [9:0]    _k_T_3 = 10'h1 - _biasedExpAfterRound_T_4;
-  wire [9:0]    kCap_1 = (|(_k_T_3[9:5])) ? 10'h1F : _k_T_3;
-  wire          big_3 = kCap_1 > 10'h17;
-  wire [23:0]   subSig24_1 = big_3 ? 24'h0 : mant24Norm_1 >> kCap_1;
-  wire [1046:0] _mask_T_9 = 1047'h1 << kCap_1;
+                 & (geW_3 ? (|inMagEff_1) : (|(_mask_T_6[43:0] - 44'h1 & inMagEff_1))),
+               alignedMag_1[11:0]}) | inAbsFull_1[44] | alignedMag_1[13])};
+  wire [23:0]   mant24Norm_1 = roundedDyn_1[24] ? roundedDyn_1[24:1] : roundedDyn_1[23:0];
+  wire [10:0]   _biasedExpAfterRound_T_4 =
+    {io_exponent_1[9], io_exponent_1} + {{5{_shift_amt_T_4[5]}}, _shift_amt_T_4}
+    + {10'h0, roundedDyn_1[24]} + 11'h7F;
+  wire          _GEN_3 = $signed(_biasedExpAfterRound_T_4) > 11'shFE;
+  wire          _GEN_4 = $signed(_biasedExpAfterRound_T_4) < 11'sh1;
+  wire [10:0]   _k_T_3 = 11'h1 - _biasedExpAfterRound_T_4;
+  wire [10:0]   kCap_1 = (|(_k_T_3[10:5])) ? 11'h1F : _k_T_3;
+  wire          geW_5 = kCap_1 > 11'h17;
+  wire [10:0]   shCap_9 = geW_5 ? 11'h17 : kCap_1;
+  wire [23:0]   subSig24_1 = geW_5 ? 24'h0 : mant24Norm_1 >> shCap_9;
+  wire [2070:0] _mask_T_10 = 2071'h1 << shCap_9;
   wire [23:0]   rounded23_1 =
     {1'h0, subSig24_1[23:1]}
     + {23'h0,
        subSig24_1[0]
-         & ((|((big_3 ? 24'hFFFFFF : _mask_T_9[23:0] - 24'h1) & mant24Norm_1))
+         & ((geW_5 ? (|mant24Norm_1) : (|(_mask_T_10[23:0] - 24'h1 & mant24Norm_1)))
             | subSig24_1[1])};
-  wire [44:0]   inMag_2 = io_in_2[44] ? 45'h0 - io_in_2 : io_in_2;
-  wire [44:0]   inMagEff_2 = enable_depth & ~io_nan_2 & (|inMag_2) ? inMag_2 : 45'h0;
+  wire          isNeg_2 = $signed(io_in_2) < 45'sh0;
+  wire [44:0]   inAbsFull_2 = isNeg_2 ? 45'h0 - io_in_2 : io_in_2;
+  wire [43:0]   inMag_2 = inAbsFull_2[44] ? 44'hFFFFFFFFFFF : inAbsFull_2[43:0];
+  wire [43:0]   inMagEff_2 = enable_depth & ~io_nan_2 & (|inMag_2) ? inMag_2 : 44'h0;
   wire [30:0]   _pe_T_52 =
-    (|(inMagEff_2[44:13])) ? inMagEff_2[44:14] : {inMagEff_2[12:0], 18'h0};
+    (|(inMagEff_2[43:12])) ? inMagEff_2[43:13] : {inMagEff_2[11:0], 19'h0};
   wire [14:0]   _pe_T_56 = (|(_pe_T_52[30:15])) ? _pe_T_52[30:16] : _pe_T_52[14:0];
-  wire [5:0]    _pe_T_59 =
+  wire [6:0]    _pe_T_59 =
     (|(_pe_T_52[30:15]))
-      ? {~(|(inMagEff_2[44:13])), 5'h0}
-      : {~(|(inMagEff_2[44:13])), 5'h0} + 6'h10;
+      ? {1'h0, ~(|(inMagEff_2[43:12])), 5'h0}
+      : {1'h0, ~(|(inMagEff_2[43:12])), 5'h0} + 7'h10;
   wire [6:0]    _pe_T_60 = (|(_pe_T_56[14:7])) ? _pe_T_56[14:8] : _pe_T_56[6:0];
-  wire [5:0]    _pe_T_63 = (|(_pe_T_56[14:7])) ? _pe_T_59 : _pe_T_59 + 6'h8;
+  wire [6:0]    _pe_T_63 = (|(_pe_T_56[14:7])) ? _pe_T_59 : _pe_T_59 + 7'h8;
   wire [2:0]    _pe_T_64 = (|(_pe_T_60[6:3])) ? _pe_T_60[6:4] : _pe_T_60[2:0];
-  wire [5:0]    _pe_T_67 = (|(_pe_T_60[6:3])) ? _pe_T_63 : _pe_T_63 + 6'h4;
-  wire [5:0]    _pe_T_71 = (|(_pe_T_64[2:1])) ? _pe_T_67 : _pe_T_67 + 6'h2;
-  wire [5:0]    _pe_T_75 =
-    ((|(_pe_T_64[2:1])) ? _pe_T_64[2] : _pe_T_64[0]) ? _pe_T_71 : _pe_T_71 + 6'h1;
-  wire [5:0]    _shift_amt_T_7 = 6'h7 - (_pe_T_75 > 6'h2D ? 6'h2D : _pe_T_75);
+  wire [6:0]    _pe_T_67 = (|(_pe_T_60[6:3])) ? _pe_T_63 : _pe_T_63 + 7'h4;
+  wire [6:0]    _pe_T_71 = (|(_pe_T_64[2:1])) ? _pe_T_67 : _pe_T_67 + 7'h2;
+  wire [6:0]    _pe_T_75 =
+    ((|(_pe_T_64[2:1])) ? _pe_T_64[2] : _pe_T_64[0]) ? _pe_T_71 : _pe_T_71 + 7'h1;
+  wire [5:0]    _shift_amt_T_7 = 6'h7 - (_pe_T_75 > 7'h2C ? 6'h2C : _pe_T_75[5:0]);
   wire          _GEN_5 = $signed(_shift_amt_T_7) > -6'sh1;
-  wire [5:0]    shCap_4 = _shift_amt_T_7 > 6'h2B ? 6'h2B : _shift_amt_T_7;
-  wire          big_4 = shCap_4 > 6'h2C;
-  wire [44:0]   _shifted_T_4 = inMagEff_2 >> shCap_4;
-  wire [107:0]  _mask_T_12 = 108'h1 << shCap_4;
+  wire          _shCap_T_4 = _shift_amt_T_7 > 6'h2B;
+  wire          geW_6 = (_shCap_T_4 ? 6'h2B : _shift_amt_T_7) > 6'h2B;
+  wire [5:0]    shCap_11 = geW_6 | _shCap_T_4 ? 6'h2B : _shift_amt_T_7;
+  wire [43:0]   _shifted_T_6 = inMagEff_2 >> shCap_11;
+  wire [106:0]  _mask_T_12 = 107'h1 << shCap_11;
   wire [5:0]    _shL_T_6 = 6'h0 - _shift_amt_T_7;
-  wire [107:0]  _alignedMag_T_4 =
+  wire [106:0]  _alignedMag_T_4 =
     {63'h0, inMagEff_2} << (_shL_T_6 > 6'h2B ? 6'h2B : _shL_T_6);
   wire [36:0]   alignedMag_2 =
-    _GEN_5 ? (big_4 ? 37'h0 : _shifted_T_4[36:0]) : _alignedMag_T_4[36:0];
-  wire [24:0]   rounded24_2 =
+    _GEN_5 ? (geW_6 ? 37'h0 : _shifted_T_6[36:0]) : _alignedMag_T_4[36:0];
+  wire [24:0]   roundedDyn_2 =
     {1'h0, alignedMag_2[36:13]}
     + {24'h0,
        alignedMag_2[12]
          & ((|{_GEN_5
-                 & (|((big_4 ? 45'h1FFFFFFFFFFF : _mask_T_12[44:0] - 45'h1)
-                      & inMagEff_2)),
-               alignedMag_2[11:0]}) | alignedMag_2[13])};
-  wire [23:0]   mant24Norm_2 = rounded24_2[24] ? rounded24_2[24:1] : rounded24_2[23:0];
-  wire [9:0]    _biasedExpAfterRound_T_7 =
-    io_exponent_2 + {{4{_shift_amt_T_7[5]}}, _shift_amt_T_7} + {9'h0, rounded24_2[24]}
-    + 10'h7F;
-  wire          _GEN_6 = $signed(_biasedExpAfterRound_T_7) > 10'shFE;
-  wire          _GEN_7 = $signed(_biasedExpAfterRound_T_7) < 10'sh1;
-  wire [9:0]    _k_T_6 = 10'h1 - _biasedExpAfterRound_T_7;
-  wire [9:0]    kCap_2 = (|(_k_T_6[9:5])) ? 10'h1F : _k_T_6;
-  wire          big_5 = kCap_2 > 10'h17;
-  wire [23:0]   subSig24_2 = big_5 ? 24'h0 : mant24Norm_2 >> kCap_2;
-  wire [1046:0] _mask_T_15 = 1047'h1 << kCap_2;
+                 & (geW_6 ? (|inMagEff_2) : (|(_mask_T_12[43:0] - 44'h1 & inMagEff_2))),
+               alignedMag_2[11:0]}) | inAbsFull_2[44] | alignedMag_2[13])};
+  wire [23:0]   mant24Norm_2 = roundedDyn_2[24] ? roundedDyn_2[24:1] : roundedDyn_2[23:0];
+  wire [10:0]   _biasedExpAfterRound_T_7 =
+    {io_exponent_2[9], io_exponent_2} + {{5{_shift_amt_T_7[5]}}, _shift_amt_T_7}
+    + {10'h0, roundedDyn_2[24]} + 11'h7F;
+  wire          _GEN_6 = $signed(_biasedExpAfterRound_T_7) > 11'shFE;
+  wire          _GEN_7 = $signed(_biasedExpAfterRound_T_7) < 11'sh1;
+  wire [10:0]   _k_T_6 = 11'h1 - _biasedExpAfterRound_T_7;
+  wire [10:0]   kCap_2 = (|(_k_T_6[10:5])) ? 11'h1F : _k_T_6;
+  wire          geW_8 = kCap_2 > 11'h17;
+  wire [10:0]   shCap_14 = geW_8 ? 11'h17 : kCap_2;
+  wire [23:0]   subSig24_2 = geW_8 ? 24'h0 : mant24Norm_2 >> shCap_14;
+  wire [2070:0] _mask_T_16 = 2071'h1 << shCap_14;
   wire [23:0]   rounded23_2 =
     {1'h0, subSig24_2[23:1]}
     + {23'h0,
        subSig24_2[0]
-         & ((|((big_5 ? 24'hFFFFFF : _mask_T_15[23:0] - 24'h1) & mant24Norm_2))
+         & ((geW_8 ? (|mant24Norm_2) : (|(_mask_T_16[23:0] - 24'h1 & mant24Norm_2)))
             | subSig24_2[1])};
-  wire [44:0]   inMag_3 = io_in_3[44] ? 45'h0 - io_in_3 : io_in_3;
-  wire [44:0]   inMagEff_3 = enable_depth & ~io_nan_3 & (|inMag_3) ? inMag_3 : 45'h0;
+  wire          isNeg_3 = $signed(io_in_3) < 45'sh0;
+  wire [44:0]   inAbsFull_3 = isNeg_3 ? 45'h0 - io_in_3 : io_in_3;
+  wire [43:0]   inMag_3 = inAbsFull_3[44] ? 44'hFFFFFFFFFFF : inAbsFull_3[43:0];
+  wire [43:0]   inMagEff_3 = enable_depth & ~io_nan_3 & (|inMag_3) ? inMag_3 : 44'h0;
   wire [30:0]   _pe_T_78 =
-    (|(inMagEff_3[44:13])) ? inMagEff_3[44:14] : {inMagEff_3[12:0], 18'h0};
+    (|(inMagEff_3[43:12])) ? inMagEff_3[43:13] : {inMagEff_3[11:0], 19'h0};
   wire [14:0]   _pe_T_82 = (|(_pe_T_78[30:15])) ? _pe_T_78[30:16] : _pe_T_78[14:0];
-  wire [5:0]    _pe_T_85 =
+  wire [6:0]    _pe_T_85 =
     (|(_pe_T_78[30:15]))
-      ? {~(|(inMagEff_3[44:13])), 5'h0}
-      : {~(|(inMagEff_3[44:13])), 5'h0} + 6'h10;
+      ? {1'h0, ~(|(inMagEff_3[43:12])), 5'h0}
+      : {1'h0, ~(|(inMagEff_3[43:12])), 5'h0} + 7'h10;
   wire [6:0]    _pe_T_86 = (|(_pe_T_82[14:7])) ? _pe_T_82[14:8] : _pe_T_82[6:0];
-  wire [5:0]    _pe_T_89 = (|(_pe_T_82[14:7])) ? _pe_T_85 : _pe_T_85 + 6'h8;
+  wire [6:0]    _pe_T_89 = (|(_pe_T_82[14:7])) ? _pe_T_85 : _pe_T_85 + 7'h8;
   wire [2:0]    _pe_T_90 = (|(_pe_T_86[6:3])) ? _pe_T_86[6:4] : _pe_T_86[2:0];
-  wire [5:0]    _pe_T_93 = (|(_pe_T_86[6:3])) ? _pe_T_89 : _pe_T_89 + 6'h4;
-  wire [5:0]    _pe_T_97 = (|(_pe_T_90[2:1])) ? _pe_T_93 : _pe_T_93 + 6'h2;
-  wire [5:0]    _pe_T_101 =
-    ((|(_pe_T_90[2:1])) ? _pe_T_90[2] : _pe_T_90[0]) ? _pe_T_97 : _pe_T_97 + 6'h1;
-  wire [5:0]    _shift_amt_T_10 = 6'h7 - (_pe_T_101 > 6'h2D ? 6'h2D : _pe_T_101);
+  wire [6:0]    _pe_T_93 = (|(_pe_T_86[6:3])) ? _pe_T_89 : _pe_T_89 + 7'h4;
+  wire [6:0]    _pe_T_97 = (|(_pe_T_90[2:1])) ? _pe_T_93 : _pe_T_93 + 7'h2;
+  wire [6:0]    _pe_T_101 =
+    ((|(_pe_T_90[2:1])) ? _pe_T_90[2] : _pe_T_90[0]) ? _pe_T_97 : _pe_T_97 + 7'h1;
+  wire [5:0]    _shift_amt_T_10 = 6'h7 - (_pe_T_101 > 7'h2C ? 6'h2C : _pe_T_101[5:0]);
   wire          _GEN_8 = $signed(_shift_amt_T_10) > -6'sh1;
-  wire [5:0]    shCap_6 = _shift_amt_T_10 > 6'h2B ? 6'h2B : _shift_amt_T_10;
-  wire          big_6 = shCap_6 > 6'h2C;
-  wire [44:0]   _shifted_T_6 = inMagEff_3 >> shCap_6;
-  wire [107:0]  _mask_T_18 = 108'h1 << shCap_6;
+  wire          _shCap_T_6 = _shift_amt_T_10 > 6'h2B;
+  wire          geW_9 = (_shCap_T_6 ? 6'h2B : _shift_amt_T_10) > 6'h2B;
+  wire [5:0]    shCap_16 = geW_9 | _shCap_T_6 ? 6'h2B : _shift_amt_T_10;
+  wire [43:0]   _shifted_T_9 = inMagEff_3 >> shCap_16;
+  wire [106:0]  _mask_T_18 = 107'h1 << shCap_16;
   wire [5:0]    _shL_T_9 = 6'h0 - _shift_amt_T_10;
-  wire [107:0]  _alignedMag_T_6 =
+  wire [106:0]  _alignedMag_T_6 =
     {63'h0, inMagEff_3} << (_shL_T_9 > 6'h2B ? 6'h2B : _shL_T_9);
   wire [36:0]   alignedMag_3 =
-    _GEN_8 ? (big_6 ? 37'h0 : _shifted_T_6[36:0]) : _alignedMag_T_6[36:0];
-  wire [24:0]   rounded24_3 =
+    _GEN_8 ? (geW_9 ? 37'h0 : _shifted_T_9[36:0]) : _alignedMag_T_6[36:0];
+  wire [24:0]   roundedDyn_3 =
     {1'h0, alignedMag_3[36:13]}
     + {24'h0,
        alignedMag_3[12]
          & ((|{_GEN_8
-                 & (|((big_6 ? 45'h1FFFFFFFFFFF : _mask_T_18[44:0] - 45'h1)
-                      & inMagEff_3)),
-               alignedMag_3[11:0]}) | alignedMag_3[13])};
-  wire [23:0]   mant24Norm_3 = rounded24_3[24] ? rounded24_3[24:1] : rounded24_3[23:0];
-  wire [9:0]    _biasedExpAfterRound_T_10 =
-    io_exponent_3 + {{4{_shift_amt_T_10[5]}}, _shift_amt_T_10} + {9'h0, rounded24_3[24]}
-    + 10'h7F;
-  wire          _GEN_9 = $signed(_biasedExpAfterRound_T_10) > 10'shFE;
-  wire          _GEN_10 = $signed(_biasedExpAfterRound_T_10) < 10'sh1;
-  wire [9:0]    _k_T_9 = 10'h1 - _biasedExpAfterRound_T_10;
-  wire [9:0]    kCap_3 = (|(_k_T_9[9:5])) ? 10'h1F : _k_T_9;
-  wire          big_7 = kCap_3 > 10'h17;
-  wire [23:0]   subSig24_3 = big_7 ? 24'h0 : mant24Norm_3 >> kCap_3;
-  wire [1046:0] _mask_T_21 = 1047'h1 << kCap_3;
+                 & (geW_9 ? (|inMagEff_3) : (|(_mask_T_18[43:0] - 44'h1 & inMagEff_3))),
+               alignedMag_3[11:0]}) | inAbsFull_3[44] | alignedMag_3[13])};
+  wire [23:0]   mant24Norm_3 = roundedDyn_3[24] ? roundedDyn_3[24:1] : roundedDyn_3[23:0];
+  wire [10:0]   _biasedExpAfterRound_T_10 =
+    {io_exponent_3[9], io_exponent_3} + {{5{_shift_amt_T_10[5]}}, _shift_amt_T_10}
+    + {10'h0, roundedDyn_3[24]} + 11'h7F;
+  wire          _GEN_9 = $signed(_biasedExpAfterRound_T_10) > 11'shFE;
+  wire          _GEN_10 = $signed(_biasedExpAfterRound_T_10) < 11'sh1;
+  wire [10:0]   _k_T_9 = 11'h1 - _biasedExpAfterRound_T_10;
+  wire [10:0]   kCap_3 = (|(_k_T_9[10:5])) ? 11'h1F : _k_T_9;
+  wire          geW_11 = kCap_3 > 11'h17;
+  wire [10:0]   shCap_19 = geW_11 ? 11'h17 : kCap_3;
+  wire [23:0]   subSig24_3 = geW_11 ? 24'h0 : mant24Norm_3 >> shCap_19;
+  wire [2070:0] _mask_T_22 = 2071'h1 << shCap_19;
   wire [23:0]   rounded23_3 =
     {1'h0, subSig24_3[23:1]}
     + {23'h0,
        subSig24_3[0]
-         & ((|((big_7 ? 24'hFFFFFF : _mask_T_21[23:0] - 24'h1) & mant24Norm_3))
+         & ((geW_11 ? (|mant24Norm_3) : (|(_mask_T_22[23:0] - 24'h1 & mant24Norm_3)))
             | subSig24_3[1])};
-  assign io_out_0_sign = enable_depth & ~io_nan_0 & io_in_0[44];
+  assign io_out_0_sign = enable_depth & ~io_nan_0 & isNeg;
   assign io_out_0_exponent =
     enable_depth
       ? (io_nan_0
@@ -250,7 +264,7 @@ module p_Convert_Groupwise(
                ? 23'h0
                : _GEN_1 ? (rounded23[23] ? 23'h0 : rounded23[22:0]) : mant24Norm[22:0])
       : 23'h0;
-  assign io_out_1_sign = enable_depth & ~io_nan_1 & io_in_1[44];
+  assign io_out_1_sign = enable_depth & ~io_nan_1 & isNeg_1;
   assign io_out_1_exponent =
     enable_depth
       ? (io_nan_1
@@ -271,7 +285,7 @@ module p_Convert_Groupwise(
                    ? (rounded23_1[23] ? 23'h0 : rounded23_1[22:0])
                    : mant24Norm_1[22:0])
       : 23'h0;
-  assign io_out_2_sign = enable_depth & ~io_nan_2 & io_in_2[44];
+  assign io_out_2_sign = enable_depth & ~io_nan_2 & isNeg_2;
   assign io_out_2_exponent =
     enable_depth
       ? (io_nan_2
@@ -292,7 +306,7 @@ module p_Convert_Groupwise(
                    ? (rounded23_2[23] ? 23'h0 : rounded23_2[22:0])
                    : mant24Norm_2[22:0])
       : 23'h0;
-  assign io_out_3_sign = enable_depth & ~io_nan_3 & io_in_3[44];
+  assign io_out_3_sign = enable_depth & ~io_nan_3 & isNeg_3;
   assign io_out_3_exponent =
     enable_depth
       ? (io_nan_3

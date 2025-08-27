@@ -281,8 +281,8 @@ class p_TOP_Til_Dep_total_piped_CT_syn extends Module {
   // ---------------------------------
   // S10: Convert@Dep7, else Adder_Groupwise_8
   // ---------------------------------
-  val toS10_gw_emax = delayToStage(8, 30, s8_gw_emax)
-  val toS10_nan     = delayToStage(8, 30, s8_nan_proc)
+  val toS10_gw_emax = delayToStage(8, 10, s8_gw_emax)
+  val toS10_nan     = delayToStage(8, 10, s8_nan_proc)
 
   convert_groupwise_7.io.depth    := depth_s10
   convert_groupwise_7.io.in       := s10_ad7_out
