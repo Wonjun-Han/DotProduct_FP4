@@ -17,24 +17,39 @@ class p_LUT_2D extends Module {
   val MAX_M = 9
   val MAX_E = 4
 
-  // 5 x 10 테이블 (폭 9비트로 고정)
-  private val table2d = VecInit((0 to MAX_E).map { e =>
-    VecInit((0 to MAX_M).map { m =>
-      (m << e).U(9.W) // 미리 계산된 상수
-    })
-  })
+  // Use Mem instead of VecInit to avoid SystemVerilog assignment patterns
+  private val preCalcTable = Mem(256, UInt(9.W))
+  
+  // Initialize ROM values using when/elsewhen statements
+  for (addr <- 0 until 256) {
+    val s = (addr >> 7) & 1        
+    val e = (addr >> 4) & 7        
+    val m = addr & 15              
+    
+    val romValue = if (e <= MAX_E && m <= MAX_M) {
+      val value = m << e
+      if (s == 1 && value != 0) {
+        512 - value
+      } else {
+        value
+      }
+    } else {
+      0
+    }
+    
+    preCalcTable.write(addr.U, romValue.U(9.W))
+  }
 
   for (i <- 0 until 256) {
-    val m = io.mantissa(i) // 0..9
-    val e = io.exponent(i) // 0..4
+    val m = io.mantissa(i) // 0..9 (4-bit)
+    val e = io.exponent(i) // 0..4 (3-bit)  
+    val s = io.sign(i)     // 0..1 (1-bit)
 
-    val valid = (m <= MAX_M.U) && (e <= MAX_E.U)
-    val mag   = table2d(e)(m) // 9-bit magnitude (0..144)
-
-    // sign==1이면 2의 보수로 부호 반전: (~mag + 1) (9비트 유지)
-    val neg   = ((~mag).asUInt + 1.U(9.W))(8, 0)
-    val twos  = Mux(io.sign(i).asBool, neg, mag)
-
-    io.out(i) := Mux(valid, twos, 0.U(9.W))
+    // Direct wire concatenation - no arithmetic delay!
+    // Address = sign(1) + exp(3) + man(4) = 8-bit direct mapping
+    val addr = Cat(s, e, m) 
+    
+    // Mem-based ROM lookup - generates standard Verilog
+    io.out(i) := preCalcTable.read(addr)
   }
 }
