@@ -13,5 +13,8 @@
   "python.analysis.useLibraryCodeForTypes": true,
   "files.watcherExclude": {
     "**/target": true
+  },
+  "files.associations": {
+    "*.1": "buildconfig"
   }
 }
