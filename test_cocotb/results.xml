@@ -1,8 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1756385871" />
-    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="415" time="17.051161766052246" sim_time_ns="20110.001" ratio_time="1179.391837102719" />
-    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="428" time="17.048326015472412" sim_time_ns="20120.001" ratio_time="1180.1745802925082" />
-    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="441" time="35.145042181015015" sim_time_ns="40240.001" ratio_time="1144.9694893733042" />
+    <property name="random_seed" value="1756448960" />
+    <testcase name="test_mxfp4_mac_pipelined_single_depth_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="415" time="19.28693699836731" sim_time_ns="20110.001" ratio_time="1042.674687105701" />
+    <testcase name="test_mxfp4_mac_pipelined_throughput_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="428" time="19.090616941452026" sim_time_ns="20120.001" ratio_time="1053.920942508298" />
+    <testcase name="test_mxfp4_mac_pipelined_mixed_depths_streaming" classname="tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT" file="/Users/wonjun/chisel-template/test_cocotb/tb_p_TOP_Til_Dep_total_piped_CT_syn_CSA_LUT.py" lineno="441" time="38.590296030044556" sim_time_ns="40240.001" ratio_time="1042.7492178000152" />
   </testsuite>
 </testsuites>
