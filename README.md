@@ -5,17 +5,21 @@ A high-performance, pipelined hardware implementation of MXFP4/NVFP4-based Multi
 ---
 
 ## MXFP4
-<img width="2558" height="1416" alt="스크린샷 2025-08-06 오후 12 57 34" src="https://github.com/user-attachments/assets/f579ae4d-7c7e-4a58-af1c-206fe221338e" />
 
-<img width="2555" height="1417" alt="스크린샷 2025-08-13 오후 8 53 50" src="https://github.com/user-attachments/assets/93e3d4ef-ee87-45aa-b344-f2a8e69e2786" />
+<img width="1516" height="847" alt="스크린샷 2025-08-04 오후 4 19 38" src="https://github.com/user-attachments/assets/a2dba3c7-c750-4037-98be-a12f1fc80aff" />
+
+<img width="2555" height="1417" alt="스크린샷 2025-08-13 오후 8 53 50" src="https://github.com/user-attachments/assets/e09cfe3c-71f9-4ffd-ac38-10e175a91ceb" />
+
 
 ---
 
 ## NVFP4
 
-<img width="2556" height="1420" alt="스크린샷 2025-08-13 오후 8 53 34" src="https://github.com/user-attachments/assets/676ad811-8dde-43b5-9115-3768f5ceb33f" />
+<img width="2556" height="1420" alt="스크린샷 2025-08-13 오후 8 53 34" src="https://github.com/user-attachments/assets/45569ecd-392e-4d57-b15e-38edb4632f6b" />
 
-<img width="2555" height="1420" alt="스크린샷 2025-08-13 오후 8 54 02" src="https://github.com/user-attachments/assets/aeb39301-b74b-49b6-b86d-60953f348718" />
+<img width="2555" height="1420" alt="스크린샷 2025-08-13 오후 8 54 02" src="https://github.com/user-attachments/assets/ab8b63cb-a489-478d-8e29-0b4b12b5cb26" />
+
+
 
 ---
 
